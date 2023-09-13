@@ -1,12 +1,14 @@
 import { Environment } from './types';
 import { ENV } from './config';
-import Bot from './models/Bot';
-import GetBlueCardAppointment from './models/scenarios/GetBlueCardAppointment';
+import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
+import ChromeBot from './models/bots/ChromeBot';
 
 
 
 const execute = async () => {
-    await GetBlueCardAppointment.execute(new Bot());
+    const bot = new ChromeBot();
+
+    await GetBlueCardAppointmentScenario.execute(bot);
 }
 
 

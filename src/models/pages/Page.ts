@@ -1,5 +1,5 @@
 abstract class Page {
-    protected abstract url: string;
+    protected url: string = '';
 
     public getUrl() {
         return this.url;

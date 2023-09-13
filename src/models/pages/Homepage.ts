@@ -1,10 +1,17 @@
-import { BERLIN_LEA_HOMEPAGE_URL } from '../../constants';
+import { By } from 'selenium-webdriver';
+import { HOMEPAGE_URL } from '../../constants';
 import Page from './Page';
 
-class Homepage extends Page {
-    private static instance: Homepage;
+const ELEMENTS = {
+    Buttons: {
+        BookAppointment: By.xpath('//*[@id="mainForm"]/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div[2]/a'),
+    },
+};
 
-    protected url: string = BERLIN_LEA_HOMEPAGE_URL;
+class HomePage extends Page {
+    private static instance: HomePage;
+
+    protected url: string = HOMEPAGE_URL;
 
     private constructor() {
         super();
@@ -12,11 +19,15 @@ class Homepage extends Page {
 
     public static getInstance() {
         if (!this.instance) {
-            this.instance = new Homepage();
+            this.instance = new HomePage();
         }
 
         return this.instance;
     }
+
+    public getBookAppointmentButton() {
+        return ELEMENTS.Buttons.BookAppointment;
+    }
 }
 
-export default Homepage.getInstance();
+export default HomePage.getInstance();
