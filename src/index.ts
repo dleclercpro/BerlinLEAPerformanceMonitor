@@ -1,12 +1,12 @@
 import { Environment } from './types';
 import { ENV } from './config';
 import Bot from './models/Bot';
-import { BERLIN_LEA_URL } from './constants';
+import GetBlueCardAppointment from './models/scenarios/GetBlueCardAppointment';
 
 
 
 const execute = async () => {
-    const bot = new Bot(BERLIN_LEA_URL);
+    await GetBlueCardAppointment.execute(new Bot());
 }
 
 

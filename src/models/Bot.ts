@@ -1,16 +1,29 @@
 import logger from '../logger';
+import { Browser, Builder, WebDriver } from 'selenium-webdriver';
+import Page from './pages/Page';
 
 class Bot {
-    protected url: string;
+    protected browser: string;
+    protected driver?: WebDriver;
 
-    public constructor(url: string) {
-        this.url = url;
-
-        logger.info(`Setting bot URL to: ${url}`);
+    public constructor(browser: string = Browser.CHROME) {
+        this.browser = browser;
     }
 
-    public getUrl() {
-        return this.url;
+    protected async getDriver() {
+        if (!this.driver) {
+            this.driver = await new Builder().forBrowser(this.browser).build();
+        }
+
+        return this.driver;
+    }
+
+    public async visitPage(page: Page) {
+        logger.info(`Visiting page: ${page.getUrl()}`);
+
+        const driver = await this.getDriver();
+
+        await driver.get(page.getUrl());
     }
 }
 
