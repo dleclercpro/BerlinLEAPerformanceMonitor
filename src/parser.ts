@@ -13,7 +13,8 @@ export const parseLogs = async (filepath: string) => {
         .filter(Boolean)
         .map(line => JSON.parse(line) as Log);
 
-    const sessions: Session[] = [new Session()];
+    let sessionId = 0;
+    const sessions: Session[] = [new Session(sessionId.toString())];
     const getCurrentSession = () => getLast(sessions);
     let currentSession = getCurrentSession();
 
@@ -30,7 +31,8 @@ export const parseLogs = async (filepath: string) => {
             }
 
             // Create new session
-            sessions.push(new Session(log.time));
+            sessionId += 1;
+            sessions.push(new Session(sessionId.toString(), log.time));
             
             // Update current session pointer
             currentSession = getCurrentSession();
@@ -61,8 +63,8 @@ export const parseLogs = async (filepath: string) => {
 
     sessions
         .filter((session: Session) => session.isComplete())
-        .forEach((session: Session, i: number) => {
-            logger.debug(session.getLogs().map(log => log.msg), `Session ${i} (${session.getDuration()}):`);
-            logger.debug(session.getErrors(), `Session errors:`);
+        .forEach((session: Session, i: number, remainingSessions: Session[]) => {
+            logger.debug(session.getLogs().map(log => log.msg), `Session ${i + 1}/${remainingSessions.length} (${session.getDuration()}):`);
+            logger.debug(session.getErrors(), `Errors:`);
         });
 }

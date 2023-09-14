@@ -2,6 +2,8 @@ import { Log } from '../types';
 import TimeDuration, { TimeUnit } from './TimeDuration';
 
 class Session {
+    protected id: string;
+
     protected static texts = {
         Start: '[START]',
         End: '[END]',
@@ -13,7 +15,8 @@ class Session {
     protected logs: Log[];
     protected errors: string[];
 
-    public constructor (start?: number, end?: number) {
+    public constructor (id: string, start?: number, end?: number) {
+        this.id = id;
         this.start = start;
         this.end = end;
         this.logs = [];
