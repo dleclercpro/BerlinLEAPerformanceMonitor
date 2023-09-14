@@ -1,7 +1,8 @@
-import { By, WebDriver } from 'selenium-webdriver';
+import { By, WebDriver, WebElement, until } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
-import Page from '../pages/Page';
+import { ZERO_TIME } from '../../config';
 import logger from '../../logger';
+import TimeDuration from '../general/TimeDuration';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -21,18 +22,45 @@ abstract class Bot {
         return this.driver!;
     }
 
-    public async find(element: By) {
-        if (!this.driver) throw new Error('Missing driver!');
-
-        return this.driver.findElement(element);
-    }
-
-    public async visitPage(page: Page) {
-        logger.info(`Visiting page: ${page.getUrl()}`);
-
+    public async navigateTo(url: string) {
         const driver = await this.getDriver();
 
-        await driver.get(page.getUrl());
+        await driver.get(url);
+    }
+
+    public async findElement(element: By) {
+        const driver = await this.getDriver();
+
+        return driver.findElement(element);
+    }
+
+    public async waitForElement(locator: By, timeout?: TimeDuration) {
+        const driver = await this.getDriver();
+
+        if (timeout) {
+            logger.trace(`Waiting with timeout of: ${timeout.format()}`);
+        }
+
+        const wait = timeout ? timeout.toMs().getAmount() : undefined;
+
+        // Element should be present in DOM
+        const element = await driver.wait(until.elementLocated(locator), wait);
+        
+        // Element should be visible in browser
+        await driver.wait(until.elementIsVisible(element), wait);
+
+        return element;
+    }
+
+    public async waitForElementToDisappear(locator: By) {
+        const driver = await this.getDriver();
+
+        const element = await this.findElement(locator);
+
+        await Promise.any([
+            driver.wait(until.elementIsNotVisible(element)),
+            driver.wait(until.stalenessOf(element)),
+        ]);
     }
 }
 

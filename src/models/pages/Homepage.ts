@@ -1,33 +1,33 @@
 import { By } from 'selenium-webdriver';
 import { HOMEPAGE_URL } from '../../constants';
 import Page from './Page';
+import logger from '../../logger';
+
+const TEXTS = {
+    BookAppointment: 'Termin buchen',
+};
 
 const ELEMENTS = {
     Buttons: {
-        BookAppointment: By.xpath('//*[@id="mainForm"]/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div[2]/a'),
+        BookAppointment: By.xpath(`//a[contains(text(), '${TEXTS.BookAppointment}')]`),
     },
 };
 
 class HomePage extends Page {
-    private static instance: HomePage;
-
+    protected name = 'Home';
     protected url: string = HOMEPAGE_URL;
 
-    private constructor() {
-        super();
+    // Home page is loaded once the 'book appointment' button is visible
+    protected async doWaitUntilLoaded() {
+        await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment);
     }
 
-    public static getInstance() {
-        if (!this.instance) {
-            this.instance = new HomePage();
-        }
+    public async clickOnBookAppointmentButton() {
+        const button = await this.bot.findElement(ELEMENTS.Buttons.BookAppointment);
 
-        return this.instance;
-    }
-
-    public getBookAppointmentButton() {
-        return ELEMENTS.Buttons.BookAppointment;
+        logger.info(`Clicking on book appointment button.`);
+        await button.click();
     }
 }
 
-export default HomePage.getInstance();
+export default HomePage;

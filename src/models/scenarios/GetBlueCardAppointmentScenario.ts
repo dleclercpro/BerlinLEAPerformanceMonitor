@@ -1,10 +1,12 @@
-import { until } from 'selenium-webdriver';
-import Bot from '../bots/Bot';
-import HomePage from '../pages/HomePage';
-import TermsAndConditionsPage from '../pages/TermsAndConditionsPage';
-import Scenario from './Scenario';
-import AppointmentPage from '../pages/AppointmentPage';
+import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
+import { SHORT_TIME } from '../../constants';
 import logger from '../../logger';
+import { sleep } from '../../utils/time';
+import TimeDuration, { TimeUnit } from '../general/TimeDuration';
+import AppointmentPage from '../pages/AppointmentPage';
+import HomePage from '../pages/HomePage';
+import TermsPage from '../pages/TermsPage';
+import Scenario from './Scenario';
 
 class GetBlueCardAppointmentScenario extends Scenario {
     private static instance: GetBlueCardAppointmentScenario;
@@ -26,36 +28,43 @@ class GetBlueCardAppointmentScenario extends Scenario {
     protected async doExecute() {
         const bot = this.bot!;
 
-        await bot.visitPage(HomePage);
+        // Home page
+        const homePage = new HomePage(bot);
+        await homePage.visit();
+        await homePage.waitUntilLoaded();
+        
+        await homePage.clickOnBookAppointmentButton();
 
-        await this.startAppointmentSearch();
-        await this.agreeToTermsAndConditions();
-    }
+        // Terms page
+        const termsPage = new TermsPage(bot);
+        await termsPage.waitUntilLoaded();
 
-    protected async startAppointmentSearch() {
-        const bot = this.bot!;
+        await termsPage.tickAcceptTermsCheckbox();
+        await termsPage.clickOnSubmitButton();
 
-        const button = await bot.find(HomePage.getBookAppointmentButton());
-        logger.debug('Clicking on book appointment button.');
-        await button.click();
+        // Appointment page
+        const appointmentPage = new AppointmentPage(bot);
+        await appointmentPage.waitUntilLoaded();
 
-        const driver = await bot.getDriver();
-        await driver.wait(until.elementLocated(TermsAndConditionsPage.getAgreedCheckbox()));
-    }
+        await appointmentPage.selectCitizenship(CITIZENSHIP);
+        await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS);
+        await appointmentPage.selectWithRelatives(WITH_RELATIVES);
 
-    protected async agreeToTermsAndConditions() {
-        const bot = this.bot!;
+        await appointmentPage.clickOnApplyForVisaButton();
+        await appointmentPage.clickOnEmploymentButton();
+        await appointmentPage.clickOnBlueCardButton();
+        await sleep(SHORT_TIME);
 
-        const checkbox = await bot.find(TermsAndConditionsPage.getAgreedCheckbox());
-        logger.debug('Clicking on checkbox.');
-        await checkbox.click();
+        await appointmentPage.clickOnSubmitButton();
 
-        const button = await bot.find(TermsAndConditionsPage.getSubmitButton());
-        logger.debug('Clicking on submit button.');
-        await button.click();
+        const resultsPage = new AppointmentPage(bot);
+        await resultsPage.waitUntilLoaded();
 
-        const driver = await bot.getDriver();
-        await driver.wait(until.elementLocated(AppointmentPage.getCitizenshipDropdown()));
+        if (await resultsPage.hasErrorMessage()) {
+            logger.info(`There are no appointments available at the moment. :'(`);
+        } else {
+            logger.warn(`There are appointments available RIGHT NOW! :)`);
+        }
     }
 }
 
