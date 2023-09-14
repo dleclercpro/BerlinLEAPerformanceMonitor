@@ -3,6 +3,7 @@ import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
+import { UIError } from '../../errors';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
@@ -75,6 +76,10 @@ class AppointmentPage extends Page {
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
+
+        if (await this.hasAsylumExtensionButton()) {
+            throw new UIError();
+        }
     }
 
     public async clickOnApplyForVisaButton() {

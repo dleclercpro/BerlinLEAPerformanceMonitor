@@ -9,4 +9,5 @@ export type Log = {
     level: number,
     pid: number,
     msg: string,
+    err?: string,
 }

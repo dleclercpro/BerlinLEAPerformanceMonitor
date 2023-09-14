@@ -51,8 +51,8 @@ export const parseLogs = async (filepath: string) => {
             currentSession.logs.push(log);
 
             // Look for errors
-            if (log.level >= 50) {
-                currentSession.errors.push(log.msg);
+            if (log.err) {
+                currentSession.errors.push(log.err);
             }
         }
 

@@ -1,11 +1,10 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
-import { NoAppointmentsError, UIError } from '../../errors';
-import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
 import HomePage from '../pages/HomePage';
+import ResultsPage from '../pages/ResultsPage';
 import TermsPage from '../pages/TermsPage';
 import Scenario from './Scenario';
 
@@ -50,10 +49,6 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS);
         await appointmentPage.selectWithRelatives(WITH_RELATIVES);
 
-        if (await appointmentPage.hasAsylumExtensionButton()) {
-            throw new UIError();
-        }
-
         await appointmentPage.clickOnApplyForVisaButton();
         await appointmentPage.clickOnEmploymentButton();
         await appointmentPage.clickOnBlueCardButton();
@@ -64,15 +59,10 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.clickOnNextButton();
 
         // Check results
-        const resultsPage = new AppointmentPage(bot);
+        const resultsPage = new ResultsPage(bot);
         await resultsPage.waitUntilLoaded();
 
-        if (await resultsPage.hasErrorMessage()) {
-            logger.info(`There are no appointments available at the moment. :'(`);
-            throw new NoAppointmentsError();
-        }
-
-        logger.info(`There are appointments available RIGHT NOW! :)`);
+        await resultsPage.check();
     }
 }
 

@@ -6,7 +6,7 @@ import TimeDuration from '../TimeDuration';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
 
 const TEXTS = {
-    InternalServerError: 'Internal Server Error',
+    InternalServerError: '500 - Internal Server Error',
     Home: 'Startseite',
 };
 

@@ -17,9 +17,7 @@ const executeOnce = async (bot: Bot) => {
 
 
 const execute = async () => {
-    let done = true;
-
-    await parseLogs(LOGS_PATH);
+    let done = false;
 
     while (!done) {
         const bot = new ChromeBot();
@@ -30,6 +28,8 @@ const execute = async () => {
             done = true;
         }
     }
+
+    await parseLogs(LOGS_PATH);
 }
 
 
