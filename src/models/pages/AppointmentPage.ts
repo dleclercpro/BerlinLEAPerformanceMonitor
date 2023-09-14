@@ -2,11 +2,10 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import { MEDIUM_TIME, SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
+import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
-    ApplyForAsylumExtension: 'Aufenthaltsgestattung (Asyl) - verlängern',
     Employment: 'Erwerbstätigkeit',
     BlueCard: 'Blaue Karte EU',
     NoAppointments: 'keine Termine frei',
@@ -50,33 +49,27 @@ class AppointmentPage extends Page {
     }
 
     public async selectCitizenship(value: string) {
-        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.Citizenship);
-
         logger.info(`Select citizenship: ${value}`);
-        await dropdown.sendKeys(value);
+
+        await this.selectDropdownOption(ELEMENTS.Dropdown.Citizenship, value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
-        await sleep(SHORT_TIME);
     }
 
     public async selectNumberOfApplicants(value: string) {    
-        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.NumberOfApplicants);
-
         logger.info(`Select number of applicants: ${value}`);
-        await dropdown.sendKeys(value);
+
+        await this.selectDropdownOption(ELEMENTS.Dropdown.NumberOfApplicants, value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
-        await sleep(SHORT_TIME);
     }
 
     public async selectWithRelatives(value: string) {
-        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.WithRelatives);
-    
         logger.info(`Select with relatives: ${value}`);
-        await dropdown.sendKeys(value);
+
+        await this.selectDropdownOption(ELEMENTS.Dropdown.WithRelatives, value);
 
         await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
-        await sleep(SHORT_TIME);
     }
 
     public async clickOnApplyForVisaButton() {

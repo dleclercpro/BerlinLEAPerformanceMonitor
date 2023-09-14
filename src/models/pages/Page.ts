@@ -4,6 +4,7 @@ import Bot from '../bots/Bot';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 import TimeDuration from '../TimeDuration';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
+import { sleep } from '../../utils/time';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',
@@ -66,6 +67,15 @@ abstract class Page {
                 logger.trace(`Page '${this.name}' does not have element '${locator.toString()}'.`);
                 return false;
             });
+    }
+
+    protected async selectDropdownOption(locator: By, option: string) {
+        const dropdown = await this.bot.findElement(locator);
+
+        await dropdown.sendKeys(option);
+
+        // Seems dropdowns need a little time
+        await sleep(SHORT_TIME);
     }
 
     protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {

@@ -1,5 +1,5 @@
 import { ALARM_PATH } from '../../config';
-import { NoAppointmentsError } from '../../errors';
+import { NoAppointmentError } from '../../errors';
 import logger from '../../logger';
 import SoundPlayer from '../SoundPlayer';
 import AppointmentPage from './AppointmentPage';
@@ -11,7 +11,7 @@ class ResultsPage extends AppointmentPage {
         if (await this.hasErrorMessage()) {
             logger.info(`There are no appointments available at the moment. :'(`);
             
-            throw new NoAppointmentsError();
+            throw new NoAppointmentError();
         }
 
         logger.info(`There are appointments available RIGHT NOW! :)`);
