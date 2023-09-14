@@ -1,9 +1,8 @@
-import { By, WebDriver, WebElement, until } from 'selenium-webdriver';
+import { By, WebDriver, until } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
-import { ZERO_TIME } from '../../config';
 import logger from '../../logger';
-import TimeDuration from '../general/TimeDuration';
-import { MEDIUM_TIME } from '../../constants';
+import TimeDuration from '../TimeDuration';
+import { LONG_TIME } from '../../constants';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -35,7 +34,7 @@ abstract class Bot {
         return driver.findElement(element);
     }
 
-    public async waitForElement(locator: By, timeout: TimeDuration = MEDIUM_TIME) {
+    public async waitForElement(locator: By, timeout: TimeDuration = LONG_TIME) {
         const driver = await this.getDriver();
 
         if (timeout) {

@@ -1,4 +1,4 @@
-import { round } from '../../utils/math';
+import { round } from '../utils/math';
 
 export enum TimeUnit {
     Days = 'D',

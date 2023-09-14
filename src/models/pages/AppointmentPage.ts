@@ -2,7 +2,7 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import TimeDuration, { TimeUnit } from '../general/TimeDuration';
+import TimeDuration, { TimeUnit } from '../TimeDuration';
 import { SHORT_TIME } from '../../constants';
 
 const TEXTS = {

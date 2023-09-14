@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import logger from '../logger';
-import MemorySize, { MemoryUnit } from '../models/general/MemorySize';
 
 export const deleteFile = async (filepath: string) => {
 
@@ -77,26 +76,6 @@ export const touchFile = async (filepath: string) => {
 
 export const createFile = async (filepath: string) => {
     await writeFile(filepath, '');
-}
-
-export const truncateFile = async (filepath: string, bytes: number) => {
-    const size = await getFileSize(filepath);
-
-    return new Promise<void>((resolve, reject) => {
-        fs.truncate(filepath, size.toBytes().getAmount() - bytes, (err) => {
-            if (err) reject(err);
-
-            logger.trace(`Truncated ${bytes} bytes from file: ${filepath}`);
-
-            resolve();
-        });
-    });
-}
-
-export const getFileSize = (filepath: string) => {
-    const { size } = fs.statSync(filepath);
-
-    return new MemorySize(size, MemoryUnit.Bytes);
 }
 
 export const readJSON = async (filepath: string) => {
