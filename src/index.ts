@@ -4,6 +4,7 @@ import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppoin
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import { parseLogs } from './parser';
+import SoundPlayer from './models/SoundPlayer';
 
 
 
@@ -24,6 +25,9 @@ const shouldExecuteAgain = async (bot: Bot) => {
 const execute = async () => {
     if (ENABLE_POLLING) {
         let done = false;
+
+        // Test alarm
+        await new SoundPlayer().play(ALARM_PATH);
 
         while (!done) {
             const bot = new ChromeBot();
