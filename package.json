@@ -4,7 +4,10 @@
   "author": "David Leclerc",
   "main": "./src/index.ts",
   "scripts": {
-    "start": "cross-env ENV=development nodemon ./src/index.ts"
+    "start": "npm run start:dev",
+    "start:dev": "cross-env ENV=development nodemon ./src/index.ts",
+    "start:prod": "cross-env ENV=production nodemon ./src/index.ts",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "@babel/core": "^7.21.4",

@@ -27,21 +27,21 @@ class GetBlueCardAppointmentScenario extends Scenario {
 
     protected async doExecute(bot: Bot) {
 
-        // Home page
+        // Start of user journey: book an appointment
         const homePage = new HomePage(bot);
         await homePage.visit();
         await homePage.waitUntilLoaded();
         
         await homePage.clickOnBookAppointmentButton();
 
-        // Terms page
+        // Agree to terms and conditions of LEA
         const termsPage = new TermsPage(bot);
         await termsPage.waitUntilLoaded();
 
         await termsPage.tickAcceptTermsCheckbox();
         await termsPage.clickOnSubmitButton();
 
-        // Appointment page
+        // Define user's appointment needs
         const appointmentPage = new AppointmentPage(bot);
         await appointmentPage.waitUntilLoaded();
 
@@ -52,10 +52,12 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.clickOnApplyForVisaButton();
         await appointmentPage.clickOnEmploymentButton();
         await appointmentPage.clickOnBlueCardButton();
+        
         await sleep(SHORT_TIME);
 
         await appointmentPage.clickOnSubmitButton();
 
+        // Check results
         const resultsPage = new AppointmentPage(bot);
         await resultsPage.waitUntilLoaded();
 

@@ -3,6 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import { ZERO_TIME } from '../../config';
 import logger from '../../logger';
 import TimeDuration from '../general/TimeDuration';
+import { MEDIUM_TIME } from '../../constants';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -34,7 +35,7 @@ abstract class Bot {
         return driver.findElement(element);
     }
 
-    public async waitForElement(locator: By, timeout?: TimeDuration) {
+    public async waitForElement(locator: By, timeout: TimeDuration = MEDIUM_TIME) {
         const driver = await this.getDriver();
 
         if (timeout) {

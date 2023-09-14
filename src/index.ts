@@ -14,7 +14,7 @@ const execute = async () => {
             await GetBlueCardAppointmentScenario.execute(bot);
 
         } catch (err: any) {
-            logger.error(err);
+            logger.fatal(err);
         
         } finally {
             const driver = await bot.getDriver();
@@ -26,7 +26,7 @@ const execute = async () => {
 
 
 
-if ([Environment.Development].includes(ENV)) {
+if ([Environment.Development, Environment.Production].includes(ENV)) {
     execute();
 }
 
