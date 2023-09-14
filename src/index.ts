@@ -1,5 +1,5 @@
 import { Environment } from './types';
-import { ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH, ALARM_PATH } from './config';
+import { FORCE_POLLING, ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH, ALARM_PATH } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
@@ -29,7 +29,7 @@ const execute = async () => {
         // Test alarm
         await new SoundPlayer().play(ALARM_PATH);
 
-        while (!done) {
+        while (FORCE_POLLING || !done) {
             const bot = new ChromeBot();
     
             done = !(await shouldExecuteAgain(bot));
