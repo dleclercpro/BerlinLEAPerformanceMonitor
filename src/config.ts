@@ -6,10 +6,7 @@ export const LOCALE = 'en';
 export const LOGS_PATH = `${process.cwd()}/data/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 
-export const FORCE_POLLING = [true, 'true'].includes(process.env.FORCE_POLLING!);
-export const ENABLE_POLLING = [true, 'true'].includes(process.env.ENABLE_POLLING!);
-
-export const ENABLE_PARSING = [true, 'true'].includes(process.env.ENABLE_PARSING!);
+export const TEST_ALARM = [true, 'true'].includes(process.env.TEST_ALARM!);
 
 export const CITIZENSHIP = process.env.CITIZENSHIP!;
 export const NUMBER_OF_APPLICANTS = process.env.NUMBER_OF_APPLICANTS!;

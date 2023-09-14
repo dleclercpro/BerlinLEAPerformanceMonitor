@@ -1,10 +1,12 @@
 import { Environment } from './types';
-import { FORCE_POLLING, ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH, ALARM_PATH } from './config';
+import { ENV, LOGS_PATH, ALARM_PATH, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import { parseLogs } from './parser';
 import SoundPlayer from './models/SoundPlayer';
+import minimist from 'minimist';
+import logger from './logger';
 
 
 
@@ -22,21 +24,37 @@ const shouldExecuteAgain = async (bot: Bot) => {
 
 
 
+const parseArgs = (args: minimist.ParsedArgs) => {
+    return {
+        poll: [true, 'true'].includes(args.poll),
+        endless: [true, 'true'].includes(args.endless),
+        parse: [true, 'true'].includes(args.parse),
+    };
+}
+
+
+
 const execute = async () => {
-    if (ENABLE_POLLING) {
+    const args = minimist(process.argv.slice(2))
+    const { poll, parse, endless } = parseArgs(args);
+    
+    if (poll) {
         let done = false;
 
-        // Test alarm
-        await new SoundPlayer().play(ALARM_PATH);
+        if (TEST_ALARM) {
+            logger.debug(`Testing alarm...`);
+            await new SoundPlayer().play(ALARM_PATH);
+            logger.debug(`Alarm tested.`);
+        }
 
-        while (FORCE_POLLING || !done) {
+        while (endless || !done) {
             const bot = new ChromeBot();
     
             done = !(await shouldExecuteAgain(bot));
         }
     }
 
-    if (ENABLE_PARSING) {
+    if (parse) {
         await parseLogs(LOGS_PATH);
     }
 }

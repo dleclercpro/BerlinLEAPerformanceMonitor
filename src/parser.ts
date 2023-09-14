@@ -1,4 +1,5 @@
 import { NEW_LINE_REGEXP } from './constants';
+import logger from './logger';
 import Session from './models/Session';
 import { Log } from './types';
 import { getLast } from './utils/array';
@@ -23,7 +24,7 @@ export const parseLogs = async (filepath: string) => {
 
             // Last session wasn't complete: remove it
             if (!currentSession.getStart() || !currentSession.getEnd()) {
-                console.log(`Ignoring incomplete session.`);
+                logger.debug(`Ignoring incomplete session.`);
 
                 sessions.slice(0, -1);
             }
@@ -61,7 +62,7 @@ export const parseLogs = async (filepath: string) => {
     sessions
         .filter((session: Session) => session.isComplete())
         .forEach((session: Session, i: number) => {
-            console.log(session.getLogs().map(log => log.msg), `Session ${i} (${session.getDuration()}):`);
-            console.log(session.getErrors(), `Session errors:`);
+            logger.debug(session.getLogs().map(log => log.msg), `Session ${i} (${session.getDuration()}):`);
+            logger.debug(session.getErrors(), `Session errors:`);
         });
 }
