@@ -1,6 +1,6 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { ENV, LOGS_PATH } from './config';
+import { DEFAULT_LOG_LEVEL, ENV, LOGS_PATH } from './config';
 import { Environment } from './types';
 
 const DEV_TRANSPORT = {
@@ -28,11 +28,11 @@ const getLogger = (env: Environment) => {
             return pino(pretty({ sync: true }));
         case Environment.Production:
             return pino({
-                level: 'trace',
+                level: DEFAULT_LOG_LEVEL,
             }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
-                level: 'trace', // Cannot use 'Severity' (why?!)
+                level: DEFAULT_LOG_LEVEL,
                 transport: DEV_TRANSPORT,
             });
     }

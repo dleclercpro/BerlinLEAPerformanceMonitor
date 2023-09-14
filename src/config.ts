@@ -2,6 +2,7 @@ import { loadEnvironment } from './utils/env';
 
 export const ENV = loadEnvironment();
 export const LOCALE = 'en';
+export const DEFAULT_LOG_LEVEL = 'trace';
 
 export const LOGS_PATH = `${process.cwd()}/data/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
