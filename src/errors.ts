@@ -29,6 +29,6 @@ export class InfiniteSpinnerError extends Error {
     public name = 'InfiniteSpinnerError';
 }
 
-export class PageStructureIntegrityError extends Error {
-    public name = 'PageStructureIntegrityError';
+export class UIError extends Error {
+    public name = 'UIError';
 }

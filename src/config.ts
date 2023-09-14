@@ -1,7 +1,7 @@
 import path from 'path';
 import { loadEnvironment } from './utils/env';
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
-import { NoAppointmentsError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, PageStructureIntegrityError } from './errors';
+import { NoAppointmentsError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError } from './errors';
 
 export const ROOT_DIR = path.resolve(__dirname, '..');
 export const ENV = loadEnvironment();
@@ -18,5 +18,5 @@ export const EXPECTED_ERRORS = [
     InternalServerError,
     ElementMissingFromPageError,
     InfiniteSpinnerError,
-    PageStructureIntegrityError,
+    UIError,
 ];
