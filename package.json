@@ -4,11 +4,11 @@
   "author": "David Leclerc",
   "main": "./src/index.ts",
   "scripts": {
-    "start": "npm run start:dev",
-    "start:dev": "cross-env ENV=development nodemon ./src/index.ts --poll",
-    "start:parse": "cross-env ENV=development nodemon ./src/index.ts --parse",
-    "start:prod": "npm run build && cross-env ENV=production node ./dist/src/index.js --poll --endless",
-    "build": "tsc -p ."
+    "start": "cross-env ENV=development nodemon ./src/index.ts --poll",
+    "parse": "cross-env ENV=development nodemon ./src/index.ts --parse",
+    "collect": "npm run clean && npm run build && cross-env ENV=production node ./dist/src/index.js --poll --endless",
+    "build": "tsc -p .",
+    "clean": "rimraf ./dist"
   },
   "dependencies": {
     "@babel/core": "^7.21.4",
