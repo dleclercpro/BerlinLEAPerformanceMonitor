@@ -3,7 +3,7 @@ import { ENV } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import logger from './logger';
-import { ElementMissingFromPageError, PageStructureError } from './errors';
+import { ElementMissingFromPageError, InfiniteSpinnerError, InternalServerError, PageStructureIntegrityError } from './errors';
 
 
 
@@ -21,8 +21,10 @@ const execute = async () => {
             const errorName = `${name}Error`;
 
             switch (errorName) {
+                case InternalServerError.name:
                 case ElementMissingFromPageError.name:
-                case PageStructureError.name:
+                case InfiniteSpinnerError.name:
+                case PageStructureIntegrityError.name:
                     logger.error(name);
                     break;
                 default:

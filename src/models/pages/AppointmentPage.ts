@@ -3,7 +3,6 @@ import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
-import { PageStructureError } from '../../errors';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',

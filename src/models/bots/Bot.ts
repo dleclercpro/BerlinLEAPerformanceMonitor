@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants';
-import { ElementMissingFromPageError } from '../../errors';
+import { ElementMissingFromPageError, InfiniteSpinnerError } from '../../errors';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -43,16 +43,11 @@ abstract class Bot {
 
     public async waitForElement(locator: By, wait: TimeDuration = MEDIUM_TIME) {
         const driver = await this.getDriver();
-
-        if (wait) {
-            logger.trace(`Wait for element... (${wait.format()})`);
-        } else {
-            logger.trace(`Wait for element...`);
-        }
-
         const timeout = wait?.toMs().getAmount();
 
         try {
+            logger.trace(`Wait for element...` + (wait ? ' ' + `(${wait.format()})` : ''));
+
             // Element should be present in DOM
             const element = await driver.wait(until.elementLocated(locator), timeout);
             
@@ -76,10 +71,11 @@ abstract class Bot {
 
     public async waitForElementToDisappear(locator: By, wait?: TimeDuration) {
         const driver = await this.getDriver();
-
-        const element = await this.findElement(locator);
         const timeout = wait?.toMs().getAmount();
+        const element = await this.findElement(locator);
 
+        logger.trace(`Wait for element to disappear...` + (wait ? ' ' + `(${wait!.format()})` : ''));
+        
         await Promise.any([
             driver.wait(until.elementIsNotVisible(element), timeout),
             driver.wait(until.stalenessOf(element), timeout),
