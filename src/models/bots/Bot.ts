@@ -26,11 +26,11 @@ abstract class Bot {
     public async quit() {
         const driver = await this.getDriver();
     
-        logger.debug(`Closing browser...`);
+        logger.trace(`Closing browser...`);
 
         await driver.quit();
         
-        logger.debug(`Browser closed.`);
+        logger.trace(`Browser closed.`);
     }
 
     public async navigateTo(url: string) {
