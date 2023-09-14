@@ -59,7 +59,7 @@ class TimeDuration {
             }
         }
     
-        return `~${round(amount, 1)}${unit}`;
+        return `${round(amount, 1)}${unit}`;
     }
 
     public toMs() {

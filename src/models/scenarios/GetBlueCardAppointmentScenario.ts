@@ -53,6 +53,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.clickOnEmploymentButton();
         await appointmentPage.clickOnBlueCardButton();
         
+        // FIXME: wait for 'next' button to be clickable (?)
         await sleep(SHORT_TIME);
 
         await appointmentPage.clickOnNextButton();

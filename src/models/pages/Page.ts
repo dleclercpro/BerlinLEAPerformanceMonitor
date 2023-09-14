@@ -1,6 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
+import { SHORT_TIME } from '../../constants';
 
 const TEXTS = {
     Home: 'Startseite',
@@ -32,13 +33,13 @@ abstract class Page {
     }
 
     public async visit() {
-        logger.debug(`Visiting page: ${this.url}`);
+        logger.debug(`Visit page: ${this.url}`);
 
         await this.bot.navigateTo(this.url);
     }
 
     public async waitUntilLoaded() {
-        logger.debug(`Waiting for '${this.name}' page to load...`);
+        logger.debug(`Wait for '${this.name}' page to load...`);
 
         await this.doWaitUntilLoaded();
 
@@ -47,7 +48,7 @@ abstract class Page {
 
     protected async waitUntilSpinnerGone() {
         if (await this.isSpinnerVisible()) {
-            logger.trace(`Waiting for spinner to disappear...`);
+            logger.trace(`Wait for spinner to disappear...`);
 
             await this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner);
 
@@ -59,7 +60,7 @@ abstract class Page {
         try {
             logger.trace(`Searching for spinner...`);
 
-            await this.bot.findElement(ELEMENTS.Icons.Spinner);
+            await this.bot.waitForElement(ELEMENTS.Icons.Spinner, SHORT_TIME);
 
             logger.trace(`Spinner found`);
 

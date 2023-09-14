@@ -2,7 +2,7 @@ import logger from '../logger';
 import TimeDuration from '../models/TimeDuration';
 
 export const sleep = async (duration: TimeDuration) => {
-    logger.trace(`Sleeping for: ${duration.format()}`);
+    logger.trace(`Sleep... (${duration.format()})`);
 
     const ms = duration.toMs().getAmount();
 

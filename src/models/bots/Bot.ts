@@ -3,6 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { LONG_TIME } from '../../constants';
+import { ElementMissingFromPageError } from '../../errors';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -22,6 +23,12 @@ abstract class Bot {
         return this.driver!;
     }
 
+    public async quit() {
+        const driver = await this.getDriver();
+    
+        await driver.quit();
+    }
+
     public async navigateTo(url: string) {
         const driver = await this.getDriver();
 
@@ -38,18 +45,33 @@ abstract class Bot {
         const driver = await this.getDriver();
 
         if (timeout) {
-            logger.trace(`Waiting with timeout of: ${timeout.format()}`);
+            logger.trace(`Wait for element... (${timeout.format()})`);
+        } else {
+            logger.trace(`Wait for element...`);
         }
 
         const wait = timeout ? timeout.toMs().getAmount() : undefined;
 
-        // Element should be present in DOM
-        const element = await driver.wait(until.elementLocated(locator), wait);
-        
-        // Element should be visible in browser
-        await driver.wait(until.elementIsVisible(element), wait);
+        try {
+            // Element should be present in DOM
+            const element = await driver.wait(until.elementLocated(locator), wait);
+            
+            // Element should be visible in browser
+            await driver.wait(until.elementIsVisible(element), wait);
 
-        return element;
+            return element;
+        
+        } catch (err: any) {
+            const { name } = err;
+
+            switch (name) {
+                // Searching for element times out: element is missing from page!
+                case 'TimeoutError':
+                    throw new ElementMissingFromPageError();
+                default:
+                    throw err;
+            }
+        }
     }
 
     public async waitForElementToDisappear(locator: By) {

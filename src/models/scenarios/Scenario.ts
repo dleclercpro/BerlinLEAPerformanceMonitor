@@ -7,9 +7,11 @@ abstract class Scenario {
     protected abstract doExecute(bot: Bot): Promise<void>;
 
     public async execute(bot: Bot) {
-        logger.info(`Executing scenario: ${this.name}`);
+        logger.info(`--------------- Scenario: ${this.name} [START] ---------------`);
 
         await this.doExecute(bot);
+
+        logger.info(`--------------- Scenario: ${this.name} [END] ---------------`);
     }
 }
 

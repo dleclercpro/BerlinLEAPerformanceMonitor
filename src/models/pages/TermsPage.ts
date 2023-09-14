@@ -2,9 +2,13 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 
+const TEXTS = {
+    AcceptTerms: 'Ich erkläre hiermit',
+};
+
 const ELEMENTS = {
     Checkbox: {
-        AcceptTerms: By.id('xi-cb-1'),
+        AcceptTerms: By.xpath(`//p[contains(text(), '${TEXTS.AcceptTerms}')]`),
     },
     Buttons: {
         Submit: By.id('applicationForm:managedForm:proceed'),
@@ -31,7 +35,7 @@ class TermsPage extends Page {
     public async clickOnNextButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.Submit);
 
-        logger.info(`Click on 'next' button.`);
+        logger.info(`Click on 'Next' button.`);
         await button.click();
 
         await this.waitUntilSpinnerGone();

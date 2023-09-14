@@ -105,7 +105,7 @@ class AppointmentPage extends Page {
     public async clickOnNextButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.Submit);
 
-        logger.info(`Click on 'next' button.`);
+        logger.info(`Click on 'Next' button.`);
         await button.click();
 
         await this.waitUntilSpinnerGone();
