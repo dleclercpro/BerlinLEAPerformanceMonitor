@@ -2,8 +2,7 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
-import { UIError } from '../../errors';
+import { MEDIUM_TIME, SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
@@ -27,7 +26,6 @@ const ELEMENTS = {
     },
     Buttons: {
         ApplyForVisa: By.xpath(`//p[contains(text(), '${TEXTS.ApplyForVisa}')]`),
-        ApplyForAsylumExtension: By.xpath(`//p[contains(text(), '${TEXTS.ApplyForAsylumExtension}')]`),
         Employment: By.xpath(`//p[contains(text(), '${TEXTS.Employment}')]`),
         BlueCard: By.xpath(`//label[contains(text(), '${TEXTS.BlueCard}')]`),
         Submit: By.id('applicationForm:managedForm:proceed'),
@@ -58,6 +56,7 @@ class AppointmentPage extends Page {
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
+        await sleep(SHORT_TIME);
     }
 
     public async selectNumberOfApplicants(value: string) {    
@@ -67,6 +66,7 @@ class AppointmentPage extends Page {
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
+        await sleep(SHORT_TIME);
     }
 
     public async selectWithRelatives(value: string) {
@@ -76,10 +76,7 @@ class AppointmentPage extends Page {
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
-
-        if (await this.hasAsylumExtensionButton()) {
-            throw new UIError();
-        }
+        await sleep(SHORT_TIME);
     }
 
     public async clickOnApplyForVisaButton() {
@@ -116,10 +113,17 @@ class AppointmentPage extends Page {
         await button.click();
 
         await this.waitUntilSpinnerGone();
+
+        // Give some time for button to become 'clickable'
+        await sleep(SHORT_TIME);
     }
 
-    public async hasAsylumExtensionButton() {
-        return this.hasElement(ELEMENTS.Buttons.ApplyForAsylumExtension);
+    // There should be one and only one 'apply for visa' button on the page:
+    // anything else is a UI bug
+    public async isUIValid() {
+        const elements = await this.bot.findElements(ELEMENTS.Buttons.ApplyForVisa);
+
+        return elements.length === 1;
     }
 
     public async hasErrorMessage() {
@@ -127,7 +131,9 @@ class AppointmentPage extends Page {
             this.bot.findElement(ELEMENTS.Boxes.Messages),
             this.bot.findElement(ELEMENTS.Errors.NoAppointments),
         ])
-        .then(() => true)
+        .then(() => {
+            return true;
+        })
         .catch((err: any) => {
             logger.error(err);
             return false;

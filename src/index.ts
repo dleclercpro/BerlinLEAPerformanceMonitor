@@ -7,11 +7,16 @@ import { parseLogs } from './parser';
 
 
 
-const executeOnce = async (bot: Bot) => {
+const shouldExecuteAgain = async (bot: Bot) => {
     return GetBlueCardAppointmentScenario
         .execute(bot)
-        .then(() => false)
-        .catch(() => true);
+        .then(() => {
+            return false;
+        })
+        .catch(async () => {
+            await bot.quit();
+            return true;
+        });
 }
 
 
@@ -23,11 +28,7 @@ const execute = async () => {
         while (!done) {
             const bot = new ChromeBot();
     
-            if (await executeOnce(bot)) {
-                await bot.quit();
-            } else {
-                done = true;
-            }
+            done = !(await shouldExecuteAgain(bot));
         }
     }
 

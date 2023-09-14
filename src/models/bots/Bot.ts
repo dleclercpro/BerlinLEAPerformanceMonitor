@@ -27,7 +27,9 @@ abstract class Bot {
         const driver = await this.getDriver();
     
         logger.debug(`Closing browser...`);
+
         await driver.quit();
+        
         logger.debug(`Browser closed.`);
     }
 
@@ -37,10 +39,16 @@ abstract class Bot {
         await driver.get(url);
     }
 
-    public async findElement(element: By) {
+    public async findElement(locator: By) {
         const driver = await this.getDriver();
 
-        return driver.findElement(element);
+        return driver.findElement(locator);
+    }
+
+    public async findElements(locator: By) {
+        const driver = await this.getDriver();
+
+        return driver.findElements(locator);
     }
 
     public async waitForElement(locator: By, wait: TimeDuration = MEDIUM_TIME) {

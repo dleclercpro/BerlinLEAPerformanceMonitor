@@ -56,14 +56,14 @@ abstract class Page {
         logger.debug('Page loaded.');
     }
 
-    public async hasElement(element: By) {
-        return this.bot.findElement(element)
+    public async hasElement(locator: By) {
+        return this.bot.findElement(locator)
             .then(() => {
-                logger.trace(`Page '${this.name}' has element '${element.toString()}'.`);
+                logger.trace(`Page '${this.name}' has element '${locator.toString()}'.`);
                 return true;
             })
             .catch(() => {
-                logger.trace(`Page '${this.name}' does not have element '${element.toString()}'.`);
+                logger.trace(`Page '${this.name}' does not have element '${locator.toString()}'.`);
                 return false;
             });
     }

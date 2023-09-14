@@ -15,7 +15,7 @@ const PROD_TRANSPORT = pino.transport({
             options: { destination: LOGS_PATH },
         },
         {
-            level: 'trace',
+            level: 'debug',
             target: 'pino-pretty',
             options: { },
         },

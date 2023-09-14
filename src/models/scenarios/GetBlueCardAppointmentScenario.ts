@@ -1,5 +1,6 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
+import { UIError } from '../../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
@@ -48,6 +49,10 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.selectCitizenship(CITIZENSHIP);
         await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS);
         await appointmentPage.selectWithRelatives(WITH_RELATIVES);
+
+        if (!await appointmentPage.isUIValid()) {
+            throw new UIError();
+        }
 
         await appointmentPage.clickOnApplyForVisaButton();
         await appointmentPage.clickOnEmploymentButton();
