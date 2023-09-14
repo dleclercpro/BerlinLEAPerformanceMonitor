@@ -39,7 +39,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await termsPage.waitUntilLoaded();
 
         await termsPage.tickAcceptTermsCheckbox();
-        await termsPage.clickOnSubmitButton();
+        await termsPage.clickOnNextButton();
 
         // Define user's appointment needs
         const appointmentPage = new AppointmentPage(bot);
@@ -55,7 +55,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         
         await sleep(SHORT_TIME);
 
-        await appointmentPage.clickOnSubmitButton();
+        await appointmentPage.clickOnNextButton();
 
         // Check results
         const resultsPage = new AppointmentPage(bot);

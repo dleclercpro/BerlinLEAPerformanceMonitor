@@ -25,7 +25,7 @@ class HomePage extends Page {
     public async clickOnBookAppointmentButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.BookAppointment);
 
-        logger.info(`Clicking on book appointment button.`);
+        logger.info(`Click on book appointment button.`);
         await button.click();
     }
 }

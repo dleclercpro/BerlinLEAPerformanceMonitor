@@ -57,7 +57,7 @@ abstract class Page {
 
     private async isSpinnerVisible() {
         try {
-            logger.trace(`Looking for spinner...`);
+            logger.trace(`Searching for spinner...`);
 
             await this.bot.findElement(ELEMENTS.Icons.Spinner);
 

@@ -28,10 +28,10 @@ class TermsPage extends Page {
         await checkbox.click();
     }
 
-    public async clickOnSubmitButton() {
+    public async clickOnNextButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.Submit);
 
-        logger.info(`Clicking on submit button.`);
+        logger.info(`Click on 'next' button.`);
         await button.click();
     }
 }

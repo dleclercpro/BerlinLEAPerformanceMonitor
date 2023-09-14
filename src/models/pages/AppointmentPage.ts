@@ -2,7 +2,6 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
 import { SHORT_TIME } from '../../constants';
 
 const TEXTS = {
@@ -52,7 +51,7 @@ class AppointmentPage extends Page {
     public async selectCitizenship(value: string) {
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.Citizenship);
 
-        logger.info(`Selecting citizenship: ${value}`);
+        logger.info(`Select citizenship: ${value}`);
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
@@ -61,7 +60,7 @@ class AppointmentPage extends Page {
     public async selectNumberOfApplicants(value: string) {    
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.NumberOfApplicants);
 
-        logger.info(`Selecting number of applicants: ${value}`);
+        logger.info(`Select number of applicants: ${value}`);
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
@@ -70,7 +69,7 @@ class AppointmentPage extends Page {
     public async selectWithRelatives(value: string) {
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.WithRelatives);
     
-        logger.info(`Selecting with relatives: ${value}`);
+        logger.info(`Select with relatives: ${value}`);
         await dropdown.sendKeys(value);
 
         await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
@@ -79,7 +78,7 @@ class AppointmentPage extends Page {
     public async clickOnApplyForVisaButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.ApplyForVisa);
 
-        logger.info(`Clicking on request visa button.`);
+        logger.info(`Click on '${TEXTS.ApplyForVisa}' button.`);
         await button.click();
 
         await this.bot.waitForElement(ELEMENTS.Buttons.Employment);
@@ -88,7 +87,7 @@ class AppointmentPage extends Page {
     public async clickOnEmploymentButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.Employment);
 
-        logger.info(`Clicking on work visa button.`);
+        logger.info(`Click on '${TEXTS.Employment}' button.`);
         await button.click();
 
         await this.bot.waitForElement(ELEMENTS.Buttons.BlueCard);
@@ -97,16 +96,16 @@ class AppointmentPage extends Page {
     public async clickOnBlueCardButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.BlueCard);
 
-        logger.info(`Clicking on blue card button.`);
+        logger.info(`Click on '${TEXTS.BlueCard}' button.`);
         await button.click();
 
         await this.waitUntilSpinnerGone();
     }
 
-    public async clickOnSubmitButton() {
+    public async clickOnNextButton() {
         const button = await this.bot.findElement(ELEMENTS.Buttons.Submit);
 
-        logger.info(`Clicking on submit button.`);
+        logger.info(`Click on 'next' button.`);
         await button.click();
 
         await this.waitUntilSpinnerGone();
