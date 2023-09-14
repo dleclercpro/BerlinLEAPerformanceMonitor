@@ -1,15 +1,8 @@
 import { NEW_LINE_REGEXP } from './constants';
-import TimeDuration, { TimeUnit } from './models/TimeDuration';
+import Session from './models/Session';
 import { Log } from './types';
 import { getLast } from './utils/array';
-import { readFile } from './utils/file'
-
-interface Session {
-    start?: number,
-    end?: number,
-    logs: Log[],
-    errors: string[],
-}
+import { readFile } from './utils/file';
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -19,36 +12,31 @@ export const parseLogs = async (filepath: string) => {
         .filter(Boolean)
         .map(line => JSON.parse(line) as Log);
 
-    const sessions: Session[] = [{ logs: [], errors: [] }];
+    const sessions: Session[] = [new Session()];
     const getCurrentSession = () => getLast(sessions);
     let currentSession = getCurrentSession();
 
     logs.forEach((log: Log) => {
 
         // Session started
-        if (log.msg.includes('[START]')) {
+        if (log.msg.includes(Session.getStartText())) {
 
             // Last session wasn't complete: remove it
-            if (!currentSession.start || !currentSession.end) {
+            if (!currentSession.getStart() || !currentSession.getEnd()) {
                 console.log(`Ignoring incomplete session.`);
 
                 sessions.slice(0, -1);
             }
 
             // Create new session
-            sessions.push({
-                start: log.time,
-                end: undefined,
-                logs: [],
-                errors: [],
-            });
+            sessions.push(new Session(log.time));
             
             // Update current session pointer
             currentSession = getCurrentSession();
         }
 
         // Session is open: store log
-        if (currentSession.start && !currentSession.end) {
+        if (currentSession.getStart() && !currentSession.getEnd()) {
             currentSession.logs.push(log);
 
             // Look for errors
@@ -58,24 +46,22 @@ export const parseLogs = async (filepath: string) => {
         }
 
         // Session ended
-        if (log.msg.includes('[END]')) {
+        if (log.msg.includes(Session.getEndText())) {
 
             // Current session was already ended (?): remove it
-            if (currentSession.end) {
+            if (currentSession.getEnd()) {
                 sessions.slice(0, -1);
                 return;
             }
             
-            currentSession.end = log.time;
+            currentSession.setEnd(log.time);
         }
     });
 
     sessions
-        .filter((session: Session) => session.start && session.end)
+        .filter((session: Session) => session.isComplete())
         .forEach((session: Session, i: number) => {
-            const duration = new TimeDuration(session.end! - session.start!, TimeUnit.Milliseconds).format();
-            
-            console.log(session.logs.map(log => log.msg), `Session ${i} (${duration}):`);
-            console.log(session.errors, `Session errors:`);
+            console.log(session.getLogs().map(log => log.msg), `Session ${i} (${session.getDuration()}):`);
+            console.log(session.getErrors(), `Session errors:`);
         });
 }
