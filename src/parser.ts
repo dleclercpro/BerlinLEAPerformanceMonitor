@@ -1,5 +1,4 @@
 import { NEW_LINE_REGEXP } from './constants';
-import logger from './logger';
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
 import { Log } from './types';
 import { getLast } from './utils/array';
@@ -31,6 +30,8 @@ export const parseLogs = async (filepath: string) => {
 
             // Last session wasn't complete: remove it
             if (!currentSession.start || !currentSession.end) {
+                console.log(`Ignoring incomplete session.`);
+
                 sessions.slice(0, -1);
             }
 
@@ -74,7 +75,7 @@ export const parseLogs = async (filepath: string) => {
         .forEach((session: Session, i: number) => {
             const duration = new TimeDuration(session.end! - session.start!, TimeUnit.Milliseconds).format();
             
-            logger.debug(session.logs.map(log => log.msg), `Session ${i} (${duration}):`);
-            logger.debug(session.errors, `Session errors:`);
+            console.log(session.logs.map(log => log.msg), `Session ${i} (${duration}):`);
+            console.log(session.errors, `Session errors:`);
         });
 }
