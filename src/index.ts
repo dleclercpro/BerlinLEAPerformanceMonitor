@@ -1,37 +1,25 @@
 import { Environment } from './types';
-import { ENV, EXPECTED_ERRORS } from './config';
+import { ENV, LOGS_PATH } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
-import logger from './logger';
 import Bot from './models/bots/Bot';
+import { parseLogs } from './parser';
 
 
 
 const executeOnce = async (bot: Bot) => {
     return GetBlueCardAppointmentScenario
         .execute(bot)
-        .then(() => {
-            logger.info(`An appointment was found.`);
-
-            return false;
-        })
-        .catch((err: any) => {
-            const { name } = err as Error;
-
-            if (EXPECTED_ERRORS.map(e => e.name).includes(name)) {
-                logger.error(`Expected error encountered: ${name}`);
-            } else {
-                logger.fatal(err, `An unknown error occurred!`);
-            }
-
-            return true;
-        });
+        .then(() => false)
+        .catch(() => true);
 }
 
 
 
 const execute = async () => {
-    let done = false;
+    let done = true;
+
+    await parseLogs(LOGS_PATH);
 
     while (!done) {
         const bot = new ChromeBot();

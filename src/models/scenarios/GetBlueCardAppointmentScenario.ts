@@ -5,7 +5,7 @@ import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
-import HomePage from '../pages/HomePage';
+import HomePage from '../pages/Home';
 import TermsPage from '../pages/TermsPage';
 import Scenario from './Scenario';
 

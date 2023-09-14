@@ -1,11 +1,10 @@
-import path from 'path';
 import { loadEnvironment } from './utils/env';
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
 import { NoAppointmentsError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError } from './errors';
 
-export const ROOT_DIR = path.resolve(__dirname, '..');
 export const ENV = loadEnvironment();
 export const LOCALE = 'en';
+export const LOGS_PATH = `${process.cwd()}/data/app.log`;
 
 export const ZERO_TIME = new TimeDuration(0, TimeUnit.Milliseconds);
 

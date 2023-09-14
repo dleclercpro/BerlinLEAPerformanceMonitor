@@ -1,38 +1,39 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { ENV, ROOT_DIR } from './config';
+import { ENV, LOGS_PATH } from './config';
 import { Environment } from './types';
+
+const DEV_TRANSPORT = {
+    target: 'pino-pretty',
+};
+
+const PROD_TRANSPORT = pino.transport({
+    targets: [
+        {
+            level: 'info',
+            target: 'pino/file',
+            options: { destination: LOGS_PATH },
+        },
+        {
+            level: 'trace',
+            target: 'pino-pretty',
+            options: { },
+        },
+    ],
+});
 
 const getLogger = (env: Environment) => {
     switch (env) {
         case Environment.Test:
-            return pino(pretty({
-                sync: true,
-            }));
+            return pino(pretty({ sync: true }));
         case Environment.Production:
-            return pino(
-                pino.transport({
-                    targets: [{
-                        level: 'info',
-                        target: 'pino/file',
-                        options: {
-                            destination: `${ROOT_DIR}/data/app.log`,
-                        },
-                    }, {
-                        level: 'trace',
-                        target: 'pino-pretty',
-                        options: {
-                            
-                        },
-                    }],
-                }),
-            );
+            return pino({
+                level: 'trace',
+            }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
                 level: 'trace', // Cannot use 'Severity' (why?!)
-                transport: {
-                    target: 'pino-pretty',
-                },
+                transport: DEV_TRANSPORT,
             });
     }
 }

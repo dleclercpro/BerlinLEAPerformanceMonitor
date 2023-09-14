@@ -1,3 +1,4 @@
+import { EXPECTED_ERRORS } from '../../config';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
 
@@ -13,6 +14,12 @@ abstract class Scenario {
             await this.doExecute(bot);
 
         } catch (err: any) {
+            if (EXPECTED_ERRORS.map(e => e.name).includes(err.name)) {
+                logger.error(`Expected error encountered: ${err.name}`);
+            } else {
+                logger.fatal(err, `An unknown error occurred!`);
+            }
+            
             throw err;
 
         } finally {

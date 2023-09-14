@@ -1,5 +1,8 @@
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
 
+export const NEW_LINE_REGEXP = /[\r\n]+/;
+export const NEW_LINE = '\n';
+
 export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
 
 export const NO_TIME = new TimeDuration(0, TimeUnit.Milliseconds);
