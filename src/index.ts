@@ -7,23 +7,20 @@ import logger from './logger';
 
 
 const execute = async () => {
-    const bot = new ChromeBot();
+    while (true) {
+        const bot = new ChromeBot();
 
-    try {
-        await GetBlueCardAppointmentScenario.execute(bot);
-    } catch (err: any) {
-        logger.error(err.type);
+        try {
+            await GetBlueCardAppointmentScenario.execute(bot);
 
-        switch (err.type) {
-            case 'NoSuchElementError':
-                logger.error('Element not found!');
-            default:
-                logger.fatal(err);
+        } catch (err: any) {
+            logger.error(err);
+        
+        } finally {
+            const driver = await bot.getDriver();
+    
+            await driver.quit();
         }
-
-        // const driver = await bot.getDriver();
-
-        // await driver.quit();
     }
 }
 

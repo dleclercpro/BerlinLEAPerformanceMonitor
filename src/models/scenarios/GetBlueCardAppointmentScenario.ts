@@ -2,7 +2,7 @@ import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config'
 import { SHORT_TIME } from '../../constants';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import TimeDuration, { TimeUnit } from '../general/TimeDuration';
+import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
 import HomePage from '../pages/HomePage';
 import TermsPage from '../pages/TermsPage';
@@ -25,8 +25,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         return this.instance;
     }
 
-    protected async doExecute() {
-        const bot = this.bot!;
+    protected async doExecute(bot: Bot) {
 
         // Home page
         const homePage = new HomePage(bot);
