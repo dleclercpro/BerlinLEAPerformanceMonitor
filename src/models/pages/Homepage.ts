@@ -1,5 +1,5 @@
 import { By } from 'selenium-webdriver';
-import { HOMEPAGE_URL } from '../../constants';
+import { HOMEPAGE_URL, VERY_VERY_LONG_TIME } from '../../constants';
 import Page from './Page';
 import logger from '../../logger';
 
@@ -19,7 +19,7 @@ class HomePage extends Page {
 
     // Home page is loaded once the 'book appointment' button is visible
     protected async doWaitUntilLoaded() {
-        await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment);
+        await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment, VERY_VERY_LONG_TIME);
     }
 
     public async clickOnBookAppointmentButton() {

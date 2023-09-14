@@ -2,7 +2,7 @@ import { By, WebDriver, until } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
-import { LONG_TIME } from '../../constants';
+import { MEDIUM_TIME } from '../../constants';
 import { ElementMissingFromPageError } from '../../errors';
 
 abstract class Bot {
@@ -41,23 +41,23 @@ abstract class Bot {
         return driver.findElement(element);
     }
 
-    public async waitForElement(locator: By, timeout: TimeDuration = LONG_TIME) {
+    public async waitForElement(locator: By, wait: TimeDuration = MEDIUM_TIME) {
         const driver = await this.getDriver();
 
-        if (timeout) {
-            logger.trace(`Wait for element... (${timeout.format()})`);
+        if (wait) {
+            logger.trace(`Wait for element... (${wait.format()})`);
         } else {
             logger.trace(`Wait for element...`);
         }
 
-        const wait = timeout ? timeout.toMs().getAmount() : undefined;
+        const timeout = wait?.toMs().getAmount();
 
         try {
             // Element should be present in DOM
-            const element = await driver.wait(until.elementLocated(locator), wait);
+            const element = await driver.wait(until.elementLocated(locator), timeout);
             
             // Element should be visible in browser
-            await driver.wait(until.elementIsVisible(element), wait);
+            await driver.wait(until.elementIsVisible(element), timeout);
 
             return element;
         
@@ -74,14 +74,15 @@ abstract class Bot {
         }
     }
 
-    public async waitForElementToDisappear(locator: By) {
+    public async waitForElementToDisappear(locator: By, wait?: TimeDuration) {
         const driver = await this.getDriver();
 
         const element = await this.findElement(locator);
+        const timeout = wait?.toMs().getAmount();
 
         await Promise.any([
-            driver.wait(until.elementIsNotVisible(element)),
-            driver.wait(until.stalenessOf(element)),
+            driver.wait(until.elementIsNotVisible(element), timeout),
+            driver.wait(until.stalenessOf(element), timeout),
         ]);
     }
 }

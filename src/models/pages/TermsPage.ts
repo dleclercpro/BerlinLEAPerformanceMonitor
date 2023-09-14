@@ -1,6 +1,7 @@
 import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
+import { VERY_VERY_LONG_TIME } from '../../constants';
 
 const TEXTS = {
     AcceptTerms: 'Ich erkläre hiermit',
@@ -18,11 +19,9 @@ const ELEMENTS = {
 class TermsPage extends Page {
     protected name = 'Terms';
 
-    // Terms page is loaded once both the submit button and the checkbox 'accept terms'
-    // are visible
+    // Terms page is loaded once both checkbox 'accept terms' is visible
     protected async doWaitUntilLoaded() {
-        await this.bot.waitForElement(ELEMENTS.Checkbox.AcceptTerms);
-        await this.bot.waitForElement(ELEMENTS.Buttons.Submit);
+        await this.bot.waitForElement(ELEMENTS.Checkbox.AcceptTerms, VERY_VERY_LONG_TIME);
     }
 
     public async tickAcceptTermsCheckbox() {

@@ -2,10 +2,11 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import { SHORT_TIME } from '../../constants';
+import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
+    ApplyForAsylumExtension: 'Aufenthaltsgestattung (Asyl) - verlängern',
     Employment: 'Erwerbstätigkeit',
     BlueCard: 'Blaue Karte EU',
     NoAppointments: 'keine Termine frei',
@@ -42,7 +43,7 @@ class AppointmentPage extends Page {
 
     // Appointment page is available once the citizenship dropdown is visible
     protected async doWaitUntilLoaded() {
-        await this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship);
+        await this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, VERY_VERY_LONG_TIME);
 
         // FIXME: wait for actual options to be populated
         await sleep(SHORT_TIME);

@@ -1,7 +1,8 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
-import { SHORT_TIME } from '../../constants';
+import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
+import TimeDuration from '../TimeDuration';
 
 const TEXTS = {
     Home: 'Startseite',
@@ -46,11 +47,11 @@ abstract class Page {
         logger.debug('Page loaded.');
     }
 
-    protected async waitUntilSpinnerGone() {
+    protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
         if (await this.isSpinnerVisible()) {
-            logger.trace(`Wait for spinner to disappear...`);
+            logger.trace(`Wait for spinner to disappear... (${wait.format()})`);
 
-            await this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner);
+            await this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait);
 
             logger.trace(`Spinner is gone.`);
         }
@@ -58,11 +59,11 @@ abstract class Page {
 
     private async isSpinnerVisible() {
         try {
-            logger.trace(`Searching for spinner...`);
+            logger.trace(`Search spinner...`);
 
             await this.bot.waitForElement(ELEMENTS.Icons.Spinner, SHORT_TIME);
 
-            logger.trace(`Spinner found`);
+            logger.trace(`Spinner found.`);
 
             return true;
         } catch {
