@@ -33,6 +33,8 @@ class TermsPage extends Page {
 
         logger.info(`Click on 'next' button.`);
         await button.click();
+
+        await this.waitUntilSpinnerGone();
     }
 }
 
