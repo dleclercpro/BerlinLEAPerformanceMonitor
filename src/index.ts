@@ -42,9 +42,9 @@ const execute = async () => {
         let done = false;
 
         if (TEST_ALARM) {
-            logger.debug(`Testing alarm...`);
+            logger.trace(`Testing alarm...`);
             await new SoundPlayer().play(ALARM_PATH);
-            logger.debug(`Alarm tested.`);
+            logger.trace(`Alarm tested.`);
         }
 
         while (endless || !done) {

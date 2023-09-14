@@ -23,3 +23,13 @@ export const loadEnvironment = () => {
 
     return env;
 }
+
+export const getEnvironmentVariable = (name: string) => {
+    const variable = process.env[name];
+
+    if (!variable) {
+        throw new Error(`Environment variable missing: ${name}`);
+    }
+
+    return variable;
+}
