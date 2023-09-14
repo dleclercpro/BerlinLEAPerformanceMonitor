@@ -1,5 +1,5 @@
 import { Environment } from './types';
-import { ENV, LOGS_PATH } from './config';
+import { ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
@@ -17,19 +17,23 @@ const executeOnce = async (bot: Bot) => {
 
 
 const execute = async () => {
-    let done = false;
+    if (ENABLE_POLLING) {
+        let done = false;
 
-    while (!done) {
-        const bot = new ChromeBot();
-
-        if (await executeOnce(bot)) {
-            await bot.quit();
-        } else {
-            done = true;
+        while (!done) {
+            const bot = new ChromeBot();
+    
+            if (await executeOnce(bot)) {
+                await bot.quit();
+            } else {
+                done = true;
+            }
         }
     }
 
-    await parseLogs(LOGS_PATH);
+    if (ENABLE_PARSING) {
+        await parseLogs(LOGS_PATH);
+    }
 }
 
 

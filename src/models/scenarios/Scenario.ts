@@ -1,4 +1,4 @@
-import { EXPECTED_ERRORS } from '../../config';
+import { EXPECTED_ERRORS } from '../../errors';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
 

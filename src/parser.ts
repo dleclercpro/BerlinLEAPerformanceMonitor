@@ -75,6 +75,6 @@ export const parseLogs = async (filepath: string) => {
             const duration = new TimeDuration(session.end! - session.start!, TimeUnit.Milliseconds).format();
             
             logger.debug(session.logs.map(log => log.msg), `Session ${i} (${duration}):`);
-            logger.debug(`Session errors: ${session.errors}`);
+            logger.debug(session.errors, `Session errors:`);
         });
 }
