@@ -47,6 +47,16 @@ abstract class Page {
         logger.debug('Page loaded.');
     }
 
+    public async hasElement(element: By) {
+        try {
+            await this.bot.findElement(element);
+            return true;
+
+        } catch (err: any) {
+            return false;
+        }
+    }
+
     protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
         if (await this.isSpinnerVisible()) {
             logger.trace(`Wait for spinner to disappear... (${wait.format()})`);

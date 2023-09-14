@@ -3,6 +3,7 @@ import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
+import { PageStructureError } from '../../errors';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
@@ -26,6 +27,7 @@ const ELEMENTS = {
     },
     Buttons: {
         ApplyForVisa: By.xpath(`//p[contains(text(), '${TEXTS.ApplyForVisa}')]`),
+        ApplyForAsylumExtension: By.xpath(`//p[contains(text(), '${TEXTS.ApplyForAsylumExtension}')]`),
         Employment: By.xpath(`//p[contains(text(), '${TEXTS.Employment}')]`),
         BlueCard: By.xpath(`//label[contains(text(), '${TEXTS.BlueCard}')]`),
         Submit: By.id('applicationForm:managedForm:proceed'),
@@ -110,6 +112,10 @@ class AppointmentPage extends Page {
         await button.click();
 
         await this.waitUntilSpinnerGone();
+    }
+
+    public async hasAsylumExtensionButton() {
+        return this.hasElement(ELEMENTS.Buttons.ApplyForAsylumExtension);
     }
 
     public async hasErrorMessage() {

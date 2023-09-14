@@ -1,5 +1,6 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
+import { PageStructureError } from '../../errors';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
@@ -48,6 +49,10 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.selectCitizenship(CITIZENSHIP);
         await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS);
         await appointmentPage.selectWithRelatives(WITH_RELATIVES);
+
+        if (await appointmentPage.hasAsylumExtensionButton()) {
+            throw new PageStructureError();
+        }
 
         await appointmentPage.clickOnApplyForVisaButton();
         await appointmentPage.clickOnEmploymentButton();
