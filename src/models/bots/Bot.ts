@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants';
-import { ElementMissingFromPageError, InfiniteSpinnerError, TimeoutError } from '../../errors';
+import { ElementMissingFromPageError, TimeoutError } from '../../errors';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -26,9 +26,9 @@ abstract class Bot {
     public async quit() {
         const driver = await this.getDriver();
     
-        logger.info(`Closing browser...`);
+        logger.debug(`Closing browser...`);
         await driver.quit();
-        logger.info(`Browser closed.`);
+        logger.debug(`Browser closed.`);
     }
 
     public async navigateTo(url: string) {
@@ -58,9 +58,8 @@ abstract class Bot {
             })
             .catch((err: any) => {
                 const { name } = err;
-                const errorName = `${name}Error`;
     
-                switch (errorName) {
+                switch (name) {
                     case TimeoutError.name:
                         throw new ElementMissingFromPageError();
                     default:
@@ -85,10 +84,9 @@ abstract class Bot {
                 logger.trace(`Element is gone.`);
             })
             .catch((err: any) => {
-                const { type } = err;
-                const errorType = type;
-    
-                switch (errorType) {
+                const { name } = err;
+
+                switch (name) {
                     case AggregateError.name:
                         throw new TimeoutError();
                     default:

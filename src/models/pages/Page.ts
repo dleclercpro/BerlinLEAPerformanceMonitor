@@ -6,7 +6,7 @@ import TimeDuration from '../TimeDuration';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
 
 const TEXTS = {
-    InternalServerError: 'InternalServerError',
+    InternalServerError: 'Internal Server Error',
     Home: 'Startseite',
 };
 
@@ -69,25 +69,26 @@ abstract class Page {
     }
 
     protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
-        if (await this.isSpinnerVisible()) {
-            logger.trace(`Wait for spinner to disappear...`);
-
-            return this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait)
-                .then(() => {
-                    logger.trace(`Spinner is gone.`);
-                })
-                .catch(err => {
-                    const { name } = err;
-                    const errorName = `${name}Error`;
-        
-                    switch (errorName) {
-                        case TimeoutError.name:
-                            throw new InfiniteSpinnerError();
-                        default:
-                            throw err;
-                    }
-                })
+        if (!await this.isSpinnerVisible()) {
+            return;
         }
+
+        logger.trace(`Wait for spinner to disappear...`);
+
+        return this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait)
+            .then(() => {
+                logger.trace(`Spinner is gone.`);
+            })
+            .catch(err => {
+                const { name } = err;
+
+                switch (name) {
+                    case TimeoutError.name:
+                        throw new InfiniteSpinnerError();
+                    default:
+                        throw err;
+                }
+            });
     }
 
     private async isSpinnerVisible() {

@@ -14,7 +14,7 @@ export class UnexpectedAlertOpenError extends Error {
 
 // Custom errors
 export class NoAppointmentsError extends Error {
-    public name = 'NoAppointments';
+    public name = 'NoAppointmentsError';
 }
 
 export class InternalServerError extends Error {
@@ -22,13 +22,13 @@ export class InternalServerError extends Error {
 }
 
 export class ElementMissingFromPageError extends Error {
-    public name = 'ElementMissingFromPage';
+    public name = 'ElementMissingFromPageError';
 }
 
 export class InfiniteSpinnerError extends Error {
-    public name = 'InfiniteSpinner';
+    public name = 'InfiniteSpinnerError';
 }
 
 export class PageStructureIntegrityError extends Error {
-    public name = 'PageStructureIntegrity';
+    public name = 'PageStructureIntegrityError';
 }

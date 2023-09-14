@@ -3,19 +3,22 @@ import { ENV, EXPECTED_ERRORS } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import logger from './logger';
+import Bot from './models/bots/Bot';
 
 
 
-const executeOnce = async () => {
-    const bot = new ChromeBot();
+const executeOnce = async (bot: Bot) => {
+    return GetBlueCardAppointmentScenario
+        .execute(bot)
+        .then(() => {
+            logger.info(`An appointment was found.`);
 
-    return GetBlueCardAppointmentScenario.execute(bot)
-        .then(() => false)
+            return false;
+        })
         .catch((err: any) => {
             const { name } = err as Error;
-            const errorName = `${name}Error`;
 
-            if (EXPECTED_ERRORS.map(e => e.name).includes(errorName)) {
+            if (EXPECTED_ERRORS.map(e => e.name).includes(name)) {
                 logger.error(`Expected error encountered: ${name}`);
             } else {
                 logger.fatal(err, `An unknown error occurred!`);
@@ -33,9 +36,7 @@ const execute = async () => {
     while (!done) {
         const bot = new ChromeBot();
 
-        const shouldExecuteAgain = await executeOnce();
-
-        if (shouldExecuteAgain) {
+        if (await executeOnce(bot)) {
             await bot.quit();
         } else {
             done = true;
