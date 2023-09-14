@@ -1,7 +1,8 @@
-import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
+import { ALARM_PATH, CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
 import { UIError } from '../../errors';
 import { sleep } from '../../utils/time';
+import SoundPlayer from '../SoundPlayer';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
 import HomePage from '../pages/HomePage';
@@ -27,6 +28,9 @@ class GetBlueCardAppointmentScenario extends Scenario {
     }
 
     protected async doExecute(bot: Bot) {
+
+        // Test alarm
+        await new SoundPlayer().play(ALARM_PATH);
 
         // Start of user journey: book an appointment
         const homePage = new HomePage(bot);

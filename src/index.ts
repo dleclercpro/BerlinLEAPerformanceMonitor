@@ -1,5 +1,5 @@
 import { Environment } from './types';
-import { ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH } from './config';
+import { ENABLE_POLLING, ENABLE_PARSING, ENV, LOGS_PATH, ALARM_PATH } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
