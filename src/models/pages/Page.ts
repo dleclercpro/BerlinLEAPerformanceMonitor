@@ -3,7 +3,7 @@ import logger from '../../logger';
 import Bot from '../bots/Bot';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 import TimeDuration from '../TimeDuration';
-import { InfiniteSpinnerError, InternalServerError } from '../../errors';
+import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
 
 const TEXTS = {
     InternalServerError: 'InternalServerError',
@@ -18,7 +18,7 @@ const ELEMENTS = {
         Home: By.xpath(`//a[@title=${TEXTS.Home}]`),
     },
     Icons: {
-        Spinner: By.xpath('//body/div[@class="loading"][1]'),
+        Spinner: By.xpath(`//body/div[@class='loading'][1]`),
     },
 };
 
@@ -57,51 +57,51 @@ abstract class Page {
     }
 
     public async hasElement(element: By) {
-        try {
-            await this.bot.findElement(element);
-            return true;
-
-        } catch (err: any) {
-            return false;
-        }
+        return this.bot.findElement(element)
+            .then(() => {
+                logger.trace(`Page '${this.name}' has element '${element.toString()}'.`);
+                return true;
+            })
+            .catch(() => {
+                logger.trace(`Page '${this.name}' does not have element '${element.toString()}'.`);
+                return false;
+            });
     }
 
     protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
         if (await this.isSpinnerVisible()) {
             logger.trace(`Wait for spinner to disappear...`);
 
-            try {
-                await this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait);
-            
-            } catch (err: any) {
-                const { name } = err;
-    
-                switch (name) {
-                    case 'TimeoutError':
-                        throw new InfiniteSpinnerError();
-                    default:
-                        throw err;
-                }
-            }
-
-            logger.trace(`Spinner is gone.`);
+            return this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait)
+                .then(() => {
+                    logger.trace(`Spinner is gone.`);
+                })
+                .catch(err => {
+                    const { name } = err;
+                    const errorName = `${name}Error`;
+        
+                    switch (errorName) {
+                        case TimeoutError.name:
+                            throw new InfiniteSpinnerError();
+                        default:
+                            throw err;
+                    }
+                })
         }
     }
 
     private async isSpinnerVisible() {
-        try {
-            logger.trace(`Search spinner...`);
+        logger.trace(`Search spinner...`);
 
-            await this.bot.waitForElement(ELEMENTS.Icons.Spinner, SHORT_TIME);
-
-            logger.trace(`Spinner found.`);
-
-            return true;
-        } catch {
-            logger.warn(`Spinner not found.`);
-
-            return false;
-        }
+        return this.bot.waitForElement(ELEMENTS.Icons.Spinner, SHORT_TIME)
+            .then(() => {
+                logger.trace(`Spinner found.`);
+                return true;
+            })
+            .catch(() => {
+                logger.warn(`Spinner not found.`);
+                return false;
+            });
     }
 }
 

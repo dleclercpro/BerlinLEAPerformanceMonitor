@@ -118,16 +118,15 @@ class AppointmentPage extends Page {
     }
 
     public async hasErrorMessage() {
-        try {
-            await this.bot.findElement(ELEMENTS.Boxes.Messages);
-            await this.bot.findElement(ELEMENTS.Errors.NoAppointments);
-            return true;
-
-        } catch (err: any) {
+        return Promise.all([
+            this.bot.findElement(ELEMENTS.Boxes.Messages),
+            this.bot.findElement(ELEMENTS.Errors.NoAppointments),
+        ])
+        .then(() => true)
+        .catch((err: any) => {
             logger.error(err);
-            
             return false;
-        }
+        });
     }
 }
 

@@ -1,9 +1,29 @@
 import { Environment } from './types';
-import { ENV } from './config';
+import { ENV, EXPECTED_ERRORS } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import logger from './logger';
-import { ElementMissingFromPageError, InfiniteSpinnerError, InternalServerError, PageStructureIntegrityError } from './errors';
+
+
+
+const executeOnce = async () => {
+    const bot = new ChromeBot();
+
+    return GetBlueCardAppointmentScenario.execute(bot)
+        .then(() => false)
+        .catch((err: any) => {
+            const { name } = err as Error;
+            const errorName = `${name}Error`;
+
+            if (EXPECTED_ERRORS.map(e => e.name).includes(errorName)) {
+                logger.error(`Expected error encountered: ${name}`);
+            } else {
+                logger.fatal(err, `An unknown error occurred!`);
+            }
+
+            return true;
+        });
+}
 
 
 
@@ -13,27 +33,12 @@ const execute = async () => {
     while (!done) {
         const bot = new ChromeBot();
 
-        try {
-            await GetBlueCardAppointmentScenario.execute(bot);
+        const shouldExecuteAgain = await executeOnce();
 
-        } catch (err: any) {
-            const { name } = err as Error;
-            const errorName = `${name}Error`;
-
-            switch (errorName) {
-                case InternalServerError.name:
-                case ElementMissingFromPageError.name:
-                case InfiniteSpinnerError.name:
-                case PageStructureIntegrityError.name:
-                    logger.error(name);
-                    break;
-                default:
-                    logger.fatal(err, `An unknown error occurred!`);
-                    break;
-                }
-        
-        } finally {
+        if (shouldExecuteAgain) {
             await bot.quit();
+        } else {
+            done = true;
         }
     }
 }

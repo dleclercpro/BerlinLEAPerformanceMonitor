@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants';
-import { ElementMissingFromPageError, InfiniteSpinnerError } from '../../errors';
+import { ElementMissingFromPageError, InfiniteSpinnerError, TimeoutError } from '../../errors';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -26,7 +26,9 @@ abstract class Bot {
     public async quit() {
         const driver = await this.getDriver();
     
+        logger.info(`Closing browser...`);
         await driver.quit();
+        logger.info(`Browser closed.`);
     }
 
     public async navigateTo(url: string) {
@@ -45,28 +47,26 @@ abstract class Bot {
         const driver = await this.getDriver();
         const timeout = wait?.toMs().getAmount();
 
-        try {
-            logger.trace(`Wait for element...` + (wait ? ' ' + `(${wait.format()})` : ''));
+        logger.trace(`Wait for element '${locator.toString()}'...` + (wait ? ' ' + `(${wait.format()})` : ''));
 
-            // Element should be present in DOM
-            const element = await driver.wait(until.elementLocated(locator), timeout);
-            
+        // Element should be present in DOM
+        return driver.wait(until.elementLocated(locator), timeout)
             // Element should be visible in browser
-            await driver.wait(until.elementIsVisible(element), timeout);
-
-            return element;
-        
-        } catch (err: any) {
-            const { name } = err;
-
-            switch (name) {
-                // Searching for element times out: element is missing from page!
-                case 'TimeoutError':
-                    throw new ElementMissingFromPageError();
-                default:
-                    throw err;
-            }
-        }
+            .then((element) => driver.wait(until.elementIsVisible(element), timeout))
+            .then(() => {
+                logger.trace(`Found element.`);
+            })
+            .catch((err: any) => {
+                const { name } = err;
+                const errorName = `${name}Error`;
+    
+                switch (errorName) {
+                    case TimeoutError.name:
+                        throw new ElementMissingFromPageError();
+                    default:
+                        throw err;
+                }
+            });
     }
 
     public async waitForElementToDisappear(locator: By, wait?: TimeDuration) {
@@ -74,12 +74,27 @@ abstract class Bot {
         const timeout = wait?.toMs().getAmount();
         const element = await this.findElement(locator);
 
-        logger.trace(`Wait for element to disappear...` + (wait ? ' ' + `(${wait!.format()})` : ''));
+        logger.trace(`Wait for element '${locator.toString()}' to disappear...` + (wait ? ' ' + `(${wait!.format()})` : ''));
         
-        await Promise.any([
-            driver.wait(until.elementIsNotVisible(element), timeout),
-            driver.wait(until.stalenessOf(element), timeout),
-        ]);
+        // Either element should become invisible or be removed from DOM
+        return Promise.any([
+                driver.wait(until.elementIsNotVisible(element), timeout),
+                driver.wait(until.stalenessOf(element), timeout),
+            ])
+            .then(() => {
+                logger.trace(`Element is gone.`);
+            })
+            .catch((err: any) => {
+                const { type } = err;
+                const errorType = type;
+    
+                switch (errorType) {
+                    case AggregateError.name:
+                        throw new TimeoutError();
+                    default:
+                        throw err;
+                }
+            })
     }
 }
 

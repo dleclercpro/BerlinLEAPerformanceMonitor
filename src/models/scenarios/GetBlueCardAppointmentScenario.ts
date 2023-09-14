@@ -1,6 +1,6 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
-import { PageStructureIntegrityError } from '../../errors';
+import { NoAppointmentsError, PageStructureIntegrityError } from '../../errors';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
@@ -69,9 +69,10 @@ class GetBlueCardAppointmentScenario extends Scenario {
 
         if (await resultsPage.hasErrorMessage()) {
             logger.info(`There are no appointments available at the moment. :'(`);
-        } else {
-            logger.warn(`There are appointments available RIGHT NOW! :)`);
+            throw new NoAppointmentsError();
         }
+
+        logger.info(`There are appointments available RIGHT NOW! :)`);
     }
 }
 
