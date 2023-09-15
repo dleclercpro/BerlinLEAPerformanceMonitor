@@ -27,9 +27,7 @@ abstract class Bot {
         const driver = await this.getDriver();
     
         logger.trace(`Closing browser...`);
-
         await driver.quit();
-        
         logger.trace(`Browser closed.`);
     }
 

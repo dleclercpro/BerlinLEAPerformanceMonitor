@@ -1,11 +1,13 @@
-import { ChartOptions, Color } from 'chart.js';
-import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
+import { ChartOptions, ChartType, Color } from 'chart.js';
+import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { writeFile } from '../../utils/file';
+import logger from '../../logger';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
 
-interface Options {
+interface GraphOptions {
+    type: ChartType,
     title: string,
     xAxisLabel: string,
     yAxisLabel: string,
@@ -13,7 +15,7 @@ interface Options {
     height?: number,
 }
 
-interface LineOptions {
+interface Dataset {
     label: string,
     data: { x: number, y: number }[],
     color: Color,
@@ -21,32 +23,48 @@ interface LineOptions {
 
 abstract class Graph<Data> {
     protected filepath: string;
+    protected img?: Buffer;
+    protected mimeType: MimeType;
 
     public abstract draw(data: Data[]): Promise<void>;
 
-    public constructor(filepath: string) {
+    public constructor(filepath: string, mimeType: MimeType = 'image/png') {
         this.filepath = filepath;
+        this.mimeType = mimeType;
     }
 
-    public async generate(lines: LineOptions[], opts: Options) {
+    public async generate(datasets: Dataset[], opts: GraphOptions) {
+        const { type } = opts;
+
         const canvas = new ChartJSNodeCanvas({
             width: opts.width ?? 1024,
             height: opts.height ?? 728,
             backgroundColour: 'white',
         });
-    
-        const img = await canvas.renderToBuffer({
-            type: 'line',
-            options: this.getOptions(opts),
+
+        const cfg = {
+            type,
+            options: this.getGraphOptions(opts),
             data: {
-                datasets: lines.map((line) => this.getLineOptions(line)),
+                datasets: datasets.map((dataset) => this.getDatasetOptions(dataset)),
             },
-        }, 'image/png');
+        };
     
-        await writeFile(this.filepath, img);
+        this.img = await canvas.renderToBuffer(cfg, this.mimeType);    
     }
 
-    protected getLineOptions({ label, data, color }: LineOptions) {
+    public async store() {
+        if (!this.img) {
+            logger.warn(`There is no image to store!`);
+            return;
+        }
+
+        logger.trace(`Storing image '${this.filepath}'...`);
+        await writeFile(this.filepath, this.img);
+        logger.trace(`Image stored.`);
+    }
+
+    protected getDatasetOptions({ label, data, color }: Dataset) {
         return {
             label,
             data,
@@ -59,7 +77,7 @@ abstract class Graph<Data> {
         };
     }
 
-    protected getOptions({ title, xAxisLabel, yAxisLabel }: Options): ChartOptions {
+    protected getGraphOptions({ title, xAxisLabel, yAxisLabel }: GraphOptions): ChartOptions {
         return {
             scales: {
                 x: {

@@ -2,7 +2,7 @@ import { GRAPH_PATH } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import Session from './models/sessions/Session';
-import PerformanceGraph from './models/graphs/PerformanceGraph';
+import SessionDurationGraph from './models/graphs/SessionDurationGraph';
 import { Log } from './types';
 import { readFile } from './utils/file';
 import { getCountsDict } from './utils/math';
@@ -35,6 +35,6 @@ export const parseLogs = async (filepath: string) => {
         };
     });
 
-    const graph = new PerformanceGraph(GRAPH_PATH);
+    const graph = new SessionDurationGraph(GRAPH_PATH);
     await graph.draw(results);
 }

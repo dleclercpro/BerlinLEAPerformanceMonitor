@@ -26,9 +26,7 @@ class Alarm {
 
     public async testAlarm() {
         logger.trace(`Testing alarm...`);
-
         await this.play(ALARM_PATH);
-        
         logger.trace(`Alarm tested.`);
     }
 
