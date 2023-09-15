@@ -3,6 +3,7 @@ import TimeDuration, { TimeUnit } from '../TimeDuration';
 import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
+import { EXPECTED_ERRORS } from '../../errors';
 
 interface SessionOptions {
     id: string,
@@ -78,10 +79,17 @@ class Session {
 
     public getErrors() {
         return this.logs
-            .map(log => {
-                return log.err;
-            })
-            .filter(Boolean);
+            .map(log => log.err)
+            .filter(Boolean) as string[];
+    }
+
+    public hasUnexpectedErrors() {
+        return this.getUnexpectedErrors().length > 0;
+    }
+
+    public getUnexpectedErrors() {
+        return this.getErrors()
+            .filter(err => !EXPECTED_ERRORS.map(e => e.name).includes(err));
     }
 
     public getDuration() {

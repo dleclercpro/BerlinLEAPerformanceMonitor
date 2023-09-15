@@ -59,7 +59,7 @@ abstract class Graph<Data> {
             return;
         }
 
-        logger.trace(`Storing image '${this.filepath}'...`);
+        logger.trace(`Storing image to: ${this.filepath}`);
         await writeFile(this.filepath, this.img);
         logger.trace(`Image stored.`);
     }

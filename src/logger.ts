@@ -32,7 +32,7 @@ const getLogger = (env: Environment) => {
             }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
-                level: 'debug',
+                level: 'trace',
                 transport: DEV_TRANSPORT,
             });
     }

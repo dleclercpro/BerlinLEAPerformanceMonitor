@@ -1,3 +1,4 @@
+import { EXPECTED_ERRORS } from '../../errors';
 import { getLast } from '../../utils/array';
 import Session from './Session';
 
@@ -26,9 +27,10 @@ class SessionHistory {
         return getLast(this.sessions);
     }
 
-    public getErrors() {
+    public getErrorsAsString() {
         return this.sessions
             .filter((session: Session) => session.getErrors().length > 0)
+            .filter((session: Session) => !session.hasUnexpectedErrors())
             .map((session: Session) => session.getErrors().join('|'));
     }
 
