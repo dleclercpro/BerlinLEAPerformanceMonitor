@@ -5,6 +5,7 @@ export const LOCALE = 'en';
 export const DEFAULT_LOG_LEVEL = 'trace';
 
 export const LOGS_PATH = `${process.cwd()}/data/app.log`;
+export const GRAPH_PATH = `${process.cwd()}/data/performance.png`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 
 export const TEST_ALARM = [true, 'true'].includes(getEnvironmentVariable('TEST_ALARM'));

@@ -62,6 +62,34 @@ class TimeDuration {
         return `${round(amount, 1)}${unit}`;
     }
 
+    public to(unit: TimeUnit) {
+        let amount = 0;
+
+        let ms = this.toMs().getAmount();
+        
+        switch (unit) {
+            case TimeUnit.Days:
+                amount = ms / 24 / 3_600 / 1_000;
+                break;
+            case TimeUnit.Hours:
+                amount = ms / 3_600 / 1_000;
+                break;
+            case TimeUnit.Minutes:
+                amount = ms / 60 / 1_000;
+                break;
+            case TimeUnit.Seconds:
+                amount = ms / 1_000;
+                break;
+            case TimeUnit.Milliseconds:
+                amount = ms;
+                break;
+            default:
+                throw new Error('Invalid time unit.');
+        }
+
+        return new TimeDuration(amount, unit); 
+    }
+
     public toMs() {
         let amount = 0;
         

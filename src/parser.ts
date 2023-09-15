@@ -1,6 +1,8 @@
+import { GRAPH_PATH } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import Session from './models/Session';
+import PerformanceGraph from './models/graphs/PerformanceGraph';
 import { Log } from './types';
 import { getLast } from './utils/array';
 import { readFile } from './utils/file';
@@ -61,10 +63,22 @@ export const parseLogs = async (filepath: string) => {
         }
     });
 
-    sessions
+    const completeSessions = sessions
         .filter((session: Session) => session.isComplete())
+
+    completeSessions
         .forEach((session: Session, i: number, remainingSessions: Session[]) => {
-            logger.debug(session.getLogs().map(log => log.msg), `Session ${i + 1}/${remainingSessions.length} (${session.getDuration()}):`);
+            const sessionIdentifier = `Session ${i + 1}/${remainingSessions.length} (${session.getDuration().format()}):`;
+            
+            logger.debug(session.getLogs().map(log => log.msg), sessionIdentifier);
             logger.debug(session.getErrors(), `Errors:`);
         });
+
+    const graph = new PerformanceGraph(GRAPH_PATH);
+    await graph.draw(completeSessions.map((session: Session) => {
+        return {
+            time: session.getStart()!,
+            duration: session.getDuration(),
+        };
+    }));
 }

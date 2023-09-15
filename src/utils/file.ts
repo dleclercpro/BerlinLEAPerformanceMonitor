@@ -28,7 +28,7 @@ export const readFile = (filepath: string, options = { encoding: 'utf-8' as Buff
     });
 }
 
-export const writeFile = async (filepath: string, data: string) => {
+export const writeFile = async (filepath: string, data: string | Buffer) => {
     return new Promise<void>((resolve, reject) => {
         fs.writeFile(filepath, data, (err) => {
             if (err) reject(err);
