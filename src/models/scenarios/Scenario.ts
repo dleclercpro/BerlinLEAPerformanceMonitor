@@ -17,7 +17,7 @@ abstract class Scenario {
             if (EXPECTED_ERRORS.map(e => e.name).includes(err.name)) {
                 logger.error({ err: err.name }, `Expected error encountered:`);
             } else {
-                logger.fatal(err, `An unknown error occurred!`);
+                logger.fatal({ err: err.name }, `An unknown error occurred!`);
             }
             
             throw err;

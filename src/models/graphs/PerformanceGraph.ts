@@ -1,16 +1,15 @@
 import Graph from './Graph';
 import TimeDuration, { TimeUnit } from '../TimeDuration';
-import logger from '../../logger';
 
 interface Performance {
-    time: number,
+    time: Date,
     duration: TimeDuration,
 }
 
 class PerformanceGraph extends Graph<Performance> {
 
     public async draw(data: Performance[]) {
-        const t0 = data[0].time;
+        const t0 = data[0].time.getTime();
 
         const xUnit = TimeUnit.Minutes;
         const yUnit = TimeUnit.Seconds;
@@ -23,10 +22,14 @@ class PerformanceGraph extends Graph<Performance> {
 
         const lines = [{
             label: `Dauer`,
-            data: data.map(d => ({
-                x: new TimeDuration(d.time - t0, TimeUnit.Milliseconds).to(xUnit).getAmount(),
-                y: d.duration.to(yUnit).getAmount(),
-            })),
+            data: data.map(d => {
+                const t = d.time.getTime();
+
+                return {
+                    x: new TimeDuration(t - t0, TimeUnit.Milliseconds).to(xUnit).getAmount(),
+                    y: d.duration.to(yUnit).getAmount(),
+                };
+            }),
             color: 'red',
         }];
 

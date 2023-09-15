@@ -24,3 +24,15 @@ export const getRange = (from: number, to?: number) => {
     return [...Array(size).keys()]
         .map(x => x + from);
 }
+
+export const getCountsDict = (arr: string[]) => {
+    const dict: Record<string, number> = {};
+
+    arr.forEach(el => {
+        const count = dict[el] ?? 0;
+
+        dict[el] = count + 1;
+    });
+
+    return dict;
+}
