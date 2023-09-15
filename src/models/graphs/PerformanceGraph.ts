@@ -15,7 +15,7 @@ class PerformanceGraph extends Graph<Performance> {
         const start = data[0].start;
 
         const opts = {
-            title: `Länge einer User-Session auf der Seite des Berliner LEAs (Start: ${start.toLocaleString(LOCALE)})`,
+            title: `Länge einer User-Session auf der Seite des Berliner LEAs bis zum Misserfolg (Start: ${start.toLocaleString(LOCALE)})`,
             xAxisLabel: `Zeit`,
             yAxisLabel: `Dauer (${yUnit})`,
         };

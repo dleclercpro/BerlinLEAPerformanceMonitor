@@ -4,11 +4,6 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 
-const TEXTS = {
-    Start: '[START]',
-    End: '[END]',
-};
-
 interface SessionOptions {
     id: string,
     start?: Date,
@@ -41,14 +36,6 @@ class Session {
         return new Session({ id });
     }
 
-    public static getStartText() {
-        return TEXTS.Start;
-    }
-
-    public static getEndText() {
-        return TEXTS.End;
-    }
-
     public getId() {
         return this.id;
     }
@@ -67,6 +54,10 @@ class Session {
 
     public setEnd(end: Date) {
         this.end = end;
+    }
+
+    public isNew() {
+        return !this.start && !this.end;
     }
 
     public isOpen() {

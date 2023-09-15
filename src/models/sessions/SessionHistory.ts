@@ -12,18 +12,24 @@ class SessionHistory {
         return this.sessions.length;
     }
 
-    public get() {
+    public getSessions() {
         return this.sessions;
     }
 
-    public getById(id: string) {
+    public getSessionById(id: string) {
         return this.sessions.find(session => {
             return session.getId() === id;
         });
     }
 
-    public getMostRecent() {
+    public getMostRecentSession() {
         return getLast(this.sessions);
+    }
+
+    public getErrors() {
+        return this.sessions
+            .filter((session: Session) => session.getErrors().length > 0)
+            .map((session: Session) => session.getErrors().join('|'));
     }
 
     public has(id: string) {

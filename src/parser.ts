@@ -5,10 +5,9 @@ import Session from './models/sessions/Session';
 import PerformanceGraph from './models/graphs/PerformanceGraph';
 import { Log } from './types';
 import { readFile } from './utils/file';
-import SessionHistory from './models/sessions/SessionHistory';
-import { unique } from './utils/array';
 import { getCountsDict } from './utils/math';
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
+import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -18,41 +17,15 @@ export const parseLogs = async (filepath: string) => {
         .filter(Boolean)
         .map(line => JSON.parse(line) as Log);
 
-    const history = new SessionHistory();
-    let session: Session;
+    const history = SessionHistoryBuilder.build(logs);
+    const sessions = history.getSessions();
 
-    logs.forEach((log: Log) => {
-
-        // Session started
-        if (log.msg.includes(Session.getStartText())) {
-            session = Session.create()
-            session.setStart(new Date(log.time));
-        }
-
-        // Session is open: store log
-        if (session.isOpen()) {
-            session.pushLog(log);
-        }
-
-        // Session ended
-        if (log.msg.includes(Session.getEndText())) {
-            session.setEnd(new Date(log.time));
-            history.push(session);
-        }
-    });
-
-    const completeSessions = history.get()
-        .filter((session: Session) => session.isClosed());
-
-    const reasonableSessions = completeSessions
+    const reasonableSessions = sessions
         .filter(session => {
             return session.getDuration().smallerThan(new TimeDuration(1, TimeUnit.Hours));
         });
 
-    const errors = history.get()
-        .filter((session: Session) => session.getErrors().length > 0)
-        .map((session: Session) => session.getErrors().join('|'));
-
+    const errors = history.getErrors();
     logger.debug(getCountsDict(errors), `Errors:`);
 
     const results = reasonableSessions.map((session: Session) => {
