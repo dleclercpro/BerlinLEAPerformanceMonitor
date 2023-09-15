@@ -2,11 +2,12 @@ import { IMG_DIR } from './config';
 import { NEW_LINE_REGEXP, FIVE_MINUTES } from './constants';
 import logger from './logger';
 import Session from './models/sessions/Session';
-import SessionDurationGraph from './models/graphs/SessionDurationGraph';
+import NoAppointmentsSessionLengthGraph from './models/graphs/NoAppointmentsSessionLengthGraph';
 import { Log } from './types';
 import { readFile } from './utils/file';
 import { getCountsDict, getRange } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
+import { NoAppointmentsError } from './errors';
 
 interface ErrorDict {
 
@@ -33,18 +34,17 @@ export const parseLogs = async (filepath: string) => {
         .filter(isSessionLengthReasonable);
     const unreasonableSessions = sessions
         .filter(session => !isSessionLengthReasonable(session));
+    const endedInNoAppointmentsSessions = sessions
+        .filter(session => {
+            const errors = session.getErrors();
+
+            return errors.length === 1 && errors[0] === NoAppointmentsError.name;
+        })
 
     logger.info(`Found ${(unreasonableSessions.length)}/${sessions.length} sessions of unreasonable length.`);
 
-    const results = reasonableSessions.map((session: Session) => {
-        return {
-            start: session.getStart()!,
-            duration: session.getDuration()!,
-        };
-    });
-
-    const graph = new SessionDurationGraph(`${IMG_DIR}/user-session-duration.png`);
-    await graph.draw(results);
+    const graph = new NoAppointmentsSessionLengthGraph(`${IMG_DIR}/user-session-duration.png`);
+    await graph.draw(endedInNoAppointmentsSessions);
     await graph.store();
 
     const errors = history.getErrorsAsString();
