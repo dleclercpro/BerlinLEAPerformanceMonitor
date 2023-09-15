@@ -57,7 +57,7 @@ export const parseLogs = async (filepath: string) => {
 
     const results = reasonableSessions.map((session: Session) => {
         return {
-            time: session.getStart()!,
+            start: session.getStart()!,
             duration: session.getDuration()!,
         };
     });

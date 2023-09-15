@@ -1,7 +1,7 @@
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 
 export const ENV = loadEnvironment();
-export const LOCALE = 'en';
+export const LOCALE = 'de';
 export const DEFAULT_LOG_LEVEL = 'trace';
 
 export const LOGS_PATH = `${process.cwd()}/data/app.log`;

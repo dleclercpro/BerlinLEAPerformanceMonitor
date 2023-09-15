@@ -2,6 +2,9 @@ import { ChartOptions, Color } from 'chart.js';
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import { writeFile } from '../../utils/file';
 
+// Do not remove: enables working with time scales
+require('chartjs-adapter-moment');
+
 interface Options {
     title: string,
     xAxisLabel: string,
@@ -58,19 +61,15 @@ abstract class Graph<Data> {
 
     protected getOptions({ title, xAxisLabel, yAxisLabel }: Options): ChartOptions {
         return {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title,
-                    font: {
-                        size: 16,
-                        weight: 'bold',
-                    },
-                },
-            },
             scales: {
                 x: {
-                    type: 'linear',
+                    type: 'time',
+                    time: {
+                        unit: 'hour',
+                        displayFormats: {
+                            xAxisLabel: 'YYYY.MM.dd - HH:mm',
+                        },
+                    },
                     title: {
                         display: true,
                         text: xAxisLabel,
@@ -91,6 +90,16 @@ abstract class Graph<Data> {
                             size: 14,
                             weight: 'bold',
                         },
+                    },
+                },
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    font: {
+                        size: 16,
+                        weight: 'bold',
                     },
                 },
             },
