@@ -1,8 +1,7 @@
 import { ChartType } from 'chart.js';
 import Graph from './Graph';
 import { TimeUnit } from '../TimeDuration';
-import { LOCALE } from '../../config';
-import { getWeekday } from '../../utils/time';
+import { formatDate } from '../../utils/time';
 import Session from '../sessions/Session';
 
 class NoAppointmentsSessionLengthGraph extends Graph<Session[]> {
@@ -17,8 +16,8 @@ class NoAppointmentsSessionLengthGraph extends Graph<Session[]> {
             type: 'scatter' as ChartType,
             title: [
                 `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlmeldung 'Es sind keine Termine frei.'`,
-                `Start: ${getWeekday(start)}, den ${start.toLocaleString(LOCALE).replace(', ', ' um ')}`,
-                `End: ${getWeekday(end)}, den ${end.toLocaleString(LOCALE).replace(', ', ' um ')}`,
+                `Start: ${formatDate(start, 'de')}`,
+                `End: ${formatDate(end, 'de')}`,
             ],
             xAxisLabel: `Tageszeit`,
             yAxisLabel: `Dauer (${yUnit})`,
