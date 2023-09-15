@@ -127,8 +127,7 @@ class AppointmentPage extends Page {
         .then(() => {
             return true;
         })
-        .catch((err: any) => {
-            logger.error(err);
+        .catch(() => {
             return false;
         });
     }
