@@ -35,7 +35,7 @@ export const parseLogs = async (filepath: string) => {
         };
     });
 
-    const graph = new SessionDurationGraph(`${IMG_DIR}/session-duration.png`);
+    const graph = new SessionDurationGraph(`${IMG_DIR}/user-session-duration.png`);
     await graph.draw(results);
     await graph.store();
 }
