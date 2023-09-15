@@ -123,6 +123,18 @@ class TimeDuration {
     public subtract(other: TimeDuration) {
         return new TimeDuration(this.toMs().getAmount() - other.toMs().getAmount(), TimeUnit.Milliseconds);
     }
+
+    public greaterThan(other: TimeDuration) {
+        return this.toMs().getAmount() > other.toMs().getAmount();
+    }
+
+    public smallerThan(other: TimeDuration) {
+        return this.toMs().getAmount() < other.toMs().getAmount();
+    }
+
+    public equals(other: TimeDuration) {
+        return this.toMs().getAmount() === other.toMs().getAmount();
+    }
 }
 
 export default TimeDuration;

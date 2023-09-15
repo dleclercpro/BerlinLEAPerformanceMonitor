@@ -8,6 +8,7 @@ import { readFile } from './utils/file';
 import SessionHistory from './models/sessions/SessionHistory';
 import { unique } from './utils/array';
 import { getCountsDict } from './utils/math';
+import TimeDuration, { TimeUnit } from './models/TimeDuration';
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -43,13 +44,18 @@ export const parseLogs = async (filepath: string) => {
     const completeSessions = history.get()
         .filter((session: Session) => session.isClosed());
 
+    const reasonableSessions = completeSessions
+        .filter(session => {
+            return session.getDuration().smallerThan(new TimeDuration(1, TimeUnit.Hours));
+        });
+
     const errors = history.get()
         .filter((session: Session) => session.getErrors().length > 0)
         .map((session: Session) => session.getErrors().join('|'));
 
     logger.debug(getCountsDict(errors), `Errors:`);
 
-    const results = completeSessions.map((session: Session) => {
+    const results = reasonableSessions.map((session: Session) => {
         return {
             time: session.getStart()!,
             duration: session.getDuration()!,
