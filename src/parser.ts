@@ -1,13 +1,16 @@
 import { IMG_DIR } from './config';
-import { NEW_LINE_REGEXP } from './constants';
+import { HOUR, NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import Session from './models/sessions/Session';
 import SessionDurationGraph from './models/graphs/SessionDurationGraph';
 import { Log } from './types';
 import { readFile } from './utils/file';
 import { getCountsDict } from './utils/math';
-import TimeDuration, { TimeUnit } from './models/TimeDuration';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
+
+const isSessionLengthReasonable = (session: Session) => {
+    return session.getDuration().smallerThan(HOUR);
+}
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -21,9 +24,11 @@ export const parseLogs = async (filepath: string) => {
     const sessions = history.getSessions();
 
     const reasonableSessions = sessions
-        .filter(session => {
-            return session.getDuration().smallerThan(new TimeDuration(1, TimeUnit.Hours));
-        });
+        .filter(isSessionLengthReasonable);
+    const unreasonableSessions = sessions
+        .filter(session => !isSessionLengthReasonable(session));
+
+    logger.info(`Found ${(unreasonableSessions.length)}/${sessions.length} sessions of unreasonable length.`);
 
     const errors = history.getErrors();
     logger.debug(getCountsDict(errors), `Errors:`);
