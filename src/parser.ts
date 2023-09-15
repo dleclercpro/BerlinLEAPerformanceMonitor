@@ -56,15 +56,24 @@ export const parseLogs = async (filepath: string) => {
     const hours = getRange(24);
     const hourlyErrors: ErrorDict[] = [];
 
-    const INITIAL_ERROR_COUNTS = errors.reduce((prev, err) => {
+    const INITIAL_ERROR_COUNTS: Record<string, number> = errors.reduce((prev, err) => {
         return { ...prev, [err]: 0 };
     }, {});
 
     hours.forEach(hour => {
-        const errorCounts = { ...INITIAL_ERROR_COUNTS };
+        const hourErrorCounts = { ...INITIAL_ERROR_COUNTS };
 
-        hourlyErrors.push(errorCounts);
+        const hourSessions = reasonableSessions
+            .filter(session => session.getStart()!.getHours() === hour);
+
+        hourSessions.forEach(session => {
+            session.getErrors().forEach(error => {
+                hourErrorCounts[error] += 1;
+            });
+        });
+
+        hourlyErrors.push(hourErrorCounts);
     });
 
-    // logger.debug(hourlyErrors);
+    logger.debug(hourlyErrors);
 }
