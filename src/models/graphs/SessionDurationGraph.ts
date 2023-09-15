@@ -16,7 +16,7 @@ class SessionDurationGraph extends Graph<SessionData> {
         const start = data[0].start;
 
         const opts = {
-            type: 'line' as ChartType,
+            type: 'scatter' as ChartType,
             title: `Länge einer User-Session auf der Seite des Berliner LEAs bis zum Misserfolg (Start: ${start.toLocaleString(LOCALE)})`,
             xAxisLabel: `Zeit`,
             yAxisLabel: `Dauer (${yUnit})`,

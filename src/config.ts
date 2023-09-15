@@ -4,8 +4,10 @@ export const ENV = loadEnvironment();
 export const LOCALE = 'de';
 export const DEFAULT_LOG_LEVEL = 'trace';
 
-export const LOGS_PATH = `${process.cwd()}/data/app.log`;
-export const GRAPH_PATH = `${process.cwd()}/data/performance.png`;
+export const LOGS_DIR = `${process.cwd()}/data/logs`;
+export const IMG_DIR = `${process.cwd()}/data/img`;
+
+export const LOGS_PATH = `${LOGS_DIR}/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 
 export const TEST_ALARM = [true, 'true'].includes(getEnvironmentVariable('TEST_ALARM'));

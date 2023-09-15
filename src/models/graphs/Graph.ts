@@ -72,7 +72,7 @@ abstract class Graph<Data> {
             yAxisID: 'y',
             borderColor: color,
             backgroundColor: color,
-            pointRadius: 1,
+            pointRadius: 2,
             tension: 0.25,
         };
     }

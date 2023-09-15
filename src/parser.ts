@@ -1,4 +1,4 @@
-import { GRAPH_PATH } from './config';
+import { IMG_DIR } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import Session from './models/sessions/Session';
@@ -35,6 +35,7 @@ export const parseLogs = async (filepath: string) => {
         };
     });
 
-    const graph = new SessionDurationGraph(GRAPH_PATH);
+    const graph = new SessionDurationGraph(`${IMG_DIR}/session-duration.png`);
     await graph.draw(results);
+    await graph.store();
 }
