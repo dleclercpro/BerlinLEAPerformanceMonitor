@@ -1,3 +1,4 @@
+import { LOCALE } from '../config';
 import logger from '../logger';
 import TimeDuration from '../models/TimeDuration';
 
@@ -15,4 +16,11 @@ export const sleep = async (duration: TimeDuration) => {
 
 export const getWeekday = (date: Date) => {
     return WEEKDAYS[date.getDay()];
+}
+
+export const formatDate = (date: Date, locale: string = LOCALE) => {
+    switch (locale) {
+        case 'de':
+            return `${getWeekday(date)}, den ${date.toLocaleString('de').replace(', ', ' um ')}`;
+        }
 }
