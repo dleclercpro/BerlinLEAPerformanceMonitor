@@ -4288,7 +4288,6 @@
 {"level":30,"time":1694764967509,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
 {"level":30,"time":1694764978218,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
 {"level":40,"time":1694764980473,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"Spinner not found."}
-{"level":50,"time":1694764984516,"pid":54888,"hostname":"DAVID-DESKTOP","err":{"type":"NoSuchElementError","message":"no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//li[@class='errorMessage' and contains(text(), 'keine Termine frei')]\"}\n  (Session info: chrome=116.0.5845.188)","stack":"NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//li[@class='errorMessage' and contains(text(), 'keine Termine frei')]\"}\n  (Session info: chrome=116.0.5845.188)\n    at Object.throwDecodedError (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\error.js:524:15)\n    at parseHttpResponse (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:601:13)\n    at Executor.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:529:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Driver.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)\n    at async Promise.all (index 1)\n    at async ResultsPage.check (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\pages\\ResultsPage.js:17:13)\n    at async GetBlueCardAppointmentScenario.doExecute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\scenarios\\GetBlueCardAppointmentScenario.js:55:9)\n    at async GetBlueCardAppointmentScenario.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\scenarios\\Scenario.js:12:13)\n    at async execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\index.js:44:22)","name":"NoSuchElementError","remoteStacktrace":"\tGetHandleVerifier [0x00007FF738F952A2+57122]\n\t(No symbol) [0x00007FF738F0EA92]\n\t(No symbol) [0x00007FF738DDE3AB]\n\t(No symbol) [0x00007FF738E17D3E]\n\t(No symbol) [0x00007FF738E17E2C]\n\t(No symbol) [0x00007FF738E50B67]\n\t(No symbol) [0x00007FF738E3701F]\n\t(No symbol) [0x00007FF738E4EB82]\n\t(No symbol) [0x00007FF738E36DB3]\n\t(No symbol) [0x00007FF738E0D2B1]\n\t(No symbol) [0x00007FF738E0E494]\n\tGetHandleVerifier [0x00007FF73923EF82+2849794]\n\tGetHandleVerifier [0x00007FF739291D24+3189156]\n\tGetHandleVerifier [0x00007FF73928ACAF+3160367]\n\tGetHandleVerifier [0x00007FF739026D06+653702]\n\t(No symbol) [0x00007FF738F1A208]\n\t(No symbol) [0x00007FF738F162C4]\n\t(No symbol) [0x00007FF738F163F6]\n\t(No symbol) [0x00007FF738F067A3]\n\tBaseThreadInitThunk [0x00007FFC7EFC257D+29]\n\tRtlUserThreadStart [0x00007FFC804CAA68+40]\n"},"msg":"no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//li[@class='errorMessage' and contains(text(), 'keine Termine frei')]\"}\n  (Session info: chrome=116.0.5845.188)"}
 {"level":30,"time":1694764984516,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"There are appointments available RIGHT NOW! :)"}
 {"level":30,"time":1694764984516,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694764984516,"pid":54888,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
@@ -4430,3 +4429,173 @@
 {"level":30,"time":1694766099465,"pid":7704,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694766099494,"pid":7704,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
 {"level":30,"time":1694766101436,"pid":7704,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694766903089,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694766913076,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694766938394,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694766938438,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694766988946,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694766991028,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694766993083,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694766995149,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694766996488,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694766999351,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767007925,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767044850,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767044850,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767044850,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767044888,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767047006,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767057278,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767057329,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767100551,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767102629,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767104693,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767106759,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767108321,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767110560,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767117161,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":50,"time":1694767177316,"pid":38304,"hostname":"DAVID-DESKTOP","err":"InfiniteSpinnerError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767177316,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767177346,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767183037,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767197330,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767197377,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767240519,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767242604,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767244667,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767246731,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767246995,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767247261,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767252799,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767288635,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767288636,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767288636,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767288663,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767290613,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767302599,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767302631,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767335487,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767337565,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767339628,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767341705,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767341989,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767342248,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767352193,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767400850,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767400850,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767400850,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767400880,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767402930,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767414334,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767414376,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767461270,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767463354,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767465410,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767467478,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767472068,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767472766,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767482264,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767514951,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767514951,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767514951,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767514979,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":50,"time":1694767606307,"pid":38304,"hostname":"DAVID-DESKTOP","err":"ElementMissingFromPageError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767606307,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767606341,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767608408,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767621529,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767621563,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767654289,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767656374,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767658434,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767660500,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767660975,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767661457,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767669194,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767712226,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767712226,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767712226,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767712257,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767714237,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767721611,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767721658,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767765621,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767767697,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767769751,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767771829,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767772115,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767772396,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767776643,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767820191,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767820191,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767820191,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767820221,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767824772,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767838577,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767838611,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767885258,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767887336,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694767889402,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694767891474,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694767891973,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694767892463,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694767901445,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767944948,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694767944948,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694767944949,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694767944978,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694767947023,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694767955396,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694767955444,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694767997848,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694767999919,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694768001977,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694768004041,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694768004325,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694768004605,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694768013233,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768044660,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694768044660,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694768044660,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694768044688,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694768046737,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694768055551,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694768055584,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768100268,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694768102350,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694768104409,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694768106473,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694768106957,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694768107485,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694768116912,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":50,"time":1694768177164,"pid":38304,"hostname":"DAVID-DESKTOP","err":"InfiniteSpinnerError","msg":"Expected error encountered:"}
+{"level":30,"time":1694768177164,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694768177192,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694768180932,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694768192165,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694768192215,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768238210,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694768240281,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694768242344,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694768244424,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694768244687,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694768244952,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694768251750,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768296908,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694768296908,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694768296908,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694768296937,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694768299186,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694768305410,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694768305447,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768353065,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694768355136,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694768357194,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694768359262,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694768359546,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694768360848,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694768368998,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694768402130,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694768402130,"pid":38304,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694768402130,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694768402158,"pid":38304,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
