@@ -8,7 +8,7 @@ require('chartjs-adapter-moment');
 
 interface GraphOptions {
     type: ChartType,
-    title: string,
+    title: string[],
     xAxisLabel: string,
     yAxisLabel: string,
     width?: number,
@@ -26,7 +26,7 @@ abstract class Graph<Data> {
     protected img?: Buffer;
     protected mimeType: MimeType;
 
-    public abstract draw(data: Data[]): Promise<void>;
+    public abstract draw(data: Data): Promise<void>;
 
     public constructor(filepath: string, mimeType: MimeType = 'image/png') {
         this.filepath = filepath;
