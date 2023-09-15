@@ -96,7 +96,7 @@
 {"level":30,"time":1694729159205,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
 {"level":30,"time":1694729165189,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
 {"level":30,"time":1694729178877,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
-{"level":50,"time":1694729178877,"pid":42216,"hostname":"DAVID-DESKTOP","err":"NoAppointmentError","msg":"Expected error encountered:"}
+{"level":50,"time":1694729178877,"pid":42216,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
 {"level":30,"time":1694729178877,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694729178905,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
 {"level":30,"time":1694729180237,"pid":42216,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
@@ -3227,15 +3227,12 @@
 {"level":30,"time":1694742655892,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
 {"level":30,"time":1694742655924,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
 {"level":30,"time":1694742661531,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
-{"level":60,"time":1694742661532,"pid":35772,"hostname":"DAVID-DESKTOP","err":{"type":"WebDriverError","message":"disconnected: not connected to DevTools\n  (failed to check if window was closed: disconnected: not connected to DevTools)\n  (Session info: chrome=116.0.5845.188)","stack":"WebDriverError: disconnected: not connected to DevTools\n  (failed to check if window was closed: disconnected: not connected to DevTools)\n  (Session info: chrome=116.0.5845.188)\n    at Object.throwDecodedError (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\error.js:524:15)\n    at parseHttpResponse (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:601:13)\n    at Executor.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:529:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Driver.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)\n    at async AppointmentPage.selectDropdownOption (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\pages\\Page.js:58:26)\n    at async AppointmentPage.selectCitizenship (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\pages\\AppointmentPage.js:54:9)\n    at async GetBlueCardAppointmentScenario.doExecute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\scenarios\\GetBlueCardAppointmentScenario.js:40:9)\n    at async GetBlueCardAppointmentScenario.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\models\\scenarios\\Scenario.js:12:13)\n    at async execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\dist\\src\\index.js:44:22)","name":"WebDriverError","remoteStacktrace":"\tGetHandleVerifier [0x00007FF738F952A2+57122]\n\t(No symbol) [0x00007FF738F0EA92]\n\t(No symbol) [0x00007FF738DDE3AB]\n\t(No symbol) [0x00007FF738DCBA47]\n\t(No symbol) [0x00007FF738DCB6C0]\n\t(No symbol) [0x00007FF738DDFA71]\n\t(No symbol) [0x00007FF738E4E27F]\n\t(No symbol) [0x00007FF738E36DB3]\n\t(No symbol) [0x00007FF738E0D2B1]\n\t(No symbol) [0x00007FF738E0E494]\n\tGetHandleVerifier [0x00007FF73923EF82+2849794]\n\tGetHandleVerifier [0x00007FF739291D24+3189156]\n\tGetHandleVerifier [0x00007FF73928ACAF+3160367]\n\tGetHandleVerifier [0x00007FF739026D06+653702]\n\t(No symbol) [0x00007FF738F1A208]\n\t(No symbol) [0x00007FF738F162C4]\n\t(No symbol) [0x00007FF738F163F6]\n\t(No symbol) [0x00007FF738F067A3]\n\tBaseThreadInitThunk [0x00007FFC7EFC257D+29]\n\tRtlUserThreadStart [0x00007FFC804CAA68+40]\n"},"msg":"An unknown error occurred!"}
 {"level":30,"time":1694742661894,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694742661924,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
-{"level":60,"time":1694750383039,"pid":35772,"hostname":"DAVID-DESKTOP","err":{"type":"WebDriverError","message":"unknown error: DevToolsActivePort file doesn't exist","stack":"WebDriverError: unknown error: DevToolsActivePort file doesn't exist\n    at Object.throwDecodedError (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\error.js:524:15)\n    at parseHttpResponse (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:601:13)\n    at Executor.execute (C:\\Users\\David\\Projects\\BerlinLEATerminBot\\node_modules\\selenium-webdriver\\lib\\http.js:529:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","name":"WebDriverError","remoteStacktrace":"\tGetHandleVerifier [0x00007FF738F952A2+57122]\n\t(No symbol) [0x00007FF738F0EA92]\n\t(No symbol) [0x00007FF738DDE3AB]\n\t(No symbol) [0x00007FF738E09878]\n\t(No symbol) [0x00007FF738E05005]\n\t(No symbol) [0x00007FF738E02FE1]\n\t(No symbol) [0x00007FF738E3EA4F]\n\t(No symbol) [0x00007FF738E3E5B0]\n\t(No symbol) [0x00007FF738E36DB3]\n\t(No symbol) [0x00007FF738E0D2B1]\n\t(No symbol) [0x00007FF738E0E494]\n\tGetHandleVerifier [0x00007FF73923EF82+2849794]\n\tGetHandleVerifier [0x00007FF739291D24+3189156]\n\tGetHandleVerifier [0x00007FF73928ACAF+3160367]\n\tGetHandleVerifier [0x00007FF739026D06+653702]\n\t(No symbol) [0x00007FF738F1A208]\n\t(No symbol) [0x00007FF738F162C4]\n\t(No symbol) [0x00007FF738F163F6]\n\t(No symbol) [0x00007FF738F067A3]\n\tBaseThreadInitThunk [0x00007FFC7EFC257D+29]\n\tRtlUserThreadStart [0x00007FFC804CAA68+40]\n"},"msg":"An unknown error occurred!"}
 {"level":30,"time":1694750383580,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694750385992,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
 {"level":30,"time":1694750390173,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
 {"level":30,"time":1694750393055,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
-{"level":30,"time":1694750393087,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
 {"level":30,"time":1694750398109,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
 {"level":30,"time":1694750400182,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
 {"level":30,"time":1694750402233,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
@@ -3248,3 +3245,63 @@
 {"level":30,"time":1694750421663,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
 {"level":30,"time":1694750421691,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
 {"level":30,"time":1694750423081,"pid":35772,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750483293,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694750484687,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750489316,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694750489351,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750496922,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694750499010,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694750501082,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694750503168,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694750503460,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694750503764,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694750510166,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750521410,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694750521411,"pid":46928,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694750521411,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694750521441,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694750522911,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750527088,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694750527135,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750532792,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694750534873,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694750536939,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694750539020,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694750539296,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694750539592,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694750545760,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750557230,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694750557230,"pid":46928,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694750557230,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694750557261,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694750558667,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750563430,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694750563464,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750572396,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694750574469,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694750576542,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694750578625,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694750578908,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694750579197,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694750584951,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750596647,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694750596647,"pid":46928,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694750596647,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694750596678,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694750598036,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750603759,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694750603803,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750615301,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select citizenship: Kanada"}
+{"level":30,"time":1694750617389,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":1694750619459,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Select with relatives: nein"}
+{"level":30,"time":1694750621539,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":1694750621798,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":1694750622063,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":1694750629131,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
+{"level":30,"time":1694750641689,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":1694750641689,"pid":46928,"hostname":"DAVID-DESKTOP","err":"NoAppointmentsError","msg":"Expected error encountered:"}
+{"level":30,"time":1694750641689,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [END] ---------------"}
+{"level":30,"time":1694750641720,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"--------------- Scenario: GetBlueCardAppointment [START] ---------------"}
+{"level":30,"time":1694750643158,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on book appointment button."}
+{"level":30,"time":1694750646665,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Tick accept terms checkbox."}
+{"level":30,"time":1694750646700,"pid":46928,"hostname":"DAVID-DESKTOP","msg":"Click on 'Next' button."}
