@@ -1,3 +1,4 @@
+import logger from '../../logger';
 import { Log } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
@@ -14,7 +15,17 @@ class SessionHistoryBuilder {
 
     }
 
+    public static getInstance() {
+        if (!this.instance) {
+            this.instance = new SessionHistoryBuilder();
+        }
+
+        return this.instance;
+    }
+
     public build(logs: Log[]) {
+        logger.debug(`Building session history from ${logs.length} log entries...`);
+
         const history = new SessionHistory();
 
         // Initial session
@@ -28,19 +39,23 @@ class SessionHistoryBuilder {
 
                 // Reset session
                 if (!session.isNew()) {
+                    logger.trace(`Resetting session: ${session.getId()}`);
                     session = Session.create();
                 }
 
+                logger.trace(`Starting session: ${session.getId()}`);
                 session.setStart(new Date(log.time));
             }
 
             // Session open: store log
             if (session.isOpen()) {
+                logger.trace(`Adding log to session: ${log.msg}`);
                 session.pushLog(log);
             }
 
             // Session ended
             if (log.msg.includes(TEXTS.SessionEnd)) {
+                logger.trace(`Finishing session: ${session.getId()}`);
                 session.setEnd(new Date(log.time));
 
                 // Store session in history
@@ -48,15 +63,9 @@ class SessionHistoryBuilder {
             }
         });
 
+        logger.info(`Found ${history.size()} complete sessions.`);
+
         return history;
-    }
-
-    public static getInstance() {
-        if (!this.instance) {
-            this.instance = new SessionHistoryBuilder();
-        }
-
-        return this.instance;
     }
 }
 

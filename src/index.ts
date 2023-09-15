@@ -6,6 +6,7 @@ import Bot from './models/bots/Bot';
 import { parseLogs } from './parser';
 import SoundPlayer from './models/Alarm';
 import minimist from 'minimist';
+import { parseBooleanText } from './utils/string';
 
 
 
@@ -17,6 +18,7 @@ const shouldExecuteAgain = async (bot: Bot) => {
         })
         .catch(async () => {
             await bot.quit();
+
             return true;
         });
 }
@@ -25,9 +27,9 @@ const shouldExecuteAgain = async (bot: Bot) => {
 
 const parseArgs = (args: minimist.ParsedArgs) => {
     return {
-        poll: [true, 'true'].includes(args.poll),
-        endless: [true, 'true'].includes(args.endless),
-        parse: [true, 'true'].includes(args.parse),
+        poll: parseBooleanText(args.poll),
+        endless: parseBooleanText(args.endless),
+        parse: parseBooleanText(args.parse),
     };
 }
 
@@ -40,9 +42,7 @@ const execute = async () => {
     if (poll) {
         let done = false;
 
-        if (TEST_ALARM) {
-            await SoundPlayer.testAlarm();
-        }
+        TEST_ALARM && await SoundPlayer.testAlarm();
 
         while (endless || !done) {
             const bot = new ChromeBot();

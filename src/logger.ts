@@ -1,6 +1,6 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { DEFAULT_LOG_LEVEL, ENV, LOGS_PATH } from './config';
+import { ENV, LOGS_PATH } from './config';
 import { Environment } from './types';
 
 const DEV_TRANSPORT = {
@@ -28,11 +28,11 @@ const getLogger = (env: Environment) => {
             return pino(pretty({ sync: true }));
         case Environment.Production:
             return pino({
-                level: DEFAULT_LOG_LEVEL,
+                level: 'trace',
             }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
-                level: DEFAULT_LOG_LEVEL,
+                level: 'debug',
                 transport: DEV_TRANSPORT,
             });
     }
