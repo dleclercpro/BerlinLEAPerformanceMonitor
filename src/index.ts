@@ -1,12 +1,11 @@
 import { Environment } from './types';
-import { ENV, LOGS_PATH, ALARM_PATH, TEST_ALARM } from './config';
+import { ENV, LOGS_PATH, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import { parseLogs } from './parser';
-import SoundPlayer from './models/SoundPlayer';
+import SoundPlayer from './models/Alarm';
 import minimist from 'minimist';
-import logger from './logger';
 
 
 
@@ -42,9 +41,7 @@ const execute = async () => {
         let done = false;
 
         if (TEST_ALARM) {
-            logger.trace(`Testing alarm...`);
-            await new SoundPlayer().play(ALARM_PATH);
-            logger.trace(`Alarm tested.`);
+            await SoundPlayer.testAlarm();
         }
 
         while (endless || !done) {

@@ -1,7 +1,6 @@
-import { ALARM_PATH } from '../../config';
 import { NoAppointmentsError } from '../../errors';
 import logger from '../../logger';
-import SoundPlayer from '../SoundPlayer';
+import SoundPlayer from '../Alarm';
 import AppointmentPage from './AppointmentPage';
 
 class ResultsPage extends AppointmentPage {
@@ -17,7 +16,7 @@ class ResultsPage extends AppointmentPage {
         logger.info(`There are appointments available RIGHT NOW! :)`);
 
         // Play alarm to wake up user!
-        await new SoundPlayer().play(ALARM_PATH);
+        await SoundPlayer.ringAlarm();
     }
 }
 
