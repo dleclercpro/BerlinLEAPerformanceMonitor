@@ -1,5 +1,5 @@
 import { IMG_DIR } from './config';
-import { HOUR, NEW_LINE_REGEXP } from './constants';
+import { NEW_LINE_REGEXP, FIVE_MINUTES } from './constants';
 import logger from './logger';
 import Session from './models/sessions/Session';
 import SessionDurationGraph from './models/graphs/SessionDurationGraph';
@@ -13,7 +13,7 @@ interface ErrorDict {
 }
 
 const isSessionLengthReasonable = (session: Session) => {
-    return session.getDuration().smallerThan(HOUR);
+    return session.getDuration().smallerThan(FIVE_MINUTES);
 }
 
 export const parseLogs = async (filepath: string) => {

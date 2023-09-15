@@ -13,4 +13,5 @@ export const LONG_TIME = new TimeDuration(10, TimeUnit.Seconds);
 export const VERY_LONG_TIME = new TimeDuration(30, TimeUnit.Seconds);
 export const VERY_VERY_LONG_TIME = new TimeDuration(1, TimeUnit.Minutes);
 
-export const HOUR = new TimeDuration(1, TimeUnit.Hours);
+export const ONE_HOUR = new TimeDuration(1, TimeUnit.Hours);
+export const FIVE_MINUTES = new TimeDuration(5, TimeUnit.Minutes);
