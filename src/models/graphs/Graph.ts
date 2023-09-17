@@ -11,12 +11,12 @@ interface GraphOptions {
     title: string[],
     xMin?: number,
     xMax?: number,
+    yMin?: number,
+    yMax?: number,
     xAxisLabel: string,
     yAxisLabel: string,
     width?: number,
     height?: number,
-    xTicksTransform?: (x: number, index: number, ticks: Tick[]) => string,
-    yTicksTransform?: (y: number, index: number, ticks: Tick[]) => string,
 }
 
 interface Dataset {
@@ -82,7 +82,7 @@ abstract class Graph<Data> {
     }
 
     protected generateGraphOptions(opts: GraphOptions): ChartOptions {
-        const { title, xAxisLabel, yAxisLabel, xMin, xMax, xTicksTransform, yTicksTransform } = opts;
+        const { title, xAxisLabel, yAxisLabel, xMin, xMax, yMin, yMax } = opts;
         
         return {
             scales: {
@@ -99,9 +99,10 @@ abstract class Graph<Data> {
                     },
                     min: xMin,
                     max: xMax,
-                    ...(xTicksTransform ? {
-                        callback: xTicksTransform,
-                    } : {}),
+                    ticks: {
+                        stepSize: 1,
+                        autoSkip: false,
+                    },
                 },
                 y: {
                     type: 'linear',
@@ -114,9 +115,8 @@ abstract class Graph<Data> {
                             weight: 'bold',
                         },
                     },
-                    ...(yTicksTransform ? {
-                        callback: yTicksTransform,
-                    } : {}),
+                    min: yMin,
+                    max: yMax,
                 },
             },
             plugins: {

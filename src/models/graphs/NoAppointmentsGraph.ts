@@ -36,7 +36,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
             ],
             xMin: 0,
             xMax: 24,
-            xAxisLabel: `Tageszeit`,
+            xAxisLabel: `Tageszeit (h)`,
             yAxisLabel: `Dauer (${this.yAxisUnit})`,
         };
     }
