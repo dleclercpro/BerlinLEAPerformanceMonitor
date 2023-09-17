@@ -1,6 +1,6 @@
 import { ChartOptions, ChartType, Color, Tick } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
-import { writeFile } from '../../utils/file';
+import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
 
 // Do not remove: enables working with time scales
@@ -72,6 +72,7 @@ abstract class Graph<Data> {
         }
 
         logger.trace(`Storing image to: ${this.filepath}`);
+        await touchFile(this.filepath);
         await writeFile(this.filepath, this.img);
         logger.trace(`Image stored.`);
     }

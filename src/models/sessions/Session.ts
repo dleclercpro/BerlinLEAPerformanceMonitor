@@ -72,6 +72,12 @@ class Session {
         return this.startTime && this.endTime;
     }
 
+    // The session was completed and no error was detected: there is an
+    // appointment available!
+    public wasSuccessful() {
+        return this.isClosed() && this.errors.length === 0;
+    }
+
     public pushLog(log: Log) {
         this.logs.push(log);
     }

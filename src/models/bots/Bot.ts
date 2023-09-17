@@ -4,6 +4,7 @@ import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants';
 import { ElementMissingFromPageError, TimeoutError } from '../../errors';
+import { touchFile, writeFile } from '../../utils/file';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -99,6 +100,17 @@ abstract class Bot {
                         throw err;
                 }
             })
+    }
+
+    public async screenshot(filepath: string) {
+        const driver = await this.getDriver();
+
+        logger.trace(`Taking a screenshot...`);
+        const img = await driver.takeScreenshot();
+        
+        await touchFile(filepath);
+        await writeFile(filepath, img, 'base64');
+        logger.trace(`Screenshot stored at '${filepath}'.`);
     }
 }
 

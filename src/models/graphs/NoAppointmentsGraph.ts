@@ -1,13 +1,14 @@
 import { ChartType } from 'chart.js';
 import Graph, { GraphOptions } from './Graph';
 import { TimeUnit } from '../TimeDuration';
-import { formatDate, getTimeSpentSinceMidnight, translateWeekday } from '../../utils/time';
+import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { FIVE_MINUTES, WEEKDAYS } from '../../constants';
 import { Locale } from '../../types';
 import CompleteSession from '../sessions/CompleteSession';
 import { NoAppointmentsError } from '../../errors';
-import { WEEKDAY_COLORS } from '../../config';
+import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
+import { formatDate, translateWeekday } from '../../utils/locale';
 
 const isSessionLengthReasonable = (session: CompleteSession) => {
     return session.getDuration().smallerThan(FIVE_MINUTES);
@@ -31,8 +32,8 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
             type: 'scatter' as ChartType,
             title: [
                 `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlmeldung 'Es sind keine Termine frei.'`,
-                `Start: ${formatDate(start)}`,
-                `End: ${formatDate(end)}`,
+                `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+                `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             ],
             axes:{
                 x: {

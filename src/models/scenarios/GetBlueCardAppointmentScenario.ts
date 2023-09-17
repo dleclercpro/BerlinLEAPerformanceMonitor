@@ -1,7 +1,8 @@
-import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
+import { CITIZENSHIP, NUMBER_OF_APPLICANTS, SCREENSHOTS_DIR, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
-import { UIError } from '../../errors';
+import { NoAppointmentsError, UIError } from '../../errors';
 import { sleep } from '../../utils/time';
+import Alarm from '../Alarm';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
 import HomePage from '../pages/HomePage';
@@ -67,7 +68,12 @@ class GetBlueCardAppointmentScenario extends Scenario {
         const resultsPage = new ResultsPage(bot);
         await resultsPage.waitUntilLoaded();
 
-        await resultsPage.check();
+        if (!await resultsPage.checkForAppointments()) {
+            throw new NoAppointmentsError();
+        }
+    
+        // Play alarm to wake up user!
+        await Alarm.ring();
     }
 }
 

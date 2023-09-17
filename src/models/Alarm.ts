@@ -20,14 +20,8 @@ class Alarm {
         return this.instance;
     }
 
-    public async ringAlarm() {
+    public async ring() {
         await this.play(ALARM_PATH);
-    }
-
-    public async testAlarm() {
-        logger.trace(`Testing alarm...`);
-        await this.play(ALARM_PATH);
-        logger.trace(`Alarm tested.`);
     }
 
     protected async play(filepath: string) {

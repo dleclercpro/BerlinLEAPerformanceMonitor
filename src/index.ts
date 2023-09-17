@@ -3,7 +3,7 @@ import { ENV, LOGS_PATH, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
-import { parseLogs } from './utils/parser';
+import { parseLogs } from './parser';
 import SoundPlayer from './models/Alarm';
 import minimist from 'minimist';
 import { parseBooleanText } from './utils/string';
@@ -42,7 +42,7 @@ const execute = async () => {
     if (poll) {
         let done = false;
 
-        TEST_ALARM && await SoundPlayer.testAlarm();
+        TEST_ALARM && await SoundPlayer.ring();
 
         while (endless || !done) {
             const bot = new ChromeBot();
