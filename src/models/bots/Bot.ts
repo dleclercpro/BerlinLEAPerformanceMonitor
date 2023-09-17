@@ -1,6 +1,6 @@
 import { By, WebDriver, until } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
-import logger from '../../logger';
+import logger from '../../utils/logging';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants';
 import { ElementMissingFromPageError, TimeoutError } from '../../errors';

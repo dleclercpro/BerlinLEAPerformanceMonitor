@@ -1,4 +1,4 @@
-import logger from '../../logger';
+import logger from '../../utils/logging';
 import { Log } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';

@@ -1,6 +1,6 @@
 import { By } from 'selenium-webdriver';
 import Page from './Page';
-import logger from '../../logger';
+import logger from '../../utils/logging';
 import { VERY_VERY_LONG_TIME } from '../../constants';
 
 const TEXTS = {

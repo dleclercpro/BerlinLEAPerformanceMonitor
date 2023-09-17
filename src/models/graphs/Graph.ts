@@ -1,7 +1,7 @@
 import { ChartOptions, ChartType, Color } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { writeFile } from '../../utils/file';
-import logger from '../../logger';
+import logger from '../../utils/logging';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');

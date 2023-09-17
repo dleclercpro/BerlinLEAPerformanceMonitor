@@ -1,13 +1,13 @@
-import { IMG_DIR } from './config';
-import { NEW_LINE_REGEXP, FIVE_MINUTES } from './constants';
-import logger from './logger';
-import Session from './models/sessions/Session';
-import NoAppointmentsSessionLengthGraph from './models/graphs/NoAppointmentsSessionLengthGraph';
-import { Log } from './types';
-import { readFile } from './utils/file';
-import { getCountsDict, getRange } from './utils/math';
-import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
-import { NoAppointmentsError } from './errors';
+import { IMG_DIR } from '../config';
+import { NEW_LINE_REGEXP, FIVE_MINUTES } from '../constants';
+import logger from './logging';
+import Session from '../models/sessions/Session';
+import NoAppointmentsSessionLengthGraph from '../models/graphs/NoAppointmentsSessionLengthGraph';
+import { Log } from '../types';
+import { readFile } from './file';
+import { getCountsDict, getRange } from './math';
+import SessionHistoryBuilder from '../models/sessions/SessionHistoryBuilder';
+import { NoAppointmentsError } from '../errors';
 
 interface ErrorDict {
 

@@ -16,8 +16,8 @@ class NoAppointmentsSessionLengthGraph extends Graph<Session[]> {
             type: 'scatter' as ChartType,
             title: [
                 `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlmeldung 'Es sind keine Termine frei.'`,
-                `Start: ${formatDate(start, 'de')}`,
-                `End: ${formatDate(end, 'de')}`,
+                `Start: ${formatDate(start)}`,
+                `End: ${formatDate(end)}`,
             ],
             xAxisLabel: `Tageszeit`,
             yAxisLabel: `Dauer (${yUnit})`,

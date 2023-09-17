@@ -1,8 +1,7 @@
 import { LOCALE } from '../config';
-import logger from '../logger';
+import logger from './logging';
 import TimeDuration from '../models/TimeDuration';
-
-const WEEKDAYS = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+import { Locale, Weekday } from '../types';
 
 export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Sleep... (${duration.format()})`);
@@ -14,13 +13,32 @@ export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Woke up.`);
 };
 
-export const getWeekday = (date: Date) => {
-    return WEEKDAYS[date.getDay()];
+export const getWeekdaysByLocale = (locale: Locale) => {
+    switch (locale) {
+        case Locale.EN:
+            return [Weekday.Sunday, Weekday.Monday, Weekday.Thursday, Weekday.Wednesday, Weekday.Thursday, Weekday.Friday, Weekday.Saturday];
+        case Locale.DE:
+            return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+    }
 }
 
-export const formatDate = (date: Date, locale: string = LOCALE) => {
+export const getWeekdayByLocale = (date: Date, locale: Locale) => {
+    return getWeekdaysByLocale(locale)[date.getDay()];
+}
+
+export const getWeekday = (date: Date) => {
+    return getWeekdayByLocale(date, LOCALE);
+}
+
+export const formatDateByLocale = (date: Date, locale: Locale) => {
     switch (locale) {
-        case 'de':
-            return `${getWeekday(date)}, den ${date.toLocaleString('de').replace(', ', ' um ')}`;
+        case Locale.EN:
+            throw new Error('Not implemented yet.');
+        case Locale.DE:
+            return `${getWeekdayByLocale(date, locale)}, den ${date.toLocaleString(locale).replace(', ', ' um ')}`;
         }
+}
+
+export const formatDate = (date: Date) => {
+    return formatDateByLocale(date, LOCALE);
 }
