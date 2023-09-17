@@ -1,5 +1,5 @@
 import { EXPECTED_ERRORS, EXPECTED_ERROR_MESSAGE, UNKNOWN_ERROR_MESSAGE } from '../../errors';
-import logger from '../../utils/logger';
+import logger from '../../logger';
 import Bot from '../bots/Bot';
 
 abstract class Scenario {

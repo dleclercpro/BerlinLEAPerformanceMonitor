@@ -1,6 +1,6 @@
 import { WEEKDAYS } from '../../constants';
 import { Weekday } from '../../types';
-import logger from '../../utils/logger';
+import logger from '../../logger';
 import { getWeekday } from '../../utils/time';
 import CompleteSession from './CompleteSession';
 

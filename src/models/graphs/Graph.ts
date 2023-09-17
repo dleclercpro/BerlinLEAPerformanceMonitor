@@ -1,22 +1,30 @@
 import { ChartOptions, ChartType, Color, Tick } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { writeFile } from '../../utils/file';
-import logger from '../../utils/logger';
+import logger from '../../logger';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
 
-interface GraphOptions {
+export interface GraphOptions {
     type: ChartType,
     title: string[],
-    xMin?: number,
-    xMax?: number,
-    yMin?: number,
-    yMax?: number,
-    xAxisLabel: string,
-    yAxisLabel: string,
-    width?: number,
-    height?: number,
+    size?: {
+        width?: number,
+        height?: number,
+    },
+    axes: {
+        x: {
+            label: string,
+            min?: number,
+            max?: number,
+        },
+        y: {
+            label: string,
+            min?: number,
+            max?: number,
+        },
+    },
 }
 
 interface Dataset {
@@ -38,11 +46,11 @@ abstract class Graph<Data> {
     }
 
     public async generate(datasets: Dataset[], opts: GraphOptions) {
-        const { type } = opts;
+        const { type, size } = opts;
 
         const canvas = new ChartJSNodeCanvas({
-            width: opts.width ?? 1024,
-            height: opts.height ?? 728,
+            width: size?.width ?? 1024,
+            height: size?.height ?? 728,
             backgroundColour: 'white',
         });
 
@@ -82,7 +90,7 @@ abstract class Graph<Data> {
     }
 
     protected generateGraphOptions(opts: GraphOptions): ChartOptions {
-        const { title, xAxisLabel, yAxisLabel, xMin, xMax, yMin, yMax } = opts;
+        const { title, axes } = opts;
         
         return {
             scales: {
@@ -90,15 +98,15 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: xAxisLabel,
+                        text: axes.x.label,
                         padding: 20,
                         font: {
                             size: 14,
                             weight: 'bold',
                         },
                     },
-                    min: xMin,
-                    max: xMax,
+                    min: axes.x.min,
+                    max: axes.x.max,
                     ticks: {
                         stepSize: 1,
                         autoSkip: false,
@@ -108,15 +116,15 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: yAxisLabel,
+                        text: axes.y.label,
                         padding: 20,
                         font: {
                             size: 14,
                             weight: 'bold',
                         },
                     },
-                    min: yMin,
-                    max: yMax,
+                    min: axes.y.min,
+                    max: axes.y.max,
                 },
             },
             plugins: {
