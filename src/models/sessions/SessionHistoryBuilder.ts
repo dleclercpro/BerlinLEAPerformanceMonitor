@@ -1,4 +1,4 @@
-import logger from '../../utils/logging';
+import logger from '../../utils/logger';
 import { Log } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
@@ -54,7 +54,7 @@ class SessionHistoryBuilder {
                 session.end(new Date(log.time));
 
                 // Store complete session in history
-                history.pushSession(new CompleteSession({
+                history.addSession(new CompleteSession({
                     id: session.getId(),
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,

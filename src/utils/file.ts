@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import logger from './logging';
+import logger from './logger';
 
 export const deleteFile = async (filepath: string) => {
 
