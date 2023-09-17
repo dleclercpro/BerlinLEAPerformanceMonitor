@@ -1,12 +1,15 @@
 import { Environment } from './types';
-import { ENV, LOGS_PATH, TEST_ALARM } from './config';
+import { ENV, LOGS_PATH, N_ALARMS, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import { parseLogs } from './parser';
-import SoundPlayer from './models/Alarm';
+import Alarm from './models/Alarm';
 import minimist from 'minimist';
 import { parseBooleanText } from './utils/string';
+import { sleep } from './utils/time';
+import { VERY_SHORT_TIME } from './constants';
+import { getRange } from './utils/math';
 
 
 
@@ -36,18 +39,26 @@ const parseArgs = (args: minimist.ParsedArgs) => {
 
 
 const execute = async () => {
-    const args = minimist(process.argv.slice(2))
+    const args = minimist(process.argv.slice(2));
     const { poll, parse, endless } = parseArgs(args);
     
     if (poll) {
         let done = false;
 
-        TEST_ALARM && await SoundPlayer.ring();
+        TEST_ALARM && await Alarm.ring();
 
         while (endless || !done) {
             const bot = new ChromeBot();
     
             done = !(await shouldExecuteAgain(bot));
+
+            // Play alarm to wake up user!
+            if (done) {
+                for (let _ of getRange(N_ALARMS)) {
+                    await Alarm.ring();
+                    await sleep(VERY_SHORT_TIME);
+                }
+            }
         }
     }
 

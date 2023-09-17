@@ -2,7 +2,6 @@ import { CITIZENSHIP, NUMBER_OF_APPLICANTS, SCREENSHOTS_DIR, WITH_RELATIVES } fr
 import { SHORT_TIME } from '../../constants';
 import { NoAppointmentsError, UIError } from '../../errors';
 import { sleep } from '../../utils/time';
-import Alarm from '../Alarm';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
 import HomePage from '../pages/HomePage';
@@ -71,9 +70,6 @@ class GetBlueCardAppointmentScenario extends Scenario {
         if (!await resultsPage.checkForAppointments()) {
             throw new NoAppointmentsError();
         }
-    
-        // Play alarm to wake up user!
-        await Alarm.ring();
     }
 }
 
