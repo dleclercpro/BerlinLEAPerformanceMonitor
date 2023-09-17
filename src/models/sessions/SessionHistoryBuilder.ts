@@ -2,6 +2,7 @@ import logger from '../../utils/logging';
 import { Log } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
+import CompleteSession from './CompleteSession';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -28,23 +29,17 @@ class SessionHistoryBuilder {
 
         const history = new SessionHistory();
 
-        // Initial session
-        let session = Session.create();
+        let session: Session;
 
         // Read logs in chronological order
         logs.forEach(log => {
 
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {
-
-                // Reset session
-                if (!session.isNew()) {
-                    logger.trace(`Resetting session: ${session.getId()}`);
-                    session = Session.create();
-                }
+                session = Session.create();
 
                 logger.trace(`Starting session: ${session.getId()}`);
-                session.setStart(new Date(log.time));
+                session.start(new Date(log.time));
             }
 
             // Session open: store log
@@ -56,10 +51,16 @@ class SessionHistoryBuilder {
             // Session ended
             if (log.msg.includes(TEXTS.SessionEnd)) {
                 logger.trace(`Finishing session: ${session.getId()}`);
-                session.setEnd(new Date(log.time));
+                session.end(new Date(log.time));
 
-                // Store session in history
-                history.push(session);
+                // Store complete session in history
+                history.pushSession(new CompleteSession({
+                    id: session.getId(),
+                    startTime: session.getStartTime()!,
+                    endTime: session.getEndTime()!,
+                    logs: session.getLogs(),
+                    errors: session.getErrors(),
+                }));
             }
         });
 

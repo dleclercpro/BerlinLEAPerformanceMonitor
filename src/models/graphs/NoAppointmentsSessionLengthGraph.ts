@@ -2,15 +2,15 @@ import { ChartType } from 'chart.js';
 import Graph from './Graph';
 import { TimeUnit } from '../TimeDuration';
 import { formatDate } from '../../utils/time';
-import Session from '../sessions/Session';
+import CompleteSession from '../sessions/CompleteSession';
 
-class NoAppointmentsSessionLengthGraph extends Graph<Session[]> {
+class NoAppointmentsSessionLengthGraph extends Graph<CompleteSession[]> {
 
-    public async draw(data: Session[]) {
+    public async draw(data: CompleteSession[]) {
         const yUnit = TimeUnit.Seconds;
 
-        const start = data[0].getStart()!;
-        const end = data[data.length - 1].getEnd()!;
+        const start = data[0].getStartTime();
+        const end = data[data.length - 1].getEndTime();
 
         const opts = {
             type: 'scatter' as ChartType,
@@ -26,10 +26,10 @@ class NoAppointmentsSessionLengthGraph extends Graph<Session[]> {
         const datasets = [{
             label: `Länge der User-Session`,
             color: 'red',
-            data: data.map((session: Session) => {
+            data: data.map((session: CompleteSession) => {
                 return {
-                    x: session.getStart()!.getTime(),
-                    y: session.getDuration()!.to(yUnit).getAmount(),
+                    x: session.getStartTime().getTime(),
+                    y: session.getDuration().to(yUnit).getAmount(),
                 };
             }),
         }];

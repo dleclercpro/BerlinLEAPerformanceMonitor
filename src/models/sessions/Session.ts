@@ -5,68 +5,71 @@ import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../errors';
 
-interface SessionOptions {
+interface Options {
     id: string,
-    start?: Date,
-    end?: Date,
+    startTime?: Date,
+    endTime?: Date,
 }
 
 class Session {
     protected id: string;
 
-    protected start?: Date;
-    protected end?: Date;
+    protected startTime?: Date;
+    protected endTime?: Date;
     
     protected logs: Log[];
     protected errors: string[];
 
-    public constructor ({ id, start, end }: SessionOptions) {
+    protected constructor ({ id, startTime, endTime }: Options) {
         this.id = id;
-        this.start = start;
-        this.end = end;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.logs = [];
         this.errors = [];
     }
 
-    public static create() {
+    public static create(startTime?: Date, endTime?: Date) {
         const host = os.hostname();
         const processId = process.pid;
         
         const id = `${host}|${processId}|${crypto.randomUUID()}`;
 
-        return new Session({ id });
+        return new Session({ id, startTime, endTime });
     }
 
     public getId() {
         return this.id;
     }
 
-    public getStart() {
-        return this.start;
+    public getStartTime() {
+        return this.startTime;
+    }
+    
+    public getEndTime() {
+        return this.endTime;
     }
 
-    public setStart(start: Date) {
-        this.start = start;
+    public start(start: Date) {
+        this.startTime = start;
     }
 
-    public getEnd() {
-        return this.end;
+    public end(end: Date) {
+        this.endTime = end;
     }
 
-    public setEnd(end: Date) {
-        this.end = end;
+    // Session is ready to be started
+    public isReady() {
+        return !this.startTime && !this.endTime;
     }
 
-    public isNew() {
-        return !this.start && !this.end;
-    }
-
+    // Session started, but didn't finish yet
     public isOpen() {
-        return this.start && !this.end;
+        return this.startTime && !this.endTime;
     }
 
+    // Session was started and finished
     public isClosed() {
-        return this.start && this.end;
+        return this.startTime && this.endTime;
     }
 
     public pushLog(log: Log) {
@@ -93,11 +96,11 @@ class Session {
     }
 
     public getDuration() {
-        if (!this.start) throw new Error('Missing session start.');
-        if (!this.end) throw new Error('Missing session end.');
+        if (!this.startTime) throw new Error('Missing session start.');
+        if (!this.endTime) throw new Error('Missing session end.');
 
-        const startTime = this.start.getTime();
-        const endTime = this.end.getTime();
+        const startTime = this.startTime.getTime();
+        const endTime = this.endTime.getTime();
 
         return new TimeDuration(endTime - startTime, TimeUnit.Milliseconds);
     }
