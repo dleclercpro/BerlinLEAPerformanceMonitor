@@ -14,6 +14,8 @@ export const LOGS_PATH = `${LOGS_DIR}/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'));
 
+export const N_ALARMS = 20;
+
 export const LONG_DATE_TIME_FORMAT_OPTIONS = {
     weekday: 'long',
     year: 'numeric',
