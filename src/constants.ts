@@ -15,3 +15,5 @@ export const VERY_VERY_LONG_TIME = new TimeDuration(1, TimeUnit.Minutes);
 
 export const ONE_HOUR = new TimeDuration(1, TimeUnit.Hours);
 export const FIVE_MINUTES = new TimeDuration(5, TimeUnit.Minutes);
+
+const WEEKDAYS_DE = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];

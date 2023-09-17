@@ -1,7 +1,7 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { ENV, LOGS_PATH } from './config';
-import { Environment } from './types';
+import { ENV, LOGS_PATH } from '../config';
+import { Environment } from '../types';
 
 const DEV_TRANSPORT = {
     target: 'pino-pretty',

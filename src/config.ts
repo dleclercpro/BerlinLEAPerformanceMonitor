@@ -1,8 +1,9 @@
+import { Locale } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
 
 export const ENV = loadEnvironment();
-export const LOCALE = 'de';
+export const LOCALE = Locale.DE;
 
 export const LOGS_DIR = `${process.cwd()}/data/logs`;
 export const IMG_DIR = `${process.cwd()}/data/img`;

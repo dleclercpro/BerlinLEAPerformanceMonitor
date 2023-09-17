@@ -1,5 +1,5 @@
 import { By } from 'selenium-webdriver';
-import logger from '../../logger';
+import logger from '../../utils/logging';
 import Bot from '../bots/Bot';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 import TimeDuration from '../TimeDuration';
