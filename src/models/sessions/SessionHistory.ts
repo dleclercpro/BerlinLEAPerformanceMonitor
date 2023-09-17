@@ -1,9 +1,8 @@
-import { EXPECTED_ERRORS } from '../../errors';
 import { getLast } from '../../utils/array';
-import Session from './Session';
+import CompleteSession from './CompleteSession';
 
 class SessionHistory {
-    protected sessions: Session[];
+    protected sessions: CompleteSession[];
 
     public constructor () {
         this.sessions = [];
@@ -15,6 +14,18 @@ class SessionHistory {
 
     public getSessions() {
         return this.sessions;
+    }
+
+    public getSessionsByWeekday() {
+        return this.getSessions()
+            .reduce((sessions: Record<string, CompleteSession[]>, session: CompleteSession) => {
+                const weekday = session.getStartTime().getDay();
+
+                return {
+                    ...sessions,
+                    [weekday]: [ ...sessions[weekday], session ],
+                };
+            }, {});
     }
 
     public getSessionById(id: string) {
@@ -29,22 +40,16 @@ class SessionHistory {
 
     public getErrorsAsString() {
         return this.sessions
-            .filter((session: Session) => session.getErrors().length > 0)
-            .filter((session: Session) => !session.hasUnexpectedErrors())
-            .map((session: Session) => session.getErrors().join('|'));
+            .filter(session => session.getErrors().length > 0)
+            .filter(session => !session.hasUnexpectedErrors())
+            .map(session => session.getErrors().join('|'));
     }
 
-    public has(id: string) {
-        return this.sessions.findIndex(session => {
-            return session.getId() === id;
-        }) !== -1;
-    }
-
-    public push(session: Session) {
+    public pushSession(session: CompleteSession) {
         this.sessions.push(session);
     }
 
-    public pop() {
+    public popSession() {
         return this.sessions.pop();
     }
 }

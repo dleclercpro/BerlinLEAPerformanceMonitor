@@ -1,19 +1,19 @@
 import { IMG_DIR } from '../config';
 import { NEW_LINE_REGEXP, FIVE_MINUTES } from '../constants';
 import logger from './logging';
-import Session from '../models/sessions/Session';
 import NoAppointmentsSessionLengthGraph from '../models/graphs/NoAppointmentsSessionLengthGraph';
 import { Log } from '../types';
 import { readFile } from './file';
 import { getCountsDict, getRange } from './math';
 import SessionHistoryBuilder from '../models/sessions/SessionHistoryBuilder';
 import { NoAppointmentsError } from '../errors';
+import CompleteSession from '../models/sessions/CompleteSession';
 
 interface ErrorDict {
 
 }
 
-const isSessionLengthReasonable = (session: Session) => {
+const isSessionLengthReasonable = (session: CompleteSession) => {
     return session.getDuration().smallerThan(FIVE_MINUTES);
 }
 
@@ -39,7 +39,11 @@ export const parseLogs = async (filepath: string) => {
             const errors = session.getErrors();
 
             return errors.length === 1 && errors[0] === NoAppointmentsError.name;
-        })
+        });
+    logger.debug('Here');
+    logger.debug(reasonableSessions.length);
+    logger.debug(unreasonableSessions.length);
+    logger.debug(endedInNoAppointmentsSessions.length)
 
     logger.info(`Found ${(unreasonableSessions.length)}/${sessions.length} sessions of unreasonable length.`);
 
@@ -64,7 +68,7 @@ export const parseLogs = async (filepath: string) => {
         const hourErrorCounts = { ...INITIAL_ERROR_COUNTS };
 
         const hourSessions = reasonableSessions
-            .filter(session => session.getStart()!.getHours() === hour);
+            .filter(session => session.getStartTime().getHours() === hour);
 
         hourSessions.forEach(session => {
             session.getErrors().forEach(error => {
