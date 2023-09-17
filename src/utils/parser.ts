@@ -1,10 +1,10 @@
 import { IMG_DIR } from '../config';
 import { NEW_LINE_REGEXP } from '../constants';
-import logger from './logger';
+import logger from '../logger';
 import NoAppointmentsGraph from '../models/graphs/NoAppointmentsGraph';
 import { Log } from '../types';
 import { readFile } from './file';
-import { getCountsDict, getRange } from './math';
+import { getCountsDict } from './math';
 import SessionHistoryBuilder from '../models/sessions/SessionHistoryBuilder';
 
 export const parseLogs = async (filepath: string) => {

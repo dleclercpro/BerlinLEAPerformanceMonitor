@@ -1,5 +1,5 @@
 import { ChartType } from 'chart.js';
-import Graph from './Graph';
+import Graph, { GraphOptions } from './Graph';
 import { TimeUnit } from '../TimeDuration';
 import { formatDate, getTimeSpentSinceMidnight, translateWeekday } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
@@ -21,7 +21,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
     protected xAxisUnit = null;
     protected yAxisUnit = TimeUnit.Seconds;
 
-    protected generateOptions(history: SessionHistory) {
+    protected generateOptions(history: SessionHistory): GraphOptions {
         if (history.size() < 2) throw new Error('Not enough data to plot graph.');
         
         const start = history.getEarliestSession()!.getStartTime();
@@ -34,10 +34,16 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
                 `Start: ${formatDate(start)}`,
                 `End: ${formatDate(end)}`,
             ],
-            xMin: 0,
-            xMax: 24,
-            xAxisLabel: `Tageszeit (h)`,
-            yAxisLabel: `Dauer (${this.yAxisUnit})`,
+            axes:{
+                x: {
+                    label: `Tageszeit (h)`,
+                    min: 0,
+                    max: 0,
+                },
+                y: {
+                    label: `Dauer (${this.yAxisUnit})`,
+                },
+            },
         };
     }
 

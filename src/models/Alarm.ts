@@ -1,6 +1,6 @@
 import os from 'os';
 import { exec } from 'child_process';
-import logger from '../utils/logger';
+import logger from '../logger';
 import { ALARM_PATH } from '../config';
 
 class Alarm {
