@@ -28,11 +28,11 @@ const getLogger = (env: Environment) => {
             return pino(pretty({ sync: true }));
         case Environment.Production:
             return pino({
-                level: 'trace',
+                level: 'debug',
             }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
-                level: 'trace',
+                level: 'debug',
                 transport: DEV_TRANSPORT,
             });
     }

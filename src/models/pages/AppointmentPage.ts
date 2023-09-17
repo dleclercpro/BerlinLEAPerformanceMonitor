@@ -1,6 +1,6 @@
 import { By } from 'selenium-webdriver';
 import Page from './Page';
-import logger from '../../utils/logging';
+import logger from '../../utils/logger';
 import { sleep } from '../../utils/time';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 

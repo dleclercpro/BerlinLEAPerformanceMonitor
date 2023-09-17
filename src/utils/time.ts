@@ -1,7 +1,8 @@
 import { LOCALE } from '../config';
-import logger from './logging';
-import TimeDuration from '../models/TimeDuration';
+import logger from './logger';
+import TimeDuration, { TimeUnit } from '../models/TimeDuration';
 import { Locale, Weekday } from '../types';
+import { WEEKDAYS } from '../constants';
 
 export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Sleep... (${duration.format()})`);
@@ -13,29 +14,36 @@ export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Woke up.`);
 };
 
-export const getWeekdaysByLocale = (locale: Locale) => {
-    switch (locale) {
-        case Locale.EN:
-            return [Weekday.Sunday, Weekday.Monday, Weekday.Thursday, Weekday.Wednesday, Weekday.Thursday, Weekday.Friday, Weekday.Saturday];
-        case Locale.DE:
-            return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-    }
-}
+export const getTimeSpentSinceMidnight = (date: Date) => {
+    const midnight = new Date(date);
+    midnight.setHours(0, 0, 0, 0);
 
-export const getWeekdayByLocale = (date: Date, locale: Locale) => {
-    return getWeekdaysByLocale(locale)[date.getDay()];
+    return new TimeDuration(date.getTime() - midnight.getTime(), TimeUnit.Milliseconds);
 }
 
 export const getWeekday = (date: Date) => {
-    return getWeekdayByLocale(date, LOCALE);
+    return WEEKDAYS[date.getDay()] as Weekday;
+}
+
+export const translateWeekday = (weekday: Weekday, locale: Locale) => {
+    const index = WEEKDAYS.indexOf(weekday);
+
+    switch (locale) {
+        case Locale.EN:
+            return WEEKDAYS[index];
+        case Locale.DE:
+            return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][index];
+    }
 }
 
 export const formatDateByLocale = (date: Date, locale: Locale) => {
+    const weekday = getWeekday(date);
+
     switch (locale) {
         case Locale.EN:
             throw new Error('Not implemented yet.');
         case Locale.DE:
-            return `${getWeekdayByLocale(date, locale)}, den ${date.toLocaleString(locale).replace(', ', ' um ')}`;
+            return `${translateWeekday(weekday, locale)}, den ${date.toLocaleString(locale).replace(', ', ' um ')}`;
         }
 }
 

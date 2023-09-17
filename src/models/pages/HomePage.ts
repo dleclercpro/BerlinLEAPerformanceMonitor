@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import { HOMEPAGE_URL, VERY_VERY_LONG_TIME } from '../../constants';
 import Page from './Page';
-import logger from '../../utils/logging';
+import logger from '../../utils/logger';
 
 const TEXTS = {
     BookAppointment: 'Termin buchen',

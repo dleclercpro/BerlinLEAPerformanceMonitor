@@ -1,5 +1,5 @@
 import { NoAppointmentsError } from '../../errors';
-import logger from '../../utils/logging';
+import logger from '../../utils/logger';
 import SoundPlayer from '../Alarm';
 import AppointmentPage from './AppointmentPage';
 

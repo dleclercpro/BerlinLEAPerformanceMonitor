@@ -1,7 +1,7 @@
-import { ChartOptions, ChartType, Color } from 'chart.js';
+import { ChartOptions, ChartType, Color, Tick } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { writeFile } from '../../utils/file';
-import logger from '../../utils/logging';
+import logger from '../../utils/logger';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
@@ -9,10 +9,14 @@ require('chartjs-adapter-moment');
 interface GraphOptions {
     type: ChartType,
     title: string[],
+    xMin?: number,
+    xMax?: number,
     xAxisLabel: string,
     yAxisLabel: string,
     width?: number,
     height?: number,
+    xTicksTransform?: (x: number, index: number, ticks: Tick[]) => string,
+    yTicksTransform?: (y: number, index: number, ticks: Tick[]) => string,
 }
 
 interface Dataset {
@@ -44,9 +48,9 @@ abstract class Graph<Data> {
 
         const cfg = {
             type,
-            options: this.getGraphOptions(opts),
+            options: this.generateGraphOptions(opts),
             data: {
-                datasets: datasets.map((dataset) => this.getDatasetOptions(dataset)),
+                datasets: datasets.map((dataset) => this.generateDatasetOptions(dataset)),
             },
         };
     
@@ -64,7 +68,7 @@ abstract class Graph<Data> {
         logger.trace(`Image stored.`);
     }
 
-    protected getDatasetOptions({ label, data, color }: Dataset) {
+    protected generateDatasetOptions({ label, data, color }: Dataset) {
         return {
             label,
             data,
@@ -72,22 +76,18 @@ abstract class Graph<Data> {
             yAxisID: 'y',
             borderColor: color,
             backgroundColor: color,
-            pointRadius: 2,
+            pointRadius: 1,
             tension: 0.25,
         };
     }
 
-    protected getGraphOptions({ title, xAxisLabel, yAxisLabel }: GraphOptions): ChartOptions {
+    protected generateGraphOptions(opts: GraphOptions): ChartOptions {
+        const { title, xAxisLabel, yAxisLabel, xMin, xMax, xTicksTransform, yTicksTransform } = opts;
+        
         return {
             scales: {
                 x: {
-                    type: 'time',
-                    time: {
-                        unit: 'hour',
-                        displayFormats: {
-                            xAxisLabel: 'YYYY.MM.dd - HH:mm',
-                        },
-                    },
+                    type: 'linear',
                     title: {
                         display: true,
                         text: xAxisLabel,
@@ -97,6 +97,11 @@ abstract class Graph<Data> {
                             weight: 'bold',
                         },
                     },
+                    min: xMin,
+                    max: xMax,
+                    ...(xTicksTransform ? {
+                        callback: xTicksTransform,
+                    } : {}),
                 },
                 y: {
                     type: 'linear',
@@ -109,6 +114,9 @@ abstract class Graph<Data> {
                             weight: 'bold',
                         },
                     },
+                    ...(yTicksTransform ? {
+                        callback: yTicksTransform,
+                    } : {}),
                 },
             },
             plugins: {
