@@ -48,26 +48,32 @@ class AppointmentPage extends Page {
         await sleep(SHORT_TIME);
     }
 
-    public async selectCitizenship(value: string) {
-        logger.info(`Select citizenship: ${value}`);
+    public async selectCitizenship(option: string) {
+        logger.info(`Select citizenship: ${option}`);
 
-        await this.selectDropdownOption(ELEMENTS.Dropdown.Citizenship, value);
+        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.Citizenship);
+        await dropdown.sendKeys(option);
+        await sleep(SHORT_TIME);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
     }
 
-    public async selectNumberOfApplicants(value: string) {    
-        logger.info(`Select number of applicants: ${value}`);
+    public async selectNumberOfApplicants(option: string) {    
+        logger.info(`Select number of applicants: ${option}`);
 
-        await this.selectDropdownOption(ELEMENTS.Dropdown.NumberOfApplicants, value);
+        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.NumberOfApplicants);
+        await dropdown.sendKeys(option);
+        await sleep(SHORT_TIME);
 
         await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
     }
 
-    public async selectWithRelatives(value: string) {
-        logger.info(`Select with relatives: ${value}`);
+    public async selectWithRelatives(option: string) {
+        logger.info(`Select with relatives: ${option}`);
 
-        await this.selectDropdownOption(ELEMENTS.Dropdown.WithRelatives, value);
+        const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.WithRelatives);
+        await dropdown.sendKeys(option);
+        await sleep(SHORT_TIME);
 
         await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
     }

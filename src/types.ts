@@ -6,7 +6,7 @@ export enum Environment {
 
 export enum Locale {
     EN = 'en',
-    DE = 'de',
+    DE = 'de-DE',
 }
 
 export enum Weekday {

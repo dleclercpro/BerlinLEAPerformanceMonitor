@@ -1,7 +1,6 @@
 import { WEEKDAYS } from '../../constants';
 import { Weekday } from '../../types';
-import logger from '../../logger';
-import { getWeekday } from '../../utils/time';
+import { getWeekday } from '../../utils/locale';
 import CompleteSession from './CompleteSession';
 
 type Data = Record<Weekday, CompleteSession[]>;
@@ -81,6 +80,11 @@ class SessionHistory {
         return latestSession;
     }
 
+    public getSuccesses() {
+        return this.getSessions()
+            .filter(session => session.wasSuccessful());
+    }
+
     public getErrors() {
         return WEEKDAYS.reduce((errors, weekday) => {
             return [...errors, ...this.getErrorsByWeekday(weekday)];
@@ -89,7 +93,6 @@ class SessionHistory {
 
     public getErrorsByWeekday(weekday: Weekday) {
         return this.getSessionsByWeekday(weekday)
-            .filter(session => session.getErrors().length > 0)
             .reduce((errors, session) => {
                 return [...errors, ...session.getErrors()];
             }, [] as string[]);

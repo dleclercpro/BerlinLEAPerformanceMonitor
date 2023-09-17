@@ -8,11 +8,20 @@ export const LOCALE = Locale.DE;
 
 export const LOGS_DIR = `${process.cwd()}/data/logs`;
 export const IMG_DIR = `${process.cwd()}/data/img`;
+export const SCREENSHOTS_DIR = `${process.cwd()}/data/screenshots`;
 
 export const LOGS_PATH = `${LOGS_DIR}/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
-
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'));
+
+export const LONG_DATE_TIME_FORMAT_OPTIONS = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+} as Intl.DateTimeFormatOptions;
 
 export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');

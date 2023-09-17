@@ -1,22 +1,21 @@
-import { NoAppointmentsError } from '../../errors';
 import logger from '../../logger';
-import SoundPlayer from '../Alarm';
+import { formatDateForFilename } from '../../utils/locale';
 import AppointmentPage from './AppointmentPage';
 
 class ResultsPage extends AppointmentPage {
     protected name = 'Results';
 
-    public async check() {
+    public async checkForAppointments() {
         if (await this.hasErrorMessage()) {
             logger.info(`There are no appointments available at the moment. :'(`);
-            
-            throw new NoAppointmentsError();
+            return false;
         }
 
-        logger.info(`There are appointments available RIGHT NOW! :)`);
+        // There seems to be an appointment: take a screenshot!
+        await this.screenshot(`${formatDateForFilename(new Date())}.png`);
 
-        // Play alarm to wake up user!
-        await SoundPlayer.ringAlarm();
+        logger.info(`There are appointments available right now! :)`);
+        return true;
     }
 }
 

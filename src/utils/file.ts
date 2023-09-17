@@ -16,9 +16,9 @@ export const deleteFile = async (filepath: string) => {
     });
 }
 
-export const readFile = (filepath: string, options = { encoding: 'utf-8' as BufferEncoding }) => {
+export const readFile = (filepath: string, encoding: BufferEncoding = 'utf-8') => {
     return new Promise<string>((resolve, reject) => {
-        fs.readFile(filepath, options, (err, data) => {
+        fs.readFile(filepath, { encoding }, (err, data) => {
             if (err) reject(err);
 
             logger.trace(`Read ${data.length} bytes from file: ${filepath}`);
@@ -28,32 +28,12 @@ export const readFile = (filepath: string, options = { encoding: 'utf-8' as Buff
     });
 }
 
-export const writeFile = async (filepath: string, data: string | Buffer) => {
+export const writeFile = async (filepath: string, data: string | Buffer, encoding: BufferEncoding = 'utf-8') => {
     return new Promise<void>((resolve, reject) => {
-        fs.writeFile(filepath, data, (err) => {
+        fs.writeFile(filepath, data, { encoding }, (err) => {
             if (err) reject(err);
     
             resolve();
-        });
-    });
-}
-
-export const appendToFile = async (filepath: string, data: string) => {
-    return new Promise<void>((resolve, reject) => {
-        fs.open(filepath, 'a+', (openErr, file) => {
-            if (openErr) reject(openErr);
-
-            fs.write(file, data, (writeErr) => {
-                if (writeErr) reject(writeErr);
-
-                fs.close(file, (closeErr) => {
-                    if (closeErr) reject(closeErr);
-
-                    logger.trace(`Wrote ${data.length} bytes to file: ${filepath}`);
-
-                    resolve();
-                });
-            });
         });
     });
 }
@@ -63,8 +43,6 @@ export const touchFile = async (filepath: string) => {
 
     if (!exists) {
         fs.mkdirSync(path.dirname(filepath), { recursive: true });
-        
-        await createFile(filepath);
 
         // New file generated
         return true;
@@ -72,10 +50,6 @@ export const touchFile = async (filepath: string) => {
 
     // No new file generated
     return false;
-}
-
-export const createFile = async (filepath: string) => {
-    await writeFile(filepath, '');
 }
 
 export const readJSON = async (filepath: string) => {

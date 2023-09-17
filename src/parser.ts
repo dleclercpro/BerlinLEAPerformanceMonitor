@@ -1,11 +1,12 @@
-import { IMG_DIR } from '../config';
-import { NEW_LINE_REGEXP } from '../constants';
-import logger from '../logger';
-import NoAppointmentsGraph from '../models/graphs/NoAppointmentsGraph';
-import { Log } from '../types';
-import { readFile } from './file';
-import { getCountsDict } from './math';
-import SessionHistoryBuilder from '../models/sessions/SessionHistoryBuilder';
+import { IMG_DIR } from './config';
+import { NEW_LINE_REGEXP } from './constants';
+import logger from './logger';
+import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
+import { Locale, Log } from './types';
+import { readFile } from './utils/file';
+import { getCountsDict, getRange } from './utils/math';
+import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
+import { formatDate, formatDateByLocale, formatDateForFilename } from './utils/locale';
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -22,8 +23,13 @@ export const parseLogs = async (filepath: string) => {
     await graph.store();
 
     const errors = history.getErrors();
-    logger.debug(getCountsDict(errors), `Errors:`);
-    return;
+    logger.debug(getCountsDict(errors), `Errors experienced:`);
+
+    const successTimes = history
+        .getSuccesses()
+        .map(session => formatDateForFilename(session.getEndTime()))
+
+    logger.info(successTimes, `Time(s) at which an appointment was momentarily available:`);
 
 
 

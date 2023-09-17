@@ -4,7 +4,7 @@ import Bot from '../bots/Bot';
 import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 import TimeDuration from '../TimeDuration';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
-import { sleep } from '../../utils/time';
+import { SCREENSHOTS_DIR } from '../../config';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',
@@ -45,16 +45,8 @@ abstract class Page {
         await this.bot.navigateTo(this.url);
     }
 
-    public async waitUntilLoaded() {
-        logger.debug(`Wait for '${this.name}' page to load...`);
-
-        if (await this.hasElement(ELEMENTS.Errors.InternalServerError)) {
-            throw new InternalServerError();
-        }
-
-        await this.doWaitUntilLoaded();
-
-        logger.debug('Page loaded.');
+    public async screenshot(filename: string) {
+        await this.bot.screenshot(`${SCREENSHOTS_DIR}/${filename}`);
     }
 
     public async hasElement(locator: By) {
@@ -69,13 +61,16 @@ abstract class Page {
             });
     }
 
-    protected async selectDropdownOption(locator: By, option: string) {
-        const dropdown = await this.bot.findElement(locator);
+    public async waitUntilLoaded() {
+        logger.debug(`Wait for '${this.name}' page to load...`);
 
-        await dropdown.sendKeys(option);
+        if (await this.hasElement(ELEMENTS.Errors.InternalServerError)) {
+            throw new InternalServerError();
+        }
 
-        // Seems dropdowns need a little time
-        await sleep(SHORT_TIME);
+        await this.doWaitUntilLoaded();
+
+        logger.debug('Page loaded.');
     }
 
     protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
