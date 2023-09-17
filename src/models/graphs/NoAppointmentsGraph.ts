@@ -39,7 +39,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
                 x: {
                     label: `Tageszeit (h)`,
                     min: 0,
-                    max: 0,
+                    max: 24,
                 },
                 y: {
                     label: `Dauer (${this.yAxisUnit})`,
