@@ -1,4 +1,4 @@
-import { ChartOptions, ChartType, Color, Tick } from 'chart.js';
+import { ChartOptions, ChartType, Color } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
@@ -86,6 +86,7 @@ abstract class Graph<Data> {
             borderColor: color,
             backgroundColor: color,
             pointRadius: 1,
+            borderWidth: 1,
             tension: 0.25,
         };
     }
