@@ -1,8 +1,18 @@
 import logger from '../../logger';
-import { Log } from '../../types';
+import { Log, Weekday } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
+import { ONE_DAY, WEEKDAYS } from '../../constants';
+import TimeDuration, { TimeUnit } from '../TimeDuration';
+import { getRange } from '../../utils/math';
+import { BUCKET_SIZE } from '../../config';
+
+export type SessionBucket = {
+    startTime: TimeDuration, // Elapsed time since midnight
+    endTime: TimeDuration, // Elapsed time since midnight
+    sessions: CompleteSession[],
+};
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -27,7 +37,7 @@ class SessionHistoryBuilder {
     public build(logs: Log[]) {
         logger.debug(`Building session history from ${logs.length} log entries...`);
 
-        const history = new SessionHistory();
+        const history = new SessionHistory(this.buildBuckets(BUCKET_SIZE), BUCKET_SIZE);
 
         let session: Session;
 
@@ -64,9 +74,24 @@ class SessionHistoryBuilder {
             }
         });
 
-        logger.info(`Found ${history.size()} complete sessions.`);
+        logger.info(`Found ${history.getSize()} complete sessions.`);
 
         return history;
+    }
+
+    protected buildBuckets(size: TimeDuration) {
+        const count = ONE_DAY.toMs().getAmount() / size.toMs().getAmount();
+
+        return WEEKDAYS.reduce((prev, weekday) => {
+            return {
+                ...prev,
+                [weekday]: getRange(count).map(i => ({
+                    startTime: new TimeDuration(i * size.toMs().getAmount(), TimeUnit.Milliseconds),
+                    endTime: new TimeDuration((i + 1) * size.toMs().getAmount(), TimeUnit.Milliseconds),
+                    sessions: [],
+                })),
+            };
+        }, {} as Record<Weekday, SessionBucket[]>);
     }
 }
 
