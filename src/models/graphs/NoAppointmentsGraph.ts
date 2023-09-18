@@ -31,7 +31,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
         return {
             type: 'scatter' as ChartType,
             title: [
-                `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlmeldung 'Es sind keine Termine frei.'`,
+                `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
                 `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
                 `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             ],
