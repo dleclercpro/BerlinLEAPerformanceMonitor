@@ -55,15 +55,22 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
             const sessions = history.getSessionsByWeekday(weekday)
                 .filter(sessionFilter);
 
+            const data = sessions.map(session => {
+                return {
+                    x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.xAxisUnit).getAmount(),
+                    y: session.getDuration().to(this.yAxisUnit).getAmount(),
+                };
+            });
+
+            // Daily graph: first and last point (midnight) should be equal
+            if (data.length > 0) {
+                data.push({ x: 24, y: data[0].y });
+            }
+
             return {
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
-                data: sessions.map(session => {
-                    return {
-                        x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.xAxisUnit).getAmount(),
-                        y: session.getDuration().to(this.yAxisUnit).getAmount(),
-                    };
-                }),
+                data,
             };
         });
     }

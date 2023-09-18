@@ -1,8 +1,9 @@
 import { Locale } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
-import { PALETTE_MAGMA, TEN_MINUTES } from './constants';
+import { PALETTE_MAGMA } from './constants';
 import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError } from './errors';
+import TimeDuration, { TimeUnit } from './models/TimeDuration';
 
 export const ENV = loadEnvironment();
 export const LOCALE = Locale.DE;
@@ -16,7 +17,7 @@ export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'));
 
 export const N_ALARMS = 20;
-export const BUCKET_SIZE = TEN_MINUTES;
+export const BUCKET_SIZE = new TimeDuration(60, TimeUnit.Minutes);
 
 export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');

@@ -1,9 +1,9 @@
 import { round } from '../utils/math';
 
 export enum TimeUnit {
-    Days = 'D',
+    Days = 'd',
     Hours = 'h',
-    Minutes = 'm',
+    Minutes = 'min',
     Seconds = 's',
     Milliseconds = 'ms',
 }
