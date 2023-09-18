@@ -8,6 +8,11 @@ export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
 
 export const WEEKDAYS = Object.values(Weekday);
 
+export const FIVE_MINUTES = new TimeDuration(5, TimeUnit.Minutes);
+export const TEN_MINUTES = new TimeDuration(10, TimeUnit.Minutes);
+export const ONE_HOUR = new TimeDuration(1, TimeUnit.Hours);
+export const ONE_DAY = new TimeDuration(1, TimeUnit.Days);
+
 export const NO_TIME = new TimeDuration(0, TimeUnit.Milliseconds);
 export const VERY_SHORT_TIME = new TimeDuration(1, TimeUnit.Seconds);
 export const SHORT_TIME = new TimeDuration(2, TimeUnit.Seconds);
@@ -16,9 +21,6 @@ export const LONG_TIME = new TimeDuration(10, TimeUnit.Seconds);
 export const VERY_LONG_TIME = new TimeDuration(30, TimeUnit.Seconds);
 export const VERY_VERY_LONG_TIME = new TimeDuration(1, TimeUnit.Minutes);
 export const INFINITE_TIME = new TimeDuration(2, TimeUnit.Minutes); // More than 2 minutes in Internet terms is an eternity...
-
-export const ONE_HOUR = new TimeDuration(1, TimeUnit.Hours);
-export const FIVE_MINUTES = new TimeDuration(5, TimeUnit.Minutes);
 
 export const WEEKDAY_COLORS_1 = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#000000','#a65628'];
 export const WEEKDAY_COLORS_2 = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69'];

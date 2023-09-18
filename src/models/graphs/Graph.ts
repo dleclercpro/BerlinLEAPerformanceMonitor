@@ -27,7 +27,7 @@ export interface GraphOptions {
     },
 }
 
-interface Dataset {
+export interface GraphDataset {
     label: string,
     data: { x: number, y: number }[],
     color: Color,
@@ -45,7 +45,7 @@ abstract class Graph<Data> {
         this.mimeType = mimeType;
     }
 
-    public async generate(datasets: Dataset[], opts: GraphOptions) {
+    public async generate(datasets: GraphDataset[], opts: GraphOptions) {
         const { type, size } = opts;
 
         const canvas = new ChartJSNodeCanvas({
@@ -77,7 +77,7 @@ abstract class Graph<Data> {
         logger.trace(`Image stored.`);
     }
 
-    protected generateDatasetOptions({ label, data, color }: Dataset) {
+    protected generateDatasetOptions({ label, data, color }: GraphDataset) {
         return {
             label,
             data,

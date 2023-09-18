@@ -3,16 +3,10 @@ import Graph, { GraphOptions } from './Graph';
 import { TimeUnit } from '../TimeDuration';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
-import { FIVE_MINUTES, WEEKDAYS } from '../../constants';
+import { WEEKDAYS } from '../../constants';
 import { Locale } from '../../types';
-import CompleteSession from '../sessions/CompleteSession';
-import { NoAppointmentsError } from '../../errors';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
-
-const isSessionLengthReasonable = (session: CompleteSession) => {
-    return session.getDuration().smallerThan(FIVE_MINUTES);
-}
 
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
@@ -52,14 +46,11 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
         return WEEKDAYS.map((weekday, i) => {
             const sessions = history.getSessionsByWeekday(weekday)
                 .filter(session => {
-                    const errors = session.getErrors();
-
                     return (
                         // Ignore sessions that are unreasonably long (>5m)
-                        isSessionLengthReasonable(session) &&
-                        // Ignore sessions that did not end with a 'keine Termine frei' message
-                        errors.length === 1 &&
-                        errors[0] === NoAppointmentsError.name
+                        session.isDurationReasonable() &&
+                        // Only consider sessions that ended with 'keine Termine frei' error message
+                        session.foundNoAppointment()
                     );
                 });
 

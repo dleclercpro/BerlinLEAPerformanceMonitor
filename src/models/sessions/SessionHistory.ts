@@ -1,8 +1,13 @@
 import { WEEKDAYS } from '../../constants';
-import logger from '../../logger';
 import { Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
 import CompleteSession from './CompleteSession';
+
+type SessionBucket = {
+    startTime: number, // Elapsed time since midnight (ms)
+    endTime: number, // Elapsed time since midnight (ms)
+    sessions: CompleteSession[],
+};
 
 type Data = Record<Weekday, CompleteSession[]>;
 
@@ -83,7 +88,7 @@ class SessionHistory {
 
     public getSuccesses() {
         return this.getSessions()
-            .filter(session => session.wasSuccessful());
+            .filter(session => session.foundAppointment());
     }
 
     public getErrors() {
