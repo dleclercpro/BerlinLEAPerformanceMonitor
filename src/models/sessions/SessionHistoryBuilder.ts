@@ -1,5 +1,5 @@
 import logger from '../../logger';
-import { Log, Weekday } from '../../types';
+import { DailyBucket, Log, Weekday } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
@@ -8,11 +8,7 @@ import TimeDuration, { TimeUnit } from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import { BUCKET_SIZE } from '../../config';
 
-export type SessionBucket = {
-    startTime: TimeDuration, // Elapsed time since midnight
-    endTime: TimeDuration, // Elapsed time since midnight
-    sessions: CompleteSession[],
-};
+export type SessionBucket = DailyBucket<CompleteSession>;
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -88,7 +84,7 @@ class SessionHistoryBuilder {
                 [weekday]: getRange(count).map(i => ({
                     startTime: new TimeDuration(i * size.toMs().getAmount(), TimeUnit.Milliseconds),
                     endTime: new TimeDuration((i + 1) * size.toMs().getAmount(), TimeUnit.Milliseconds),
-                    sessions: [],
+                    content: [],
                 })),
             };
         }, {} as Record<Weekday, SessionBucket[]>);

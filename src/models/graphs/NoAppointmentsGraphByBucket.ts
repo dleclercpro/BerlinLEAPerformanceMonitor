@@ -51,7 +51,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
             const buckets = history.getBucketsByWeekday(weekday)
                 // Remove empty buckets
                 .filter(bucket => {
-                    return bucket.sessions.filter(sessionFilter).length > 0;
+                    return bucket.content.filter(sessionFilter).length > 0;
                 });
 
             return {
@@ -59,7 +59,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
                 color: WEEKDAY_COLORS[i],
                 data: buckets
                     .map(bucket => {
-                        const sessions = bucket.sessions.filter(sessionFilter);
+                        const sessions = bucket.content.filter(sessionFilter);
                         
                         return {
                             x: bucket.startTime.to(this.xAxisUnit).getAmount(),
