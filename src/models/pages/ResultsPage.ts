@@ -1,19 +1,26 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import AppointmentPage from './AppointmentPage';
-import { NoAppointmentsError, NoInformationError } from '../../errors';
-import { LogMessages } from '../../constants';
+import { BackToFindAppointmentPageError, NoAppointmentsError, NoInformationError } from '../../errors';
+import { LogMessages, MEDIUM_TIME } from '../../constants';
+import Page from './Page';
 
 const TEXTS = {
-    ApplyForVisa: 'Aufenthaltstitel - beantragen',
-    Employment: 'Erwerbstätigkeit',
-    BlueCard: 'Blaue Karte EU',
     NoAppointments: 'keine Termine frei',
     NoInformation: 'existieren keine Informationen',
 };
 
+const DROPDOWN_NAMES = {
+    Citizenship: 'sel_staat',
+};
+
 const ELEMENTS = {
+    Dropdown: {
+        Citizenship: By.xpath(`//select[@name='${DROPDOWN_NAMES.Citizenship}']`),
+    },
+    Bars: {
+        RemainingTime: By.id('progressBar'),
+    },
     Boxes: {
         Messages: By.id('messagesBox'),
     },
@@ -23,16 +30,30 @@ const ELEMENTS = {
     },
 };
 
-class ResultsPage extends AppointmentPage {
+class ResultsPage extends Page {
     protected name = 'Results';
 
+    protected async doWaitUntilLoaded() {
+        await Promise.any([
+            this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, MEDIUM_TIME),
+            this.bot.waitForElement(ELEMENTS.Boxes.Messages, MEDIUM_TIME),
+        ]);
+    }
+
     public async checkForAppointments() {
-        if (await this.hasErrorMessage(ELEMENTS.Errors.NoInformation)) {
-            logger.info(`There are no informations for the selected appointment. (?!?)`)
+        logger.info(`Checking for appointments availability...`);
+
+        if (await this.hasElement(ELEMENTS.Dropdown.Citizenship)) {
+            logger.info(`Returned to find appointment page.`);
+            throw new BackToFindAppointmentPageError();
+        }
+
+        if (await this.hasElement(ELEMENTS.Errors.NoInformation)) {
+            logger.info(`There is no information available for the selected appointment.`);
             throw new NoInformationError();
         }
 
-        if (await this.hasErrorMessage(ELEMENTS.Errors.NoAppointments)) {
+        if (await this.hasElement(ELEMENTS.Errors.NoAppointments)) {
             logger.info(LogMessages.Failure);
             throw new NoAppointmentsError();
         }
@@ -42,19 +63,6 @@ class ResultsPage extends AppointmentPage {
 
         logger.info(LogMessages.Success);
         return true;
-    }
-
-    public async hasErrorMessage(locator: By) {
-        return Promise.all([
-            this.bot.findElement(ELEMENTS.Boxes.Messages),
-            this.bot.findElement(locator),
-        ])
-        .then(() => {
-            return true;
-        })
-        .catch(() => {
-            return false;
-        });
     }
 }
 

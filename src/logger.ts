@@ -15,7 +15,7 @@ const PROD_TRANSPORT = pino.transport({
             options: { destination: LOGS_PATH },
         },
         {
-            level: 'debug',
+            level: 'trace',
             target: 'pino-pretty',
             options: { },
         },
@@ -28,7 +28,7 @@ const getLogger = (env: Environment) => {
             return pino(pretty({ sync: true }));
         case Environment.Production:
             return pino({
-                level: 'debug',
+                level: 'trace',
             }, PROD_TRANSPORT);
         case Environment.Development:
             return pino({
