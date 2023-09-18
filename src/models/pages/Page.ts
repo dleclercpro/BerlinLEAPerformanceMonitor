@@ -46,6 +46,7 @@ abstract class Page {
     }
 
     public async screenshot(filename: string) {
+        await this.bot.scrollToTop();
         await this.bot.screenshot(`${SCREENSHOTS_DIR}/${filename}`);
     }
 

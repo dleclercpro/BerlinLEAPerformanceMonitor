@@ -21,6 +21,10 @@ export class InternalServerError extends Error {
     public name = 'InternalServerError';
 }
 
+export class NoInformationError extends Error {
+    public name = 'NoInformationError';
+}
+
 export class ElementMissingFromPageError extends Error {
     public name = 'ElementMissingFromPageError';
 }
@@ -37,6 +41,7 @@ export class UIError extends Error {
 
 export const EXPECTED_ERRORS = [
     NoAppointmentsError,
+    NoInformationError,
     InternalServerError,
     ElementMissingFromPageError,
     InfiniteSpinnerError,
