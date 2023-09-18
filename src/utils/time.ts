@@ -1,8 +1,5 @@
-import { LOCALE } from '../config';
 import logger from '../logger';
 import TimeDuration, { TimeUnit } from '../models/TimeDuration';
-import { Locale, Weekday } from '../types';
-import { WEEKDAYS } from '../constants';
 
 export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Sleep... (${duration.format()})`);
