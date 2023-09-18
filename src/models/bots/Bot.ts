@@ -102,6 +102,12 @@ abstract class Bot {
             })
     }
 
+    public async scrollToTop() {
+        const driver = await this.getDriver();
+
+        await driver.executeAsyncScript(`window.scrollTo(0, 0);`);
+    }
+
     public async screenshot(filepath: string) {
         const driver = await this.getDriver();
 

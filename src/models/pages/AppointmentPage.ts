@@ -9,6 +9,7 @@ const TEXTS = {
     Employment: 'Erwerbstätigkeit',
     BlueCard: 'Blaue Karte EU',
     NoAppointments: 'keine Termine frei',
+    NoInformation: 'existieren keine Informationen',
 };
 
 const DROPDOWN_NAMES = {
@@ -34,6 +35,7 @@ const ELEMENTS = {
     },
     Errors: {
         NoAppointments: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoAppointments}')]`),
+        NoInformation: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoInformation}')]`),
     },
 };
 
@@ -128,7 +130,10 @@ class AppointmentPage extends Page {
     public async hasErrorMessage() {
         return Promise.all([
             this.bot.findElement(ELEMENTS.Boxes.Messages),
-            this.bot.findElement(ELEMENTS.Errors.NoAppointments),
+            Promise.any([
+                this.bot.findElement(ELEMENTS.Errors.NoAppointments),
+                this.bot.findElement(ELEMENTS.Errors.NoAppointments),                
+            ]),
         ])
         .then(() => {
             return true;
