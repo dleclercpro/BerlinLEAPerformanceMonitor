@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
-import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
+import { INFINITE_TIME, SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants';
 import TimeDuration from '../TimeDuration';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
 import { SCREENSHOTS_DIR } from '../../config';
@@ -74,14 +74,14 @@ abstract class Page {
         logger.debug('Page loaded.');
     }
 
-    protected async waitUntilSpinnerGone(wait: TimeDuration = VERY_VERY_LONG_TIME) {
+    protected async waitUntilSpinnerGone() {
         if (!await this.isSpinnerVisible()) {
             return;
         }
 
         logger.trace(`Wait for spinner to disappear...`);
 
-        return this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, wait)
+        return this.bot.waitForElementToDisappear(ELEMENTS.Icons.Spinner, INFINITE_TIME)
             .then(() => {
                 logger.trace(`Spinner is gone.`);
             })
