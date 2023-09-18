@@ -1,6 +1,6 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants';
-import { Locale, Weekday } from '../../types';
+import { Locale } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import NoAppointmentsGraph from './NoAppointmentsGraph';
@@ -8,8 +8,7 @@ import { getAverage } from '../../utils/math';
 import { GraphDataset, GraphOptions } from './Graph';
 import { ChartType } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
-import logger from '../../logger';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
+import { SessionBucket } from '../sessions/SessionHistoryBuilder';
 
 const sessionFilter = (session: CompleteSession) => (
     // Ignore unreasonably long sessions
@@ -17,6 +16,13 @@ const sessionFilter = (session: CompleteSession) => (
     // Only consider sessions that ended with 'keine Termine frei' error message
     session.foundNoAppointment()
 );
+
+const bucketFilter = (bucket: SessionBucket) => {
+    // Remove empty buckets
+    // return bucket.content.filter(sessionFilter).length > 0;
+
+    return true;
+}
 
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
@@ -53,10 +59,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
             const buckets = history.getBucketsByWeekday(weekday)
-                // Remove empty buckets
-                .filter(bucket => {
-                    return bucket.content.filter(sessionFilter).length > 0;
-                });
+                .filter(bucketFilter);
 
             const data = buckets
                 .map(bucket => {
@@ -64,7 +67,9 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
                     
                     return {
                         x: bucket.startTime.to(this.xAxisUnit).getAmount(),
-                        y: getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
+                        y: sessions.length > 0 ? (
+                            getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount()))
+                        ) : NaN,
                     };
                 });
 
