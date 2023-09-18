@@ -1,4 +1,3 @@
-import { TimeUnit } from '../TimeDuration';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants';
 import { Locale } from '../../types';
@@ -10,16 +9,12 @@ import { GraphDataset, GraphOptions } from './Graph';
 import { ChartType } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
 
-const filterSessions = (sessions: CompleteSession[]) => {
-    return sessions.filter(session => {
-        return (
-            // Ignore sessions that are unreasonably long (>5m)
-            session.isDurationReasonable() &&
-            // Only consider sessions that ended with 'keine Termine frei' error message
-            session.foundNoAppointment()
-        );
-    })
-}
+const sessionFilter = (session: CompleteSession) => (
+    // Ignore sessions that are unreasonably long (>5m)
+    session.isDurationReasonable() &&
+    // Only consider sessions that ended with 'keine Termine frei' error message
+    session.foundNoAppointment()
+);
 
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
@@ -55,19 +50,21 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
-            const buckets = history.getBucketsByWeekday(weekday);
+            const buckets = history.getBucketsByWeekday(weekday)
+                // Remove empty buckets
+                .filter(bucket => {
+                    return bucket.sessions.filter(sessionFilter).length > 0;
+                });
 
             return {
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
                 data: buckets
-                    // Remove empty buckets
-                    .filter(bucket => bucket.sessions.length > 0)
                     .map(bucket => {
-                        const sessions = filterSessions(bucket.sessions);
-
+                        const sessions = bucket.sessions.filter(sessionFilter);
+                        
                         return {
-                            x: bucket.startTime.to(TimeUnit.Hours).getAmount(),
+                            x: bucket.startTime.to(this.xAxisUnit).getAmount(),
                             y: getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
                         };
                     }),

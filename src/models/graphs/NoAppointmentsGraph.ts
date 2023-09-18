@@ -7,6 +7,14 @@ import { WEEKDAYS } from '../../constants';
 import { Locale } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
+import CompleteSession from '../sessions/CompleteSession';
+
+const sessionFilter = (session: CompleteSession) => (
+    // Ignore sessions that are unreasonably long (>5m)
+    session.isDurationReasonable() &&
+    // Only consider sessions that ended with 'keine Termine frei' error message
+    session.foundNoAppointment()
+);
 
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
@@ -45,14 +53,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
             const sessions = history.getSessionsByWeekday(weekday)
-                .filter(session => {
-                    return (
-                        // Ignore sessions that are unreasonably long (>5m)
-                        session.isDurationReasonable() &&
-                        // Only consider sessions that ended with 'keine Termine frei' error message
-                        session.foundNoAppointment()
-                    );
-                });
+                .filter(sessionFilter);
 
             return {
                 label: translateWeekday(weekday, Locale.DE),
