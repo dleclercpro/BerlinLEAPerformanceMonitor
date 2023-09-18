@@ -45,6 +45,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
     protected generateDatasetOptions(args: GraphDataset) {
         return {
             ...super.generateDatasetOptions(args),
+            borderWidth: 2,
             pointRadius: 2,
         };
     }
