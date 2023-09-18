@@ -1,9 +1,8 @@
-import { ONE_DAY, WEEKDAYS } from '../../constants';
+import { WEEKDAYS } from '../../constants';
 import { Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
-import { getRange } from '../../utils/math';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
+import TimeDuration from '../TimeDuration';
 import CompleteSession from './CompleteSession';
 import { SessionBucket } from './SessionHistoryBuilder';
 

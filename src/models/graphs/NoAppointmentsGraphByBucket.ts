@@ -10,8 +10,6 @@ import { ChartType } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
 
 const sessionFilter = (session: CompleteSession) => (
-    // Ignore sessions that are unreasonably long (>5m)
-    session.isDurationReasonable() &&
     // Only consider sessions that ended with 'keine Termine frei' error message
     session.foundNoAppointment()
 );
