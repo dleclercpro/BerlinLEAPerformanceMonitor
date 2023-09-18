@@ -4,7 +4,7 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../errors';
-import { SUCCESS_MESSAGE } from '../pages/ResultsPage';
+import { LogMessages } from '../../constants';
 
 interface Options {
     id: string,
@@ -73,13 +73,14 @@ class Session {
         return this.startTime && this.endTime;
     }
 
-    // The session was completed and no error was detected: there is an
+    // The session was completed, no error was detected, and
+    // the success message was logged: there seems to be an
     // appointment available!
     public wasSuccessful() {
         return (
             this.isClosed() &&
             this.errors.length === 0 &&
-            this.logs.map(log => log.msg).includes(SUCCESS_MESSAGE)
+            this.logs.map(log => log.msg).includes(LogMessages.Success)
         );
     }
 

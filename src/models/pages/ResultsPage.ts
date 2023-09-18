@@ -3,6 +3,7 @@ import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
 import AppointmentPage from './AppointmentPage';
 import { NoAppointmentsError, NoInformationError } from '../../errors';
+import { LogMessages } from '../../constants';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
@@ -22,8 +23,6 @@ const ELEMENTS = {
     },
 };
 
-export const SUCCESS_MESSAGE = `There are appointments available right now! :)`;
-
 class ResultsPage extends AppointmentPage {
     protected name = 'Results';
 
@@ -34,14 +33,14 @@ class ResultsPage extends AppointmentPage {
         }
 
         if (await this.hasErrorMessage(ELEMENTS.Errors.NoAppointments)) {
-            logger.info(`There are no appointments available at the moment. :'(`);
+            logger.info(LogMessages.Failure);
             throw new NoAppointmentsError();
         }
 
         // There seems to be an appointment: take a screenshot!
         await this.screenshot(`${formatDateForFilename(new Date())}.png`);
 
-        logger.info(SUCCESS_MESSAGE);
+        logger.info(LogMessages.Success);
         return true;
     }
 
