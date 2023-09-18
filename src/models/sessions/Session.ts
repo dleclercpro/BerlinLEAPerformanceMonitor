@@ -5,7 +5,7 @@ import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../config';
 import { FIVE_MINUTES, LogMessages } from '../../constants';
-import { NoAppointmentsError } from '../../errors';
+import { BackToFindAppointmentPageError, NoAppointmentsError } from '../../errors';
 
 interface Options {
     id: string,
@@ -89,7 +89,8 @@ class Session {
         return (
             this.isClosed() &&
             this.errors.length === 1 &&
-            this.errors[0] === NoAppointmentsError.name
+            [NoAppointmentsError, BackToFindAppointmentPageError]
+                .map(err => err.name).includes(this.errors[0])
         );
     }
 
