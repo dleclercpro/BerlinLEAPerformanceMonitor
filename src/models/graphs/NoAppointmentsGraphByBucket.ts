@@ -8,8 +8,8 @@ import { formatDate, translateWeekday } from '../../utils/locale';
 import NoAppointmentsGraph from './NoAppointmentsGraph';
 import CompleteSession from '../sessions/CompleteSession';
 import { getAverage, getRange } from '../../utils/math';
-import logger from '../../logger';
 import { GraphDataset, GraphOptions } from './Graph';
+import { ChartType } from 'chart.js';
 
 interface SessionBucket {
     startTime: TimeDuration,
@@ -32,6 +32,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
         
         return {
             ...super.generateOptions(history),
+            type: 'line' as ChartType,
             title: [
                 `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
                 `Bucket-Größe: ${this.bucketSize.format()}`,
