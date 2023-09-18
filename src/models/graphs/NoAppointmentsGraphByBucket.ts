@@ -90,12 +90,15 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
             return {
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
-                data: buckets.map(bucket => {
-                    return {
-                        x: bucket.startTime.to(TimeUnit.Hours).getAmount(),
-                        y: getAverage(bucket.sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
-                    };
-                }),
+                data: buckets
+                    // Remove empty buckets
+                    .filter(bucket => bucket.sessions.length > 0)
+                    .map(bucket => {
+                        return {
+                            x: bucket.startTime.to(TimeUnit.Hours).getAmount(),
+                            y: getAverage(bucket.sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
+                        };
+                    }),
             };
         });
     }
