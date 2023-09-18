@@ -1,6 +1,6 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants';
-import { Locale } from '../../types';
+import { Locale, Weekday } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import NoAppointmentsGraph from './NoAppointmentsGraph';
@@ -8,8 +8,12 @@ import { getAverage } from '../../utils/math';
 import { GraphDataset, GraphOptions } from './Graph';
 import { ChartType } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
+import logger from '../../logger';
+import TimeDuration, { TimeUnit } from '../TimeDuration';
 
 const sessionFilter = (session: CompleteSession) => (
+    // Ignore unreasonably long sessions
+    session.isDurationReasonable() &&
     // Only consider sessions that ended with 'keine Termine frei' error message
     session.foundNoAppointment()
 );
@@ -60,6 +64,10 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
                 data: buckets
                     .map(bucket => {
                         const sessions = bucket.content.filter(sessionFilter);
+
+                        if (weekday === Weekday.Monday && bucket.startTime.equals(new TimeDuration(5*60 + 10, TimeUnit.Minutes))) {
+                            logger.debug(bucket);
+                        }
                         
                         return {
                             x: bucket.startTime.to(this.xAxisUnit).getAmount(),
