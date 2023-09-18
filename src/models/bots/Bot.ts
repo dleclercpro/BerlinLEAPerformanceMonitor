@@ -105,7 +105,8 @@ abstract class Bot {
     public async scrollToTop() {
         const driver = await this.getDriver();
 
-        await driver.executeAsyncScript(`window.scrollTo(0, 0);`);
+        logger.trace(`Scrolling to top of window...`);
+        await driver.executeScript(`window.scrollTo(0, 0);`);
     }
 
     public async screenshot(filepath: string) {

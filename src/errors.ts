@@ -17,12 +17,16 @@ export class NoAppointmentsError extends Error {
     public name = 'NoAppointmentsError';
 }
 
-export class InternalServerError extends Error {
-    public name = 'InternalServerError';
-}
-
 export class NoInformationError extends Error {
     public name = 'NoInformationError';
+}
+
+export class BackToFindAppointmentPageError extends Error {
+    public name = 'BackToFindAppointmentPageError';
+}
+
+export class InternalServerError extends Error {
+    public name = 'InternalServerError';
 }
 
 export class ElementMissingFromPageError extends Error {

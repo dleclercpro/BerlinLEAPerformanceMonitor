@@ -3,7 +3,7 @@ import { SHORT_TIME } from '../../constants';
 import { UIError } from '../../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
-import AppointmentPage from '../pages/AppointmentPage';
+import FindAppointmentPage from '../pages/FindAppointmentPage';
 import HomePage from '../pages/HomePage';
 import ResultsPage from '../pages/ResultsPage';
 import TermsPage from '../pages/TermsPage';
@@ -43,7 +43,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await termsPage.clickOnNextButton();
 
         // Define user's appointment needs
-        const appointmentPage = new AppointmentPage(bot);
+        const appointmentPage = new FindAppointmentPage(bot);
         await appointmentPage.waitUntilLoaded();
 
         await appointmentPage.selectCitizenship(CITIZENSHIP);

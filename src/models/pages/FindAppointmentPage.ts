@@ -30,10 +30,10 @@ const ELEMENTS = {
     },
 };
 
-class AppointmentPage extends Page {
-    protected name = 'Appointment';
+class FindAppointmentPage extends Page {
+    protected name = 'FindAppointment';
 
-    // Appointment page is available once the citizenship dropdown is visible
+    // Find appointment page is available once the citizenship dropdown is visible
     protected async doWaitUntilLoaded() {
         await this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, VERY_VERY_LONG_TIME);
 
@@ -119,4 +119,4 @@ class AppointmentPage extends Page {
     }
 }
 
-export default AppointmentPage;
+export default FindAppointmentPage;
