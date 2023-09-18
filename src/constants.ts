@@ -23,10 +23,13 @@ export const VERY_LONG_TIME = new TimeDuration(30, TimeUnit.Seconds);
 export const VERY_VERY_LONG_TIME = new TimeDuration(1, TimeUnit.Minutes);
 export const INFINITE_TIME = new TimeDuration(2, TimeUnit.Minutes); // More than 2 minutes in Internet terms is an eternity...
 
-export const WEEKDAY_COLORS_1 = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#000000','#a65628'];
-export const WEEKDAY_COLORS_2 = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69'];
-export const WEEKDAY_COLORS_3 = ['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494'];
-export const WEEKDAY_COLORS_4 = ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0','#f0027f','#bf5b17'];
+export const COLOR_GRAY = '#808080';
+
+export const PALETTE_ROCKET = [COLOR_GRAY, '#35193e', '#701f57', '#ad1759', '#e13342', '#f37651', '#f6b48f'];
+export const PALETTE_INFERNO = [COLOR_GRAY, '#280b53', '#65156e', '#9f2a63', '#d44842', '#f57d15', '#fac228'];
+export const PALETTE_MAGMA = [COLOR_GRAY, '#221150', '#5f187f', '#982d80', '#d3436e', '#f8765c', '#febb81'];
+export const PALETTE_PLASMA = [COLOR_GRAY, '#5302a3', '#8b0aa5', '#b83289', '#db5c68', '#f48849', '#febd2a'];
+export const PALETTE_FLARE = [COLOR_GRAY, '#e98d6b', '#e3685c', '#d14a61', '#b13c6c', '#8f3371', '#6c2b6d'];
 
 export enum LogMessages {
     UnknownError = 'An unknown error occurred.',
