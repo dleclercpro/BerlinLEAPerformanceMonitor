@@ -29,7 +29,9 @@ export const parseLogs = async (filepath: string) => {
         .getSuccesses()
         .map(session => formatDateForFilename(session.getEndTime()))
 
-    logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);
+    if (successTimes.length > 0) {
+        logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);        
+    }
 
 
 
