@@ -58,22 +58,29 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
                     return bucket.content.filter(sessionFilter).length > 0;
                 });
 
+            const data = buckets
+                .map(bucket => {
+                    const sessions = bucket.content.filter(sessionFilter);
+
+                    if (weekday === Weekday.Monday && bucket.startTime.equals(new TimeDuration(5*60 + 10, TimeUnit.Minutes))) {
+                        logger.debug(bucket);
+                    }
+                    
+                    return {
+                        x: bucket.startTime.to(this.xAxisUnit).getAmount(),
+                        y: getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
+                    };
+                });
+
+            // Daily graph: first and last point (midnight) should be equal
+            if (data.length > 0) {
+                data.push({ x: 24, y: data[0].y });
+            }
+
             return {
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
-                data: buckets
-                    .map(bucket => {
-                        const sessions = bucket.content.filter(sessionFilter);
-
-                        if (weekday === Weekday.Monday && bucket.startTime.equals(new TimeDuration(5*60 + 10, TimeUnit.Minutes))) {
-                            logger.debug(bucket);
-                        }
-                        
-                        return {
-                            x: bucket.startTime.to(this.xAxisUnit).getAmount(),
-                            y: getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
-                        };
-                    }),
+                data,
             };
         });
     }
