@@ -2,6 +2,7 @@ import { Locale } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
 import { WEEKDAY_COLORS_1, WEEKDAY_COLORS_2, WEEKDAY_COLORS_4 } from './constants';
+import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError } from './errors';
 
 export const ENV = loadEnvironment();
 export const LOCALE = Locale.DE;
@@ -30,3 +31,12 @@ export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS
 export const WITH_RELATIVES = getEnvironmentVariable('WITH_RELATIVES');
 
 export const WEEKDAY_COLORS = WEEKDAY_COLORS_1;
+
+export const EXPECTED_ERRORS = [
+    NoAppointmentsError,
+    NoInformationError,
+    InternalServerError,
+    ElementMissingFromPageError,
+    InfiniteSpinnerError,
+    UIError,
+];

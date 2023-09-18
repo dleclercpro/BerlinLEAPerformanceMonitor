@@ -36,14 +36,3 @@ export class InfiniteSpinnerError extends Error {
 export class UIError extends Error {
     public name = 'UIError';
 }
-
-
-
-export const EXPECTED_ERRORS = [
-    NoAppointmentsError,
-    NoInformationError,
-    InternalServerError,
-    ElementMissingFromPageError,
-    InfiniteSpinnerError,
-    UIError,
-];
