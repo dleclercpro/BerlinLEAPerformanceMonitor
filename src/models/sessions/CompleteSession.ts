@@ -38,6 +38,12 @@ class CompleteSession extends Session {
     public static create(startTime: Date, endTime: Date) {
         return Session.create(startTime, endTime);
     }
+
+    public static compare(a: CompleteSession, b: CompleteSession) {
+        if (a.getStartTime() > b.getStartTime()) return 1;
+        if (a.getStartTime() < b.getStartTime()) return -1;
+        return 0;
+    }
 }
 
 export default CompleteSession;

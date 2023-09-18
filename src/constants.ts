@@ -1,11 +1,12 @@
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
-import { Weekday } from './types';
+import { Environment, Weekday } from './types';
 
 export const NEW_LINE_REGEXP = /[\r\n]+/;
 export const NEW_LINE = '\n';
 
 export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
 
+export const ENVIRONMENTS = Object.values(Environment);
 export const WEEKDAYS = Object.values(Weekday);
 
 export const FIVE_MINUTES = new TimeDuration(5, TimeUnit.Minutes);

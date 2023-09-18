@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Environment } from '../types';
 import path from 'path';
+import { ENVIRONMENTS } from '../constants';
 
 export const loadEnvironment = () => {
     const env = process.env.ENV as Environment;
@@ -10,7 +11,7 @@ export const loadEnvironment = () => {
         process.exit(-1);    
     }
     
-    if (!Object.values(Environment).includes(env)) {
+    if (!ENVIRONMENTS.includes(env)) {
         console.error(`Invalid environment variable: '${env}'`);
         process.exit(-1);
     }

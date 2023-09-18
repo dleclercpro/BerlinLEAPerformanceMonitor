@@ -13,11 +13,11 @@ import { formatDate, translateWeekday } from '../../utils/locale';
  * message on an hourly basis.
  */
 class NoAppointmentsGraph extends Graph<SessionHistory> {
-    protected xAxisUnit = null;
+    protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = TimeUnit.Seconds;
 
     protected generateOptions(history: SessionHistory): GraphOptions {
-        if (history.size() < 2) throw new Error('Not enough data to plot graph.');
+        if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
         
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
@@ -59,7 +59,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
                 color: WEEKDAY_COLORS[i],
                 data: sessions.map(session => {
                     return {
-                        x: getTimeSpentSinceMidnight(session.getStartTime()).to(TimeUnit.Hours).getAmount(),
+                        x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.xAxisUnit).getAmount(),
                         y: session.getDuration().to(this.yAxisUnit).getAmount(),
                     };
                 }),

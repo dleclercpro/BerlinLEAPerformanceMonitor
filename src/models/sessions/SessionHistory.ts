@@ -1,36 +1,46 @@
-import { WEEKDAYS } from '../../constants';
+import { ONE_DAY, WEEKDAYS } from '../../constants';
 import { Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
+import { getRange } from '../../utils/math';
+import { getTimeSpentSinceMidnight } from '../../utils/time';
+import TimeDuration, { TimeUnit } from '../TimeDuration';
 import CompleteSession from './CompleteSession';
+import { SessionBucket } from './SessionHistoryBuilder';
 
-type SessionBucket = {
-    startTime: number, // Elapsed time since midnight (ms)
-    endTime: number, // Elapsed time since midnight (ms)
-    sessions: CompleteSession[],
-};
-
-type Data = Record<Weekday, CompleteSession[]>;
+type Data = Record<Weekday, SessionBucket[]>;
 
 class SessionHistory {
-    protected sessions: Data;
+    protected buckets: Data;
+    protected bucketSize: TimeDuration;
 
-    public constructor () {
-        this.sessions = WEEKDAYS.reduce((prev, weekday) => {
-            return {
-                ...prev,
-                [weekday]: [],
-            };
-        }, {} as Data);
+    public constructor (buckets: Data, bucketSize: TimeDuration) {
+        this.buckets = buckets;
+        this.bucketSize = bucketSize;
     }
 
-    public size() {
+    public getSize() {
         return this.getSessions().length;
+    }
+
+    public getBucketSize() {
+        return this.bucketSize;
     }
 
     public addSession(session: CompleteSession) {
         const weekday = getWeekday(session.getStartTime());
+        const buckets = this.getBucketsByWeekday(weekday);
 
-        this.sessions[weekday].push(session);
+        // Look for bucket in which session belongs
+        buckets.forEach(bucket => {
+            const startTime = getTimeSpentSinceMidnight(session.getStartTime());
+            const endTime = getTimeSpentSinceMidnight(session.getEndTime());
+
+            if (bucket.startTime.smallerThanOrEquals(startTime) && endTime.smallerThan(bucket.endTime)) {
+
+                // Sort on insert
+                bucket.sessions = [...bucket.sessions, session].sort(CompleteSession.compare);
+            }
+        });
     }
 
     public getSessionById(id: string) {
@@ -40,50 +50,41 @@ class SessionHistory {
             });
     }
 
+    public getBucketsByWeekday(weekday: Weekday) {
+        return this.buckets[weekday];
+    }
+
     public getSessionsByWeekday(weekday: Weekday) {
-        return this.sessions[weekday];
+        return this.getBucketsByWeekday(weekday)
+            .map(bucket => bucket.sessions)
+            .reduce((prev, sessions) => {
+                return [...prev, ...sessions];
+            }, [] as CompleteSession[])
+            .sort(CompleteSession.compare);
     }
 
     public getSessions() {
-        return Object.values(this.sessions).reduce((prev, sessions) => {
-            return [...prev, ...sessions];
-        }, []);
+        return WEEKDAYS
+            .reduce((prev, weekday) => {
+                return [...prev, ...this.getSessionsByWeekday(weekday)];
+            }, [] as CompleteSession[])
+            .sort(CompleteSession.compare);
     }
     
     public getEarliestSession() {
         const sessions = this.getSessions();
     
-        if (sessions.length === 0) {
-            return;
+        if (sessions.length > 0) {
+            return sessions[0];
         }
-    
-        let earliestSession = sessions[0];
-    
-        sessions.forEach(session => {
-            if (session.getStartTime() < earliestSession.getStartTime()) {
-                earliestSession = session;
-            }
-        });
-    
-        return earliestSession;
     }
 
     public getLatestSession() {
         const sessions = this.getSessions();
     
-        if (sessions.length === 0) {
-            return;
+        if (sessions.length > 0) {
+            return sessions[sessions.length - 1];
         }
-    
-        let latestSession = sessions[0];
-    
-        sessions.forEach(session => {
-            if (session.getStartTime() > latestSession.getStartTime()) {
-                latestSession = session;
-            }
-        });
-    
-        return latestSession;
     }
 
     public getSuccesses() {

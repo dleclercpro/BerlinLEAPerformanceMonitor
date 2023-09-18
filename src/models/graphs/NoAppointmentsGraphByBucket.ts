@@ -1,20 +1,24 @@
-import TimeDuration, { TimeUnit } from '../TimeDuration';
-import { getTimeSpentSinceMidnight } from '../../utils/time';
+import { TimeUnit } from '../TimeDuration';
 import SessionHistory from '../sessions/SessionHistory';
-import { FIVE_MINUTES, ONE_DAY, TEN_MINUTES, WEEKDAYS } from '../../constants';
+import { WEEKDAYS } from '../../constants';
 import { Locale } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import NoAppointmentsGraph from './NoAppointmentsGraph';
-import CompleteSession from '../sessions/CompleteSession';
-import { getAverage, getRange } from '../../utils/math';
+import { getAverage } from '../../utils/math';
 import { GraphDataset, GraphOptions } from './Graph';
 import { ChartType } from 'chart.js';
+import CompleteSession from '../sessions/CompleteSession';
 
-interface SessionBucket {
-    startTime: TimeDuration,
-    endTime: TimeDuration,
-    sessions: CompleteSession[],
+const filterSessions = (sessions: CompleteSession[]) => {
+    return sessions.filter(session => {
+        return (
+            // Ignore sessions that are unreasonably long (>5m)
+            session.isDurationReasonable() &&
+            // Only consider sessions that ended with 'keine Termine frei' error message
+            session.foundNoAppointment()
+        );
+    })
 }
 
 /**
@@ -22,10 +26,9 @@ interface SessionBucket {
  * message using buckets.
  */
 class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
-    protected bucketSize: TimeDuration = TEN_MINUTES;
 
     protected generateOptions(history: SessionHistory): GraphOptions {
-        if (history.size() < 2) throw new Error('Not enough data to plot graph.');
+        if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
         
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
@@ -35,7 +38,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
             type: 'line' as ChartType,
             title: [
                 `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
-                `Bucket-Größe: ${this.bucketSize.format()}`,
+                `Bucket-Größe: ${history.getBucketSize().format()}`,
                 `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
                 `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             ],
@@ -52,41 +55,7 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
-            const sessions = history.getSessionsByWeekday(weekday)
-                .filter(session => {
-                    return (
-                        // Ignore sessions that are unreasonably long (>5m)
-                        session.isDurationReasonable() &&
-                        // Only consider sessions that ended with 'keine Termine frei' error message
-                        session.foundNoAppointment()
-                    );
-                });
-
-            // Build session buckets
-            const bucketSizeMs = this.bucketSize.toMs().getAmount();
-            const bucketCount = ONE_DAY.toMs().getAmount() / bucketSizeMs;
-            
-            const buckets = getRange(bucketCount).map(i => {
-                const bucketSessions: CompleteSession[] = [];
-
-                const startTime = new TimeDuration(i * bucketSizeMs, TimeUnit.Milliseconds);
-                const endTime = new TimeDuration((i + 1) * bucketSizeMs, TimeUnit.Milliseconds);
-
-                sessions.forEach(session => {
-                    const sessionStartTime = getTimeSpentSinceMidnight(session.getStartTime()).toMs();
-                    const sessionEndTime = getTimeSpentSinceMidnight(session.getEndTime()).toMs();
-
-                    if ((startTime.getAmount() <= sessionStartTime.getAmount()) && (sessionEndTime.getAmount() < endTime.getAmount())) {
-                        bucketSessions.push(session);
-                    }
-                });
-
-                return {
-                    startTime,
-                    endTime,
-                    sessions: bucketSessions,
-                } as SessionBucket;
-            });
+            const buckets = history.getBucketsByWeekday(weekday);
 
             return {
                 label: translateWeekday(weekday, Locale.DE),
@@ -95,9 +64,11 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
                     // Remove empty buckets
                     .filter(bucket => bucket.sessions.length > 0)
                     .map(bucket => {
+                        const sessions = filterSessions(bucket.sessions);
+
                         return {
                             x: bucket.startTime.to(TimeUnit.Hours).getAmount(),
-                            y: getAverage(bucket.sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
+                            y: getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount())),
                         };
                     }),
             };

@@ -128,8 +128,16 @@ class TimeDuration {
         return this.toMs().getAmount() > other.toMs().getAmount();
     }
 
+    public greaterThanOrEquals(other: TimeDuration) {
+        return this.toMs().getAmount() >= other.toMs().getAmount();
+    }
+
     public smallerThan(other: TimeDuration) {
         return this.toMs().getAmount() < other.toMs().getAmount();
+    }
+
+    public smallerThanOrEquals(other: TimeDuration) {
+        return this.toMs().getAmount() <= other.toMs().getAmount();
     }
 
     public equals(other: TimeDuration) {
