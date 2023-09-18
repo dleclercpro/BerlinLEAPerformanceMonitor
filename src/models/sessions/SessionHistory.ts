@@ -29,12 +29,12 @@ class SessionHistory {
         const weekday = getWeekday(session.getStartTime());
         const buckets = this.getBucketsByWeekday(weekday);
 
-        // Look for bucket in which session belongs
+        // Look for bucket in which session belongs (only based
+        // on time when it started)
         buckets.forEach(bucket => {
             const startTime = getTimeSpentSinceMidnight(session.getStartTime());
-            const endTime = getTimeSpentSinceMidnight(session.getEndTime());
 
-            if (bucket.startTime.smallerThanOrEquals(startTime) && endTime.smallerThan(bucket.endTime)) {
+            if (bucket.startTime.smallerThanOrEquals(startTime) && startTime.smallerThan(bucket.endTime)) {
 
                 // Sort on insert
                 bucket.content = [...bucket.content, session].sort(CompleteSession.compare);
