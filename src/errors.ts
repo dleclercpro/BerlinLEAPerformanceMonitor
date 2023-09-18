@@ -47,6 +47,3 @@ export const EXPECTED_ERRORS = [
     InfiniteSpinnerError,
     UIError,
 ];
-
-export const UNKNOWN_ERROR_MESSAGE = 'An unknown error occurred.';
-export const EXPECTED_ERROR_MESSAGE = 'An expected error occured.';

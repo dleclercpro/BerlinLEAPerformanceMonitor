@@ -23,3 +23,10 @@ export const WEEKDAY_COLORS_1 = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f0
 export const WEEKDAY_COLORS_2 = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69'];
 export const WEEKDAY_COLORS_3 = ['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494'];
 export const WEEKDAY_COLORS_4 = ['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0','#f0027f','#bf5b17'];
+
+export enum LogMessages {
+    UnknownError = 'An unknown error occurred.',
+    ExpectedError = 'An expected error occured.',
+    Success = `There are appointments available right now! :)`,
+    Failure = `There are no appointments available at the moment. :'(`,
+}
