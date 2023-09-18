@@ -1,3 +1,5 @@
+import TimeDuration from './models/TimeDuration';
+
 export enum Environment {
     Development = 'development',
     Test = 'test',
@@ -17,6 +19,12 @@ export enum Weekday {
     Thursday = 'Thursday',
     Friday = 'Friday',
     Saturday = 'Saturday',
+}
+
+export type DailyBucket<T> = {
+    startTime: TimeDuration, // Elapsed time since midnight
+    endTime: TimeDuration, // Elapsed time since midnight
+    content: T[],
 }
 
 export type Log = {

@@ -37,7 +37,7 @@ class SessionHistory {
             if (bucket.startTime.smallerThanOrEquals(startTime) && endTime.smallerThan(bucket.endTime)) {
 
                 // Sort on insert
-                bucket.sessions = [...bucket.sessions, session].sort(CompleteSession.compare);
+                bucket.content = [...bucket.content, session].sort(CompleteSession.compare);
             }
         });
     }
@@ -55,7 +55,7 @@ class SessionHistory {
 
     public getSessionsByWeekday(weekday: Weekday) {
         return this.getBucketsByWeekday(weekday)
-            .map(bucket => bucket.sessions)
+            .map(bucket => bucket.content)
             .reduce((prev, sessions) => {
                 return [...prev, ...sessions];
             }, [] as CompleteSession[])
