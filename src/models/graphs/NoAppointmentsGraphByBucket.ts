@@ -61,10 +61,6 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
             const data = buckets
                 .map(bucket => {
                     const sessions = bucket.content.filter(sessionFilter);
-
-                    if (weekday === Weekday.Monday && bucket.startTime.equals(new TimeDuration(5*60 + 10, TimeUnit.Minutes))) {
-                        logger.debug(bucket);
-                    }
                     
                     return {
                         x: bucket.startTime.to(this.xAxisUnit).getAmount(),
