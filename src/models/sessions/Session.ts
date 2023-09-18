@@ -3,7 +3,7 @@ import TimeDuration, { TimeUnit } from '../TimeDuration';
 import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
-import { EXPECTED_ERRORS } from '../../errors';
+import { EXPECTED_ERRORS } from '../../config';
 import { LogMessages } from '../../constants';
 
 interface Options {

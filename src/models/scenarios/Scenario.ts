@@ -1,5 +1,5 @@
 import { LogMessages } from '../../constants';
-import { EXPECTED_ERRORS } from '../../errors';
+import { EXPECTED_ERRORS } from '../../config';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
 
