@@ -7,6 +7,7 @@ import { readFile } from './utils/file';
 import { getCountsDict, getRange } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDate, formatDateByLocale, formatDateForFilename } from './utils/locale';
+import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
 
 export const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -21,6 +22,10 @@ export const parseLogs = async (filepath: string) => {
     const graph = new NoAppointmentsGraph(`${IMG_DIR}/user-session-duration.png`);
     await graph.draw(history);
     await graph.store();
+
+    const bucketGraph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
+    await bucketGraph.draw(history);
+    await bucketGraph.store();
 
     const errors = history.getErrors();
     logger.debug(getCountsDict(errors), `Errors experienced:`);

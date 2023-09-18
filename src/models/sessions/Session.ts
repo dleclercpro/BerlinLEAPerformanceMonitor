@@ -4,7 +4,8 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../config';
-import { LogMessages } from '../../constants';
+import { FIVE_MINUTES, LogMessages } from '../../constants';
+import { NoAppointmentsError } from '../../errors';
 
 interface Options {
     id: string,
@@ -76,11 +77,19 @@ class Session {
     // The session was completed, no error was detected, and
     // the success message was logged: there seems to be an
     // appointment available!
-    public wasSuccessful() {
+    public foundAppointment() {
         return (
             this.isClosed() &&
             this.errors.length === 0 &&
             this.logs.map(log => log.msg).includes(LogMessages.Success)
+        );
+    }
+
+    public foundNoAppointment() {
+        return (
+            this.isClosed() &&
+            this.errors.length === 1 &&
+            this.errors[0] === NoAppointmentsError.name
         );
     }
 
@@ -115,6 +124,12 @@ class Session {
         const endTime = this.endTime.getTime();
 
         return new TimeDuration(endTime - startTime, TimeUnit.Milliseconds);
+    }
+
+    public isDurationReasonable = () => {
+        if (!this.isClosed()) throw new Error(`Session isn't complete.`);
+        
+        return this.getDuration().smallerThan(FIVE_MINUTES);
     }
 }
 
