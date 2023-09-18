@@ -1,6 +1,6 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, SCREENSHOTS_DIR, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants';
-import { NoAppointmentsError, UIError } from '../../errors';
+import { UIError } from '../../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
 import AppointmentPage from '../pages/AppointmentPage';
@@ -67,9 +67,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         const resultsPage = new ResultsPage(bot);
         await resultsPage.waitUntilLoaded();
 
-        if (!await resultsPage.checkForAppointments()) {
-            throw new NoAppointmentsError();
-        }
+        await resultsPage.checkForAppointments();
     }
 }
 

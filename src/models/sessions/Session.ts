@@ -4,7 +4,7 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../errors';
-import { THERE_ARE_APPOINTMENTS_LOG } from '../pages/ResultsPage';
+import { SUCCESS_MESSAGE } from '../pages/ResultsPage';
 
 interface Options {
     id: string,
@@ -79,7 +79,7 @@ class Session {
         return (
             this.isClosed() &&
             this.errors.length === 0 &&
-            this.logs.map(log => log.msg).includes(THERE_ARE_APPOINTMENTS_LOG)
+            this.logs.map(log => log.msg).includes(SUCCESS_MESSAGE)
         );
     }
 
