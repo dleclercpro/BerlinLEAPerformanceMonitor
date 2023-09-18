@@ -1,12 +1,12 @@
 import { IMG_DIR } from './config';
-import { NEW_LINE_REGEXP } from './constants';
+import { NEW_LINE_REGEXP, WEEKDAYS } from './constants';
 import logger from './logger';
 import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
-import { Locale, Log } from './types';
+import { Log } from './types';
 import { readFile } from './utils/file';
 import { getCountsDict, getRange } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
-import { formatDate, formatDateByLocale, formatDateForFilename } from './utils/locale';
+import { formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
 
 export const parseLogs = async (filepath: string) => {
@@ -43,7 +43,7 @@ export const parseLogs = async (filepath: string) => {
     // FIXME
     // const hours = getRange(24);
     // const hourlyErrors: ErrorDict[] = [];
-
+    
     // const INITIAL_ERROR_COUNTS: Record<string, number> = errors.reduce((prev, err) => {
     //     return { ...prev, [err]: 0 };
     // }, {});

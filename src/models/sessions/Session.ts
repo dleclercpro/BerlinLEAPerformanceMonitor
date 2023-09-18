@@ -90,7 +90,8 @@ class Session {
             this.isClosed() &&
             this.errors.length === 1 &&
             [NoAppointmentsError, BackToFindAppointmentPageError]
-                .map(err => err.name).includes(this.errors[0])
+                .map(err => err.name)
+                .includes(this.errors[0])
         );
     }
 
