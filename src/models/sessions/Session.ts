@@ -4,6 +4,7 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import { EXPECTED_ERRORS } from '../../errors';
+import { THERE_ARE_APPOINTMENTS_LOG } from '../pages/ResultsPage';
 
 interface Options {
     id: string,
@@ -75,7 +76,11 @@ class Session {
     // The session was completed and no error was detected: there is an
     // appointment available!
     public wasSuccessful() {
-        return this.isClosed() && this.errors.length === 0;
+        return (
+            this.isClosed() &&
+            this.errors.length === 0 &&
+            this.logs.map(log => log.msg).includes(THERE_ARE_APPOINTMENTS_LOG)
+        );
     }
 
     public pushLog(log: Log) {
