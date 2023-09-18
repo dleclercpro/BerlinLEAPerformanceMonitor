@@ -8,8 +8,6 @@ const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
     Employment: 'Erwerbstätigkeit',
     BlueCard: 'Blaue Karte EU',
-    NoAppointments: 'keine Termine frei',
-    NoInformation: 'existieren keine Informationen',
 };
 
 const DROPDOWN_NAMES = {
@@ -29,13 +27,6 @@ const ELEMENTS = {
         Employment: By.xpath(`//p[contains(text(), '${TEXTS.Employment}')]`),
         BlueCard: By.xpath(`//label[contains(text(), '${TEXTS.BlueCard}')]`),
         Submit: By.id('applicationForm:managedForm:proceed'),
-    },
-    Boxes: {
-        Messages: By.id('messagesBox'),
-    },
-    Errors: {
-        NoAppointments: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoAppointments}')]`),
-        NoInformation: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoInformation}')]`),
     },
 };
 
@@ -125,22 +116,6 @@ class AppointmentPage extends Page {
         const elements = await this.bot.findElements(ELEMENTS.Buttons.ApplyForVisa);
 
         return elements.length === 1;
-    }
-
-    public async hasErrorMessage() {
-        return Promise.all([
-            this.bot.findElement(ELEMENTS.Boxes.Messages),
-            Promise.any([
-                this.bot.findElement(ELEMENTS.Errors.NoAppointments),
-                this.bot.findElement(ELEMENTS.Errors.NoAppointments),                
-            ]),
-        ])
-        .then(() => {
-            return true;
-        })
-        .catch(() => {
-            return false;
-        });
     }
 }
 
