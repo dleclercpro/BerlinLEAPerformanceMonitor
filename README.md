@@ -15,6 +15,16 @@ This Node application uses Selenium to automatically go through each of the requ
 ## Performance
 Not only are there almost never any free appointment slots on LEA's portal, the latter is also quite buggy. In an effort to highlight the poor performance of said portal, the following graphs have been generated:
 
+### Length of User Session
+Time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment.
+
 <p align="center" width="100%">
   <img alt="Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration.png" width="100%" />
+</p>
+
+### Average Length of User Session
+Average time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment. Said average is computed using buckets.
+
+<p align="center" width="100%">
+  <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration-by-bucket.png" width="100%" />
 </p>
