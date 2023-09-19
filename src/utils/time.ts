@@ -1,5 +1,6 @@
 import logger from '../logger';
-import TimeDuration, { TimeUnit } from '../models/TimeDuration';
+import TimeDuration from '../models/TimeDuration';
+import { TimeUnit } from '../types';
 
 export const sleep = async (duration: TimeDuration) => {
     logger.trace(`Sleep... (${duration.format()})`);

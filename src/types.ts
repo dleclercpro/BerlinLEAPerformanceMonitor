@@ -19,6 +19,14 @@ export enum Weekday {
     Saturday = 'Saturday',
 }
 
+export enum TimeUnit {
+    Days = 'd',
+    Hours = 'h',
+    Minutes = 'm',
+    Seconds = 's',
+    Milliseconds = 'ms',
+}
+
 export interface Comparable {
     compare(other: Comparable): -1 | 0 | 1;
     smallerThan(other: Comparable): boolean;

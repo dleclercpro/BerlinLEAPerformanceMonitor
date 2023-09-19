@@ -1,9 +1,9 @@
-import { Locale } from './types';
+import { Locale, TimeUnit } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
 import { PALETTE_MAGMA } from './constants';
 import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from './errors';
-import TimeDuration, { TimeUnit } from './models/TimeDuration';
+import TimeDuration from './models/TimeDuration';
 
 export const ENV = loadEnvironment();
 export const LOCALE = Locale.DE;

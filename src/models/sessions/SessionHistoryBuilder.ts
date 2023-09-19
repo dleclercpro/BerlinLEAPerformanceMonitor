@@ -1,10 +1,10 @@
 import logger from '../../logger';
-import { Log, Weekday } from '../../types';
+import { Log, TimeUnit, Weekday } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
 import { ONE_DAY, WEEKDAYS } from '../../constants';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
+import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import { BUCKET_SIZE } from '../../config';
 import SessionBucket from '../buckets/SessionBucket';
