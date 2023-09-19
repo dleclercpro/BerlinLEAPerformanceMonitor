@@ -1,3 +1,4 @@
+import { Comparable } from '../types';
 import { round } from '../utils/math';
 
 export enum TimeUnit {
@@ -8,7 +9,17 @@ export enum TimeUnit {
     Milliseconds = 'ms',
 }
 
-class TimeDuration {
+class TimeDurationComparator {
+    public static compare(a: TimeDuration, b: TimeDuration) {
+        if (a.toMs().getAmount() < b.toMs().getAmount()) return -1;
+        if (a.toMs().getAmount() > b.toMs().getAmount()) return 1;
+        return 0;
+    }
+}
+
+
+
+class TimeDuration implements Comparable {
     private amount: number;
     private unit: TimeUnit;
 
@@ -27,6 +38,38 @@ class TimeDuration {
 
     public getUnit() {
         return this.unit;
+    }
+
+    public add(other: TimeDuration) {
+        return new TimeDuration(this.toMs().getAmount() + other.toMs().getAmount(), TimeUnit.Milliseconds);
+    }
+
+    public subtract(other: TimeDuration) {
+        return new TimeDuration(this.toMs().getAmount() - other.toMs().getAmount(), TimeUnit.Milliseconds);
+    }
+
+    public compare(other: TimeDuration) {
+        return TimeDurationComparator.compare(this, other);
+    }
+
+    public smallerThanOrEquals(other: TimeDuration) {
+        return this.smallerThan(other) || this.equals(other);
+    }
+
+    public smallerThan(other: TimeDuration) {
+        return this.compare(other) === -1;
+    }
+
+    public equals(other: TimeDuration) {
+        return this.compare(other) === 0;
+    }
+
+    public greaterThan(other: TimeDuration) {
+        return this.compare(other) === 1;
+    }
+
+    public greaterThanOrEquals(other: TimeDuration) {
+        return this.greaterThan(other) || this.equals(other);
     }
 
     public format() {
@@ -114,34 +157,6 @@ class TimeDuration {
         }
 
         return new TimeDuration(amount, TimeUnit.Milliseconds);
-    }
-
-    public add(other: TimeDuration) {
-        return new TimeDuration(this.toMs().getAmount() + other.toMs().getAmount(), TimeUnit.Milliseconds);
-    }
-
-    public subtract(other: TimeDuration) {
-        return new TimeDuration(this.toMs().getAmount() - other.toMs().getAmount(), TimeUnit.Milliseconds);
-    }
-
-    public greaterThan(other: TimeDuration) {
-        return this.toMs().getAmount() > other.toMs().getAmount();
-    }
-
-    public greaterThanOrEquals(other: TimeDuration) {
-        return this.toMs().getAmount() >= other.toMs().getAmount();
-    }
-
-    public smallerThan(other: TimeDuration) {
-        return this.toMs().getAmount() < other.toMs().getAmount();
-    }
-
-    public smallerThanOrEquals(other: TimeDuration) {
-        return this.toMs().getAmount() <= other.toMs().getAmount();
-    }
-
-    public equals(other: TimeDuration) {
-        return this.toMs().getAmount() === other.toMs().getAmount();
     }
 }
 

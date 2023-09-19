@@ -74,27 +74,6 @@ class Session {
         return this.startTime && this.endTime;
     }
 
-    // The session was completed, no error was detected, and
-    // the success message was logged: there seems to be an
-    // appointment available!
-    public foundAppointment() {
-        return (
-            this.isClosed() &&
-            this.errors.length === 0 &&
-            this.logs.map(log => log.msg).includes(LogMessages.Success)
-        );
-    }
-
-    public foundNoAppointment() {
-        return (
-            this.isClosed() &&
-            this.errors.length === 1 &&
-            [NoAppointmentsError, BackToFindAppointmentPageError]
-                .map(err => err.name)
-                .includes(this.errors[0])
-        );
-    }
-
     public pushLog(log: Log) {
         this.logs.push(log);
     }
@@ -107,31 +86,6 @@ class Session {
         return this.logs
             .map(log => log.err)
             .filter(Boolean) as string[];
-    }
-
-    public hasUnexpectedErrors() {
-        return this.getUnexpectedErrors().length > 0;
-    }
-
-    public getUnexpectedErrors() {
-        return this.getErrors()
-            .filter(err => !EXPECTED_ERRORS.map(e => e.name).includes(err));
-    }
-
-    public getDuration() {
-        if (!this.startTime) throw new Error('Missing session start.');
-        if (!this.endTime) throw new Error('Missing session end.');
-
-        const startTime = this.startTime.getTime();
-        const endTime = this.endTime.getTime();
-
-        return new TimeDuration(endTime - startTime, TimeUnit.Milliseconds);
-    }
-
-    public isDurationReasonable = () => {
-        if (!this.isClosed()) throw new Error(`Session isn't complete.`);
-        
-        return this.getDuration().smallerThan(FIVE_MINUTES);
     }
 }
 

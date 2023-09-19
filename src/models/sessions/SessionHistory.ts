@@ -1,10 +1,10 @@
 import { WEEKDAYS } from '../../constants';
+import logger from '../../logger';
 import { Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
-import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
+import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
-import { SessionBucket } from './SessionHistoryBuilder';
 
 type Data = Record<Weekday, SessionBucket[]>;
 
@@ -32,12 +32,9 @@ class SessionHistory {
         // Look for bucket in which session belongs (only based
         // on time when it started)
         buckets.forEach(bucket => {
-            const startTime = getTimeSpentSinceMidnight(session.getStartTime());
-
-            if (bucket.startTime.smallerThanOrEquals(startTime) && startTime.smallerThan(bucket.endTime)) {
-
-                // Sort on insert
-                bucket.content = [...bucket.content, session].sort(CompleteSession.compare);
+            if (bucket.contains(session)) {
+                logger.trace(`Adding session to bucket: ${bucket.format()}`);
+                bucket.add(session);
             }
         });
     }
@@ -53,21 +50,21 @@ class SessionHistory {
         return this.buckets[weekday];
     }
 
-    public getSessionsByWeekday(weekday: Weekday) {
+    public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {
         return this.getBucketsByWeekday(weekday)
-            .map(bucket => bucket.content)
+            .map(bucket => bucket.getSessions())
             .reduce((prev, sessions) => {
                 return [...prev, ...sessions];
             }, [] as CompleteSession[])
-            .sort(CompleteSession.compare);
+            .sort((a, b) => a.compare(b));
     }
 
-    public getSessions() {
+    public getSessions(): CompleteSession[] {
         return WEEKDAYS
             .reduce((prev, weekday) => {
                 return [...prev, ...this.getSessionsByWeekday(weekday)];
             }, [] as CompleteSession[])
-            .sort(CompleteSession.compare);
+            .sort((a, b) => a.compare(b));
     }
     
     public getEarliestSession() {

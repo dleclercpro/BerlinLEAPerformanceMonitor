@@ -1,5 +1,3 @@
-import TimeDuration from './models/TimeDuration';
-
 export enum Environment {
     Development = 'development',
     Test = 'test',
@@ -21,10 +19,13 @@ export enum Weekday {
     Saturday = 'Saturday',
 }
 
-export type DailyBucket<T> = {
-    startTime: TimeDuration, // Elapsed time since midnight
-    endTime: TimeDuration, // Elapsed time since midnight
-    content: T[],
+export interface Comparable {
+    compare(other: Comparable): -1 | 0 | 1;
+    smallerThan(other: Comparable): boolean;
+    smallerThanOrEquals(other: Comparable): boolean;
+    equals(other: Comparable): boolean;
+    greaterThanOrEquals(other: Comparable): boolean;
+    greaterThan(other: Comparable): boolean;
 }
 
 export type Log = {
