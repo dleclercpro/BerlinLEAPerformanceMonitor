@@ -3,7 +3,7 @@ import { Log, TimeUnit, Weekday } from '../../types';
 import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
-import { ONE_DAY, WEEKDAYS } from '../../constants';
+import { ONE_DAY, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import { BUCKET_SIZE } from '../../config';

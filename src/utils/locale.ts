@@ -1,6 +1,6 @@
 import { LOCALE } from '../config';
 import { Locale, Weekday } from '../types';
-import { WEEKDAYS } from '../constants';
+import { WEEKDAYS } from '../constants/times';
 
 export const getWeekday = (date: Date) => {
     return WEEKDAYS[date.getDay()] as Weekday;

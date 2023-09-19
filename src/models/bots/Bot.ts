@@ -2,7 +2,7 @@ import { By, WebDriver, until } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
-import { MEDIUM_TIME } from '../../constants';
+import { MEDIUM_TIME } from '../../constants/times';
 import { ElementMissingFromPageError, TimeoutError } from '../../errors';
 import { touchFile, writeFile } from '../../utils/file';
 

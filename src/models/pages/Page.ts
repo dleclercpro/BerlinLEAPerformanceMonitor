@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
-import { INFINITE_TIME, SHORT_TIME } from '../../constants';
+import { INFINITE_TIME, SHORT_TIME } from '../../constants/times';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
 import { SCREENSHOTS_DIR } from '../../config';
 

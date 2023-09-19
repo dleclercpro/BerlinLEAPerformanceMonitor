@@ -1,7 +1,8 @@
 import { EXPECTED_ERRORS } from '../../config';
-import { FIVE_MINUTES, LogMessages } from '../../constants';
+import { LogMessages } from '../../constants';
+import { FIVE_MINUTES } from '../../constants/times';
 import { BackToFindAppointmentPageError, NoAppointmentsError, TimeoutError } from '../../errors';
-import { Comparable, Log, TimeUnit } from '../../types';
+import { Comparable, TimeUnit } from '../../types';
 import TimeDuration from '../TimeDuration';
 import Session from './Session';
 

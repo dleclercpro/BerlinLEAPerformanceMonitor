@@ -1,10 +1,10 @@
 import { IMG_DIR } from './config';
-import { NEW_LINE_REGEXP, WEEKDAYS } from './constants';
+import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
 import { Log } from './types';
 import { readFile } from './utils/file';
-import { getCountsDict, getRange } from './utils/math';
+import { getCountsDict } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';

@@ -8,8 +8,8 @@ import Alarm from './models/Alarm';
 import minimist from 'minimist';
 import { parseBooleanText } from './utils/string';
 import { sleep } from './utils/time';
-import { VERY_SHORT_TIME } from './constants';
 import { getRange } from './utils/math';
+import { VERY_SHORT_TIME } from './constants/times';
 
 
 

@@ -1,5 +1,5 @@
 import SessionHistory from '../sessions/SessionHistory';
-import { WEEKDAYS } from '../../constants';
+import { WEEKDAYS } from '../../constants/times';
 import { Locale } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
