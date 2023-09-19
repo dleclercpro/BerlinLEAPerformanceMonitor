@@ -1,25 +1,22 @@
-import { ScheduleOptions, validate } from 'node-cron';
+import { exec } from 'child_process';
 
 abstract class Job {
-    protected expression: string;
-    protected scheduleOptions?: ScheduleOptions;
+    protected abstract name: string;
 
-    public abstract execute(): void;
+    public abstract execute(): Promise<void>;
 
-    public constructor(expression?: string, scheduleOptions?: ScheduleOptions) {
-        if (!expression) throw new Error('Missing cron expression.');
-        if (!validate(expression)) throw new Error('Invalid cron expression.');
-        
-        this.expression = expression;
-        this.scheduleOptions = scheduleOptions;
+    public getName() {
+        return this.name;
     }
 
-    public getExpression() {
-        return this.expression;
-    }
+    protected async executeShellCommand(command: string) {
+        return new Promise<void>((resolve, reject) => {
+            exec(command, (err) => {
+                if (err) reject(err);
 
-    public getScheduleOptions() {
-        return this.scheduleOptions;
+                resolve();
+            });
+        });
     }
 }
 
