@@ -74,7 +74,7 @@ const generateWeekdaysErrorGraph = async (history: SessionHistory) => {
 
     const title = [
         `Prävalenz aller während einer User-Session erlebten Bugs auf der Seite des Berliner LEAs`,
-        `Gesamtanzahl der Bugs: ${totalErrorCount}`,
+        `Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
         `Bucket-Größe: ${history.getBucketSize().format()}`,
         `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
