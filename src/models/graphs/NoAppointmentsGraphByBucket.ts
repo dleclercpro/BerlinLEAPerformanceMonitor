@@ -8,7 +8,7 @@ import { getAverage } from '../../utils/math';
 import { GraphDataset, GraphOptions } from './Graph';
 import { ChartType } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
-import { SessionBucket } from '../sessions/SessionHistoryBuilder';
+import SessionBucket from '../buckets/SessionBucket';
 
 const sessionFilter = (session: CompleteSession) => (
     // Ignore unreasonably long sessions
@@ -63,10 +63,10 @@ class NoAppointmentsGraphByBucket extends NoAppointmentsGraph {
 
             const data = buckets
                 .map(bucket => {
-                    const sessions = bucket.content.filter(sessionFilter);
+                    const sessions = bucket.getSessions().filter(sessionFilter);
                     
                     return {
-                        x: bucket.startTime.to(this.xAxisUnit).getAmount(),
+                        x: bucket.getStartTime().to(this.xAxisUnit).getAmount(),
                         y: sessions.length > 0 ? (
                             getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount()))
                         ) : NaN,

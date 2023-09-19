@@ -1,5 +1,5 @@
 import logger from '../../logger';
-import { DailyBucket, Log, Weekday } from '../../types';
+import { Log, Weekday } from '../../types';
 import Session from './Session';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
@@ -7,8 +7,7 @@ import { ONE_DAY, WEEKDAYS } from '../../constants';
 import TimeDuration, { TimeUnit } from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import { BUCKET_SIZE } from '../../config';
-
-export type SessionBucket = DailyBucket<CompleteSession>;
+import SessionBucket from '../buckets/SessionBucket';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -31,7 +30,7 @@ class SessionHistoryBuilder {
     }
 
     public build(logs: Log[]) {
-        logger.debug(`Building session history from ${logs.length} log entries...`);
+        logger.debug(`Building daily session history from ${logs.length} log entries...`);
 
         const history = new SessionHistory(this.buildBuckets(BUCKET_SIZE), BUCKET_SIZE);
 
@@ -78,14 +77,16 @@ class SessionHistoryBuilder {
     protected buildBuckets(size: TimeDuration) {
         const count = ONE_DAY.toMs().getAmount() / size.toMs().getAmount();
 
+        logger.debug(`Bucket size: ${size.format()}`);
+        logger.debug(`Bucket count: ${count}`);
+
         return WEEKDAYS.reduce((prev, weekday) => {
             return {
                 ...prev,
-                [weekday]: getRange(count).map(i => ({
-                    startTime: new TimeDuration(i * size.toMs().getAmount(), TimeUnit.Milliseconds),
-                    endTime: new TimeDuration((i + 1) * size.toMs().getAmount(), TimeUnit.Milliseconds),
-                    content: [],
-                })),
+                [weekday]: getRange(count).map(i => new SessionBucket(
+                    new TimeDuration(i * size.toMs().getAmount(), TimeUnit.Milliseconds),
+                    new TimeDuration((i + 1) * size.toMs().getAmount(), TimeUnit.Milliseconds),
+                )),
             };
         }, {} as Record<Weekday, SessionBucket[]>);
     }
