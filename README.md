@@ -44,6 +44,12 @@ error, using time buckets.
   <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/workdays-errors-by-bucket.png" width="100%" />
 </p>
 
+## Recommendations
+In light of the current performance of LEA's portal (see previous section), and based on my empirical observations as a software engineer, I would suggest the following to the immigration office of Berlin:
+- Ensure your servers can be horizontally scaled up based on real-time analysis of web traffic. This will reduce the average time it takes for user to find out whether any appointment is available or not.
+- Implement bot/crawler detection to avoid virtual visitors and allow real users access to your resources.
+- Implement protection against DoS/DDoS attacks to protect the availability of your services. As the single governmental instance allowed to distribute immigration visas in Berlin, any downtime of your services amounts to economical consequences for both you and immigrants in the capital. For more information on such attacks, see: https://owasp.org/www-community/attacks/Denial_of_Service
+
 ## Disclaimer
 The source code in this repository is not meant to be used as a means to obtain an actual appointment at the Landesamt für Einwanderung in Berlin. Its sole purpose is educational: my goal is to highlight the poor access to immigration-related online services in Berlin, in 2023. I reject all responsibility for any harm that could be caused by its misuse.
 
