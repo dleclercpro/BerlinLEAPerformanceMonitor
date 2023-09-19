@@ -1,10 +1,9 @@
 import { ChartType } from 'chart.js';
 import Graph, { GraphOptions } from './Graph';
-import { TimeUnit } from '../TimeDuration';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants';
-import { Locale } from '../../types';
+import { Locale, TimeUnit } from '../../types';
 import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';

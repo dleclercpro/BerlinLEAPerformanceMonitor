@@ -1,13 +1,5 @@
-import { Comparable } from '../types';
+import { Comparable, TimeUnit } from '../types';
 import { round } from '../utils/math';
-
-export enum TimeUnit {
-    Days = 'd',
-    Hours = 'h',
-    Minutes = 'min',
-    Seconds = 's',
-    Milliseconds = 'ms',
-}
 
 class TimeDurationComparator {
     public static compare(a: TimeDuration, b: TimeDuration) {

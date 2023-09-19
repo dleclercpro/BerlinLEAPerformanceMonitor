@@ -1,5 +1,5 @@
-import TimeDuration, { TimeUnit } from './models/TimeDuration';
-import { Environment, Weekday } from './types';
+import TimeDuration from './models/TimeDuration';
+import { Environment, TimeUnit, Weekday } from './types';
 
 export const NEW_LINE_REGEXP = /[\r\n]+/;
 export const NEW_LINE = '\n';

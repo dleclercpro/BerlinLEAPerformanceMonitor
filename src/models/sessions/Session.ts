@@ -1,11 +1,7 @@
 import { Log } from '../../types';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
 import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
-import { EXPECTED_ERRORS } from '../../config';
-import { FIVE_MINUTES, LogMessages } from '../../constants';
-import { BackToFindAppointmentPageError, NoAppointmentsError } from '../../errors';
 
 interface Options {
     id: string,

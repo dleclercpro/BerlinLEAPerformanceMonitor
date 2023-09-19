@@ -1,8 +1,8 @@
 import { EXPECTED_ERRORS } from '../../config';
 import { FIVE_MINUTES, LogMessages } from '../../constants';
 import { BackToFindAppointmentPageError, NoAppointmentsError } from '../../errors';
-import { Comparable, Log } from '../../types';
-import TimeDuration, { TimeUnit } from '../TimeDuration';
+import { Comparable, Log, TimeUnit } from '../../types';
+import TimeDuration from '../TimeDuration';
 
 interface Options {
     id: string,
