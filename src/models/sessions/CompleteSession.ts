@@ -1,6 +1,6 @@
 import { EXPECTED_ERRORS } from '../../config';
 import { FIVE_MINUTES, LogMessages } from '../../constants';
-import { BackToFindAppointmentPageError, NoAppointmentsError } from '../../errors';
+import { BackToFindAppointmentPageError, NoAppointmentsError, TimeoutError } from '../../errors';
 import { Comparable, Log, TimeUnit } from '../../types';
 import TimeDuration from '../TimeDuration';
 import Session from './Session';
@@ -44,6 +44,7 @@ class CompleteSession extends Session implements Comparable {
     public foundNoAppointment() {
         return (
             this.errors.length === 1 &&
+            // [NoAppointmentsError, BackToFindAppointmentPageError, TimeoutError]
             [NoAppointmentsError, BackToFindAppointmentPageError]
                 .map(err => err.name)
                 .includes(this.errors[0])

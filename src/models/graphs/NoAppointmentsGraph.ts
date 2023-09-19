@@ -10,7 +10,7 @@ import CompleteSession from '../sessions/CompleteSession';
 
 const sessionFilter = (session: CompleteSession) => (
     // Ignore unreasonably long sessions
-    session.isDurationReasonable() &&
+    // session.isDurationReasonable() &&
     // Only consider sessions that ended with 'keine Termine frei' error message
     session.foundNoAppointment()
 );
