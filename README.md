@@ -1,4 +1,4 @@
-# BerlinLEATerminBot
+# BerlinLEAPerformanceAnalysisBot
 
 ## Motivation
 Booking an appointment with the Landesamt für Einwanderung (LEA) of Berlin is a very difficult endeavor. Even trying months in advance doesn't cut it: finding an appointment to, for instance, renew/extend a visa at LEA is literally impossible, since usually only a handful of appointment slots are freed each day, if any at all. Here is a (non-exhaustive) list of things I have personally tried in order to get an appointment with LEA, all of which were unsuccessful:
