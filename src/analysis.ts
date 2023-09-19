@@ -1,29 +1,27 @@
-import { IMG_DIR, KNOWN_UNEXPECTED_ERRORS, LONG_DATE_TIME_FORMAT_OPTIONS } from './config';
+import { IMG_DIR, LONG_DATE_TIME_FORMAT_OPTIONS } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
-import { ErrorDict, Log } from './types';
+import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import { getCountsDict, sum } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDate, formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
 import SessionHistory from './models/sessions/SessionHistory';
-import CompleteSession from './models/sessions/CompleteSession';
-import SessionBucket from './models/buckets/SessionBucket';
-import WorkdaysErrorGraphByBucket from './models/graphs/WorkdaysErrorGraphByBucket';
+import WorkdaysErrorGraphByBucket, { isErrorKnown } from './models/graphs/WorkdaysErrorGraphByBucket';
+import TimeDuration from './models/TimeDuration';
+import { ONE_HOUR } from './constants/times';
 
 
 
 const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
 
-    const logs = file
+    return file
         .split(NEW_LINE_REGEXP)
         .filter(Boolean)
         .map(line => JSON.parse(line) as Log);
-
-    return SessionHistoryBuilder.build(logs);
 }
 
 
@@ -69,8 +67,7 @@ const generateWeekdaysErrorGraph = async (history: SessionHistory) => {
     const start = history.getEarliestSession()!.getStartTime();
     const end = history.getLatestSession()!.getEndTime();
 
-    const workdaysErrorDicts = history.getErrorDictForEachWorkday();
-    const totalErrorCount = sum(workdaysErrorDicts.map(errorDict => sum(Object.values(errorDict))));
+    const totalErrorCount = history.getErrors().filter(isErrorKnown).length;
 
     const title = [
         `Prävalenz aller während einer User-Session erlebten Bugs auf der Seite des Berliner LEAs`,
@@ -81,7 +78,7 @@ const generateWeekdaysErrorGraph = async (history: SessionHistory) => {
     ];
 
     const graph = new WorkdaysErrorGraphByBucket(`${IMG_DIR}/workdays-errors-by-bucket.png`);
-    await graph.draw(title, workdaysErrorDicts);
+    await graph.draw(title, history);
     await graph.store();
 }
 
@@ -103,11 +100,14 @@ const summarizeHistory = (history: SessionHistory) => {
 
 
 export const analyzeLogs = async (filepath: string) => {
-    const history = await parseLogs(filepath);
+    const logs = await parseLogs(filepath);
+    
+    const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
+    const biHourlyHistory = SessionHistoryBuilder.build(logs, new TimeDuration(2, TimeUnit.Hours));
 
-    await generateNoAppointmentsGraph(history);
-    await generateNoAppointmentsByBucketGraph(history);
-    await generateWeekdaysErrorGraph(history);
+    await generateNoAppointmentsGraph(hourlyHistory);
+    await generateNoAppointmentsByBucketGraph(hourlyHistory);
+    await generateWeekdaysErrorGraph(biHourlyHistory);
 
     // summarizeHistory(history);
 }

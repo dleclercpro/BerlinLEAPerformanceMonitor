@@ -1,29 +1,11 @@
-import { KNOWN_UNEXPECTED_ERRORS } from '../../config';
 import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
-import { ErrorDict, Weekday } from '../../types';
+import { Weekday } from '../../types';
+import { unique } from '../../utils/array';
 import { getWeekday } from '../../utils/locale';
-import { getCountsDict } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
-
-const errorFilter = (error: string) => {
-    return KNOWN_UNEXPECTED_ERRORS
-        .map(err => err.name)
-        .includes(error);
-};
-
-const generateEmptyErrorDict = (errors: string[]) => {
-    return errors
-        .filter(errorFilter)
-        .reduce((prevErrors, error) => {
-            return {
-                ...prevErrors,
-                [error]: 0,
-            };
-        }, {});
-}
 
 type Buckets = Record<Weekday, SessionBucket[]>;
 
@@ -87,28 +69,6 @@ class SessionHistory {
         }, []);
     }
 
-    public getErrorDictForEachWorkday(): ErrorDict[] {
-        const workdaysBuckets = this.getBucketsForEachWorkday();
-    
-        const errorDict = getCountsDict(this.getErrors());
-        const errors = Object.keys(errorDict);
-        const emptyErrorDict = generateEmptyErrorDict(errors);
-        
-        return workdaysBuckets.map((bucket: SessionBucket): ErrorDict => {
-            const errors = bucket
-                .getSessions()
-                .reduce((prevErrors: string[], session: CompleteSession) => {
-                    return [...prevErrors, ...session.getErrors()];
-                }, [])
-                .filter(errorFilter);
-    
-            return {
-                ...emptyErrorDict,
-                ...getCountsDict(errors),
-            };
-        });
-    }
-
     public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {
         return this.getBucketsByWeekday(weekday)
             .map(bucket => bucket.getSessions())
@@ -151,6 +111,10 @@ class SessionHistory {
         return WEEKDAYS.reduce((errors, weekday) => {
             return [...errors, ...this.getErrorsByWeekday(weekday)];
         }, [] as string[]);
+    }
+
+    public getUniqueErrors() {
+        return unique(this.getErrors());
     }
 
     public getErrorsByWeekday(weekday: Weekday) {

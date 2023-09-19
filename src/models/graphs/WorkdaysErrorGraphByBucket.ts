@@ -1,23 +1,36 @@
 import { ChartType } from 'chart.js';
 import Graph, { GraphBaseOptions, GraphDatasetOptions } from './Graph';
-import { ErrorDict, TimeUnit } from '../../types';
-import { ERROR_COLORS } from '../../config';
+import { TimeUnit } from '../../types';
+import { ERROR_COLORS, KNOWN_UNEXPECTED_ERRORS } from '../../config';
 import { sum } from '../../utils/math';
+import SessionHistory from '../sessions/SessionHistory';
+import { unique } from '../../utils/array';
+import logger from '../../logger';
 
-class WorkdaysErrorGraphByBucket extends Graph<ErrorDict[]> {
+export const isErrorKnown = (error: string) => {
+    return KNOWN_UNEXPECTED_ERRORS
+        .map(err => err.name)
+        .includes(error);
+};
+
+class WorkdaysErrorGraphByBucket extends Graph<SessionHistory> {
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = '%';
 
-    protected generateDatasets(errorDicts: ErrorDict[]) {
-        const errors = Object.keys(errorDicts[0]);
+    protected generateDatasets(history: SessionHistory) {
+        const mergedBuckets = history.getBucketsForEachWorkday();
+
+        const errorDicts = mergedBuckets.map(bucket => bucket.getErrorDict(isErrorKnown));
+        const errors = history.getUniqueErrors().filter(isErrorKnown);
 
         return errors.map((error) => {
-            const data = errorDicts.map((errorDict, i) => {
-                return {
-                    x: i,
-                    y: errorDict[error] / sum(Object.values(errorDict)) * 100,
-                };
-            });
+            const data = mergedBuckets
+                .map((bucket, i) => {
+                    return {
+                        x: bucket.getStartTime().to(this.xAxisUnit).getAmount(),
+                        y: errorDicts[i][error] / sum(Object.values(errorDicts[i])) * 100,
+                    };
+                });
     
             // Daily graph: first and last point (midnight) should be equal
             if (data.length > 0) {
@@ -28,15 +41,14 @@ class WorkdaysErrorGraphByBucket extends Graph<ErrorDict[]> {
         });
     }
 
-    protected generateDatasetOptions(errorDicts: ErrorDict[]) {
-        const errors = Object.keys(errorDicts[0]);
-
-        return errors.map((error, i) => {
-            return {
-                label: error,
-                color: ERROR_COLORS[i],
-            };
-        });
+    protected generateDatasetOptions(history: SessionHistory) {
+        return unique(history.getErrors().filter(isErrorKnown))
+            .map((error, i) => {
+                return {
+                    label: error,
+                    color: ERROR_COLORS[i],
+                };
+            });
     }
 
     protected generateBaseOptions(title: string[]): GraphBaseOptions {
