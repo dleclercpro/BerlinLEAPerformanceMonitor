@@ -15,21 +15,21 @@ This Node application uses Selenium to automatically go through each of the requ
 ## Performance
 Not only are there almost never any free appointment slots on LEA's portal, the latter is also quite buggy. In an effort to highlight the poor performance of said portal, the following graphs have been generated:
 
-### Length of User Session
+### 1. Length of User Session
 Time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment.
 
 <p align="center" width="100%">
   <img alt="Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration.png" width="100%" />
 </p>
 
-### Average Length of User Session
+### 2. Average Length of User Session
 Average time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment. Said average is computed using time buckets.
 
 <p align="center" width="100%">
   <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration-by-bucket.png" width="100%" />
 </p>
 
-### Experienced Errors
+### 3. Prevalence of Experienced Errors
 Errors the user experiences on LEA's website which prevent them to access the appointment
 assignment feature altogether. This graph shows the prevalence (in percentage) of each
 error, using time buckets.
@@ -38,8 +38,11 @@ error, using time buckets.
 - ``ElementMissingFromPageError`` A web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded)
 - ``BackToFindAppointmentPageError`` After submitting their request for an appointment, a loading spinner appears, yet nothing happens: said user is redirected to the previous form page
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons')
-- ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request (see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500).
+- ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 
 <p align="center" width="100%">
   <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/workdays-errors-by-bucket.png" width="100%" />
 </p>
+
+## References
+[1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
