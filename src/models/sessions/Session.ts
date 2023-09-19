@@ -1,12 +1,11 @@
 import { Log } from '../../types';
-import os from 'os';
-import process from 'process';
-import crypto from 'crypto';
 
 interface Options {
     id: string,
     startTime?: Date,
     endTime?: Date,
+    logs?: Log[],
+    errors?: string[],
 }
 
 class Session {
@@ -18,21 +17,12 @@ class Session {
     protected logs: Log[];
     protected errors: string[];
 
-    protected constructor ({ id, startTime, endTime }: Options) {
+    public constructor ({ id, startTime, endTime, logs, errors }: Options) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.logs = [];
-        this.errors = [];
-    }
-
-    public static create(startTime?: Date, endTime?: Date) {
-        const host = os.hostname();
-        const processId = process.pid;
-        
-        const id = `${host}|${processId}|${crypto.randomUUID()}`;
-
-        return new Session({ id, startTime, endTime });
+        this.logs = logs ?? [];
+        this.errors = errors ?? [];
     }
 
     public getId() {
@@ -45,33 +35,6 @@ class Session {
     
     public getEndTime() {
         return this.endTime;
-    }
-
-    public start(start: Date) {
-        this.startTime = start;
-    }
-
-    public end(end: Date) {
-        this.endTime = end;
-    }
-
-    // Session is ready to be started
-    public isReady() {
-        return !this.startTime && !this.endTime;
-    }
-
-    // Session started, but didn't finish yet
-    public isOpen() {
-        return this.startTime && !this.endTime;
-    }
-
-    // Session was started and finished
-    public isClosed() {
-        return this.startTime && this.endTime;
-    }
-
-    public pushLog(log: Log) {
-        this.logs.push(log);
     }
 
     public getLogs() {
