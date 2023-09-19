@@ -1,14 +1,19 @@
-import { IMG_DIR } from './config';
+import { IMG_DIR, KNOWN_UNEXPECTED_ERRORS, LONG_DATE_TIME_FORMAT_OPTIONS } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
-import { Log } from './types';
+import { ErrorDict, Log } from './types';
 import { readFile } from './utils/file';
-import { getCountsDict } from './utils/math';
+import { getCountsDict, sum } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
-import { formatDateForFilename } from './utils/locale';
+import { formatDate, formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
 import SessionHistory from './models/sessions/SessionHistory';
+import CompleteSession from './models/sessions/CompleteSession';
+import SessionBucket from './models/buckets/SessionBucket';
+import WorkdaysErrorGraphByBucket from './models/graphs/WorkdaysErrorGraphByBucket';
+
+
 
 const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
@@ -24,15 +29,75 @@ const parseLogs = async (filepath: string) => {
 
 
 const generateNoAppointmentsGraph = async (history: SessionHistory) => {
+    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
+        
+    const start = history.getEarliestSession()!.getStartTime();
+    const end = history.getLatestSession()!.getEndTime();
+
+    const title = [
+        `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+    ];
+
     const graph = new NoAppointmentsGraph(`${IMG_DIR}/user-session-duration.png`);
-    await graph.draw(history);
+    await graph.draw(title, history);
     await graph.store();
 }
 
 const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
+    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
+        
+    const start = history.getEarliestSession()!.getStartTime();
+    const end = history.getLatestSession()!.getEndTime();
+
+    const title = [
+        `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+        `Bucket-Größe: ${history.getBucketSize().format()}`,
+        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+    ];
+
     const graph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
-    await graph.draw(history);
+    await graph.draw(title, history);
     await graph.store();
+}
+
+const generateWeekdaysErrorGraph = async (history: SessionHistory) => {
+    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
+        
+    const start = history.getEarliestSession()!.getStartTime();
+    const end = history.getLatestSession()!.getEndTime();
+
+    const workdaysErrorDicts = history.getErrorDictForEachWorkday();
+    const totalErrorCount = sum(workdaysErrorDicts.map(errorDict => sum(Object.values(errorDict))));
+
+    const title = [
+        `Prävalenz aller während einer User-Session erlebten Bugs auf der Seite des Berliner LEAs`,
+        `Gesamtanzahl der Bugs: ${totalErrorCount}`,
+        `Bucket-Größe: ${history.getBucketSize().format()}`,
+        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+    ];
+
+    const graph = new WorkdaysErrorGraphByBucket(`${IMG_DIR}/workdays-errors-by-bucket.png`);
+    await graph.draw(title, workdaysErrorDicts);
+    await graph.store();
+}
+
+
+
+const summarizeHistory = (history: SessionHistory) => {
+    const successTimes = history
+        .getSuccesses()
+        .map(session => formatDateForFilename(session.getEndTime()));
+
+    if (successTimes.length > 0) {
+        logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);        
+    }
+
+    const errorDict = getCountsDict(history.getErrors());
+    logger.debug(errorDict, `Errors experienced:`);
 }
 
 
@@ -40,43 +105,9 @@ const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
 export const analyzeLogs = async (filepath: string) => {
     const history = await parseLogs(filepath);
 
-    const errors = history.getErrors();
-    logger.debug(getCountsDict(errors), `Errors experienced:`);
+    await generateNoAppointmentsGraph(history);
+    await generateNoAppointmentsByBucketGraph(history);
+    await generateWeekdaysErrorGraph(history);
 
-    const successTimes = history
-        .getSuccesses()
-        .map(session => formatDateForFilename(session.getEndTime()))
-
-    if (successTimes.length > 0) {
-        logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);        
-    }
-
-
-
-    // FIXME
-    const workdaysBuckets = history.getWorkdaysBuckets();
-
-    // const hours = getRange(24);
-    // const hourlyErrors: ErrorDict[] = [];
-    
-    // const INITIAL_ERROR_COUNTS: Record<string, number> = errors.reduce((prev, err) => {
-    //     return { ...prev, [err]: 0 };
-    // }, {});
-
-    // hours.forEach(hour => {
-    //     const hourErrorCounts = { ...INITIAL_ERROR_COUNTS };
-
-    //     const hourSessions = reasonableSessions
-    //         .filter(session => session.getStartTime().getHours() === hour);
-
-    //     hourSessions.forEach(session => {
-    //         session.getErrors().forEach(error => {
-    //             hourErrorCounts[error] += 1;
-    //         });
-    //     });
-
-    //     hourlyErrors.push(hourErrorCounts);
-    // });
-
-    // logger.debug(hourlyErrors);
+    // summarizeHistory(history);
 }

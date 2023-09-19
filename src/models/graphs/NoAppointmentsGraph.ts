@@ -1,18 +1,18 @@
 import { ChartType } from 'chart.js';
-import Graph, { GraphOptions } from './Graph';
+import Graph, { GraphBaseOptions } from './Graph';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { Locale, TimeUnit } from '../../types';
-import { LONG_DATE_TIME_FORMAT_OPTIONS, WEEKDAY_COLORS } from '../../config';
-import { formatDate, translateWeekday } from '../../utils/locale';
+import { WEEKDAY_COLORS } from '../../config';
+import { translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 
+const IGNORE_LENGTHY_SESSIONS = true;
+
 const sessionFilter = (session: CompleteSession) => (
-    // Ignore unreasonably long sessions
-    // session.isDurationReasonable() &&
     // Only consider sessions that ended with 'keine Termine frei' error message
-    session.foundNoAppointment()
+    session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS)
 );
 
 /**
@@ -22,32 +22,6 @@ const sessionFilter = (session: CompleteSession) => (
 class NoAppointmentsGraph extends Graph<SessionHistory> {
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = TimeUnit.Seconds;
-
-    protected generateOptions(history: SessionHistory): GraphOptions {
-        if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-        
-        const start = history.getEarliestSession()!.getStartTime();
-        const end = history.getLatestSession()!.getEndTime();
-
-        return {
-            type: 'scatter' as ChartType,
-            title: [
-                `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
-                `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-                `End: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            ],
-            axes:{
-                x: {
-                    label: `Tageszeit (h)`,
-                    min: 0,
-                    max: 24,
-                },
-                y: {
-                    label: `Dauer (${this.yAxisUnit})`,
-                },
-            },
-        };
-    }
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
@@ -66,19 +40,34 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
                 data.push({ x: 24, y: data[0].y });
             }
 
+            return data;
+        });
+    }
+
+    protected generateDatasetOptions(history: SessionHistory) {
+        return WEEKDAYS.map((weekday, i) => {
             return {
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
-                data,
             };
         });
     }
 
-    public async draw(history: SessionHistory) {
-        const options = this.generateOptions(history);
-        const datasets = this.generateDatasets(history);
-
-        await this.generate(datasets, options);
+    protected generateBaseOptions(title: string[]): GraphBaseOptions {
+        return {
+            type: 'scatter' as ChartType,
+            title,
+            axes:{
+                x: {
+                    label: `Tageszeit (${this.xAxisUnit})`,
+                    min: 0,
+                    max: 24,
+                },
+                y: {
+                    label: `Dauer (${this.yAxisUnit})`,
+                },
+            },
+        };
     }
 }
 

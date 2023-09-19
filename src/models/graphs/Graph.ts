@@ -1,4 +1,4 @@
-import { ChartOptions, ChartType, Color } from 'chart.js';
+import { ChartOptions, ChartType, Color, ChartConfiguration } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
@@ -6,7 +6,7 @@ import logger from '../../logger';
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
 
-export interface GraphOptions {
+export interface GraphBaseOptions {
     type: ChartType,
     title: string[],
     size?: {
@@ -27,42 +27,54 @@ export interface GraphOptions {
     },
 }
 
-export interface GraphDataset {
+export interface GraphDatasetOptions {
     label: string,
-    data: { x: number, y: number }[],
     color: Color,
 }
+
+export type GraphDataset = { x: number, y: number }[];
+
+
 
 abstract class Graph<Data> {
     protected filepath: string;
     protected img?: Buffer;
     protected mimeType: MimeType;
 
-    public abstract draw(data: Data): Promise<void>;
+    protected abstract generateBaseOptions(title: string[]): GraphBaseOptions;
+    protected abstract generateDatasetOptions(args: any): GraphDatasetOptions[];
+    protected abstract generateDatasets(data: Data): GraphDataset[];
 
     public constructor(filepath: string, mimeType: MimeType = 'image/png') {
         this.filepath = filepath;
         this.mimeType = mimeType;
     }
 
-    public async generate(datasets: GraphDataset[], opts: GraphOptions) {
-        const { type, size } = opts;
+    public async draw(title: string[], data: Data) {
+        const baseOptions = this.generateBaseOptions(title);
+        const datasetOptions = this.generateDatasetOptions(data);
+        const datasets = this.generateDatasets(data);
 
         const canvas = new ChartJSNodeCanvas({
-            width: size?.width ?? 1024,
-            height: size?.height ?? 728,
+            width: baseOptions.size?.width ?? 1024,
+            height: baseOptions.size?.height ?? 728,
             backgroundColour: 'white',
         });
 
-        const cfg = {
-            type,
-            options: this.generateGraphOptions(opts),
+        const config: ChartConfiguration = {
+            type: baseOptions.type,
+            options: this.fillBaseOptions(baseOptions),
             data: {
-                datasets: datasets.map((dataset) => this.generateDatasetOptions(dataset)),
+                datasets: datasets.map((dataset: GraphDataset, i) => {
+                    return {
+                        ...this.fillDatasetOptions(datasetOptions[i]),
+                        data: dataset,
+                    };
+                }),
             },
         };
     
-        this.img = await canvas.renderToBuffer(cfg, this.mimeType);    
+        this.img = await canvas.renderToBuffer(config, this.mimeType);    
     }
 
     public async store() {
@@ -77,21 +89,7 @@ abstract class Graph<Data> {
         logger.trace(`Image stored.`);
     }
 
-    protected generateDatasetOptions({ label, data, color }: GraphDataset) {
-        return {
-            label,
-            data,
-            xAxisID: 'x',
-            yAxisID: 'y',
-            borderColor: color,
-            backgroundColor: color,
-            pointRadius: 1,
-            borderWidth: 1,
-            tension: 0.25,
-        };
-    }
-
-    protected generateGraphOptions(opts: GraphOptions): ChartOptions {
+    protected fillBaseOptions(opts: GraphBaseOptions): ChartOptions {
         const { title, axes } = opts;
         
         return {
@@ -139,6 +137,19 @@ abstract class Graph<Data> {
                     },
                 },
             },
+        };
+    }
+
+    protected fillDatasetOptions({ label, color }: GraphDatasetOptions) {
+        return {
+            label,
+            xAxisID: 'x',
+            yAxisID: 'y',
+            borderColor: color,
+            backgroundColor: color,
+            pointRadius: 1,
+            borderWidth: 1,
+            tension: 0.25,
         };
     }
 }

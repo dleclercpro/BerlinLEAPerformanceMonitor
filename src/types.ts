@@ -36,10 +36,12 @@ export interface Comparable {
     greaterThan(other: Comparable): boolean;
 }
 
+export type ErrorDict = Record<string, number>;
+
 export type Log = {
     time: number,
     level: number,
     pid: number,
     msg: string,
     err?: string,
-}
+};
