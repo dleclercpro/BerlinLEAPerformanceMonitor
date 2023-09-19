@@ -1,4 +1,4 @@
-import { EXPECTED_ERRORS } from '../../config';
+import { KNOWN_ERRORS } from '../../config';
 import { LogMessages } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
 import { BackToFindAppointmentPageError, NoAppointmentsError, TimeoutError } from '../../errors';
@@ -42,13 +42,15 @@ class CompleteSession extends Session implements Comparable {
         );
     }
 
-    public foundNoAppointment() {
+    public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
+        const errors = [NoAppointmentsError, BackToFindAppointmentPageError, TimeoutError].map(error => error.name);
+
         return (
             this.errors.length === 1 &&
-            // [NoAppointmentsError, BackToFindAppointmentPageError, TimeoutError]
-            [NoAppointmentsError, BackToFindAppointmentPageError]
-                .map(err => err.name)
-                .includes(this.errors[0])
+            // Ignore unreasonably long sessions if desired
+            (!ignoreUnreasonablyLongSessions || this.isDurationReasonable()) &&
+            // Only consider a subset of errors
+            errors.includes(this.errors[0])
         );
     }
 
@@ -58,7 +60,7 @@ class CompleteSession extends Session implements Comparable {
 
     public getUnexpectedErrors() {
         return this.getErrors()
-            .filter(err => !EXPECTED_ERRORS.map(e => e.name).includes(err));
+            .filter(err => !KNOWN_ERRORS.map(e => e.name).includes(err));
     }
 
     public getDuration() {

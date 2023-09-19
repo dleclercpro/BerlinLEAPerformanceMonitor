@@ -1,10 +1,29 @@
+import { KNOWN_UNEXPECTED_ERRORS } from '../../config';
 import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
-import { Weekday } from '../../types';
+import { ErrorDict, Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
+import { getCountsDict } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
+
+const errorFilter = (error: string) => {
+    return KNOWN_UNEXPECTED_ERRORS
+        .map(err => err.name)
+        .includes(error);
+};
+
+const generateEmptyErrorDict = (errors: string[]) => {
+    return errors
+        .filter(errorFilter)
+        .reduce((prevErrors, error) => {
+            return {
+                ...prevErrors,
+                [error]: 0,
+            };
+        }, {});
+}
 
 type Buckets = Record<Weekday, SessionBucket[]>;
 
@@ -50,7 +69,7 @@ class SessionHistory {
         return this.buckets[weekday];
     }
 
-    public getWorkdaysBuckets(): SessionBucket[] {
+    public getBucketsForEachWorkday(): SessionBucket[] {
         return WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
             const workdayBuckets = this.buckets[workday];
 
@@ -66,6 +85,28 @@ class SessionHistory {
             });
 
         }, []);
+    }
+
+    public getErrorDictForEachWorkday(): ErrorDict[] {
+        const workdaysBuckets = this.getBucketsForEachWorkday();
+    
+        const errorDict = getCountsDict(this.getErrors());
+        const errors = Object.keys(errorDict);
+        const emptyErrorDict = generateEmptyErrorDict(errors);
+        
+        return workdaysBuckets.map((bucket: SessionBucket): ErrorDict => {
+            const errors = bucket
+                .getSessions()
+                .reduce((prevErrors: string[], session: CompleteSession) => {
+                    return [...prevErrors, ...session.getErrors()];
+                }, [])
+                .filter(errorFilter);
+    
+            return {
+                ...emptyErrorDict,
+                ...getCountsDict(errors),
+            };
+        });
     }
 
     public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {

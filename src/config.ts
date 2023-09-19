@@ -1,7 +1,7 @@
 import { Locale, TimeUnit } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
-import { PALETTE_MAGMA } from './constants/colors';
+import { PALETTE_INFERNO, PALETTE_MAGMA, PALETTE_PLASMA } from './constants/colors';
 import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from './errors';
 import TimeDuration from './models/TimeDuration';
 
@@ -23,6 +23,7 @@ export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');
 export const WITH_RELATIVES = getEnvironmentVariable('WITH_RELATIVES');
 
+export const ERROR_COLORS = PALETTE_MAGMA;
 export const WEEKDAY_COLORS = PALETTE_MAGMA;
 
 export const LONG_DATE_TIME_FORMAT_OPTIONS = {
@@ -34,8 +35,7 @@ export const LONG_DATE_TIME_FORMAT_OPTIONS = {
     minute: 'numeric',
 } as Intl.DateTimeFormatOptions;
 
-export const EXPECTED_ERRORS = [
-    NoAppointmentsError,
+export const KNOWN_UNEXPECTED_ERRORS = [
     NoInformationError,
     ConstructionWorkError,
     BackToFindAppointmentPageError,
@@ -43,4 +43,9 @@ export const EXPECTED_ERRORS = [
     ElementMissingFromPageError,
     InfiniteSpinnerError,
     UIError,
+];
+
+export const KNOWN_ERRORS = [
+    ...KNOWN_UNEXPECTED_ERRORS,
+    NoAppointmentsError,
 ];

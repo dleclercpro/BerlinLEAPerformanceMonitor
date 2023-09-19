@@ -23,8 +23,17 @@ Time spent on LEA's website by user before being met with the error message 'the
 </p>
 
 ### Average Length of User Session
-Average time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment. Said average is computed using buckets.
+Average time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment. Said average is computed using time buckets.
 
 <p align="center" width="100%">
   <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration-by-bucket.png" width="100%" />
+</p>
+
+### Experienced Errors
+Errors the user experiences on LEA's website which prevent them to access the appointment
+assignment feature altogether. This graph shows the prevalence (in percentage) of each
+error, using time buckets.
+
+<p align="center" width="100%">
+  <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/workdays-errors-by-bucket.png" width="100%" />
 </p>
