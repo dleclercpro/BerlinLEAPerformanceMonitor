@@ -7,7 +7,9 @@ import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { VERY_SHORT_TIME } from './constants/times';
+import { EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
+import JobScheduler from './models/jobs/JobScheduler';
+import GenerateGraphsJob from './models/jobs/GenerateGraphsJob';
 
 
 
@@ -28,9 +30,16 @@ const hasFoundAppointment = async (bot: Bot) => {
 
 const execute = async () => {
     if (POLL) {
-        TEST_ALARM && await Alarm.ring();
-
         let executedOnce = false;
+
+        if (TEST_ALARM) {
+            await Alarm.ring();
+        }
+        
+        // When polling endlessly, generate graphs once in a while
+        if (ENDLESS) {
+            new JobScheduler().schedule(GenerateGraphsJob, EVERY_THIRTY_MINUTES);
+        }
 
         while (ENDLESS || !executedOnce) {
             const bot = new ChromeBot();

@@ -1,15 +1,19 @@
-import { EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES } from '../../constants/times';
 import Job from './Job';
 
 class GenerateGraphsJob extends Job {
+    protected name: string = 'GenerateGraphs';
+    public static instance?: GenerateGraphsJob;
 
-    public constructor(expression?: string) {
-        super(expression ?? EVERY_ONE_MINUTE);
+    public static getInstance() {
+        if (!this.instance) {
+            this.instance = new GenerateGraphsJob();
+        }
+        return this.instance;
     }
 
-    public execute() {
-
+    public async execute() {
+        return this.executeShellCommand(`npm run analyze`);
     }
 }
 
-export default GenerateGraphsJob;
+export default GenerateGraphsJob.getInstance();
