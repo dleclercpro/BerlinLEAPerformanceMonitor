@@ -6,7 +6,6 @@ import CompleteSession from './CompleteSession';
 import { ONE_DAY, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
-import { BUCKET_SIZE } from '../../config';
 import SessionBucket from '../buckets/SessionBucket';
 
 const TEXTS = {
@@ -29,10 +28,10 @@ class SessionHistoryBuilder {
         return this.instance;
     }
 
-    public build(logs: Log[]) {
+    public build(logs: Log[], bucketSize: TimeDuration) {
         logger.debug(`Building daily session history from ${logs.length} log entries...`);
 
-        const history = new SessionHistory(this.buildBuckets(BUCKET_SIZE), BUCKET_SIZE);
+        const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
 
         let session: IncompleteSession;
 

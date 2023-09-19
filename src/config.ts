@@ -17,7 +17,6 @@ export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'));
 
 export const N_ALARMS = 20;
-export const BUCKET_SIZE = new TimeDuration(60, TimeUnit.Minutes);
 
 export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');
