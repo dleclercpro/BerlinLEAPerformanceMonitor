@@ -17,3 +17,8 @@ export const LONG_TIME = new TimeDuration(10, TimeUnit.Seconds);
 export const VERY_LONG_TIME = new TimeDuration(30, TimeUnit.Seconds);
 export const VERY_VERY_LONG_TIME = new TimeDuration(1, TimeUnit.Minutes);
 export const INFINITE_TIME = new TimeDuration(2, TimeUnit.Minutes); // More than 2 minutes in Internet terms is an eternity...
+
+export const EVERY_ONE_MINUTE = `*/1 * * * *`;
+export const EVERY_FIVE_MINUTES = `*/5 * * * *`;
+export const EVERY_THIRTY_MINUTES = `*/30 * * * *`;
+export const EVERY_ONE_HOUR = `* /*1 * * *`;

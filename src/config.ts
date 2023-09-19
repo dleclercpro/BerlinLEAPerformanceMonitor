@@ -1,12 +1,13 @@
-import { Locale, TimeUnit } from './types';
-import { getEnvironmentVariable, loadEnvironment } from './utils/env';
+import { Locale } from './types';
+import { getEnvironmentVariable, getTerminalArgs, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
 import { PALETTE_INFERNO, PALETTE_MAGMA, PALETTE_PLASMA } from './constants/colors';
 import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from './errors';
-import TimeDuration from './models/TimeDuration';
 
 export const ENV = loadEnvironment();
 export const LOCALE = Locale.DE;
+
+export const { POLL, ANALYZE, ENDLESS } = getTerminalArgs();
 
 export const LOGS_DIR = `${process.cwd()}/data/logs`;
 export const IMG_DIR = `${process.cwd()}/data/img`;
