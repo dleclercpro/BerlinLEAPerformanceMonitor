@@ -93,6 +93,7 @@ abstract class Graph<Data> {
         const { title, axes } = opts;
         
         return {
+            devicePixelRatio: 4,
             scales: {
                 x: {
                     type: 'linear',
