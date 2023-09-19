@@ -9,7 +9,7 @@ export const ENVIRONMENTS = Object.values(Environment);
 
 export enum LogMessages {
     UnknownError = 'An unknown error occurred.',
-    ExpectedError = 'An expected error occured.',
+    ExpectedError = 'An expected error occurred.',
     Success = `There are appointments available right now! :)`,
     Failure = `There are no appointments available at the moment. :'(`,
 }
