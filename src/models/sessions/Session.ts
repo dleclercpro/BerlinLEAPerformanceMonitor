@@ -8,7 +8,7 @@ interface Options {
     errors?: string[],
 }
 
-class Session {
+abstract class Session {
     protected id: string;
 
     protected startTime?: Date;

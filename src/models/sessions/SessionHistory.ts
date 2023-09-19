@@ -1,4 +1,4 @@
-import { WEEKDAYS } from '../../constants/times';
+import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
 import { Weekday } from '../../types';
 import { getWeekday } from '../../utils/locale';
@@ -6,13 +6,13 @@ import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
 
-type Data = Record<Weekday, SessionBucket[]>;
+type Buckets = Record<Weekday, SessionBucket[]>;
 
 class SessionHistory {
-    protected buckets: Data;
+    protected buckets: Buckets;
     protected bucketSize: TimeDuration;
 
-    public constructor (buckets: Data, bucketSize: TimeDuration) {
+    public constructor (buckets: Buckets, bucketSize: TimeDuration) {
         this.buckets = buckets;
         this.bucketSize = bucketSize;
     }
@@ -48,6 +48,24 @@ class SessionHistory {
 
     public getBucketsByWeekday(weekday: Weekday) {
         return this.buckets[weekday];
+    }
+
+    public getWorkdaysBuckets(): SessionBucket[] {
+        return WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
+            const workdayBuckets = this.buckets[workday];
+
+            return workdayBuckets.map((workdayBucket: SessionBucket, i) => {
+                const mergedBucket = new SessionBucket(workdayBucket.getStartTime(), workdayBucket.getEndTime());
+
+                if (buckets.length > 0) {
+                    buckets[i].getSessions().forEach(session => mergedBucket.add(session));
+                }
+                workdayBucket.getSessions().forEach(session => mergedBucket.add(session));
+
+                return mergedBucket;
+            });
+
+        }, []);
     }
 
     public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {

@@ -13,6 +13,10 @@ abstract class Bucket <Limit extends Comparable, Data extends Comparable> {
         this.data = [];
     }
 
+    public equals(other: Bucket<Limit, Data>) {
+        return this.start === other.start && this.end === other.end;
+    }
+
     public add(data: Data) {
         if (!this.contains(data)) {
             throw new Error('This datapoint does not belong to this bucket.');

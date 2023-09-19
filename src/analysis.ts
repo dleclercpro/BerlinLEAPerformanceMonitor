@@ -8,8 +8,9 @@ import { getCountsDict } from './utils/math';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
+import SessionHistory from './models/sessions/SessionHistory';
 
-export const parseLogs = async (filepath: string) => {
+const parseLogs = async (filepath: string) => {
     const file = await readFile(filepath);
 
     const logs = file
@@ -17,15 +18,27 @@ export const parseLogs = async (filepath: string) => {
         .filter(Boolean)
         .map(line => JSON.parse(line) as Log);
 
-    const history = SessionHistoryBuilder.build(logs);
+    return SessionHistoryBuilder.build(logs);
+}
 
+
+
+const generateNoAppointmentsGraph = async (history: SessionHistory) => {
     const graph = new NoAppointmentsGraph(`${IMG_DIR}/user-session-duration.png`);
     await graph.draw(history);
     await graph.store();
+}
 
-    const bucketGraph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
-    await bucketGraph.draw(history);
-    await bucketGraph.store();
+const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
+    const graph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
+    await graph.draw(history);
+    await graph.store();
+}
+
+
+
+export const analyzeLogs = async (filepath: string) => {
+    const history = await parseLogs(filepath);
 
     const errors = history.getErrors();
     logger.debug(getCountsDict(errors), `Errors experienced:`);
@@ -41,6 +54,8 @@ export const parseLogs = async (filepath: string) => {
 
 
     // FIXME
+    const workdaysBuckets = history.getWorkdaysBuckets();
+
     // const hours = getRange(24);
     // const hourlyErrors: ErrorDict[] = [];
     

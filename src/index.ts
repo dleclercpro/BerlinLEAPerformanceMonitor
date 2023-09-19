@@ -3,7 +3,7 @@ import { ENV, LOGS_PATH, N_ALARMS, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
-import { parseLogs } from './parser';
+import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import minimist from 'minimist';
 import { parseBooleanText } from './utils/string';
@@ -63,7 +63,7 @@ const execute = async () => {
     }
 
     if (parse) {
-        await parseLogs(LOGS_PATH);
+        await analyzeLogs(LOGS_PATH);
     }
 }
 
