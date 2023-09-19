@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
-import { Environment } from '../types';
+import { Environment, UseCase } from '../types';
 import path from 'path';
 import { ENVIRONMENTS } from '../constants';
+import minimist from 'minimist';
+import { parseBooleanText } from './string';
 
 export const loadEnvironment = () => {
     const env = process.env.ENV as Environment;
@@ -33,4 +35,14 @@ export const getEnvironmentVariable = (name: string) => {
     }
 
     return variable;
+}
+
+export const getTerminalArgs = () => {
+    const args = minimist(process.argv.slice(2));
+
+    return {
+        'POLL': parseBooleanText(args.poll),
+        'ENDLESS': parseBooleanText(args.endless),
+        'ANALYZE': parseBooleanText(args.analyze),
+    };
 }
