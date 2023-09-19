@@ -3,16 +3,7 @@ import { FIVE_MINUTES, LogMessages } from '../../constants';
 import { BackToFindAppointmentPageError, NoAppointmentsError } from '../../errors';
 import { Comparable, Log, TimeUnit } from '../../types';
 import TimeDuration from '../TimeDuration';
-
-interface Options {
-    id: string,
-    startTime: Date,
-    endTime: Date,
-    logs: Log[],
-    errors: string[],
-}
-
-
+import Session from './Session';
 
 class CompleteSessionComparator {
     // This comparison function is used to sort sessions based on
@@ -26,33 +17,18 @@ class CompleteSessionComparator {
 
 
 
-class CompleteSession implements Comparable {
-    protected id: string;
-    protected startTime: Date;
-    protected endTime: Date;
-    protected logs: Log[];
-    protected errors: string[];
-
-    public constructor (args: Options) {
-        const { id, startTime, endTime, logs, errors } = args;
-
-        this.id = id;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.logs = logs;
-        this.errors = errors;
-    }
+class CompleteSession extends Session implements Comparable {
 
     public getId() {
         return this.id;
     }
 
     public getStartTime() {
-        return this.startTime;
+        return this.startTime!;
     }
     
     public getEndTime() {
-        return this.endTime;
+        return this.endTime!;
     }
 
     // The session was completed, no error was detected, and
@@ -72,16 +48,6 @@ class CompleteSession implements Comparable {
                 .map(err => err.name)
                 .includes(this.errors[0])
         );
-    }
-
-    public getLogs() {
-        return this.logs;
-    }
-
-    public getErrors() {
-        return this.logs
-            .map(log => log.err)
-            .filter(Boolean) as string[];
     }
 
     public hasUnexpectedErrors() {

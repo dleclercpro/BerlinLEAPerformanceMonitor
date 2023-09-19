@@ -1,6 +1,6 @@
 import logger from '../../logger';
 import { Log, TimeUnit, Weekday } from '../../types';
-import Session from './Session';
+import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
 import { ONE_DAY, WEEKDAYS } from '../../constants';
@@ -34,14 +34,14 @@ class SessionHistoryBuilder {
 
         const history = new SessionHistory(this.buildBuckets(BUCKET_SIZE), BUCKET_SIZE);
 
-        let session: Session;
+        let session: IncompleteSession;
 
         // Read logs in chronological order
         logs.forEach(log => {
 
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {
-                session = Session.create();
+                session = IncompleteSession.create();
 
                 logger.trace(`Starting session: ${session.getId()}`);
                 session.start(new Date(log.time));
