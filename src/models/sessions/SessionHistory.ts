@@ -1,8 +1,9 @@
 import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
-import { Weekday } from '../../types';
+import { VersionedContent, Weekday } from '../../types';
 import { unique } from '../../utils/array';
 import { getWeekday } from '../../utils/locale';
+import { getCountsDict } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
@@ -10,12 +11,20 @@ import CompleteSession from './CompleteSession';
 type Buckets = Record<Weekday, SessionBucket[]>;
 
 class SessionHistory {
+    protected version: number;
     protected buckets: Buckets;
     protected bucketSize: TimeDuration;
+    protected mergedBucketsOnWorkdayBasis: VersionedContent<SessionBucket[]>;
 
     public constructor (buckets: Buckets, bucketSize: TimeDuration) {
+        this.version = 0;
         this.buckets = buckets;
         this.bucketSize = bucketSize;
+        this.mergedBucketsOnWorkdayBasis = { version: 0, content: [] };
+    }
+
+    public getVersion() {
+        return this.version;
     }
 
     public getSize() {
@@ -38,6 +47,9 @@ class SessionHistory {
                 bucket.add(session);
             }
         });
+
+        // Increment version of history
+        this.version += 1;
     }
 
     public getSessionById(id: string) {
@@ -51,22 +63,35 @@ class SessionHistory {
         return this.buckets[weekday];
     }
 
-    public getBucketsForEachWorkday(): SessionBucket[] {
-        return WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
-            const workdayBuckets = this.buckets[workday];
+    public getMergedBucketsOnWorkdayBasis(): SessionBucket[] {
 
-            return workdayBuckets.map((workdayBucket: SessionBucket, i) => {
-                const mergedBucket = new SessionBucket(workdayBucket.getStartTime(), workdayBucket.getEndTime());
+        // Optimize computation of merged session buckets: only recompute when necessary
+        const mustRecompute = this.version > this.mergedBucketsOnWorkdayBasis.version;
 
-                if (buckets.length > 0) {
-                    buckets[i].getSessions().forEach(session => mergedBucket.add(session));
-                }
-                workdayBucket.getSessions().forEach(session => mergedBucket.add(session));
+        if (mustRecompute) {
+            logger.debug(`Re-computing merged buckets on workday basis...`);
 
-                return mergedBucket;
-            });
+            this.mergedBucketsOnWorkdayBasis.content = WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
+                const workdayBuckets = this.buckets[workday];
 
-        }, []);
+                return workdayBuckets.map((workdayBucket: SessionBucket, i) => {
+                    const mergedBucket = new SessionBucket(workdayBucket.getStartTime(), workdayBucket.getEndTime());
+
+                    if (buckets.length > 0) {
+                        buckets[i].getSessions().forEach(session => mergedBucket.add(session));
+                    }
+                    workdayBucket.getSessions().forEach(session => mergedBucket.add(session));
+
+                    return mergedBucket;
+                });
+
+            }, []);
+
+            // Update version of object to current version of whole session history
+            this.mergedBucketsOnWorkdayBasis.version = this.version;
+        }
+        
+        return this.mergedBucketsOnWorkdayBasis.content;
     }
 
     public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {
@@ -122,6 +147,10 @@ class SessionHistory {
             .reduce((errors, session) => {
                 return [...errors, ...session.getErrors()];
             }, [] as string[]);
+    }
+
+    public getCombinedErrorsDict() {
+        return getCountsDict(this.getErrors());
     }
 }
 

@@ -5,7 +5,6 @@ import { ERROR_COLORS, KNOWN_UNEXPECTED_ERRORS } from '../../config';
 import { sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { unique } from '../../utils/array';
-import logger from '../../logger';
 
 export const isErrorKnown = (error: string) => {
     return KNOWN_UNEXPECTED_ERRORS
@@ -13,12 +12,12 @@ export const isErrorKnown = (error: string) => {
         .includes(error);
 };
 
-class WorkdaysErrorGraphByBucket extends Graph<SessionHistory> {
+class WorkdayErrorsGraphByBucket extends Graph<SessionHistory> {
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = '%';
 
     protected generateDatasets(history: SessionHistory) {
-        const mergedBuckets = history.getBucketsForEachWorkday();
+        const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
 
         const errorDicts = mergedBuckets.map(bucket => bucket.getErrorDict(isErrorKnown));
         const errors = history.getUniqueErrors().filter(isErrorKnown);
@@ -77,4 +76,4 @@ class WorkdaysErrorGraphByBucket extends Graph<SessionHistory> {
     }
 }
 
-export default WorkdaysErrorGraphByBucket;
+export default WorkdayErrorsGraphByBucket;
