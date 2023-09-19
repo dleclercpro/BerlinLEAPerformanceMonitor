@@ -150,7 +150,7 @@ abstract class Graph<Data> {
             backgroundColor: color,
             pointRadius: 1,
             borderWidth: 1,
-            tension: 0.25,
+            tension: 0.5,
         };
     }
 }
