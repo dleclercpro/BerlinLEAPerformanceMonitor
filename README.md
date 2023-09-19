@@ -34,6 +34,12 @@ Errors the user experiences on LEA's website which prevent them to access the ap
 assignment feature altogether. This graph shows the prevalence (in percentage) of each
 error, using time buckets.
 
+- ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes (after this time, I would assume any user to have left the portal)
+- ``ElementMissingFromPageError`` A web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded)
+- ``BackToFindAppointmentPageError`` After submitting their request for an appointment, a loading spinner appears, yet nothing happens: said user is redirected to the previous form page
+- ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons')
+- ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request (see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500).
+
 <p align="center" width="100%">
   <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/workdays-errors-by-bucket.png" width="100%" />
 </p>
