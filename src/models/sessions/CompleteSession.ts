@@ -77,8 +77,6 @@ class CompleteSession extends Session implements Comparable {
         return this.getDuration().smallerThan(FIVE_MINUTES);
     }
 
-    // This comparison function is used to sort sessions based on
-    // their starting time
     public compare(other: CompleteSession) {
         return CompleteSessionComparator.compare(this, other);
     }

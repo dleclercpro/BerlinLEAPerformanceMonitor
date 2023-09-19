@@ -29,7 +29,7 @@ class SessionHistoryBuilder {
     }
 
     public build(logs: Log[], bucketSize: TimeDuration) {
-        logger.debug(`Building daily session history from ${logs.length} log entries...`);
+        logger.info(`Building daily session history from ${logs.length} log entries...`);
 
         const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
 
@@ -69,6 +69,26 @@ class SessionHistoryBuilder {
         });
 
         logger.info(`Found ${history.getSize()} complete sessions.`);
+
+        return history;
+    }
+
+    public rebuildWithDifferentBucketSize(prevHistory: SessionHistory, bucketSize: TimeDuration) {
+        logger.info(
+            `Re-building daily session history with a different bucket size: ` +
+            `${prevHistory.getBucketSize().format()} -> ${bucketSize.format()}`
+        );
+        
+        if (prevHistory.getBucketSize() === bucketSize) {
+            logger.warn(`Trying to rebuild session history with same bucket size.`);
+            return prevHistory;
+        }
+
+        const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
+
+        prevHistory.getSessions().forEach(session => {
+            history.addSession(session);
+        });
 
         return history;
     }

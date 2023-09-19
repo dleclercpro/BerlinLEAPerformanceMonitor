@@ -27,6 +27,11 @@ export enum TimeUnit {
     Milliseconds = 'ms',
 }
 
+export interface VersionedContent <T> {
+    version: number,
+    content: T,
+}
+
 export interface Comparable {
     compare(other: Comparable): -1 | 0 | 1;
     smallerThan(other: Comparable): boolean;
@@ -35,8 +40,6 @@ export interface Comparable {
     greaterThanOrEquals(other: Comparable): boolean;
     greaterThan(other: Comparable): boolean;
 }
-
-export type ErrorDict = Record<string, number>;
 
 export type Log = {
     time: number,

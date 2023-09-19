@@ -1,9 +1,10 @@
-import { ErrorDict } from '../../types';
 import { getCountsDict } from '../../utils/math';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
 import CompleteSession from '../sessions/CompleteSession';
 import Bucket from './Bucket';
+
+type ErrorDict = Record<string, number>;
 
 const generateEmptyErrorDict = (errors: string[], errorFilter: (err: string) => boolean) => {
     return errors
