@@ -2,8 +2,9 @@ import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
 import { BackToFindAppointmentPageError, NoAppointmentsError, NoInformationError } from '../../errors';
-import { LogMessages, MEDIUM_TIME } from '../../constants';
+import { LogMessages } from '../../constants';
 import Page from './Page';
+import { MEDIUM_TIME } from '../../constants/times';
 
 const TEXTS = {
     NoAppointments: 'keine Termine frei',

@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
-import { VERY_VERY_LONG_TIME } from '../../constants';
+import { VERY_VERY_LONG_TIME } from '../../constants/times';
 
 const TEXTS = {
     AcceptTerms: 'Ich erkläre hiermit',

@@ -1,7 +1,7 @@
 import { Locale, TimeUnit } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
-import { PALETTE_MAGMA } from './constants';
+import { PALETTE_MAGMA } from './constants/colors';
 import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from './errors';
 import TimeDuration from './models/TimeDuration';
 

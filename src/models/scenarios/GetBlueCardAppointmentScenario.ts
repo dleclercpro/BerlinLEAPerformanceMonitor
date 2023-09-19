@@ -1,5 +1,5 @@
-import { CITIZENSHIP, NUMBER_OF_APPLICANTS, SCREENSHOTS_DIR, WITH_RELATIVES } from '../../config';
-import { SHORT_TIME } from '../../constants';
+import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
+import { SHORT_TIME } from '../../constants/times';
 import { UIError } from '../../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
