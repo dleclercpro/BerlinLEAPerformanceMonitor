@@ -54,9 +54,9 @@ const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
 
     const title = [
         `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+        `Bucket-Größe: ${history.getBucketSize().format()}`,
         `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-        `Bucket-Größe: ${history.getBucketSize().format()}`,
     ];
 
     const graph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
@@ -76,7 +76,7 @@ const generateWorkdayErrorsByBucketGraph = async (history: SessionHistory) => {
 
     const title = [
         `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
-        `Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}, Bucket-Größe: ${history.getBucketSize().format()}`,
+        `Bucket-Größe: ${history.getBucketSize().format()}, Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
         `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
     ];
