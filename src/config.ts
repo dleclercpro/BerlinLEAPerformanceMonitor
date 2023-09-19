@@ -2,7 +2,7 @@ import { Locale } from './types';
 import { getEnvironmentVariable, loadEnvironment } from './utils/env';
 import { parseBooleanText } from './utils/string';
 import { PALETTE_MAGMA } from './constants';
-import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError } from './errors';
+import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from './errors';
 import TimeDuration, { TimeUnit } from './models/TimeDuration';
 
 export const ENV = loadEnvironment();
@@ -37,6 +37,7 @@ export const LONG_DATE_TIME_FORMAT_OPTIONS = {
 export const EXPECTED_ERRORS = [
     NoAppointmentsError,
     NoInformationError,
+    ConstructionWorkError,
     BackToFindAppointmentPageError,
     InternalServerError,
     ElementMissingFromPageError,
