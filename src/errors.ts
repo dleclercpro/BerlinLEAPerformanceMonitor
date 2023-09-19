@@ -21,6 +21,10 @@ export class NoInformationError extends Error {
     public name = 'NoInformationError';
 }
 
+export class ConstructionWorkError extends Error {
+    public name = 'ConstructionWorkError';
+}
+
 export class BackToFindAppointmentPageError extends Error {
     public name = 'BackToFindAppointmentPageError';
 }
