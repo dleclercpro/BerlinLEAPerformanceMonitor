@@ -1,68 +1,54 @@
 import { Environment } from './types';
-import { ENV, LOGS_PATH, N_ALARMS, TEST_ALARM } from './config';
+import { ENDLESS, ENV, LOGS_PATH, N_ALARMS, ANALYZE, POLL, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
-import minimist from 'minimist';
-import { parseBooleanText } from './utils/string';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
 import { VERY_SHORT_TIME } from './constants/times';
 
 
 
-const shouldExecuteAgain = async (bot: Bot) => {
+const hasFoundAppointment = async (bot: Bot) => {
     return GetBlueCardAppointmentScenario
         .execute(bot)
         .then(() => {
-            return false;
+            return true;
         })
         .catch(async () => {
             await bot.quit();
 
-            return true;
+            return false;
         });
 }
 
 
 
-const parseArgs = (args: minimist.ParsedArgs) => {
-    return {
-        poll: parseBooleanText(args.poll),
-        endless: parseBooleanText(args.endless),
-        parse: parseBooleanText(args.parse),
-    };
-}
-
-
-
 const execute = async () => {
-    const args = minimist(process.argv.slice(2));
-    const { poll, parse, endless } = parseArgs(args);
-    
-    if (poll) {
-        let done = false;
-
+    if (POLL) {
         TEST_ALARM && await Alarm.ring();
 
-        while (endless || !done) {
+        let executedOnce = false;
+
+        while (ENDLESS || !executedOnce) {
             const bot = new ChromeBot();
     
-            done = !(await shouldExecuteAgain(bot));
-
-            // Play alarm to wake up user!
-            if (done) {
+            if (await hasFoundAppointment(bot)) {
+        
+                // Play alarm to wake up user!
                 for (let _ of getRange(N_ALARMS)) {
                     await Alarm.ring();
                     await sleep(VERY_SHORT_TIME);
                 }
             }
+
+            executedOnce = true;
         }
     }
 
-    if (parse) {
+    if (ANALYZE) {
         await analyzeLogs(LOGS_PATH);
     }
 }

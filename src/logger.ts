@@ -1,41 +1,49 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { ENV, LOGS_PATH } from './config';
-import { Environment } from './types';
+import { LOGS_PATH, POLL } from './config';
+import { Environment, UseCase } from './types';
 
-const DEV_TRANSPORT = {
-    target: 'pino-pretty',
-};
-
-const PROD_TRANSPORT = pino.transport({
-    targets: [
-        {
-            level: 'info',
-            target: 'pino/file',
-            options: { destination: LOGS_PATH },
-        },
-        {
-            level: 'trace',
-            target: 'pino-pretty',
-            options: { },
-        },
-    ],
-});
-
-const getLogger = (env: Environment) => {
+const getLoggerByEnvironment = (env: Environment) => {
     switch (env) {
         case Environment.Test:
             return pino(pretty({ sync: true }));
+        case Environment.Development:
         case Environment.Production:
             return pino({
-                level: 'trace',
-            }, PROD_TRANSPORT);
-        case Environment.Development:
-            return pino({
                 level: 'debug',
-                transport: DEV_TRANSPORT,
+                transport: {
+                    target: 'pino-pretty',
+                },
             });
     }
 }
 
-export default getLogger(ENV);
+const getLoggerByUseCase = () => {
+    // When polling, output all logs to file and terminal
+    if (POLL) {
+        return pino({
+            level: 'trace',
+        }, pino.transport({
+            targets: [{
+                level: 'info',
+                target: 'pino/file',
+                options: { destination: LOGS_PATH },
+            },
+            {
+                level: 'trace',
+                target: 'pino-pretty',
+                options: { },
+            }],
+        }));
+    }
+
+    // Otherwise, only terminal is sufficient
+    return pino({
+        level: 'debug',
+        transport: {
+            target: 'pino-pretty',
+        },
+    });
+}
+
+export default getLoggerByUseCase();

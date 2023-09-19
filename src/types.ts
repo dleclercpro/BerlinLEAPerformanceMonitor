@@ -4,6 +4,12 @@ export enum Environment {
     Production = 'production',
 }
 
+export enum UseCase {
+    PollEndlessly = 'poll-endlessly',
+    Poll = 'poll',
+    Parse = 'parse',
+}
+
 export enum Locale {
     EN = 'en',
     DE = 'de-DE',
