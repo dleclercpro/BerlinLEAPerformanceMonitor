@@ -3,9 +3,28 @@ import Job from './Job';
 import logger from '../../logger';
 import { JobSchedulerError } from '../../errors';
 
-class JobScheduler {
+interface ScheduleArgs<Args> {
+    job: Job<Args>,
+    args: Args,
+    expression: string,
+    options?: ScheduleOptions,
+}
 
-    public schedule(job: Job, expression: string, options?: ScheduleOptions) {
+class JobScheduler {
+    private static instance?: JobScheduler;
+
+    private constructor() {
+
+    }
+
+    public static getInstance() {
+        if (!this.instance) {
+            this.instance = new JobScheduler();
+        }
+        return this.instance;
+    }
+
+    public schedule <JobArgs> ({ job, args, expression, options }: ScheduleArgs<JobArgs>) {
         if (!expression) throw new Error('Missing cron expression.');
         if (!validate(expression)) throw new Error('Invalid cron expression.');
         
@@ -16,7 +35,7 @@ class JobScheduler {
             async () => {
                 logger.debug(`Executing job '${job.getName()}'...`);
 
-                return job.execute()
+                return job.execute(args)
                     .then(() => {
                         logger.debug(`Executed job '${job.getName()}'.`);
                     })
@@ -33,4 +52,4 @@ class JobScheduler {
     }
 }
 
-export default JobScheduler;
+export default JobScheduler.getInstance();

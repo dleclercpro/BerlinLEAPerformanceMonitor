@@ -7,7 +7,7 @@ import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMi
 export const ENV = loadEnvironment();
 export const LOCALE = Locale.DE;
 
-export const { POLL, ANALYZE, ENDLESS } = getTerminalArgs();
+export const { POLL, ANALYZE, ENDLESS, UPLOAD } = getTerminalArgs();
 
 export const LOGS_DIR = `${process.cwd()}/data/logs`;
 export const IMG_DIR = `${process.cwd()}/data/img`;
@@ -17,7 +17,14 @@ export const LOGS_PATH = `${LOGS_DIR}/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'));
 
-export const N_ALARMS = 20;
+export const N_ALARMS_ON_SUCCESS = 20;
+
+export const GIT_AUTHOR_NAME = getEnvironmentVariable('GIT_AUTHOR_NAME');
+export const GIT_AUTHOR_EMAIL = getEnvironmentVariable('GIT_AUTHOR_EMAIL');
+
+export const GITHUB_USER = getEnvironmentVariable('GITHUB_USER');
+export const GITHUB_REPO = getEnvironmentVariable('GITHUB_REPO');
+export const GITHUB_TOKEN = getEnvironmentVariable('GITHUB_TOKEN');
 
 export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');

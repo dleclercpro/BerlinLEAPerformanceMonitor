@@ -12,7 +12,7 @@ class GenerateGraphsJob extends Job {
     }
 
     public async execute() {
-        return this.executeShellCommand(`npm run analyze`);
+        await this.executeShell(`npm run analyze`);
     }
 }
 

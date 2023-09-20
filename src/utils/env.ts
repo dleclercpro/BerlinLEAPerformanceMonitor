@@ -44,5 +44,6 @@ export const getTerminalArgs = () => {
         'POLL': parseBooleanText(args.poll),
         'ENDLESS': parseBooleanText(args.endless),
         'ANALYZE': parseBooleanText(args.analyze),
+        'UPLOAD': parseBooleanText(args.upload),
     };
 }

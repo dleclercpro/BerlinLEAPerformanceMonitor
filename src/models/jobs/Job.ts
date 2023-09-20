@@ -1,15 +1,15 @@
 import { exec } from 'child_process';
 
-abstract class Job {
+abstract class Job<Args = void> {
     protected abstract name: string;
 
-    public abstract execute(): Promise<void>;
+    public abstract execute(args: Args): Promise<void>;
 
     public getName() {
         return this.name;
     }
 
-    protected async executeShellCommand(command: string) {
+    protected async executeShell(command: string) {
         return new Promise<void>((resolve, reject) => {
             exec(command, (err) => {
                 if (err) reject(err);
