@@ -95,7 +95,7 @@ class GitJob extends Job {
     }
 
     protected async commit() {
-        const message = `New data: ${new Date().toLocaleString(LOCALE)} [${getTimeZone()}].`;
+        const message = `New data: ${new Date().toLocaleString(LOCALE)} [${getTimeZone()}]`;
 
         try {
             logger.trace(`Committing in the name of: ${this.author.name}`);
