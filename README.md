@@ -34,10 +34,10 @@ Errors the user experiences from Monday to Friday on the LEA website, which prev
 assignment feature altogether. This graph shows the prevalence (in percentage) of each
 error, using time buckets.
 
-- ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes (after this time, I would assume any user to have left the portal)
-- ``MissingElementError`` A web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded)
-- ``NoResultsError`` After submitting their request for an appointment, a loading spinner appears, yet nothing happens: said user is redirected to the previous form page
-- ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons)
+- ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes: after this time, it is reasonable to assume the user has closed the window.
+- ``MissingElementError`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
+- ``NoResultsError`` After submitting their search query for an appointment, a loading spinner appears, and then... nothing happens. The user is redirected to the previous form page, as though they had not launched their query.
+- ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 - ``ConstructionWorkError`` There are currently construction works on LEA's portal. However, I have observed the indicated times (i.e. when the construction works started and when they should end) to be most often erroneous.
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 
