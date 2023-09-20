@@ -1,5 +1,5 @@
 import { DATA_DIR } from '../../config';
-import { LOCALE } from '../../config/LocaleConfig';
+import { LOCALE } from '../../config/locale';
 import logger from '../../logger';
 import { GitAuthor, GitRemote } from '../../types';
 import { getTimeZone } from '../../utils/time';

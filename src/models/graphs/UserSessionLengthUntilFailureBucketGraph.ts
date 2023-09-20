@@ -1,14 +1,14 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { WEEKDAY_COLORS } from '../../config';
+import { WEEKDAY_COLORS } from '../../config/styles';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import { getAverage } from '../../utils/math';
 import Graph from './Graph';
-import { ChartType, Color } from 'chart.js';
+import { ChartType, Color as ChartColor } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
 import SessionBucket from '../buckets/SessionBucket';
-import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 
 const sessionFilter = (session: CompleteSession) => (
     // Only consider sessions that ended with 'keine Termine frei' error message
@@ -77,7 +77,7 @@ class UserSessionLengthUntilFailureBucketGraph extends Graph<SessionHistory> {
         });
     }
 
-    protected generateDatasetOptions(label: string, color: Color) {
+    protected generateDatasetOptions(label: string, color: ChartColor) {
         return {
             ...super.generateDatasetOptions(label, color),
             borderWidth: 2,

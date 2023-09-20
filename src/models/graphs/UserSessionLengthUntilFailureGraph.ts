@@ -4,10 +4,11 @@ import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { LENGTHY_SESSION_DURATION, WEEKDAY_COLORS } from '../../config';
+import { LENGTHY_SESSION_DURATION } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
-import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
+import { WEEKDAY_COLORS } from '../../config/styles';
 
 const IGNORE_LENGTHY_SESSIONS = true;
 

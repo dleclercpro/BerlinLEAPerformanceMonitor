@@ -1,5 +1,5 @@
 import { IMG_DIR, LENGTHY_SESSION_DURATION } from './config';
-import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/LocaleConfig'
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/locale'
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import UserSessionLengthUntilFailureGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/UserSessionLengthUntilFailureGraph';

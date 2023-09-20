@@ -1,11 +1,11 @@
-import { ChartType, Color } from 'chart.js';
+import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
 import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
-import { ERROR_COLORS } from '../../config';
+import { ERROR_COLORS } from '../../config/styles';
 import SessionHistory from '../sessions/SessionHistory';
 import { isErrorKnown } from '../../utils/errors';
 import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
-import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
 
 class ErrorLikelihoodOnWorkdaysBucketGraph extends Graph<SessionHistory> {
@@ -71,7 +71,7 @@ class ErrorLikelihoodOnWorkdaysBucketGraph extends Graph<SessionHistory> {
         });
     }
 
-    protected generateDatasetOptions(label: string, color: Color) {
+    protected generateDatasetOptions(label: string, color: ChartColor) {
         return {
             ...super.generateDatasetOptions(label, color),
             borderWidth: 2,

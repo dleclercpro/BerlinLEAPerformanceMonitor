@@ -2,7 +2,7 @@ import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
 import { NoResultsError, NoAppointmentsError, NoInformationError } from '../../errors';
-import { LogMessages } from '../../constants';
+import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
 
@@ -55,14 +55,14 @@ class ResultsPage extends Page {
         }
 
         if (await this.hasElement(ELEMENTS.Errors.NoAppointments)) {
-            logger.info(LogMessages.Failure);
+            logger.info(LogMessage.Failure);
             throw new NoAppointmentsError();
         }
 
         // There seems to be an appointment: take a screenshot!
         await this.screenshot(`${formatDateForFilename(new Date())}.png`);
 
-        logger.info(LogMessages.Success);
+        logger.info(LogMessage.Success);
         return true;
     }
 }

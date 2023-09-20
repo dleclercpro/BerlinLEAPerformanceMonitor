@@ -1,4 +1,4 @@
-import { LogMessages } from '../../constants';
+import { LogMessage } from '../../constants';
 import logger from '../../logger';
 import { isErrorKnown } from '../../utils/errors';
 import Bot from '../bots/Bot';
@@ -16,9 +16,9 @@ abstract class Scenario {
 
         } catch (err: any) {
             if (isErrorKnown(err.name)) {
-                logger.error({ err: err.name }, LogMessages.ExpectedError);
+                logger.error({ err: err.name }, LogMessage.ExpectedError);
             } else {
-                logger.fatal({ err: err.name }, LogMessages.UnknownError);
+                logger.fatal({ err: err.name }, LogMessage.UnknownError);
             }
             
             throw err;

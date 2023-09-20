@@ -1,7 +1,7 @@
 import PlottingJob from './PlottingJob';
 import Job from './Job';
 import GitJob from './GitJob';
-import { GIT_REMOTE, GIT_AUTHOR } from '../../config/GitConfig';
+import { GIT_REMOTE, GIT_AUTHOR } from '../../config/git';
 
 interface Args {
     upload: boolean,

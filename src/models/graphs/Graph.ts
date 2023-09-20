@@ -1,9 +1,10 @@
-import { ChartOptions, ChartType, Color, ChartConfiguration } from 'chart.js';
+import { ChartOptions, ChartType, Color as ChartColor, ChartConfiguration } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
 import { GraphAxes, Size } from '../../types';
-import { DEFAULT_GRAPH_SIZE } from '../../config';
+import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
+import { Color } from '../../constants/styles';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
@@ -12,7 +13,7 @@ require('chartjs-adapter-moment');
 
 export type GraphDataset = {
     label: string,
-    color: Color,
+    color: ChartColor,
     data: { x: number, y: number }[],
 };
 
@@ -40,7 +41,7 @@ abstract class Graph<Data> {
     public async draw(data: Data) {
         logger.info(`Drawing '${this.name}' graph...`);
 
-        const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: 'white' });
+        const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: Color.White });
         const config: ChartConfiguration = {
             type: this.type,
             options: this.generateOptions(),
@@ -74,7 +75,7 @@ abstract class Graph<Data> {
 
     protected generateOptions(): ChartOptions {
         return {
-            devicePixelRatio: 4,
+            devicePixelRatio: DEVICE_PIXEL_RATIO,
             scales: {
                 x: {
                     type: 'linear',
@@ -125,7 +126,7 @@ abstract class Graph<Data> {
         };
     }
 
-    protected generateDatasetOptions(label: string, color: Color) {
+    protected generateDatasetOptions(label: string, color: ChartColor) {
         return {
             label,
             xAxisID: 'x',

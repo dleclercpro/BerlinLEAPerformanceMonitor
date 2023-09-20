@@ -7,7 +7,7 @@ export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
 
 export const ENVIRONMENTS = Object.values(Environment);
 
-export enum LogMessages {
+export enum LogMessage {
     UnknownError = 'An unknown error occurred.',
     ExpectedError = 'An expected error occurred.',
     Success = `There are appointments available right now! :)`,

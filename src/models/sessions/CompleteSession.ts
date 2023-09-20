@@ -1,5 +1,5 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
-import { LogMessages } from '../../constants';
+import { LogMessage } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
 import { NoResultsError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
 import { Comparable, TimeUnit } from '../../types';
@@ -39,7 +39,7 @@ class CompleteSession extends Session implements Comparable {
     public foundAppointment() {
         return (
             this.errors.length === 0 &&
-            this.logs.map(log => log.msg).includes(LogMessages.Success)
+            this.logs.map(log => log.msg).includes(LogMessage.Success)
         );
     }
 
