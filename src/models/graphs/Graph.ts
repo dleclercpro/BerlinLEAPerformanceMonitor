@@ -137,6 +137,9 @@ abstract class Graph<Data> {
                         weight: 'bold',
                     },
                 },
+                legend: {
+                    position: 'right',
+                },
             },
         };
     }
