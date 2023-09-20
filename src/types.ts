@@ -27,6 +27,23 @@ export enum TimeUnit {
     Milliseconds = 'ms',
 }
 
+export type Size = {
+    width: number,
+    height: number,
+}
+
+export type GraphAxis = {
+    label: string,
+    unit?: string,
+    min?: number,
+    max?: number,
+}
+
+export interface GraphAxes {
+    x: GraphAxis,
+    y: GraphAxis,
+}
+
 export interface GitAuthor {
     name: string,
     email: string,

@@ -1,16 +1,37 @@
-import { ChartType } from 'chart.js';
-import Graph, { GraphBaseOptions, GraphDatasetOptions } from './Graph';
-import { ErrorCounts, TimeUnit } from '../../types';
+import { ChartType, Color } from 'chart.js';
+import Graph from './Graph';
+import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
 import { ERROR_COLORS } from '../../config';
 import { sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isErrorKnown } from '../../utils/errors';
 import { fromCountsToArray, unique } from '../../utils/array';
+import { formatDate } from '../../utils/locale';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
 
 class ErrorPrevalenceOnWorkdaysBucketGraph extends Graph<SessionHistory> {
     protected name: string = 'ErrorPrevalenceOnWorkdaysByBucket';
-    protected xAxisUnit = TimeUnit.Hours;
-    protected yAxisUnit = '%';
+    protected type: ChartType = 'bar';
+    protected axes: GraphAxes = {
+        x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
+        y: { label: `Anteil`, unit: `%` },
+    };
+
+    public async draw(history: SessionHistory) {
+        const start = history.getEarliestSession()!.getStartTime();
+        const end = history.getLatestSession()!.getEndTime();
+
+        const totalErrorCount = history.getErrors().filter(isErrorKnown).length;
+
+        this.title = [
+            `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
+            `Bucket-Größe: ${history.getBucketSize().format()}, Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        ];
+
+        await super.draw(history);
+    }
 
     protected generateDatasets(history: SessionHistory) {
         const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
@@ -23,14 +44,14 @@ class ErrorPrevalenceOnWorkdaysBucketGraph extends Graph<SessionHistory> {
         const uniqueErrors = unique(errors);
 
         // Compute prevalence of each error (in percentage) per bucket
-        return uniqueErrors.map((error) => {
+        return uniqueErrors.map((error, i) => {
             const data = mergedBuckets
-                .map((bucket, i) => {
-                    const bucketErrorCount = mergedBucketsErrorCounts[i][error];
-                    const totalBucketErrorCount = sum(Object.values(mergedBucketsErrorCounts[i]));
+                .map((bucket, j) => {
+                    const bucketErrorCount = mergedBucketsErrorCounts[j][error];
+                    const totalBucketErrorCount = sum(Object.values(mergedBucketsErrorCounts[j]));
 
                     return {
-                        x: bucket.getStartTime().to(this.xAxisUnit).getAmount(),
+                        x: bucket.getStartTime().to(this.axes.x.unit as TimeUnit).getAmount(),
                         y: bucketErrorCount / totalBucketErrorCount * 100,
                     };
                 });
@@ -40,41 +61,17 @@ class ErrorPrevalenceOnWorkdaysBucketGraph extends Graph<SessionHistory> {
                 data.push({ x: 24, y: data[0].y });
             }
 
-            return data;
+            return {
+                data,
+                label: error,
+                color: ERROR_COLORS[i],
+            };
         });
     }
 
-    protected generateDatasetOptions(history: SessionHistory) {
-        return history.getUniqueErrors()
-            .filter(isErrorKnown)
-            .map((error, i) => {
-                return {
-                    label: error,
-                    color: ERROR_COLORS[i],
-                };
-            });
-    }
-
-    protected generateBaseOptions(title: string[]): GraphBaseOptions {
+    protected generateDatasetOptions(label: string, color: Color) {
         return {
-            type: 'line' as ChartType,
-            title,
-            axes:{
-                x: {
-                    label: `Tageszeit (${this.xAxisUnit})`,
-                    min: 0,
-                    max: 24,
-                },
-                y: {
-                    label: `Anteil (${this.yAxisUnit})`,
-                },
-            },
-        };
-    }
-
-    protected fillDatasetOptions(args: GraphDatasetOptions) {
-        return {
-            ...super.fillDatasetOptions(args),
+            ...super.generateDatasetOptions(label, color),
             borderWidth: 2,
             pointRadius: 2,
         };

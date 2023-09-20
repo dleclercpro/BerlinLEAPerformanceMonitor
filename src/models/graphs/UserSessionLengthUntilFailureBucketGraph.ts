@@ -1,13 +1,14 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
-import { Locale, TimeUnit } from '../../types';
+import { GraphAxes, Locale, TimeUnit } from '../../types';
 import { WEEKDAY_COLORS } from '../../config';
-import { translateWeekday } from '../../utils/locale';
+import { formatDate, translateWeekday } from '../../utils/locale';
 import { getAverage } from '../../utils/math';
-import Graph, { GraphDatasetOptions, GraphBaseOptions } from './Graph';
-import { ChartType } from 'chart.js';
+import Graph from './Graph';
+import { ChartType, Color } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
 import SessionBucket from '../buckets/SessionBucket';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
 
 const sessionFilter = (session: CompleteSession) => (
     // Only consider sessions that ended with 'keine Termine frei' error message
@@ -27,8 +28,25 @@ const bucketFilter = (bucket: SessionBucket) => {
  */
 class UserSessionLengthUntilFailureBucketGraph extends Graph<SessionHistory> {
     protected name: string = 'UserSessionLengthUntilFailureBucket';
-    protected xAxisUnit = TimeUnit.Hours;
-    protected yAxisUnit = TimeUnit.Seconds;
+    protected type: ChartType = 'line';
+    protected axes: GraphAxes = {
+        x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
+        y: { label: `Dauer`, unit: TimeUnit.Seconds },
+    };
+
+    public async draw(history: SessionHistory) {
+        const start = history.getEarliestSession()!.getStartTime();
+        const end = history.getLatestSession()!.getEndTime();
+
+        this.title = [
+            `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+            `Bucket-Größe: ${history.getBucketSize().format()}`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        ];
+
+        await super.draw(history);
+    }
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
@@ -38,12 +56,11 @@ class UserSessionLengthUntilFailureBucketGraph extends Graph<SessionHistory> {
             const data = buckets
                 .map(bucket => {
                     const sessions = bucket.getSessions().filter(sessionFilter);
-                    
+                    const sessionDurations = sessions.map(session => session.getDuration().to(this.axes.y.unit as TimeUnit).getAmount());
+
                     return {
-                        x: bucket.getStartTime().to(this.xAxisUnit).getAmount(),
-                        y: sessions.length > 0 ? (
-                            getAverage(sessions.map(session => session.getDuration().to(this.yAxisUnit).getAmount()))
-                        ) : NaN,
+                        x: bucket.getStartTime().to(this.axes.x.unit as TimeUnit).getAmount(),
+                        y: sessions.length > 0 ? getAverage(sessionDurations) : NaN,
                     };
                 });
 
@@ -52,39 +69,17 @@ class UserSessionLengthUntilFailureBucketGraph extends Graph<SessionHistory> {
                 data.push({ x: 24, y: data[0].y });
             }
 
-            return data;
-        });
-    }
-
-    protected generateDatasetOptions(history: SessionHistory) {
-        return WEEKDAYS.map((weekday, i) => {
             return {
+                data,
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
             };
         });
     }
 
-    protected generateBaseOptions(title: string[]): GraphBaseOptions {
+    protected generateDatasetOptions(label: string, color: Color) {
         return {
-            type: 'line' as ChartType,
-            title,
-            axes:{
-                x: {
-                    label: `Tageszeit (${this.xAxisUnit})`,
-                    min: 0,
-                    max: 24,
-                },
-                y: {
-                    label: `Dauer (${this.yAxisUnit})`,
-                },
-            },
-        };
-    }
-
-    protected fillDatasetOptions(args: GraphDatasetOptions) {
-        return {
-            ...super.fillDatasetOptions(args),
+            ...super.generateDatasetOptions(label, color),
             borderWidth: 2,
             pointRadius: 2,
         };

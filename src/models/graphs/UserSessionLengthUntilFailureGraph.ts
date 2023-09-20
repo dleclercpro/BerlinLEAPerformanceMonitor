@@ -1,12 +1,13 @@
 import { ChartType } from 'chart.js';
-import Graph, { GraphBaseOptions } from './Graph';
+import Graph from './Graph';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
-import { Locale, TimeUnit } from '../../types';
-import { WEEKDAY_COLORS } from '../../config';
-import { translateWeekday } from '../../utils/locale';
+import { GraphAxes, Locale, TimeUnit } from '../../types';
+import { LENGTHY_SESSION_DURATION, WEEKDAY_COLORS } from '../../config';
+import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/LocaleConfig';
 
 const IGNORE_LENGTHY_SESSIONS = true;
 
@@ -21,8 +22,26 @@ export const sessionFilterNoAppointmentsGraph = (session: CompleteSession) => (
  */
 class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
     protected name: string = 'UserSessionLengthUntilFailure';
-    protected xAxisUnit = TimeUnit.Hours;
-    protected yAxisUnit = TimeUnit.Seconds;
+    protected type: ChartType = 'scatter';
+    protected axes: GraphAxes = {
+        x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
+        y: { label: `Dauer`, unit: TimeUnit.Seconds },
+    };
+
+    public async draw(history: SessionHistory) {
+        const start = history.getEarliestSession()!.getStartTime();
+        const end = history.getLatestSession()!.getEndTime();
+
+        this.title = [
+            `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+            `Es wurden alle User-Sessions, die Länger als ${LENGTHY_SESSION_DURATION.format()} waren, ignoriert.`,
+            `Gesamtanzahl der User-Sessions: ${history.getSessions().filter(sessionFilterNoAppointmentsGraph).length}`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        ];
+
+        await super.draw(history);
+    }
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
@@ -31,8 +50,8 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
 
             const data = sessions.map(session => {
                 return {
-                    x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.xAxisUnit).getAmount(),
-                    y: session.getDuration().to(this.yAxisUnit).getAmount(),
+                    x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.axes.x.unit as TimeUnit).getAmount(),
+                    y: session.getDuration().to(this.axes.y.unit as TimeUnit).getAmount(),
                 };
             });
 
@@ -41,34 +60,12 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
                 data.push({ x: 24, y: data[0].y });
             }
 
-            return data;
-        });
-    }
-
-    protected generateDatasetOptions(history: SessionHistory) {
-        return WEEKDAYS.map((weekday, i) => {
             return {
+                data,
                 label: translateWeekday(weekday, Locale.DE),
                 color: WEEKDAY_COLORS[i],
             };
         });
-    }
-
-    protected generateBaseOptions(title: string[]): GraphBaseOptions {
-        return {
-            type: 'scatter' as ChartType,
-            title,
-            axes:{
-                x: {
-                    label: `Tageszeit (${this.xAxisUnit})`,
-                    min: 0,
-                    max: 24,
-                },
-                y: {
-                    label: `Dauer (${this.yAxisUnit})`,
-                },
-            },
-        };
     }
 }
 

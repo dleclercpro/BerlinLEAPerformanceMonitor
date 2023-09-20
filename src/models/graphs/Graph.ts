@@ -2,79 +2,56 @@ import { ChartOptions, ChartType, Color, ChartConfiguration } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
+import { GraphAxes, Size } from '../../types';
+import { DEFAULT_GRAPH_SIZE } from '../../config';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
 
-export interface GraphBaseOptions {
-    type: ChartType,
-    title: string[],
-    size?: {
-        width?: number,
-        height?: number,
-    },
-    axes: {
-        x: {
-            label: string,
-            min?: number,
-            max?: number,
-        },
-        y: {
-            label: string,
-            min?: number,
-            max?: number,
-        },
-    },
-}
 
-export interface GraphDatasetOptions {
+
+export type GraphDataset = {
     label: string,
     color: Color,
-}
-
-export type GraphDataset = { x: number, y: number }[];
+    data: { x: number, y: number }[],
+};
 
 
 
 abstract class Graph<Data> {
     protected abstract name: string;
+    protected abstract type: ChartType;
+    protected abstract axes: GraphAxes;
 
+    protected title?: string[];
+    protected size: Size;
     protected filepath: string;
     protected img?: Buffer;
     protected mimeType: MimeType;
 
-    protected abstract generateBaseOptions(title: string[]): GraphBaseOptions;
-    protected abstract generateDatasetOptions(args: any): GraphDatasetOptions[];
     protected abstract generateDatasets(data: Data): GraphDataset[];
 
-    public constructor(filepath: string, mimeType: MimeType = 'image/png') {
+    public constructor(filepath: string, size: Size = DEFAULT_GRAPH_SIZE, mimeType: MimeType = 'image/png') {
+        this.size = size;
         this.filepath = filepath;
         this.mimeType = mimeType;
     }
 
-    public async draw(title: string[], data: Data) {
+    public async draw(data: Data) {
         logger.info(`Drawing '${this.name}' graph...`);
 
-        const baseOptions = this.generateBaseOptions(title);
-        const datasetOptions = this.generateDatasetOptions(data);
-        const datasets = this.generateDatasets(data);
-
-        const canvas = new ChartJSNodeCanvas({
-            width: baseOptions.size?.width ?? 1024,
-            height: baseOptions.size?.height ?? 728,
-            backgroundColour: 'white',
-        });
-
+        const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: 'white' });
         const config: ChartConfiguration = {
-            type: baseOptions.type,
-            options: this.fillBaseOptions(baseOptions),
+            type: this.type,
+            options: this.generateOptions(),
             data: {
-                datasets: datasets.map((dataset: GraphDataset, i) => {
-                    return {
-                        ...this.fillDatasetOptions(datasetOptions[i]),
-                        data: dataset,
-                    };
-                }),
+                datasets: this.generateDatasets(data)
+                    .map(({ data, label, color }: GraphDataset) => {
+                        return {
+                            ...this.generateDatasetOptions(label, color),
+                            data,
+                        };
+                    }),
             },
         };
     
@@ -88,14 +65,14 @@ abstract class Graph<Data> {
         }
 
         logger.trace(`Storing image to: ${this.filepath}`);
+
         await touchFile(this.filepath);
         await writeFile(this.filepath, this.img);
+        
         logger.trace(`Image stored.`);
     }
 
-    protected fillBaseOptions(opts: GraphBaseOptions): ChartOptions {
-        const { title, axes } = opts;
-        
+    protected generateOptions(): ChartOptions {
         return {
             devicePixelRatio: 4,
             scales: {
@@ -103,15 +80,15 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: axes.x.label,
+                        text: this.axes.x.label,
                         padding: 20,
                         font: {
                             size: 14,
                             weight: 'bold',
                         },
                     },
-                    min: axes.x.min,
-                    max: axes.x.max,
+                    min: this.axes.x.min,
+                    max: this.axes.x.max,
                     ticks: {
                         stepSize: 1,
                         autoSkip: false,
@@ -121,21 +98,21 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: axes.y.label,
+                        text: this.axes.y.label,
                         padding: 20,
                         font: {
                             size: 14,
                             weight: 'bold',
                         },
                     },
-                    min: axes.y.min,
-                    max: axes.y.max,
+                    min: this.axes.y.min,
+                    max: this.axes.y.max,
                 },
             },
             plugins: {
                 title: {
                     display: true,
-                    text: title,
+                    text: this.title,
                     font: {
                         size: 16,
                         weight: 'bold',
@@ -148,7 +125,7 @@ abstract class Graph<Data> {
         };
     }
 
-    protected fillDatasetOptions({ label, color }: GraphDatasetOptions) {
+    protected generateDatasetOptions(label: string, color: Color) {
         return {
             label,
             xAxisID: 'x',

@@ -31,75 +31,32 @@ const parseLogs = async (filepath: string) => {
 const generateUserSessionLengthUntilFailureGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
 
-    const start = history.getEarliestSession()!.getStartTime();
-    const end = history.getLatestSession()!.getEndTime();
-
-    const title = [
-        `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
-        `Es wurden alle User-Sessions, die Länger als ${LENGTHY_SESSION_DURATION.format()} waren, ignoriert.`,
-        `Gesamtanzahl der User-Sessions: ${history.getSessions().filter(sessionFilterNoAppointmentsGraph).length}`,
-        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-        `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-    ];
-
     const graph = new UserSessionLengthUntilFailureGraph(`${IMG_DIR}/user-session-duration.png`);
-    await graph.draw(title, history);
+    await graph.draw(history);
     await graph.store();
 }
 
 const generateUserSessionLengthUntilFailureBucketGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
 
-    const start = history.getEarliestSession()!.getStartTime();
-    const end = history.getLatestSession()!.getEndTime();
-
-    const title = [
-        `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
-        `Bucket-Größe: ${history.getBucketSize().format()}`,
-        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-        `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-    ];
-
     const graph = new UserSessionLengthUntilFailureBucketGraph(`${IMG_DIR}/user-session-duration-by-bucket.png`);
-    await graph.draw(title, history);
+    await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorPrevalenceOnWorkdaysBucketGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
 
-    const start = history.getEarliestSession()!.getStartTime();
-    const end = history.getLatestSession()!.getEndTime();
-
-    const totalErrorCount = history.getErrors().filter(isErrorKnown).length;
-
-    const title = [
-        `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
-        `Bucket-Größe: ${history.getBucketSize().format()}, Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
-        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-        `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-    ];
-
     const graph = new ErrorPrevalenceOnWorkdaysBucketGraph(`${IMG_DIR}/workdays-errors-by-bucket.png`);
-    await graph.draw(title, history);
+    await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorLikelihoodOnWorkdaysBucketGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
 
-    const start = history.getEarliestSession()!.getStartTime();
-    const end = history.getLatestSession()!.getEndTime();
-
-    const title = [
-        `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
-        `Bucket-Größe: ${history.getBucketSize().format()}`,
-        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-        `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-    ];
-
     const graph = new ErrorLikelihoodOnWorkdaysBucketGraph(`${IMG_DIR}/error-likelihood-on-workdays-by-bucket.png`);
-    await graph.draw(title, history);
+    await graph.draw(history);
     await graph.store();
 }
 

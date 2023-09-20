@@ -2,6 +2,7 @@ import { getEnvironmentVariable, getTerminalArgs, loadEnvironment } from '../uti
 import { parseBooleanText } from '../utils/string';
 import { PALETTE_INFERNO, PALETTE_MAGMA, PALETTE_PLASMA } from '../constants/colors';
 import { FIVE_MINUTES } from '../constants/times';
+import { Size } from '../types';
 
 export const ENV = loadEnvironment();
 
@@ -23,6 +24,8 @@ export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS
 export const WITH_RELATIVES = getEnvironmentVariable('WITH_RELATIVES');
 
 export const LENGTHY_SESSION_DURATION = FIVE_MINUTES;
+
+export const DEFAULT_GRAPH_SIZE: Size = { width: 1024, height: 728 };
 
 export const ERROR_COLORS = PALETTE_MAGMA;
 export const WEEKDAY_COLORS = PALETTE_MAGMA;
