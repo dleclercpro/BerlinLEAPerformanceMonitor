@@ -9,9 +9,10 @@ export const LOCALE = Locale.DE;
 
 export const { POLL, ANALYZE, ENDLESS, UPLOAD } = getTerminalArgs();
 
-export const LOGS_DIR = `${process.cwd()}/data/logs`;
-export const IMG_DIR = `${process.cwd()}/data/img`;
-export const SCREENSHOTS_DIR = `${process.cwd()}/data/screenshots`;
+export const DATA_DIR = `${process.cwd()}/data`;
+export const LOGS_DIR = `${DATA_DIR}/logs`;
+export const IMG_DIR = `${DATA_DIR}/img`;
+export const SCREENSHOTS_DIR = `${DATA_DIR}/screenshots`;
 
 export const LOGS_PATH = `${LOGS_DIR}/app.log`;
 export const ALARM_PATH = `${process.cwd()}/resources/alarm.wav`;

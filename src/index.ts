@@ -7,10 +7,9 @@ import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { EVERY_FIVE_MINUTES, EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
+import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
-import GenerateGraphsJob from './models/jobs/GenerateGraphsJob';
-import UpdateDataJob from './models/jobs/UploadDataJob';
+import GenerateGraphsAndUploadDataJob from './models/jobs/GenerateGraphsAndUploadDataJob';
 
 
 
@@ -37,21 +36,13 @@ const execute = async () => {
             await Alarm.ring();
         }
         
-        // When polling endlessly, generate graphs once in a while
+        // When polling endlessly, generate graphs once in a while,
+        // and upload them, if required
         if (ENDLESS) {
             JobScheduler.schedule({
-                job: GenerateGraphsJob,
-                expression: EVERY_FIVE_MINUTES,
-                args: undefined,
+                job: new GenerateGraphsAndUploadDataJob({ upload: UPLOAD }),
+                expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
             });
-
-            if (UPLOAD) {
-                JobScheduler.schedule({
-                    job: UpdateDataJob,
-                    expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
-                    args: undefined,
-                });
-            }
         }
 
         while (ENDLESS || !executedOnce) {

@@ -2,13 +2,9 @@ import Job from './Job';
 
 class GenerateGraphsJob extends Job {
     protected name: string = 'GenerateGraphs';
-    public static instance?: GenerateGraphsJob;
 
-    public static getInstance() {
-        if (!this.instance) {
-            this.instance = new GenerateGraphsJob();
-        }
-        return this.instance;
+    public constructor() {
+        super();
     }
 
     public async execute() {
@@ -16,4 +12,4 @@ class GenerateGraphsJob extends Job {
     }
 }
 
-export default GenerateGraphsJob.getInstance();
+export default GenerateGraphsJob;
