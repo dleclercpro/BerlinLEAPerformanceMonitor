@@ -3,7 +3,7 @@ import { HOMEPAGE_URL } from '../../constants';
 import Page from './Page';
 import logger from '../../logger';
 import { ConstructionWorkError } from '../../errors';
-import { SHORT_TIME } from '../../constants/times';
+import { MEDIUM_TIME, SHORT_TIME } from '../../constants/times';
 
 const TEXTS = {
     BookAppointment: 'Termin buchen',
@@ -26,9 +26,9 @@ class HomePage extends Page {
     // Home page is loaded once the 'book appointment' button is visible
     protected async doWaitUntilLoaded() {
         try {
-            await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment, SHORT_TIME);
+            await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment, MEDIUM_TIME);
         } catch {
-            await this.bot.waitForElement(ELEMENTS.Errors.ConstructionWork, SHORT_TIME);
+            await this.bot.waitForElement(ELEMENTS.Errors.ConstructionWork, MEDIUM_TIME);
             throw new ConstructionWorkError();
         }
     }

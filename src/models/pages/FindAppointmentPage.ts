@@ -2,7 +2,7 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { sleep } from '../../utils/time';
-import { SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants/times';
+import { LONG_TIME, SHORT_TIME, VERY_VERY_LONG_TIME } from '../../constants/times';
 
 const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
@@ -68,7 +68,8 @@ class FindAppointmentPage extends Page {
         await dropdown.sendKeys(option);
         await sleep(SHORT_TIME);
 
-        await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa);
+        // It might take a while for the next UI element to show up: wait a bit longer...
+        await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa, LONG_TIME);
     }
 
     public async clickOnApplyForVisaButton() {
