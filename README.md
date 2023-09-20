@@ -38,7 +38,7 @@ error, using time buckets.
 - ``MissingElementError`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
 - ``NoResultsError`` After submitting their search query for an appointment, a loading spinner appears, and then... nothing happens. The user is redirected to the previous form page, as though they had not launched their query.
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
-- ``ConstructionWorkError`` There are currently construction works on LEA's portal. However, I have observed the indicated times (i.e. when the construction works started and when they should end) to be most often erroneous.
+- ``ConstructionWorkError`` There are currently construction works on LEA's portal. Note: I have personally observed the indicated times (i.e. when the construction works started and when they should end) to be most often erroneous, if specified at all.
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 
 <p align="center" width="100%">
