@@ -7,7 +7,7 @@ import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { EVERY_FIVE_MINUTES, EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
+import { EVERY_FIVE_MINUTES, EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import GenerateGraphsJob from './models/jobs/GenerateGraphsJob';
 import UpdateDataJob from './models/jobs/UploadDataJob';
@@ -48,7 +48,7 @@ const execute = async () => {
             if (UPLOAD) {
                 JobScheduler.schedule({
                     job: UpdateDataJob,
-                    expression: EVERY_THIRTY_MINUTES,
+                    expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
                     args: undefined,
                 });
             }

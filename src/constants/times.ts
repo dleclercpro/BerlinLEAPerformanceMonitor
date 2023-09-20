@@ -22,3 +22,4 @@ export const EVERY_ONE_MINUTE = `*/1 * * * *`;
 export const EVERY_FIVE_MINUTES = `*/5 * * * *`;
 export const EVERY_THIRTY_MINUTES = `*/30 * * * *`;
 export const EVERY_ONE_HOUR = `* /*1 * * *`;
+export const EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY = `0,30 * * * *`;
