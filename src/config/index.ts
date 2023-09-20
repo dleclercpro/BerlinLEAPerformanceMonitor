@@ -1,7 +1,7 @@
-import { Locale } from '../types';
 import { getEnvironmentVariable, getTerminalArgs, loadEnvironment } from '../utils/env';
 import { parseBooleanText } from '../utils/string';
 import { PALETTE_INFERNO, PALETTE_MAGMA, PALETTE_PLASMA } from '../constants/colors';
+import { FIVE_MINUTES } from '../constants/times';
 
 export const ENV = loadEnvironment();
 
@@ -21,6 +21,8 @@ export const N_ALARMS_ON_SUCCESS = 20;
 export const CITIZENSHIP = getEnvironmentVariable('CITIZENSHIP');
 export const NUMBER_OF_APPLICANTS = getEnvironmentVariable('NUMBER_OF_APPLICANTS');
 export const WITH_RELATIVES = getEnvironmentVariable('WITH_RELATIVES');
+
+export const LENGTHY_SESSION_DURATION = FIVE_MINUTES;
 
 export const ERROR_COLORS = PALETTE_MAGMA;
 export const WEEKDAY_COLORS = PALETTE_MAGMA;

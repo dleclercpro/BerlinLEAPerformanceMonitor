@@ -1,3 +1,4 @@
+import { LENGTHY_SESSION_DURATION } from '../../config';
 import { LogMessages } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
 import { NoResultsError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
@@ -74,7 +75,7 @@ class CompleteSession extends Session implements Comparable {
     }
 
     public isDurationReasonable = () => {
-        return this.getDuration().smallerThan(FIVE_MINUTES);
+        return this.getDuration().smallerThan(LENGTHY_SESSION_DURATION);
     }
 
     public compare(other: CompleteSession) {

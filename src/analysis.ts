@@ -1,4 +1,4 @@
-import { IMG_DIR } from './config';
+import { IMG_DIR, LENGTHY_SESSION_DURATION } from './config';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/LocaleConfig'
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
@@ -37,6 +37,7 @@ const generateNoAppointmentsGraph = async (history: SessionHistory) => {
 
     const title = [
         `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+        `Es wurden alle User-Sessions, die Länger als ${LENGTHY_SESSION_DURATION.format()} waren, ignoriert.`,
         `Gesamtanzahl der User-Sessions: ${history.getSessions().filter(sessionFilterNoAppointmentsGraph).length}`,
         `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
