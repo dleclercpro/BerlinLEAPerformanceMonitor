@@ -1,4 +1,5 @@
-import { IMG_DIR, LONG_DATE_TIME_FORMAT_OPTIONS } from './config';
+import { IMG_DIR } from './config';
+import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/LocaleConfig'
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
 import NoAppointmentsGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/NoAppointmentsGraph';
@@ -8,9 +9,10 @@ import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDate, formatDateForFilename } from './utils/locale';
 import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
 import SessionHistory from './models/sessions/SessionHistory';
-import WorkdayErrorsGraphByBucket, { isErrorKnown } from './models/graphs/WorkdayErrorsGraphByBucket';
+import WorkdayErrorsGraphByBucket from './models/graphs/WorkdayErrorsGraphByBucket';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
+import { isErrorKnown } from './utils/errors';
 
 
 

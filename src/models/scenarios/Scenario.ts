@@ -1,6 +1,6 @@
 import { LogMessages } from '../../constants';
-import { KNOWN_ERRORS } from '../../config';
 import logger from '../../logger';
+import { isErrorKnown } from '../../utils/errors';
 import Bot from '../bots/Bot';
 
 abstract class Scenario {
@@ -15,7 +15,7 @@ abstract class Scenario {
             await this.doExecute(bot);
 
         } catch (err: any) {
-            if (KNOWN_ERRORS.map(e => e.name).includes(err.name)) {
+            if (isErrorKnown(err.name)) {
                 logger.error({ err: err.name }, LogMessages.ExpectedError);
             } else {
                 logger.fatal({ err: err.name }, LogMessages.UnknownError);

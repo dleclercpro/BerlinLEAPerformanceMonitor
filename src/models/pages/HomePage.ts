@@ -3,7 +3,7 @@ import { HOMEPAGE_URL } from '../../constants';
 import Page from './Page';
 import logger from '../../logger';
 import { ConstructionWorkError } from '../../errors';
-import { MEDIUM_TIME, SHORT_TIME } from '../../constants/times';
+import { MEDIUM_TIME } from '../../constants/times';
 
 const TEXTS = {
     BookAppointment: 'Termin buchen',
@@ -15,7 +15,7 @@ const ELEMENTS = {
         BookAppointment: By.xpath(`//a[contains(text(), '${TEXTS.BookAppointment}')]`),
     },
     Errors: {
-        ConstructionWork: By.xpath(`//div[@id=maintWarning]/ul[@class='notificationBox']/li[@class='warnMessage' and contains(text(), '${TEXTS.ConstructionWork}')]`),
+        ConstructionWork: By.id(`maintWarning`),
     },
 };
 

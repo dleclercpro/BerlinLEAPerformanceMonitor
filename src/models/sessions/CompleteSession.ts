@@ -1,8 +1,8 @@
-import { KNOWN_ERRORS } from '../../config';
 import { LogMessages } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
 import { BackToFindAppointmentPageError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
 import { Comparable, TimeUnit } from '../../types';
+import { isErrorKnown } from '../../utils/errors';
 import TimeDuration from '../TimeDuration';
 import Session from './Session';
 
@@ -60,7 +60,7 @@ class CompleteSession extends Session implements Comparable {
 
     public getUnexpectedErrors() {
         return this.getErrors()
-            .filter(err => !KNOWN_ERRORS.map(e => e.name).includes(err));
+            .filter(error => !isErrorKnown(error));
     }
 
     public getDuration() {

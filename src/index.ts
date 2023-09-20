@@ -9,7 +9,7 @@ import { sleep } from './utils/time';
 import { getRange } from './utils/math';
 import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
-import GenerateGraphsAndUploadDataJob from './models/jobs/GenerateGraphsAndUploadDataJob';
+import DataUploadJob from './models/jobs/DataUploadJob';
 
 
 
@@ -40,7 +40,7 @@ const execute = async () => {
         // and upload them, if required
         if (ENDLESS) {
             JobScheduler.schedule({
-                job: new GenerateGraphsAndUploadDataJob({ upload: UPLOAD }),
+                job: new DataUploadJob({ upload: UPLOAD }),
                 expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
             });
         }

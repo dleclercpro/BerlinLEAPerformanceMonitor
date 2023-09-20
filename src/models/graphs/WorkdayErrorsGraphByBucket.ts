@@ -1,16 +1,10 @@
 import { ChartType } from 'chart.js';
 import Graph, { GraphBaseOptions, GraphDatasetOptions } from './Graph';
 import { TimeUnit } from '../../types';
-import { ERROR_COLORS, KNOWN_UNEXPECTED_ERRORS } from '../../config';
+import { ERROR_COLORS } from '../../config';
 import { sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
-import { unique } from '../../utils/array';
-
-export const isErrorKnown = (error: string) => {
-    return KNOWN_UNEXPECTED_ERRORS
-        .map(err => err.name)
-        .includes(error);
-};
+import { isErrorKnown } from '../../utils/errors';
 
 class WorkdayErrorsGraphByBucket extends Graph<SessionHistory> {
     protected xAxisUnit = TimeUnit.Hours;
@@ -41,7 +35,8 @@ class WorkdayErrorsGraphByBucket extends Graph<SessionHistory> {
     }
 
     protected generateDatasetOptions(history: SessionHistory) {
-        return unique(history.getErrors().filter(isErrorKnown))
+        return history.getUniqueErrors()
+            .filter(isErrorKnown)
             .map((error, i) => {
                 return {
                     label: error,

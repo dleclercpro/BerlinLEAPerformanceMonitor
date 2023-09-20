@@ -27,6 +27,16 @@ export enum TimeUnit {
     Milliseconds = 'ms',
 }
 
+export interface GitAuthor {
+    name: string,
+    email: string,
+}
+
+export interface GitRemote {
+    name: string,
+    url: string,
+}
+
 export interface VersionedContent <T> {
     version: number,
     content: T,
