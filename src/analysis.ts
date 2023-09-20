@@ -1,7 +1,7 @@
 import { IMG_DIR, LONG_DATE_TIME_FORMAT_OPTIONS } from './config';
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
-import NoAppointmentsGraph from './models/graphs/NoAppointmentsGraph';
+import NoAppointmentsGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/NoAppointmentsGraph';
 import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
@@ -35,6 +35,7 @@ const generateNoAppointmentsGraph = async (history: SessionHistory) => {
 
     const title = [
         `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+        `Gesamtanzahl der User-Sessions: ${history.getSessions().filter(sessionFilterNoAppointmentsGraph).length}`,
         `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
     ];

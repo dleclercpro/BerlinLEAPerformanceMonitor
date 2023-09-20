@@ -10,7 +10,7 @@ import CompleteSession from '../sessions/CompleteSession';
 
 const IGNORE_LENGTHY_SESSIONS = true;
 
-const sessionFilter = (session: CompleteSession) => (
+export const sessionFilterNoAppointmentsGraph = (session: CompleteSession) => (
     // Only consider sessions that ended with 'keine Termine frei' error message
     session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS)
 );
@@ -26,7 +26,7 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
             const sessions = history.getSessionsByWeekday(weekday)
-                .filter(sessionFilter);
+                .filter(sessionFilterNoAppointmentsGraph);
 
             const data = sessions.map(session => {
                 return {
