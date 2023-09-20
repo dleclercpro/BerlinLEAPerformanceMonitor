@@ -5,6 +5,7 @@ import logger from '../../logger';
 import { GraphAxes, GraphAxis, Size } from '../../types';
 import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
 import { Color } from '../../constants/styles';
+import { IMG_DIR } from '../../config';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
@@ -26,15 +27,14 @@ abstract class Graph<Data> {
 
     protected title?: string[];
     protected size: Size;
-    protected filepath: string;
     protected img?: Buffer;
     protected mimeType: MimeType;
+    protected storagePath?: string;
 
     protected abstract generateDatasets(data: Data): GraphDataset[];
 
-    public constructor(filepath: string, size: Size = DEFAULT_GRAPH_SIZE, mimeType: MimeType = 'image/png') {
+    public constructor(size: Size = DEFAULT_GRAPH_SIZE, mimeType: MimeType = 'image/png') {
         this.size = size;
-        this.filepath = filepath;
         this.mimeType = mimeType;
     }
 
@@ -65,10 +65,12 @@ abstract class Graph<Data> {
             return;
         }
 
-        logger.trace(`Storing image to: ${this.filepath}`);
+        this.storagePath = `${IMG_DIR}/${this.name}`;
 
-        await touchFile(this.filepath);
-        await writeFile(this.filepath, this.img);
+        logger.trace(`Storing image to: ${this.storagePath}`);
+
+        await touchFile(this.storagePath);
+        await writeFile(this.storagePath, this.img);
         
         logger.trace(`Image stored.`);
     }

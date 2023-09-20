@@ -7,13 +7,13 @@ import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDate, formatDateForFilename } from './utils/locale';
-import UserSessionLengthUntilFailureBucketGraph from './models/graphs/UserSessionLengthUntilFailureBucketGraph';
+import UserSessionLengthUntilFailureByBucketGraph from './models/graphs/UserSessionLengthUntilFailureByBucketGraph';
 import SessionHistory from './models/sessions/SessionHistory';
-import ErrorPrevalenceOnWorkdaysBucketGraph from './models/graphs/ErrorPrevalenceOnWorkdaysBucketGraph';
+import ErrorPrevalenceOnWorkdaysByBucketGraph from './models/graphs/ErrorPrevalenceOnWorkdaysByBucketGraph';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
 import { isErrorKnown } from './utils/errors';
-import ErrorLikelihoodOnWorkdaysBucketGraph from './models/graphs/ErrorLikelihoodOnWorkdaysBucketGraph';
+import ErrorLikelihoodOnWorkdaysByBucketGraph from './models/graphs/ErrorLikelihoodOnWorkdaysByBucketGraph';
 
 
 
@@ -29,33 +29,25 @@ const parseLogs = async (filepath: string) => {
 
 
 const generateUserSessionLengthUntilFailureGraph = async (history: SessionHistory) => {
-    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    const graph = new UserSessionLengthUntilFailureGraph(`${IMG_DIR}/user-session-duration.png`);
+    const graph = new UserSessionLengthUntilFailureGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateUserSessionLengthUntilFailureBucketGraph = async (history: SessionHistory) => {
-    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    const graph = new UserSessionLengthUntilFailureBucketGraph(`${IMG_DIR}/user-session-duration-by-bucket.png`);
+    const graph = new UserSessionLengthUntilFailureByBucketGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorPrevalenceOnWorkdaysBucketGraph = async (history: SessionHistory) => {
-    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    const graph = new ErrorPrevalenceOnWorkdaysBucketGraph(`${IMG_DIR}/workdays-errors-by-bucket.png`);
+    const graph = new ErrorPrevalenceOnWorkdaysByBucketGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorLikelihoodOnWorkdaysBucketGraph = async (history: SessionHistory) => {
-    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    const graph = new ErrorLikelihoodOnWorkdaysBucketGraph(`${IMG_DIR}/error-likelihood-on-workdays-by-bucket.png`);
+    const graph = new ErrorLikelihoodOnWorkdaysByBucketGraph();
     await graph.draw(history);
     await graph.store();
 }

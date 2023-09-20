@@ -16,23 +16,24 @@ Booking an appointment with the Landesamt für Einwanderung of Berlin is a very 
 Not only are there almost never any free appointment slots on LEA's portal, the latter is also quite buggy. In an effort to highlight the poor performance of said portal, the following graphs have been generated:
 
 ### Length of User Session Until Failure
-Time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment.
+Time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment.
 
 <p align="center" width="100%">
-  <img alt="Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration.png" width="100%" />
+  <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/img/UserSessionLengthUntilFailure.png" width="100%" />
 </p>
 
 ### Average Length of User Session Until Failure
-Average time spent on LEA's website by user before being met with the error message 'there are no available appointments' at the moment. Said average is computed using time buckets.
+Average time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment. Said average is computed for each time bucket.
 
 <p align="center" width="100%">
-  <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/user-session-duration-by-bucket.png" width="100%" />
+  <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/img/UserSessionLengthUntilFailureByBucket.png" width="100%" />
 </p>
 
 ### Prevalence of Experienced Errors on Workdays (Monday to Friday)
-Errors the user experiences from Monday to Friday on the LEA website, which prevent them to access the appointment
-assignment feature altogether. This graph shows the prevalence (in percentage) of each
-error, using time buckets.
+Prevalence of errors experienced by the users of the LEA website, from Monday to Friday, which prevent them accessing the appointment
+assignment feature altogether.
+
+Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences for all considered errors within bucket ``b`` on workdays.
 
 - ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes: after this time, it is reasonable to assume the user has closed the window.
 - ``MissingElementError`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
@@ -42,7 +43,17 @@ error, using time buckets.
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 
 <p align="center" width="100%">
-  <img alt="Average Length of User Sessions on LEA's Portal" src="./data/img/workdays-errors-by-bucket.png" width="100%" />
+  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/img/ErrorPrevalenceOnWorkdaysByBucket.png" width="100%" />
+</p>
+
+### Likelihood of Errors on Workdays (Monday to Friday)
+Likelihood of errors experienced by the users of the LEA website, from Monday to Friday, which prevent them accessing the appointment
+assignment feature altogether.
+
+Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays.
+
+<p align="center" width="100%">
+  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/img/ErrorLikelihoodOnWorkdaysByBucket.png" width="100%" />
 </p>
 
 ## Recommendations

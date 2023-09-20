@@ -13,6 +13,10 @@ export class UnexpectedAlertOpenError extends Error {
 
 
 // Custom errors
+export class NotEnoughDataError extends Error {
+    public name = 'NotEnoughDataError';
+}
+
 export class JobSchedulerError extends Error {
     public name = 'JobSchedulerError';
 }

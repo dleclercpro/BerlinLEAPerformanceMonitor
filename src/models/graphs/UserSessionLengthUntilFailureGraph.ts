@@ -9,6 +9,7 @@ import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { WEEKDAY_COLORS } from '../../config/styles';
+import { NotEnoughDataError } from '../../errors';
 
 const IGNORE_LENGTHY_SESSIONS = true;
 
@@ -30,6 +31,8 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
     };
 
     public async draw(history: SessionHistory) {
+        if (history.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
+        
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
