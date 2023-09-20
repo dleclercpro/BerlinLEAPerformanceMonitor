@@ -10,11 +10,13 @@ abstract class Job<Args = void> {
     }
 
     protected async executeShell(command: string) {
-        return new Promise<void>((resolve, reject) => {
-            exec(command, (err) => {
-                if (err) reject(err);
+        return new Promise<string>((resolve, reject) => {
+            exec(command, (err, stdout) => {
+                if (err) {
+                    reject(err);
+                }
 
-                resolve();
+                resolve(stdout);
             });
         });
     }

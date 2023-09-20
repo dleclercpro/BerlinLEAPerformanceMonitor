@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { Environment, UseCase } from '../types';
+import { Environment } from '../types';
 import path from 'path';
 import { ENVIRONMENTS } from '../constants';
 import minimist from 'minimist';

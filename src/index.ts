@@ -1,5 +1,5 @@
 import { Environment } from './types';
-import { ENDLESS, ENV, LOGS_PATH, N_ALARMS_ON_SUCCESS, ANALYZE, POLL, TEST_ALARM, GIT_AUTHOR_EMAIL, GIT_AUTHOR_NAME, UPLOAD } from './config';
+import { ENDLESS, ENV, LOGS_PATH, N_ALARMS_ON_SUCCESS, ANALYZE, POLL, TEST_ALARM, UPLOAD } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
@@ -7,10 +7,10 @@ import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
+import { EVERY_FIVE_MINUTES, EVERY_ONE_MINUTE, EVERY_THIRTY_MINUTES, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import GenerateGraphsJob from './models/jobs/GenerateGraphsJob';
-import UpdateDataJob from './models/jobs/UpdateDataJob';
+import UpdateDataJob from './models/jobs/UploadDataJob';
 
 
 
@@ -41,20 +41,15 @@ const execute = async () => {
         if (ENDLESS) {
             JobScheduler.schedule({
                 job: GenerateGraphsJob,
-                expression: EVERY_THIRTY_MINUTES,
+                expression: EVERY_FIVE_MINUTES,
                 args: undefined,
             });
 
             if (UPLOAD) {
                 JobScheduler.schedule({
                     job: UpdateDataJob,
-                    expression: EVERY_ONE_MINUTE,
-                    args: {
-                        author: {
-                            name: GIT_AUTHOR_NAME,
-                            email: GIT_AUTHOR_EMAIL,
-                        },
-                    },
+                    expression: EVERY_THIRTY_MINUTES,
+                    args: undefined,
                 });
             }
         }

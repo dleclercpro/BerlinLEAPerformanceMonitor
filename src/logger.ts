@@ -1,7 +1,7 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
 import { LOGS_PATH, POLL } from './config';
-import { Environment, UseCase } from './types';
+import { Environment } from './types';
 
 const getLoggerByEnvironment = (env: Environment) => {
     switch (env) {

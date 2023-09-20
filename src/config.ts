@@ -19,10 +19,12 @@ export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM'))
 
 export const N_ALARMS_ON_SUCCESS = 20;
 
+export const GIT_REMOTE = getEnvironmentVariable('GIT_REMOTE');
 export const GIT_AUTHOR_NAME = getEnvironmentVariable('GIT_AUTHOR_NAME');
 export const GIT_AUTHOR_EMAIL = getEnvironmentVariable('GIT_AUTHOR_EMAIL');
 
 export const GITHUB_USER = getEnvironmentVariable('GITHUB_USER');
+export const GITHUB_REPO_OWNER = getEnvironmentVariable('GITHUB_REPO_OWNER');
 export const GITHUB_REPO = getEnvironmentVariable('GITHUB_REPO');
 export const GITHUB_TOKEN = getEnvironmentVariable('GITHUB_TOKEN');
 

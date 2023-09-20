@@ -6,7 +6,6 @@
   "scripts": {
     "start": "cross-env ENV=development nodemon ./src/index.ts --analyze",
     "poll:once": "cross-env ENV=production node ./dist/src/index.js --poll",
-    "poll:once:upload": "cross-env ENV=production node ./dist/src/index.js --poll --upload",
     "poll:endless": "cross-env ENV=production node ./dist/src/index.js --poll --endless",
     "poll:endless:upload": "cross-env ENV=production node ./dist/src/index.js --poll --endless --upload",
     "analyze": "cross-env ENV=production node ./dist/src/index.js --analyze",
