@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { BackToFindAppointmentPageError, NoAppointmentsError, NoInformationError } from '../../errors';
+import { NoResultsError, NoAppointmentsError, NoInformationError } from '../../errors';
 import { LogMessages } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
@@ -46,7 +46,7 @@ class ResultsPage extends Page {
 
         if (await this.hasElement(ELEMENTS.Dropdown.Citizenship)) {
             logger.info(`Returned to find appointment page.`);
-            throw new BackToFindAppointmentPageError();
+            throw new NoResultsError();
         }
 
         if (await this.hasElement(ELEMENTS.Errors.NoInformation)) {

@@ -1,6 +1,6 @@
 import { LogMessages } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
-import { BackToFindAppointmentPageError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
+import { NoResultsError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
 import { Comparable, TimeUnit } from '../../types';
 import { isErrorKnown } from '../../utils/errors';
 import TimeDuration from '../TimeDuration';
@@ -43,7 +43,7 @@ class CompleteSession extends Session implements Comparable {
     }
 
     public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
-        const errors = [NoAppointmentsError, BackToFindAppointmentPageError, InfiniteSpinnerError, TimeoutError].map(error => error.name);
+        const errors = [NoAppointmentsError, NoResultsError, InfiniteSpinnerError, TimeoutError].map(error => error.name);
 
         return (
             this.errors.length === 1 &&

@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
-import { ElementMissingFromPageError, TimeoutError } from '../../errors';
+import { MissingElementError, TimeoutError } from '../../errors';
 import { touchFile, writeFile } from '../../utils/file';
 
 abstract class Bot {
@@ -68,7 +68,7 @@ abstract class Bot {
     
                 switch (name) {
                     case TimeoutError.name:
-                        throw new ElementMissingFromPageError();
+                        throw new MissingElementError();
                     default:
                         throw err;
                 }

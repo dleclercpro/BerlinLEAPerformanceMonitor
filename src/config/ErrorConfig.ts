@@ -1,11 +1,11 @@
-import { NoAppointmentsError, NoInformationError, InternalServerError, ElementMissingFromPageError, InfiniteSpinnerError, UIError, BackToFindAppointmentPageError, ConstructionWorkError } from '../errors';
+import { NoAppointmentsError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError } from '../errors';
 
 export const KNOWN_UNEXPECTED_ERRORS = [
     NoInformationError,
     ConstructionWorkError,
-    BackToFindAppointmentPageError,
+    NoResultsError,
     InternalServerError,
-    ElementMissingFromPageError,
+    MissingElementError,
     InfiniteSpinnerError,
     UIError,
 ];

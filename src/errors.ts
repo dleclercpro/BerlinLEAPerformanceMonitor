@@ -29,16 +29,16 @@ export class ConstructionWorkError extends Error {
     public name = 'ConstructionWorkError';
 }
 
-export class BackToFindAppointmentPageError extends Error {
-    public name = 'BackToFindAppointmentPageError';
+export class NoResultsError extends Error {
+    public name = 'NoResultsError';
 }
 
 export class InternalServerError extends Error {
     public name = 'InternalServerError';
 }
 
-export class ElementMissingFromPageError extends Error {
-    public name = 'ElementMissingFromPageError';
+export class MissingElementError extends Error {
+    public name = 'MissingElementError';
 }
 
 export class InfiniteSpinnerError extends Error {
