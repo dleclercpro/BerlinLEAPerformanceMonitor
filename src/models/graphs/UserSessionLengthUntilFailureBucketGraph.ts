@@ -25,7 +25,8 @@ const bucketFilter = (bucket: SessionBucket) => {
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
  * message using buckets.
  */
-class NoAppointmentsGraphByBucket extends Graph<SessionHistory> {
+class UserSessionLengthUntilFailureBucketGraph extends Graph<SessionHistory> {
+    protected name: string = 'UserSessionLengthUntilFailureBucket';
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = TimeUnit.Seconds;
 
@@ -90,4 +91,4 @@ class NoAppointmentsGraphByBucket extends Graph<SessionHistory> {
     }
 }
 
-export default NoAppointmentsGraphByBucket;
+export default UserSessionLengthUntilFailureBucketGraph;

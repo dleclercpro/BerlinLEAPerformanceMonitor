@@ -15,15 +15,3 @@ export const getAverage = (arr: number[]) => {
 export const getRange = (size: number) => {
     return [...Array(size).keys()];
 }
-
-export const getCountsDict = (arr: string[]) => {
-    const dict: Record<string, number> = {};
-
-    arr.forEach(el => {
-        const count = dict[el] ?? 0;
-
-        dict[el] = count + 1;
-    });
-
-    return dict;
-}

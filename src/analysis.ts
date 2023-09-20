@@ -2,17 +2,18 @@ import { IMG_DIR, LENGTHY_SESSION_DURATION } from './config';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/LocaleConfig'
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
-import NoAppointmentsGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/NoAppointmentsGraph';
+import UserSessionLengthUntilFailureGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/UserSessionLengthUntilFailureGraph';
 import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDate, formatDateForFilename } from './utils/locale';
-import NoAppointmentsGraphByBucket from './models/graphs/NoAppointmentsGraphByBucket';
+import UserSessionLengthUntilFailureBucketGraph from './models/graphs/UserSessionLengthUntilFailureBucketGraph';
 import SessionHistory from './models/sessions/SessionHistory';
-import WorkdayErrorsGraphByBucket from './models/graphs/WorkdayErrorsGraphByBucket';
+import ErrorPrevalenceOnWorkdaysBucketGraph from './models/graphs/ErrorPrevalenceOnWorkdaysBucketGraph';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
 import { isErrorKnown } from './utils/errors';
+import ErrorLikelihoodOnWorkdaysBucketGraph from './models/graphs/ErrorLikelihoodOnWorkdaysBucketGraph';
 
 
 
@@ -27,10 +28,8 @@ const parseLogs = async (filepath: string) => {
 
 
 
-const generateNoAppointmentsGraph = async (history: SessionHistory) => {
+const generateUserSessionLengthUntilFailureGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    logger.info(`Generating 'NoAppointments' graph...`);
 
     const start = history.getEarliestSession()!.getStartTime();
     const end = history.getLatestSession()!.getEndTime();
@@ -43,15 +42,13 @@ const generateNoAppointmentsGraph = async (history: SessionHistory) => {
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
     ];
 
-    const graph = new NoAppointmentsGraph(`${IMG_DIR}/user-session-duration.png`);
+    const graph = new UserSessionLengthUntilFailureGraph(`${IMG_DIR}/user-session-duration.png`);
     await graph.draw(title, history);
     await graph.store();
 }
 
-const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
+const generateUserSessionLengthUntilFailureBucketGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-    
-    logger.info(`Generating 'NoAppointmentsByBucket' graph...`);
 
     const start = history.getEarliestSession()!.getStartTime();
     const end = history.getLatestSession()!.getEndTime();
@@ -63,15 +60,13 @@ const generateNoAppointmentsByBucketGraph = async (history: SessionHistory) => {
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
     ];
 
-    const graph = new NoAppointmentsGraphByBucket(`${IMG_DIR}/user-session-duration-by-bucket.png`);
+    const graph = new UserSessionLengthUntilFailureBucketGraph(`${IMG_DIR}/user-session-duration-by-bucket.png`);
     await graph.draw(title, history);
     await graph.store();
 }
 
-const generateWorkdayErrorsByBucketGraph = async (history: SessionHistory) => {
+const generateErrorPrevalenceOnWorkdaysBucketGraph = async (history: SessionHistory) => {
     if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
-
-    logger.info(`Generating 'WorkdayErrorsByBucket' graph...`);
 
     const start = history.getEarliestSession()!.getStartTime();
     const end = history.getLatestSession()!.getEndTime();
@@ -85,7 +80,25 @@ const generateWorkdayErrorsByBucketGraph = async (history: SessionHistory) => {
         `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
     ];
 
-    const graph = new WorkdayErrorsGraphByBucket(`${IMG_DIR}/workdays-errors-by-bucket.png`);
+    const graph = new ErrorPrevalenceOnWorkdaysBucketGraph(`${IMG_DIR}/workdays-errors-by-bucket.png`);
+    await graph.draw(title, history);
+    await graph.store();
+}
+
+const generateErrorLikelihoodOnWorkdaysBucketGraph = async (history: SessionHistory) => {
+    if (history.getSize() < 2) throw new Error('Not enough data to plot graph.');
+
+    const start = history.getEarliestSession()!.getStartTime();
+    const end = history.getLatestSession()!.getEndTime();
+
+    const title = [
+        `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
+        `Bucket-Größe: ${history.getBucketSize().format()}`,
+        `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+        `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+    ];
+
+    const graph = new ErrorLikelihoodOnWorkdaysBucketGraph(`${IMG_DIR}/error-likelihood-on-workdays-by-bucket.png`);
     await graph.draw(title, history);
     await graph.store();
 }
@@ -101,8 +114,8 @@ const summarizeHistory = (history: SessionHistory) => {
         logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);        
     }
 
-    const errorDict = history.getCombinedErrorsDict();
-    logger.debug(errorDict, `Errors experienced:`);
+    const errorCounts = history.getErrorCounts();
+    logger.debug(errorCounts, `Errors experienced:`);
 }
 
 
@@ -113,9 +126,10 @@ export const analyzeLogs = async (filepath: string) => {
     const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
     const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));
 
-    await generateNoAppointmentsGraph(hourlyHistory);
-    await generateNoAppointmentsByBucketGraph(hourlyHistory);
-    await generateWorkdayErrorsByBucketGraph(biHourlyHistory);
+    await generateUserSessionLengthUntilFailureGraph(hourlyHistory);
+    await generateUserSessionLengthUntilFailureBucketGraph(hourlyHistory);
+    await generateErrorPrevalenceOnWorkdaysBucketGraph(biHourlyHistory);
+    await generateErrorLikelihoodOnWorkdaysBucketGraph(biHourlyHistory);
 
     summarizeHistory(hourlyHistory);
 }

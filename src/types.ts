@@ -37,9 +37,9 @@ export interface GitRemote {
     url: string,
 }
 
-export interface VersionedContent <T> {
+export interface VersionedData <Data> {
     version: number,
-    content: T,
+    data: Data,
 }
 
 export interface Comparable {
@@ -50,6 +50,8 @@ export interface Comparable {
     greaterThanOrEquals(other: Comparable): boolean;
     greaterThan(other: Comparable): boolean;
 }
+
+export type ErrorCounts = Record<string, number>;
 
 export type Log = {
     time: number,

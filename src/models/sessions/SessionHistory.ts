@@ -1,9 +1,8 @@
 import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
-import { VersionedContent, Weekday } from '../../types';
-import { unique } from '../../utils/array';
+import { VersionedData, Weekday } from '../../types';
+import { toCountsFromArray, unique } from '../../utils/array';
 import { getWeekday } from '../../utils/locale';
-import { getCountsDict } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
@@ -14,13 +13,13 @@ class SessionHistory {
     protected version: number;
     protected buckets: Buckets;
     protected bucketSize: TimeDuration;
-    protected mergedBucketsOnWorkdayBasis: VersionedContent<SessionBucket[]>;
+    protected mergedBucketsOnWorkdayBasis: VersionedData<SessionBucket[]>;
 
     public constructor (buckets: Buckets, bucketSize: TimeDuration) {
         this.version = 0;
         this.buckets = buckets;
         this.bucketSize = bucketSize;
-        this.mergedBucketsOnWorkdayBasis = { version: 0, content: [] };
+        this.mergedBucketsOnWorkdayBasis = { version: 0, data: [] };
     }
 
     public getVersion() {
@@ -71,7 +70,7 @@ class SessionHistory {
         if (mustRecompute) {
             logger.debug(`Re-computing merged buckets on workday basis...`);
 
-            this.mergedBucketsOnWorkdayBasis.content = WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
+            this.mergedBucketsOnWorkdayBasis.data = WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
                 const workdayBuckets = this.buckets[workday];
 
                 return workdayBuckets.map((workdayBucket: SessionBucket, i) => {
@@ -91,7 +90,7 @@ class SessionHistory {
             this.mergedBucketsOnWorkdayBasis.version = this.version;
         }
         
-        return this.mergedBucketsOnWorkdayBasis.content;
+        return this.mergedBucketsOnWorkdayBasis.data;
     }
 
     public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {
@@ -105,6 +104,14 @@ class SessionHistory {
 
     public getSessions(): CompleteSession[] {
         return WEEKDAYS
+            .reduce((prev, weekday) => {
+                return [...prev, ...this.getSessionsByWeekday(weekday)];
+            }, [] as CompleteSession[])
+            .sort((a, b) => a.compare(b));
+    }
+
+    public getWorkdaySessions(): CompleteSession[] {
+        return WORKDAYS
             .reduce((prev, weekday) => {
                 return [...prev, ...this.getSessionsByWeekday(weekday)];
             }, [] as CompleteSession[])
@@ -149,8 +156,8 @@ class SessionHistory {
             }, [] as string[]);
     }
 
-    public getCombinedErrorsDict() {
-        return getCountsDict(this.getErrors());
+    public getErrorCounts() {
+        return toCountsFromArray(this.getErrors());
     }
 }
 

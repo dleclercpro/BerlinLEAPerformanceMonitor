@@ -19,7 +19,8 @@ export const sessionFilterNoAppointmentsGraph = (session: CompleteSession) => (
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
  * message on an hourly basis.
  */
-class NoAppointmentsGraph extends Graph<SessionHistory> {
+class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
+    protected name: string = 'UserSessionLengthUntilFailure';
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = TimeUnit.Seconds;
 
@@ -71,4 +72,4 @@ class NoAppointmentsGraph extends Graph<SessionHistory> {
     }
 }
 
-export default NoAppointmentsGraph;
+export default UserSessionLengthUntilFailureGraph;

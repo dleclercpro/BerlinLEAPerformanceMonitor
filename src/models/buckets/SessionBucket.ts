@@ -1,21 +1,9 @@
-import { getCountsDict } from '../../utils/math';
+import { ErrorCounts } from '../../types';
+import { generateEmptyCounts, toCountsFromArray } from '../../utils/array';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
 import CompleteSession from '../sessions/CompleteSession';
 import Bucket from './Bucket';
-
-type ErrorDict = Record<string, number>;
-
-const generateEmptyErrorDict = (errors: string[], errorFilter: (err: string) => boolean) => {
-    return errors
-        .filter(errorFilter)
-        .reduce((prevErrors, error) => {
-            return {
-                ...prevErrors,
-                [error]: 0,
-            };
-        }, {});
-}
 
 class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
 
@@ -31,7 +19,7 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
         return this.data;
     }
 
-    public getErrorDict(errorFilter: (error: string) => boolean = () => true): ErrorDict {
+    public getErrorCounts(errorFilter: (error: string) => boolean = () => true): ErrorCounts {
         const errors = this
             .getSessions()
             .reduce((prevErrors: string[], session: CompleteSession) => {
@@ -40,8 +28,8 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
             .filter(errorFilter);
 
         return {
-            ...generateEmptyErrorDict(errors, errorFilter),
-            ...getCountsDict(errors),
+            ...generateEmptyCounts(errors),
+            ...toCountsFromArray(errors),
         };
     }
 

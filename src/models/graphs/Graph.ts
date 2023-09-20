@@ -37,6 +37,8 @@ export type GraphDataset = { x: number, y: number }[];
 
 
 abstract class Graph<Data> {
+    protected abstract name: string;
+
     protected filepath: string;
     protected img?: Buffer;
     protected mimeType: MimeType;
@@ -51,6 +53,8 @@ abstract class Graph<Data> {
     }
 
     public async draw(title: string[], data: Data) {
+        logger.info(`Drawing '${this.name}' graph...`);
+
         const baseOptions = this.generateBaseOptions(title);
         const datasetOptions = this.generateDatasetOptions(data);
         const datasets = this.generateDatasets(data);

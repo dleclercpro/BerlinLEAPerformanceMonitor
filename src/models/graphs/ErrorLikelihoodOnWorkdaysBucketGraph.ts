@@ -1,27 +1,43 @@
 import { ChartType } from 'chart.js';
 import Graph, { GraphBaseOptions, GraphDatasetOptions } from './Graph';
-import { TimeUnit } from '../../types';
+import { ErrorCounts, TimeUnit } from '../../types';
 import { ERROR_COLORS } from '../../config';
-import { sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isErrorKnown } from '../../utils/errors';
+import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
+import logger from '../../logger';
+import { assert } from 'console';
 
-class WorkdayErrorsGraphByBucket extends Graph<SessionHistory> {
+class ErrorLikelihoodOnWorkdaysBucketGraph extends Graph<SessionHistory> {
+    protected name: string = 'ErrorLikelihoodOnWorkdaysByBucket';
     protected xAxisUnit = TimeUnit.Hours;
     protected yAxisUnit = '%';
 
     protected generateDatasets(history: SessionHistory) {
         const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
+        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isErrorKnown));
+                
+        // Gather all unique errors on workdays
+        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: ErrorCounts) => {
+            return [...prevErrors, ...fromCountsToArray(errorCounts)];
+        }, []);
+        const uniqueErrors = unique(errors);
 
-        const errorDicts = mergedBuckets.map(bucket => bucket.getErrorDict(isErrorKnown));
-        const errors = history.getUniqueErrors().filter(isErrorKnown);
+        // Total error counts on workdays
+        const totalErrorCountsOnWorkdays = toCountsFromArray(errors);
 
-        return errors.map((error) => {
+        // Compute likelihood of error per bucket based on corresponding total count over workdays
+        return uniqueErrors.map((error) => {
             const data = mergedBuckets
                 .map((bucket, i) => {
+                    const bucketErrorCounts: ErrorCounts = {
+                        ...generateEmptyCounts(uniqueErrors),
+                        ...mergedBucketsErrorCounts[i],
+                    };
+
                     return {
                         x: bucket.getStartTime().to(this.xAxisUnit).getAmount(),
-                        y: errorDicts[i][error] / sum(Object.values(errorDicts[i])) * 100,
+                        y: bucketErrorCounts[error] / totalErrorCountsOnWorkdays[error] * 100,
                     };
                 });
     
@@ -71,4 +87,4 @@ class WorkdayErrorsGraphByBucket extends Graph<SessionHistory> {
     }
 }
 
-export default WorkdayErrorsGraphByBucket;
+export default ErrorLikelihoodOnWorkdaysBucketGraph;
