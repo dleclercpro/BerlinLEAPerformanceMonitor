@@ -2,7 +2,7 @@ import { ChartOptions, ChartType, Color as ChartColor, ChartConfiguration } from
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
 import { touchFile, writeFile } from '../../utils/file';
 import logger from '../../logger';
-import { GraphAxes, Size } from '../../types';
+import { GraphAxes, GraphAxis, Size } from '../../types';
 import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
 import { Color } from '../../constants/styles';
 
@@ -73,6 +73,10 @@ abstract class Graph<Data> {
         logger.trace(`Image stored.`);
     }
 
+    protected generateAxisLabel(axis: GraphAxis) {
+        return this.axes.x.unit ? `${this.axes.x.label} (${this.axes.x.unit})` : this.axes.x.label;
+    }
+
     protected generateOptions(): ChartOptions {
         return {
             devicePixelRatio: DEVICE_PIXEL_RATIO,
@@ -81,7 +85,7 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: this.axes.x.label,
+                        text: this.generateAxisLabel(this.axes.x),
                         padding: 20,
                         font: {
                             size: 14,
@@ -99,7 +103,7 @@ abstract class Graph<Data> {
                     type: 'linear',
                     title: {
                         display: true,
-                        text: this.axes.y.label,
+                        text: this.generateAxisLabel(this.axes.y),
                         padding: 20,
                         font: {
                             size: 14,
