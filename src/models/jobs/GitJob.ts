@@ -1,6 +1,8 @@
 import { DATA_DIR } from '../../config';
+import { LOCALE } from '../../config/LocaleConfig';
 import logger from '../../logger';
 import { GitAuthor, GitRemote } from '../../types';
+import { getTimeZone } from '../../utils/time';
 import Job from './Job';
 
 
@@ -93,8 +95,7 @@ class GitJob extends Job {
     }
 
     protected async commit() {
-        const message = `New data.`;
-
+        const message = `New data: ${new Date().toLocaleString(LOCALE)} [${getTimeZone()}].`;
 
         try {
             logger.trace(`Committing in the name of: ${this.author.name}`);
