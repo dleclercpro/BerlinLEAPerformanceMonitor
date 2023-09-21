@@ -41,6 +41,10 @@ export class InternalServerError extends Error {
     public name = 'InternalServerError';
 }
 
+export class ServiceUnavailableError extends Error {
+    public name = 'ServiceUnavailableError';
+}
+
 export class MissingElementError extends Error {
     public name = 'MissingElementError';
 }

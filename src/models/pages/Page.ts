@@ -2,17 +2,19 @@ import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
 import { INFINITE_TIME, SHORT_TIME } from '../../constants/times';
-import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
+import { InfiniteSpinnerError, InternalServerError, ServiceUnavailableError, TimeoutError } from '../../errors';
 import { SCREENSHOTS_DIR } from '../../config/file';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',
+    ServiceUnavailable: '503 Service Unavailable',
     Home: 'Startseite',
 };
 
 const ELEMENTS = {
     Errors: {
         InternalServerError: By.xpath(`//body[contains(text(), '${TEXTS.InternalServerError}')]`),
+        ServiceUnavailable: By.xpath(`//body[contains(text(), '${TEXTS.ServiceUnavailable}')]`),
     },
     Buttons: {
         Home: By.xpath(`//a[@title=${TEXTS.Home}]`),
@@ -65,6 +67,10 @@ abstract class Page {
 
         if (await this.hasElement(ELEMENTS.Errors.InternalServerError)) {
             throw new InternalServerError();
+        }
+
+        if (await this.hasElement(ELEMENTS.Errors.ServiceUnavailable)) {
+            throw new ServiceUnavailableError();
         }
 
         await this.doWaitUntilLoaded();

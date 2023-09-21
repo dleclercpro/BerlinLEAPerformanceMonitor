@@ -46,7 +46,8 @@ Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio betw
 - ``NoResultsError`` After submitting their search query for an appointment, a loading spinner appears, and then... nothing happens. The user is redirected to the previous form page, as though they had not launched their query.
 - ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes: after this time, it is reasonable to assume the user has closed the window.
 - ``ConstructionWorkError`` There are currently construction works on LEA's portal. Note: I have personally observed the indicated times (i.e. when the construction works started and when they should end) to be most often erroneous, if specified at all.
-- ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
+- ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, which "indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
+- ``ServiceUnavailableError`` The LEA servers are responding with the standard HTTP status code 503, which "indicates that the server is not ready to handle the request." [2]
 - ``MissingElementError`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
@@ -75,3 +76,4 @@ The source code in this repository is not meant to be used as a means to obtain 
 
 ## References
 [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
