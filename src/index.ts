@@ -6,10 +6,10 @@ import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, VERY_SHORT_TIME } from './constants/times';
+import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
-import { POLL, ONCE, BOT, ANALYZE } from './config/bot';
+import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
 import { analyzeLogs } from './analysis';
 import { LOGS_FILEPATH } from './config/file';
 import logger from './logger';
@@ -41,7 +41,7 @@ const execute = async () => {
     if (BOT) {
         JobScheduler.schedule({
             job: new BotJob(),
-            expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
+            expression: BOT_JOB_FREQUENCY,
         });
     }
 
