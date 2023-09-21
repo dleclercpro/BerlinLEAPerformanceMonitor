@@ -2,13 +2,14 @@ import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
 import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
 import { ERROR_COLORS } from '../../config/styles';
-import { sum } from '../../utils/math';
+import { equals, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isErrorKnown } from '../../utils/errors';
 import { fromCountsToArray, unique } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { NotEnoughDataError } from '../../errors';
+import assert from 'assert';
 
 class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
@@ -46,8 +47,8 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         }, []);
         const uniqueErrors = unique(errors);
 
-        // Compute prevalence of each error (in percentage) per bucket
-        return uniqueErrors.map((error, i) => {
+        // Compute prevalence of each error (in percentage) for each bucket
+        const errorPrevalences = uniqueErrors.map((error, i) => {
             const data = mergedBuckets
                 .map((bucket, j) => {
                     const bucketErrorCount = mergedBucketsErrorCounts[j][error];
@@ -70,6 +71,10 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
                 color: ERROR_COLORS[i],
             };
         });
+
+        // TODO: sum of error prevalences inside any given bucket should be 100%
+
+        return errorPrevalences;
     }
 
     protected generateDatasetOptions(label: string, color: ChartColor) {
