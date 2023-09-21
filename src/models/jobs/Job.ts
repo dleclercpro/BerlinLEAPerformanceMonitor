@@ -16,6 +16,8 @@ abstract class Job {
                     reject(err);
                 }
 
+                // Return child process' command line output so it can be further
+                // processed in the parent process
                 resolve(stdout);
             });
         });

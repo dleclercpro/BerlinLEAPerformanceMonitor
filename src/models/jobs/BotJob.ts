@@ -9,12 +9,14 @@ interface Args {
 }
 
 class BotJob extends Job {
-    protected name: string = 'DataUpload';
+    protected name: string = 'BotJob';
     protected upload: boolean;
     protected analyze: boolean;
 
-    public constructor({ upload, analyze }: Args) {
+    public constructor(args: Args = { upload: true, analyze: true }) {
         super();
+
+        const { upload, analyze } = args;
 
         this.upload = upload;
         this.analyze = analyze;
