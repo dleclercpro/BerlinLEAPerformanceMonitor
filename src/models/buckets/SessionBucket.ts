@@ -20,12 +20,14 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
         return this.data.filter(sessionFilter);
     }
 
+    public getSessionErrors() {
+        return this.getSessions()
+            .map(session => session.getError())
+            .filter(Boolean) as string[];
+    }
+
     public getErrorCounts(errorFilter: (error: string) => boolean = () => true): ErrorCounts {
-        const errors = this
-            .getSessions()
-            .reduce((prevErrors: string[], session: CompleteSession) => {
-                return [...prevErrors, ...session.getErrors()];
-            }, [])
+        const errors = this.getSessionErrors()
             .filter(errorFilter);
 
         return {

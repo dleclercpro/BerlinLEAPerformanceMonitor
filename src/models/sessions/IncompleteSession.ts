@@ -5,6 +5,7 @@ import crypto from 'crypto';
 import Session from './Session';
 
 class IncompleteSession extends Session {
+    protected errors: string[] = [];
 
     public static create(startTime?: Date, endTime?: Date) {
         const host = os.hostname();
@@ -38,7 +39,15 @@ class IncompleteSession extends Session {
         return this.startTime && this.endTime;
     }
 
-    public pushLog(log: Log) {
+    public hasErrors() {
+        return this.errors.length > 0;
+    }
+
+    public getErrors() {
+        return this.errors;
+    }
+
+    public push(log: Log) {
         this.logs.push(log);
     }
 }

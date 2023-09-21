@@ -7,6 +7,7 @@ import { ONE_DAY, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
+import { InvalidSessionError } from '../../errors';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -49,7 +50,7 @@ class SessionHistoryBuilder {
             // Session open: store log
             if (session.isOpen()) {
                 logger.trace(`Adding log to session: ${log.msg}`);
-                session.pushLog(log);
+                session.push(log);
             }
 
             // Session ended
@@ -57,13 +58,19 @@ class SessionHistoryBuilder {
                 logger.trace(`Finishing session: ${session.getId()}`);
                 session.end(new Date(log.time));
 
+                // Has session more than one error?
+                const errorCount = session.getErrors().length;
+                if (errorCount > 1) {
+                    throw new InvalidSessionError(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
+                }
+
                 // Store complete session in history
                 history.addSession(new CompleteSession({
                     id: session.getId(),
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),
-                    errors: session.getErrors(),
+                    error: session.getErrors()[0],
                 }));
             }
         });

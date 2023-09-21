@@ -1,12 +1,10 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
-import { CAN_BE_UNDERSTOOD_AS_NO_APPOINTMENT_AVAILABLE_ERRORS } from '../../config/errors';
+import { NO_APPOINTMENT_AVAILABLE_ERRORS } from '../../config/errors';
 import { LogMessage } from '../../constants';
-import { FIVE_MINUTES } from '../../constants/times';
-import { NoResultsError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
 import { Comparable, TimeUnit } from '../../types';
 import { isErrorKnown } from '../../utils/errors';
 import TimeDuration from '../TimeDuration';
-import Session from './Session';
+import Session, { SessionArgs } from './Session';
 
 class CompleteSessionComparator {
     // This comparison function is used to sort sessions based on
@@ -20,7 +18,20 @@ class CompleteSessionComparator {
 
 
 
+interface CompleteSessionArgs extends SessionArgs {
+    error?: string,
+}
+
+
+
 class CompleteSession extends Session implements Comparable {
+    protected error?: string;
+
+    public constructor({ error, ...args }: CompleteSessionArgs) {
+        super(args);
+
+        this.error = error;
+    }
 
     public getId() {
         return this.id;
@@ -34,35 +45,38 @@ class CompleteSession extends Session implements Comparable {
         return this.endTime!;
     }
 
+    public hasError() {
+        return !!this.error;
+    }
+
+    public getError() {
+        return this.error;
+    }
+
     // The session was completed, no error was detected, and
     // the success message was logged: there seems to be an
     // appointment available!
     public foundAppointment() {
         return (
-            this.errors.length === 0 &&
+            !this.hasError() &&
             this.logs.map(log => log.msg).includes(LogMessage.Success)
         );
     }
 
     public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
-        const errors = CAN_BE_UNDERSTOOD_AS_NO_APPOINTMENT_AVAILABLE_ERRORS.map(error => error.name);
+        const errors = NO_APPOINTMENT_AVAILABLE_ERRORS.map(error => error.name);
 
         return (
-            this.errors.length === 1 &&
+            this.hasError() &&
             // Only consider a subset of errors
-            errors.includes(this.errors[0]) &&
+            errors.includes(this.error!) &&
             // Ignore unreasonably long sessions if desired
             (!ignoreUnreasonablyLongSessions || !this.isDurationReasonable())
         );
     }
 
-    public hasUnknownErrors() {
-        return this.getUnknownErrors().length > 0;
-    }
-
-    public getUnknownErrors() {
-        return this.getErrors()
-            .filter(error => !isErrorKnown(error));
+    public hasUnknownError() {
+        return this.hasError() && !isErrorKnown(this.error!);
     }
 
     public getDuration() {

@@ -98,27 +98,21 @@ class SessionHistory {
     public getSessionsByWeekday(weekday: Weekday, sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return this.getBucketsByWeekday(weekday)
             .map(bucket => bucket.getSessions())
-            .reduce((prev, sessions) => {
-                return [...prev, ...sessions];
-            }, [] as CompleteSession[])
+            .reduce((prev, sessions) => [...prev, ...sessions], [] as CompleteSession[])
             .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
 
     public getSessions(sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return WEEKDAYS
-            .reduce((prev, weekday) => {
-                return [...prev, ...this.getSessionsByWeekday(weekday)];
-            }, [] as CompleteSession[])
+            .reduce((prev, weekday) => [...prev, ...this.getSessionsByWeekday(weekday)], [] as CompleteSession[])
             .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
 
     public getWorkdaySessions(sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return WORKDAYS
-            .reduce((prev, weekday) => {
-                return [...prev, ...this.getSessionsByWeekday(weekday)];
-            }, [] as CompleteSession[])
+            .reduce((prev, weekday) => [...prev, ...this.getSessionsByWeekday(weekday)], [] as CompleteSession[])
             .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
@@ -144,22 +138,21 @@ class SessionHistory {
     }
 
     public getErrors(errorFilter: ErrorFilter = () => true) {
-        return WEEKDAYS.reduce((errors, weekday) => {
-            return [...errors, ...this.getErrorsByWeekday(weekday)];
-        }, [] as string[])
-        .filter(errorFilter);
+        return WEEKDAYS
+            .reduce((errors, weekday) => [...errors, ...this.getErrorsByWeekday(weekday)], [] as string[])
+            .filter(errorFilter);
+    }
+
+    public getErrorsByWeekday(weekday: Weekday, errorFilter: ErrorFilter = () => true) {
+        const errors = this.getSessionsByWeekday(weekday)
+            .map(session => session.getError())
+            .filter(Boolean) as string[];
+
+        return errors.filter(errorFilter);
     }
 
     public getUniqueErrors(errorFilter: ErrorFilter = () => true) {
         return unique(this.getErrors(errorFilter));
-    }
-
-    public getErrorsByWeekday(weekday: Weekday, errorFilter: ErrorFilter = () => true) {
-        return this.getSessionsByWeekday(weekday)
-            .reduce((errors, session) => {
-                return [...errors, ...session.getErrors()];
-            }, [] as string[])
-            .filter(errorFilter);
     }
 
     public getErrorCounts() {

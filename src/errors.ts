@@ -13,6 +13,10 @@ export class UnexpectedAlertOpenError extends Error {
 
 
 // Custom errors
+export class InvalidSessionError extends Error {
+    public name = 'InvalidSessionError';
+}
+
 export class NotEnoughDataError extends Error {
     public name = 'NotEnoughDataError';
 }

@@ -1,11 +1,10 @@
 import { Log } from '../../types';
 
-interface Options {
+export interface SessionArgs {
     id: string,
     startTime?: Date,
     endTime?: Date,
     logs?: Log[],
-    errors?: string[],
 }
 
 abstract class Session {
@@ -15,14 +14,12 @@ abstract class Session {
     protected endTime?: Date;
     
     protected logs: Log[];
-    protected errors: string[];
 
-    public constructor ({ id, startTime, endTime, logs, errors }: Options) {
+    public constructor ({ id, startTime, endTime, logs }: SessionArgs) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.logs = logs ?? [];
-        this.errors = errors ?? [];
     }
 
     public getId() {
@@ -39,12 +36,6 @@ abstract class Session {
 
     public getLogs() {
         return this.logs;
-    }
-
-    public getErrors() {
-        return this.logs
-            .map(log => log.err)
-            .filter(Boolean) as string[];
     }
 }
 
