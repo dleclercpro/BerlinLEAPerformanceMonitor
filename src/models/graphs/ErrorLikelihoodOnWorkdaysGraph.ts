@@ -8,6 +8,9 @@ import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } fro
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
 import { NotEnoughDataError } from '../../errors';
+import assert from 'assert';
+import { equals, sum } from '../../utils/math';
+import logger from '../../logger';
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
@@ -23,7 +26,8 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
         const end = history.getLatestSession()!.getEndTime();
 
         this.title = [
-            `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
+            `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs`,
+            `zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
@@ -59,6 +63,9 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
                         y: bucketErrorCounts[error] / totalErrorCountsOnWorkdays[error] * 100,
                     };
                 });
+
+            // Sum of probabilities over buckets should be 100% for any given error
+            assert(equals(sum(data.map(point => point.y)), 100));
     
             // Daily graph: first and last point (midnight) should be equal
             if (data.length > 0) {

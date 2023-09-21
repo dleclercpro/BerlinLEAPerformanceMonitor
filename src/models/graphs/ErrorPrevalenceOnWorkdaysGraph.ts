@@ -27,7 +27,8 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
 
         this.title = [
             `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
-            `Bucket-Größe: ${history.getBucketSize().format()}, Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
+            `Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
+            `Bucket-Größe: ${history.getBucketSize().format()}`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         ];

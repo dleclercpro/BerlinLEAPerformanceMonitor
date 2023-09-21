@@ -1,3 +1,9 @@
+const EPSILON: number = Math.pow(10, -9);
+
+export const equals = (x: number, y: number, epsilon: number = EPSILON) => {
+    return Math.abs(x - y) < epsilon;
+}
+
 export const round = (x: number, decimals: number) => {
     const pow = Math.pow(10, decimals)
 
