@@ -43,7 +43,7 @@ class UserSessionLengthUntilFailureByBucketGraph extends Graph<SessionHistory> {
         const end = history.getLatestSession()!.getEndTime();
 
         this.title = [
-            `Durchnittliche Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+            `Durchschnittliche Länge einer User-Session auf der Seite des Berliner LEAs`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,

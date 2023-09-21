@@ -37,7 +37,7 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
         const sessionCount = history.getSessions(noAppointmentSessionFilter).length;
 
         this.title = [
-            `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
+            `Länge einer User-Session auf der Seite des Berliner LEA`,
             `Gesamtanzahl der betrachteten User-Sessions: ${sessionCount}`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
