@@ -65,7 +65,8 @@ abstract class Graph<Data> {
             return;
         }
 
-        this.storagePath = `${IMG_DIR}/${this.name}`;
+        // Use graph's name as filename
+        this.storagePath = `${IMG_DIR}/${this.name}.png`;
 
         logger.trace(`Storing image to: ${this.storagePath}`);
 
@@ -76,7 +77,7 @@ abstract class Graph<Data> {
     }
 
     protected generateAxisLabel(axis: GraphAxis) {
-        return this.axes.x.unit ? `${this.axes.x.label} (${this.axes.x.unit})` : this.axes.x.label;
+        return axis.unit ? `${axis.label} (${axis.unit})` : axis.label;
     }
 
     protected generateOptions(): ChartOptions {
