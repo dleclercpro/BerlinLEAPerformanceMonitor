@@ -48,7 +48,13 @@ class IncompleteSession extends Session {
     }
 
     public push(log: Log) {
+        const { err } = log;
+
         this.logs.push(log);
+
+        if (err) {
+            this.errors.push(err);
+        }
     }
 }
 

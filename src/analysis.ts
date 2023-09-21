@@ -64,7 +64,10 @@ const summarizeHistory = (history: SessionHistory) => {
         .map(session => formatDateForFilename(session.getEndTime()));
 
     if (successTimes.length > 0) {
-        logger.info(successTimes.sort().reverse(), `Time(s) at which an appointment was momentarily available:`);        
+        logger.info(`Time(s) at which an appointment was momentarily available:`);
+        successTimes.sort().reverse().forEach(time => {
+            logger.info(time);
+        });
     }
 
     const errorCounts = history.getErrorCounts();

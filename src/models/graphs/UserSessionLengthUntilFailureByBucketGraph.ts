@@ -11,9 +11,10 @@ import SessionBucket from '../buckets/SessionBucket';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { NotEnoughDataError } from '../../errors';
 
+const IGNORE_LENGTHY_SESSIONS = false;
+
 const noAppointmentSessionFilter = (session: CompleteSession) => {
-    // Only consider sessions that ended with 'keine Termine frei' error message
-    return session.foundNoAppointment();
+    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
 }
 
 const bucketFilter = (bucket: SessionBucket) => {

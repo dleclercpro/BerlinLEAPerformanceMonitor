@@ -13,8 +13,7 @@ import { NotEnoughDataError } from '../../errors';
 const IGNORE_LENGTHY_SESSIONS = true;
 
 const noAppointmentSessionFilter = (session: CompleteSession) => {
-    // Only consider sessions that ended with 'keine Termine frei' error message
-    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS)
+    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
 }
 
 /**

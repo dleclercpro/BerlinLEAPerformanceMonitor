@@ -57,19 +57,17 @@ class CompleteSession extends Session implements Comparable {
     // the success message was logged: there seems to be an
     // appointment available!
     public foundAppointment() {
-        return (
-            !this.hasError() &&
-            this.logs.map(log => log.msg).includes(LogMessage.Success)
-        );
+        const logMessages = this.logs.map(log => log.msg);
+
+        return !this.hasError() && logMessages.includes(LogMessage.Success);
     }
 
     public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
         const errors = NO_APPOINTMENT_AVAILABLE_ERRORS.map(error => error.name);
 
         return (
-            this.hasError() &&
             // Only consider a subset of errors
-            errors.includes(this.error!) &&
+            this.hasError() && errors.includes(this.error!) &&
             // Ignore unreasonably long sessions if desired
             (!ignoreUnreasonablyLongSessions || !this.isDurationReasonable())
         );
