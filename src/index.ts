@@ -1,15 +1,17 @@
 import { Environment } from './types';
-import { ENDLESS, ENV, LOGS_PATH, N_ALARMS_ON_SUCCESS, ANALYZE, POLL, TEST_ALARM, UPLOAD } from './config';
+import { ENV, N_ALARMS_ON_SUCCESS, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
-import { analyzeLogs } from './analysis';
 import Alarm from './models/Alarm';
 import { sleep } from './utils/time';
 import { getRange } from './utils/math';
 import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_ONE_MINUTE, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
-import DataUploadJob from './models/jobs/DataUploadJob';
+import BotJob from './models/jobs/BotJob';
+import { POLL, ONCE, UPLOAD, BOT, ANALYZE } from './config/bot';
+import { analyzeLogs } from './analysis';
+import { LOGS_FILEPATH } from './config/file';
 
 
 
@@ -38,14 +40,14 @@ const execute = async () => {
         
         // When polling endlessly, generate graphs once in a while,
         // and upload them, if required
-        if (ENDLESS) {
+        if (BOT) {
             JobScheduler.schedule({
-                job: new DataUploadJob({ upload: UPLOAD }),
+                job: new BotJob({ upload: UPLOAD, analyze: ANALYZE }),
                 expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
             });
         }
 
-        while (ENDLESS || !executedOnce) {
+        while (!ONCE || !executedOnce) {
             const bot = new ChromeBot();
     
             if (await hasFoundAppointment(bot)) {
@@ -59,10 +61,10 @@ const execute = async () => {
 
             executedOnce = true;
         }
-    }
 
-    if (ANALYZE) {
-        await analyzeLogs(LOGS_PATH);
+        if (ONCE && ANALYZE) {
+            await analyzeLogs(LOGS_FILEPATH);
+        }
     }
 }
 

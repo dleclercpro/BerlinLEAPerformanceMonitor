@@ -1,7 +1,6 @@
 import cron, { ScheduleOptions, validate } from 'node-cron';
 import Job from './Job';
 import logger from '../../logger';
-import { JobSchedulerError } from '../../errors';
 
 interface ScheduleArgs {
     job: Job,
@@ -31,17 +30,15 @@ class JobScheduler {
 
         cron.schedule(
             expression,
-            async () => {
+            () => {
                 logger.debug(`Executing job '${job.getName()}'...`);
 
                 return job.execute()
                     .then(() => {
                         logger.debug(`Executed job '${job.getName()}'.`);
                     })
-                    .catch(() => {
-                        logger.fatal(`There was an error while executing job '${job.getName()}'!`);
-
-                        throw new JobSchedulerError();
+                    .catch((err) => {
+                        logger.fatal(err, `There was an error while executing job '${job.getName()}'!`);
                     });
             },
             options,

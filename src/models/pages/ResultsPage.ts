@@ -44,11 +44,6 @@ class ResultsPage extends Page {
     public async checkForAppointments() {
         logger.info(`Checking for appointments availability...`);
 
-        if (await this.hasElement(ELEMENTS.Dropdown.Citizenship)) {
-            logger.info(`Returned to find appointment page.`);
-            throw new NoResultsError();
-        }
-
         if (await this.hasElement(ELEMENTS.Errors.NoInformation)) {
             logger.info(`There is no information available for the selected appointment.`);
             throw new NoInformationError();
@@ -57,6 +52,12 @@ class ResultsPage extends Page {
         if (await this.hasElement(ELEMENTS.Errors.NoAppointments)) {
             logger.info(LogMessage.Failure);
             throw new NoAppointmentsError();
+        }
+
+        // Ensure there are no errors before concluding page hasn't changed!
+        if (await this.hasElement(ELEMENTS.Dropdown.Citizenship)) {
+            logger.info(`Returned to find appointment page.`);
+            throw new NoResultsError();
         }
 
         // There seems to be an appointment: take a screenshot!

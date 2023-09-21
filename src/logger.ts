@@ -1,7 +1,8 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
-import { LOGS_PATH, POLL } from './config';
+import { LOGS_FILEPATH } from './config/file';
 import { Environment } from './types';
+import { POLL } from './config/bot';
 
 const getLoggerByEnvironment = (env: Environment) => {
     switch (env) {
@@ -27,7 +28,7 @@ const getLoggerByUseCase = () => {
             targets: [{
                 level: 'info',
                 target: 'pino/file',
-                options: { destination: LOGS_PATH },
+                options: { destination: LOGS_FILEPATH },
             },
             {
                 level: 'trace',

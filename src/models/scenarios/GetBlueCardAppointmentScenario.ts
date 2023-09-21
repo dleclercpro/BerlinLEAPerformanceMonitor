@@ -46,9 +46,9 @@ class GetBlueCardAppointmentScenario extends Scenario {
         const appointmentPage = new FindAppointmentPage(bot);
         await appointmentPage.waitUntilLoaded();
 
-        await appointmentPage.selectCitizenship(CITIZENSHIP);
-        await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS);
-        await appointmentPage.selectWithRelatives(WITH_RELATIVES);
+        await appointmentPage.selectCitizenship(CITIZENSHIP!);
+        await appointmentPage.selectNumberOfApplicants(NUMBER_OF_APPLICANTS!);
+        await appointmentPage.selectWithRelatives(WITH_RELATIVES!);
 
         if (!await appointmentPage.isUIValid()) {
             throw new UIError();

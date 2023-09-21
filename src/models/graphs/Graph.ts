@@ -5,7 +5,7 @@ import logger from '../../logger';
 import { GraphAxes, GraphAxis, Size } from '../../types';
 import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
 import { Color } from '../../constants/styles';
-import { IMG_DIR } from '../../config';
+import { IMG_DIR } from '../../config/file';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');

@@ -3,7 +3,7 @@ import logger from '../../logger';
 import Bot from '../bots/Bot';
 import { INFINITE_TIME, SHORT_TIME } from '../../constants/times';
 import { InfiniteSpinnerError, InternalServerError, TimeoutError } from '../../errors';
-import { SCREENSHOTS_DIR } from '../../config';
+import { SCREENSHOTS_DIR } from '../../config/file';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',

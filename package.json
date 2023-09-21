@@ -5,16 +5,38 @@
   "main": "./src/index.ts",
   "scripts": {
     "start": "cross-env ENV=development nodemon ./src/index.ts --analyze",
-    "poll:once": "cross-env ENV=production node ./dist/src/index.js --poll",
-    "poll:endless": "cross-env ENV=production node ./dist/src/index.js --poll --endless",
-    "poll:endless:upload": "cross-env ENV=production node ./dist/src/index.js --poll --endless --upload",
-    "analyze": "cross-env ENV=production node ./dist/src/index.js --analyze",
+    "bot": "npm run bot:compile && cross-env ENV=production node ./dist/bot/src/index.js --bot",
+    
+    "poll": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll",
+    "poll:once": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll --once",
+    "analyze": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --analyze --once",
+
     "compile": "npm run clean && npm run build",
-    "build": "tsc -p .",
-    "clean": "rimraf ./dist",
-    "bot": "npm run compile && npm run poll:endless:upload"
+    "bot:compile": "npm run bot:clean && npm run bot:build",
+
+    "copy-data": "copyfiles -a -u 2 ./data/production/**/* ./data/local",
+    "delete-data": "rimraf ./data/local",
+
+    "build": "tsc -p ./tsconfig.local.json && npm run copy-data",
+    "bot:build": "tsc -p ./tsconfig.bot.json",
+
+    "clean": "rimraf ./dist/local && npm run delete-data",
+    "bot:clean": "rimraf ./dist/bot"
   },
   "dependencies": {
+    "chart.js": "^3.9.1",
+    "chartjs-adapter-moment": "^1.0.1",
+    "chartjs-node-canvas": "^4.1.6",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "minimist": "^1.2.8",
+    "node-cron": "^3.0.2",
+    "pino": "^8.15.0",
+    "pino-pretty": "^10.2.0",
+    "selenium-webdriver": "^4.12.0"
+  },
+  "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.4",
@@ -22,17 +44,7 @@
     "@types/node": "^18.11.18",
     "@types/node-cron": "^3.0.8",
     "@types/selenium-webdriver": "^4.1.16",
-    "chart.js": "^3.9.1",
-    "chartjs-adapter-moment": "^1.0.1",
-    "chartjs-node-canvas": "^4.1.6",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.3.1",
-    "minimist": "^1.2.8",
-    "node-cron": "^3.0.2",
     "nodemon": "^3.0.1",
-    "pino": "^8.15.0",
-    "pino-pretty": "^10.2.0",
-    "selenium-webdriver": "^4.12.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }

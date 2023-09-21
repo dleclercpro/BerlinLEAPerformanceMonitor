@@ -1,26 +1,13 @@
-import { DATA_DIR } from '../../config';
+import { DATA_DIR } from '../../config/file';
 import { LOCALE } from '../../config/locale';
 import logger from '../../logger';
 import { GitAuthor, GitRemote } from '../../types';
+import { GitCommands } from '../../utils/git';
 import { getTimeZone } from '../../utils/time';
 import Job from './Job';
 
-
-
-const GitCommands = {
-    Add: (dir: string) => `git add ${dir}`,
-    AddRemote: (remote: string, url: string) => `git remote add -t master -m master -f ${remote} ${url}`,
-    GetRemoteUrl: (url: string) => `git remote get-url ${url}`,
-    SetRemoteUrl: (remote: string, url: string) => `git remote set-url ${remote} ${url}`,
-    Pull: () => `git pull`,
-    Commit: (message: string, author: GitAuthor) => `git commit --author "${author.name} <${author.email}>" -m "${message}"`,
-    Push: (remote: string) => `git push --repo ${remote}`,
-}
-
-
-
 class GitJob extends Job {
-    protected name: string = 'UploadData';
+    protected name: string = 'Git';
     
     protected remote: GitRemote;
     protected author: GitAuthor;
@@ -33,45 +20,22 @@ class GitJob extends Job {
     }
 
     public async execute() {
-        if (!await this.isRemoteUrlValid()) {
-            await this.setRemoteUrl(this.remote.url);
-        }
+        logger.warn(this.remote);
 
         if (!await this.hasRemote()) {
             await this.addRemote(this.remote);
         }
-
-        if (await this.add() && await this.commit()) {
-            await this.push();            
+        else if (!await this.isRemoteUrlValid()) {
+            await this.setRemoteUrl(this.remote.url);
         }
+
+        await this.add();
+        await this.commit(`New data: ${new Date().toLocaleString(LOCALE)} [${getTimeZone()}]`);
+        await this.push();
     }
 
     protected async hasRemote() {
         return await this.getRemoteUrl() !== '';
-    }
-
-    protected async isRemoteUrlValid() {
-        return await this.getRemoteUrl() === this.remote.url;
-    }
-
-    protected async getRemoteUrl() {
-        logger.trace(`Getting URL for Git remote: ${this.remote.name}`);
-    
-        try {
-            return this.executeShell(GitCommands.GetRemoteUrl(this.remote.name));
-
-        } catch (err) {
-            return '';
-        }
-    }
-
-    protected async setRemoteUrl(url: string) {
-
-        // Update URL in stored remote object
-        this.remote.url = url;
-
-        logger.trace(`Setting URL for Git remote: ${this.remote.name}`);
-        await this.executeShell(GitCommands.SetRemoteUrl(this.remote.name, this.remote.url));
     }
 
     protected async addRemote(remote: GitRemote) {
@@ -79,52 +43,46 @@ class GitJob extends Job {
         await this.executeShell(GitCommands.AddRemote(remote.name, remote.url));
     }
 
-    protected async add() {
-        logger.trace(`Adding data to commit.`);
+    protected async isRemoteUrlValid() {
+        logger.trace(`Validating URL for remote: ${this.remote.name}`);
+        const url = await this.getRemoteUrl();
 
-        try {
-            await this.executeShell(GitCommands.Add(DATA_DIR));
-
-            logger.trace(`Adding data to next commit succeeded.`);
-            return true;
-        
-        } catch (err) {
-            logger.trace(`Adding data to next commit did not succeed.`);
-            return false;
-        }
+        return url === this.remote.url;
     }
 
-    protected async commit() {
-        const message = `New data: ${new Date().toLocaleString(LOCALE)} [${getTimeZone()}]`;
+    protected async getRemoteUrl() {
+        logger.trace(`Getting URL for Git remote: ${this.remote.name}`);
+        return this.executeShell(GitCommands.GetRemoteUrl(this.remote.name))
+            .catch(() => '');
+    }
 
-        try {
-            logger.trace(`Committing in the name of: ${this.author.name}`);
-            
-            this.executeShell(GitCommands.Commit(message, this.author), {
-                env: {
-                    'GIT_COMMITTER_NAME': this.author.name,
-                    'GIT_COMMITTER_EMAIL': this.author.email,
-                },
-            });
-
-            logger.trace(`There were new changes to commit.`);
-            return true;
-        
-        } catch (err) {
-            logger.trace(`There were no changes to commit.`);
-            return false;
-        }
+    protected async setRemoteUrl(url: string) {
+        logger.trace(`Setting URL for Git remote: ${this.remote.name}`);
+        await this.executeShell(GitCommands.SetRemoteUrl(this.remote.name, this.remote.url));
     }
 
     protected async pull() {
         logger.trace(`Pulling from remote: ${this.remote.name}`);
-
         await this.executeShell(GitCommands.Pull());
+    }
+
+    protected async add() {
+        logger.trace(`Adding data to commit.`);
+        await this.executeShell(GitCommands.Add(DATA_DIR));
+    }
+
+    protected async commit(message: string) {
+        logger.trace(`Committing in the name of: ${this.author.name}`);        
+        this.executeShell(GitCommands.Commit(message, this.author), {
+            env: {
+                GIT_COMMITTER_NAME: this.author.name,
+                GIT_COMMITTER_EMAIL: this.author.email,
+            },
+        });
     }
 
     protected async push() {
         logger.trace(`Pushing to remote: ${this.remote.name}`);
-
         await this.executeShell(GitCommands.Push(this.remote.name));
     }
 }

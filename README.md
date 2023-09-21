@@ -19,14 +19,14 @@ Not only are there almost never any free appointment slots on LEA's portal, the 
 Time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment.
 
 <p align="center" width="100%">
-  <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/img/UserSessionLengthUntilFailure.png" width="100%" />
+  <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/UserSessionLengthUntilFailure.png" width="100%" />
 </p>
 
 ### Average Length of User Session Until Failure
 Average time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment. Said average is computed for each time bucket.
 
 <p align="center" width="100%">
-  <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/img/UserSessionLengthUntilFailureByBucket.png" width="100%" />
+  <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/UserSessionLengthUntilFailureByBucket.png" width="100%" />
 </p>
 
 ### Prevalence of Experienced Errors on Workdays (Monday to Friday)
@@ -43,7 +43,7 @@ Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio betw
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, "which indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 
 <p align="center" width="100%">
-  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/img/ErrorPrevalenceOnWorkdaysByBucket.png" width="100%" />
+  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/ErrorPrevalenceOnWorkdaysByBucket.png" width="100%" />
 </p>
 
 ### Likelihood of Errors on Workdays (Monday to Friday)
@@ -53,7 +53,7 @@ assignment feature altogether.
 Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays.
 
 <p align="center" width="100%">
-  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/img/ErrorLikelihoodOnWorkdaysByBucket.png" width="100%" />
+  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorLikelihoodOnWorkdaysByBucket.png" width="100%" />
 </p>
 
 ## Recommendations

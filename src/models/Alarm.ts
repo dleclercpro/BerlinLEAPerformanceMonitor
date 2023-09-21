@@ -1,7 +1,7 @@
 import os from 'os';
 import { exec } from 'child_process';
 import logger from '../logger';
-import { ALARM_PATH } from '../config';
+import { ALARM_FILEPATH } from '../config/file';
 
 class Alarm {
     private static instance?: Alarm;
@@ -21,7 +21,7 @@ class Alarm {
     }
 
     public async ring() {
-        await this.play(ALARM_PATH);
+        await this.play(ALARM_FILEPATH);
     }
 
     protected async play(filepath: string) {

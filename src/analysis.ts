@@ -1,29 +1,33 @@
-import { IMG_DIR, LENGTHY_SESSION_DURATION } from './config';
-import { LONG_DATE_TIME_FORMAT_OPTIONS } from './config/locale'
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
-import UserSessionLengthUntilFailureGraph, { sessionFilterNoAppointmentsGraph } from './models/graphs/UserSessionLengthUntilFailureGraph';
+import UserSessionLengthUntilFailureGraph from './models/graphs/UserSessionLengthUntilFailureGraph';
 import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
-import { formatDate, formatDateForFilename } from './utils/locale';
+import { formatDateForFilename } from './utils/locale';
 import UserSessionLengthUntilFailureByBucketGraph from './models/graphs/UserSessionLengthUntilFailureByBucketGraph';
 import SessionHistory from './models/sessions/SessionHistory';
 import ErrorPrevalenceOnWorkdaysByBucketGraph from './models/graphs/ErrorPrevalenceOnWorkdaysByBucketGraph';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
-import { isErrorKnown } from './utils/errors';
 import ErrorLikelihoodOnWorkdaysByBucketGraph from './models/graphs/ErrorLikelihoodOnWorkdaysByBucketGraph';
 
 
 
 const parseLogs = async (filepath: string) => {
+    logger.info(`Reading logs from: ${filepath}`);
+
     const file = await readFile(filepath);
 
-    return file
+    const logs = file
         .split(NEW_LINE_REGEXP)
         .filter(Boolean)
-        .map(line => JSON.parse(line) as Log);
+        .map(line => JSON.parse(line) as Log)
+        .filter(log => (log.msg !== undefined)); // Something is wrong with this log: there should always be a message!
+
+    logger.info(`Parsed ${logs.length} logs.`);
+
+    return logs;
 }
 
 

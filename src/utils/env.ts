@@ -27,10 +27,10 @@ export const loadEnvironment = () => {
     return env;
 }
 
-export const getEnvironmentVariable = (name: string) => {
+export const getEnvironmentVariable = (name: string, required: boolean = false) => {
     const variable = process.env[name];
 
-    if (!variable) {
+    if (required && !variable) {
         throw new Error(`Environment variable missing: ${name}`);
     }
 
@@ -41,9 +41,10 @@ export const getTerminalArgs = () => {
     const args = minimist(process.argv.slice(2));
 
     return {
-        'POLL': parseBooleanText(args.poll),
-        'ENDLESS': parseBooleanText(args.endless),
-        'ANALYZE': parseBooleanText(args.analyze),
-        'UPLOAD': parseBooleanText(args.upload),
+        poll: parseBooleanText(args.poll),
+        once: parseBooleanText(args.once),
+        analyze: parseBooleanText(args.analyze),
+        upload: parseBooleanText(args.upload),
+        bot: parseBooleanText(args.bot),
     };
 }
