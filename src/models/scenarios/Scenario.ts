@@ -16,9 +16,9 @@ abstract class Scenario {
 
         } catch (err: any) {
             if (isErrorKnown(err.name)) {
-                logger.error({ err: err.name }, LogMessage.ExpectedError);
+                logger.error({ err: err.name }, LogMessage.KnownError);
             } else {
-                logger.fatal({ err: err.name }, LogMessage.UnknownError);
+                logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownError);
             }
             
             throw err;

@@ -24,7 +24,7 @@ class ErrorPrevalenceOnWorkdaysByBucketGraph extends Graph<SessionHistory> {
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
-        const totalErrorCount = history.getErrors().filter(isErrorKnown).length;
+        const totalErrorCount = history.getErrors(isErrorKnown).length;
 
         this.title = [
             `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,

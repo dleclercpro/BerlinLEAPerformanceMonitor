@@ -1,9 +1,9 @@
 import { By } from 'selenium-webdriver';
-import { HOMEPAGE_URL } from '../../constants';
 import Page from './Page';
 import logger from '../../logger';
 import { ConstructionWorkError } from '../../errors';
 import { MEDIUM_TIME } from '../../constants/times';
+import { HOMEPAGE_URL } from '../../config';
 
 const TEXTS = {
     BookAppointment: 'Termin buchen',

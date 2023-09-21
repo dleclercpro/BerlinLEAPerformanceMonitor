@@ -5,6 +5,8 @@ import { POLL } from './bot';
 
 export const ENV = loadEnvironment();
 
+export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
+
 export const N_ALARMS_ON_SUCCESS = 20;
 export const TEST_ALARM = parseBooleanText(getEnvironmentVariable('TEST_ALARM', POLL) ?? 'false');
 

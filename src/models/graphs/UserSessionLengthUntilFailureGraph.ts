@@ -4,7 +4,6 @@ import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { LENGTHY_SESSION_DURATION } from '../../config';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
@@ -13,10 +12,10 @@ import { NotEnoughDataError } from '../../errors';
 
 const IGNORE_LENGTHY_SESSIONS = true;
 
-export const sessionFilterNoAppointmentsGraph = (session: CompleteSession) => (
+const noAppointmentSessionFilter = (session: CompleteSession) => {
     // Only consider sessions that ended with 'keine Termine frei' error message
-    session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS)
-);
+    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS)
+}
 
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
@@ -36,10 +35,11 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
+        const sessionCount = history.getSessions(noAppointmentSessionFilter).length;
+
         this.title = [
             `Länge einer User-Session auf der Seite des Berliner LEAs, bis zur Fehlermeldung 'Es sind keine Termine frei.'`,
-            `Es wurden alle User-Sessions, die Länger als ${LENGTHY_SESSION_DURATION.format()} waren, ignoriert.`,
-            `Gesamtanzahl der User-Sessions: ${history.getSessions().filter(sessionFilterNoAppointmentsGraph).length}`,
+            `Gesamtanzahl der betrachteten User-Sessions: ${sessionCount}`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         ];
@@ -49,9 +49,7 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
-            const sessions = history.getSessionsByWeekday(weekday)
-                .filter(sessionFilterNoAppointmentsGraph);
-
+            const sessions = history.getSessionsByWeekday(weekday, noAppointmentSessionFilter);
             const data = sessions.map(session => {
                 return {
                     x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.axes.x.unit as TimeUnit).getAmount(),

@@ -11,14 +11,14 @@ import SessionBucket from '../buckets/SessionBucket';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { NotEnoughDataError } from '../../errors';
 
-const sessionFilter = (session: CompleteSession) => (
+const noAppointmentSessionFilter = (session: CompleteSession) => {
     // Only consider sessions that ended with 'keine Termine frei' error message
-    session.foundNoAppointment()
-);
+    return session.foundNoAppointment();
+}
 
 const bucketFilter = (bucket: SessionBucket) => {
     // Remove empty buckets
-    // return bucket.content.filter(sessionFilter).length > 0;
+    // return bucket.getSessions(noAppointmentSessionFilter).length > 0;
 
     return true;
 }
@@ -58,7 +58,7 @@ class UserSessionLengthUntilFailureByBucketGraph extends Graph<SessionHistory> {
 
             const data = buckets
                 .map(bucket => {
-                    const sessions = bucket.getSessions().filter(sessionFilter);
+                    const sessions = bucket.getSessions(noAppointmentSessionFilter);
                     const sessionDurations = sessions.map(session => session.getDuration().to(this.axes.y.unit as TimeUnit).getAmount());
 
                     return {

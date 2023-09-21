@@ -7,15 +7,17 @@ import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
 
-type Buckets = Record<Weekday, SessionBucket[]>;
+export type SessionBuckets = Record<Weekday, SessionBucket[]>;
+export type SessionFilter = (session: CompleteSession) => boolean;
+export type ErrorFilter = (error: string) => boolean;
 
 class SessionHistory {
     protected version: number;
-    protected buckets: Buckets;
+    protected buckets: SessionBuckets;
     protected bucketSize: TimeDuration;
     protected mergedBucketsOnWorkdayBasis: VersionedData<SessionBucket[]>;
 
-    public constructor (buckets: Buckets, bucketSize: TimeDuration) {
+    public constructor (buckets: SessionBuckets, bucketSize: TimeDuration) {
         this.version = 0;
         this.buckets = buckets;
         this.bucketSize = bucketSize;
@@ -93,28 +95,31 @@ class SessionHistory {
         return this.mergedBucketsOnWorkdayBasis.data;
     }
 
-    public getSessionsByWeekday(weekday: Weekday): CompleteSession[] {
+    public getSessionsByWeekday(weekday: Weekday, sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return this.getBucketsByWeekday(weekday)
             .map(bucket => bucket.getSessions())
             .reduce((prev, sessions) => {
                 return [...prev, ...sessions];
             }, [] as CompleteSession[])
+            .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
 
-    public getSessions(): CompleteSession[] {
+    public getSessions(sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return WEEKDAYS
             .reduce((prev, weekday) => {
                 return [...prev, ...this.getSessionsByWeekday(weekday)];
             }, [] as CompleteSession[])
+            .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
 
-    public getWorkdaySessions(): CompleteSession[] {
+    public getWorkdaySessions(sessionFilter: SessionFilter = () => true): CompleteSession[] {
         return WORKDAYS
             .reduce((prev, weekday) => {
                 return [...prev, ...this.getSessionsByWeekday(weekday)];
             }, [] as CompleteSession[])
+            .filter(sessionFilter)
             .sort((a, b) => a.compare(b));
     }
     
@@ -135,25 +140,26 @@ class SessionHistory {
     }
 
     public getSuccesses() {
-        return this.getSessions()
-            .filter(session => session.foundAppointment());
+        return this.getSessions(session => session.foundAppointment());
     }
 
-    public getErrors() {
+    public getErrors(errorFilter: ErrorFilter = () => true) {
         return WEEKDAYS.reduce((errors, weekday) => {
             return [...errors, ...this.getErrorsByWeekday(weekday)];
-        }, [] as string[]);
+        }, [] as string[])
+        .filter(errorFilter);
     }
 
-    public getUniqueErrors() {
-        return unique(this.getErrors());
+    public getUniqueErrors(errorFilter: ErrorFilter = () => true) {
+        return unique(this.getErrors(errorFilter));
     }
 
-    public getErrorsByWeekday(weekday: Weekday) {
+    public getErrorsByWeekday(weekday: Weekday, errorFilter: ErrorFilter = () => true) {
         return this.getSessionsByWeekday(weekday)
             .reduce((errors, session) => {
                 return [...errors, ...session.getErrors()];
-            }, [] as string[]);
+            }, [] as string[])
+            .filter(errorFilter);
     }
 
     public getErrorCounts() {

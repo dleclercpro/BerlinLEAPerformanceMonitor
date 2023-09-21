@@ -1,4 +1,5 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
+import { CAN_BE_UNDERSTOOD_AS_NO_APPOINTMENT_AVAILABLE_ERRORS } from '../../config/errors';
 import { LogMessage } from '../../constants';
 import { FIVE_MINUTES } from '../../constants/times';
 import { NoResultsError, InfiniteSpinnerError, NoAppointmentsError, TimeoutError } from '../../errors';
@@ -44,14 +45,14 @@ class CompleteSession extends Session implements Comparable {
     }
 
     public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
-        const errors = [NoAppointmentsError, NoResultsError, InfiniteSpinnerError, TimeoutError].map(error => error.name);
+        const errors = CAN_BE_UNDERSTOOD_AS_NO_APPOINTMENT_AVAILABLE_ERRORS.map(error => error.name);
 
         return (
             this.errors.length === 1 &&
-            // Ignore unreasonably long sessions if desired
-            (!ignoreUnreasonablyLongSessions || this.isDurationReasonable()) &&
             // Only consider a subset of errors
-            errors.includes(this.errors[0])
+            errors.includes(this.errors[0]) &&
+            // Ignore unreasonably long sessions if desired
+            (!ignoreUnreasonablyLongSessions || !this.isDurationReasonable())
         );
     }
 

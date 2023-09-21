@@ -3,6 +3,7 @@ import { generateEmptyCounts, toCountsFromArray } from '../../utils/array';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
 import CompleteSession from '../sessions/CompleteSession';
+import { SessionFilter } from '../sessions/SessionHistory';
 import Bucket from './Bucket';
 
 class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
@@ -15,8 +16,8 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
         return this.end;
     }
 
-    public getSessions() {
-        return this.data;
+    public getSessions(sessionFilter: SessionFilter = () => true) {
+        return this.data.filter(sessionFilter);
     }
 
     public getErrorCounts(errorFilter: (error: string) => boolean = () => true): ErrorCounts {
