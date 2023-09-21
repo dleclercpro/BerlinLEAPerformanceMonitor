@@ -134,7 +134,7 @@ class SessionHistory {
     }
 
     public getSuccesses() {
-        return this.getSessions(session => session.foundAppointment());
+        return this.getSessions(session => session.wasAppointmentFound());
     }
 
     public getErrors(errorFilter: ErrorFilter = () => true) {

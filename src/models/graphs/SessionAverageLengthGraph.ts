@@ -7,29 +7,14 @@ import { getAverage } from '../../utils/math';
 import Graph from './Graph';
 import { ChartType, Color as ChartColor } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
-import SessionBucket from '../buckets/SessionBucket';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
-import { NotEnoughDataError } from '../../errors';
 
-const IGNORE_LENGTHY_SESSIONS = true;
-
-const noAppointmentSessionFilter = (session: CompleteSession) => {
-    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
-}
-
-const bucketFilter = (bucket: SessionBucket) => {
-    // Remove empty buckets
-    // return bucket.getSessions(noAppointmentSessionFilter).length > 0;
-
-    return true;
+const wasSessionFailure = (session: CompleteSession) => {
+    return session.wasFailure() && session.isDurationReasonable();
 }
 
 
 
-/**
- * This graph shows how long it takes a user to reach the 'keine Termine frei'
- * message using buckets.
- */
 class SessionAverageLengthGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
     protected axes: GraphAxes = {
@@ -38,16 +23,16 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
     };
 
     public async draw(history: SessionHistory) {
-        if (history.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
-
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
+        const sessionCount = history.getSessions(wasSessionFailure).length;
+
         this.title = [
-            `Durchschnittliche Länge einer User-Session auf der Seite des Berliner LEAs`,
+            `Durchschnittliche Länge einer User-Session auf der LEA-Seite`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Anzahl der User-Sessions: ${sessionCount}`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
-            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         ];
 
         await super.draw(history);
@@ -55,12 +40,11 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
-            const buckets = history.getBucketsByWeekday(weekday)
-                .filter(bucketFilter);
+            const buckets = history.getBucketsByWeekday(weekday);
 
             const data = buckets
                 .map(bucket => {
-                    const sessions = bucket.getSessions(noAppointmentSessionFilter);
+                    const sessions = bucket.getSessions(wasSessionFailure);
                     const sessionDurations = sessions.map(session => session.getDuration().to(this.axes.y.unit as TimeUnit).getAmount());
 
                     return {

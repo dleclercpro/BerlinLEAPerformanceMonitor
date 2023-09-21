@@ -3,14 +3,12 @@ import Graph from './Graph';
 import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
 import { ERROR_COLORS } from '../../config/styles';
 import SessionHistory from '../sessions/SessionHistory';
-import { isErrorKnown } from '../../utils/errors';
+import { isKnownBug } from '../../utils/event';
 import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
-import { NotEnoughDataError } from '../../errors';
 import assert from 'assert';
 import { equals, sum } from '../../utils/math';
-import logger from '../../logger';
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
@@ -20,17 +18,13 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     };
 
     public async draw(history: SessionHistory) {
-        if (history.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
-
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
         this.title = [
-            `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs`,
-            `zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
+            `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs an Werktagen auf der LEA-Seite`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
-            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
         ];
 
         await super.draw(history);
@@ -38,7 +32,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
 
     protected generateDatasets(history: SessionHistory) {
         const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
-        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isErrorKnown));
+        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownBug));
                 
         // Gather all unique errors on workdays
         const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: ErrorCounts) => {

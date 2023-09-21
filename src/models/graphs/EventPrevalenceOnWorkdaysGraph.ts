@@ -4,14 +4,13 @@ import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
 import { ERROR_COLORS } from '../../config/styles';
 import { equals, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
-import { isErrorKnown } from '../../utils/errors';
+import { isKnownEvent } from '../../utils/event';
 import { fromCountsToArray, unique } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
-import { NotEnoughDataError } from '../../errors';
 import assert from 'assert';
 
-class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
+class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
@@ -19,19 +18,15 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     };
 
     public async draw(history: SessionHistory) {
-        if (history.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
-
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
-        const totalErrorCount = history.getErrors(isErrorKnown).length;
+        const totalErrorCount = history.getErrors(isKnownEvent).length;
 
         this.title = [
-            `Prävalenz aller während einer User-Session erlebten Bugs zwischen Montag und Freitag auf der Seite des Berliner LEAs`,
-            `Gesamtanzahl der gemessenen Bugs: ${totalErrorCount}`,
-            `Bucket-Größe: ${history.getBucketSize().format()}`,
-            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Prävalenz aller Ereignisse während einer User-Session an Werktagen auf der LEA-Seite`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Bucket-Größe: ${history.getBucketSize().format()} | Anzahl der Ereignissen: ${totalErrorCount}`,
         ];
 
         await super.draw(history);
@@ -39,7 +34,7 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
 
     protected generateDatasets(history: SessionHistory) {
         const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
-        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isErrorKnown));
+        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownEvent));
         
         // Gather all unique errors on workdays
         const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: ErrorCounts) => {
@@ -86,4 +81,4 @@ class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 }
 
-export default ErrorPrevalenceOnWorkdaysGraph;
+export default EventPrevalenceOnWorkdaysGraph;

@@ -17,7 +17,7 @@
     "copy-data": "copyfiles -a -u 2 ./data/production/**/* ./data/local",
     "delete-data": "rimraf ./data/local",
 
-    "build": "tsc -p ./tsconfig.local.json && npm run copy-data",
+    "build": "tsc -p ./tsconfig.json && npm run copy-data",
     "bot:build": "tsc -p ./tsconfig.bot.json",
 
     "clean": "rimraf ./dist/local && npm run delete-data",

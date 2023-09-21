@@ -7,7 +7,7 @@ import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDateForFilename } from './utils/locale';
 import SessionAverageLengthGraph from './models/graphs/SessionAverageLengthGraph';
 import SessionHistory from './models/sessions/SessionHistory';
-import ErrorPrevalenceOnWorkdaysGraph from './models/graphs/ErrorPrevalenceOnWorkdaysGraph';
+import EventPrevalenceOnWorkdaysGraph from './models/graphs/EventPrevalenceOnWorkdaysGraph';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
 import ErrorLikelihoodOnWorkdaysGraph from './models/graphs/ErrorLikelihoodOnWorkdaysGraph';
@@ -44,8 +44,8 @@ const generateSessionAverageLengthGraph = async (history: SessionHistory) => {
     await graph.store();
 }
 
-const generateErrorPrevalenceOnWorkdaysGraph = async (history: SessionHistory) => {
-    const graph = new ErrorPrevalenceOnWorkdaysGraph();
+const generateEventPrevalenceOnWorkdaysGraph = async (history: SessionHistory) => {
+    const graph = new EventPrevalenceOnWorkdaysGraph();
     await graph.draw(history);
     await graph.store();
 }
@@ -84,7 +84,7 @@ export const analyzeLogs = async (filepath: string) => {
 
     await generateSessionLengthGraph(hourlyHistory);
     await generateSessionAverageLengthGraph(hourlyHistory);
-    await generateErrorPrevalenceOnWorkdaysGraph(biHourlyHistory);
+    await generateEventPrevalenceOnWorkdaysGraph(biHourlyHistory);
     await generateErrorLikelihoodOnWorkdaysGraph(biHourlyHistory);
 
     summarizeHistory(hourlyHistory);

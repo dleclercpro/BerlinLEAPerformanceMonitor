@@ -1,6 +1,6 @@
 import { LogMessage } from '../../constants';
 import logger from '../../logger';
-import { isErrorKnown } from '../../utils/errors';
+import { isKnownEvent } from '../../utils/event';
 import Bot from '../bots/Bot';
 
 abstract class Scenario {
@@ -15,10 +15,10 @@ abstract class Scenario {
             await this.doExecute(bot);
 
         } catch (err: any) {
-            if (isErrorKnown(err.name)) {
-                logger.error({ err: err.name }, LogMessage.KnownError);
+            if (isKnownEvent(err.name)) {
+                logger.error({ err: err.name }, LogMessage.KnownEvent);
             } else {
-                logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownError);
+                logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownEvent);
             }
             
             throw err;

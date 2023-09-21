@@ -6,11 +6,15 @@ import { GraphAxes, GraphAxis, Size } from '../../types';
 import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
 import { Color } from '../../constants/styles';
 import { IMG_DIR } from '../../config/file';
+import { NotEnoughDataError } from '../../errors';
 
 // Do not remove: enables working with time scales
 require('chartjs-adapter-moment');
 
 
+export interface GraphData {
+    getSize(): number;
+}
 
 export type GraphDataset = {
     label: string,
@@ -20,7 +24,7 @@ export type GraphDataset = {
 
 
 
-abstract class Graph<Data> {
+abstract class Graph<Data extends GraphData> {
     protected abstract type: ChartType;
     protected abstract axes: GraphAxes;
 
@@ -39,6 +43,8 @@ abstract class Graph<Data> {
     }
 
     public async draw(data: Data) {
+        if (data.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
+
         logger.debug(`Drawing '${this.name}' graph.`);
 
         const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: Color.White });

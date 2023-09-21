@@ -8,20 +8,13 @@ import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { WEEKDAY_COLORS } from '../../config/styles';
-import { NotEnoughDataError } from '../../errors';
 
-const IGNORE_LENGTHY_SESSIONS = true;
-
-const noAppointmentSessionFilter = (session: CompleteSession) => {
-    return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
+const wasSessionFailure = (session: CompleteSession) => {
+    return session.wasFailure() && session.isDurationReasonable();
 }
 
 
 
-/**
- * This graph shows how long it takes a user to reach the 'keine Termine frei'
- * message on an hourly basis.
- */
 class SessionLengthGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'scatter';
     protected axes: GraphAxes = {
@@ -30,18 +23,15 @@ class SessionLengthGraph extends Graph<SessionHistory> {
     };
 
     public async draw(history: SessionHistory) {
-        if (history.getSize() < 2) throw new NotEnoughDataError('Not enough data to plot graph.');
-        
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
-        const sessionCount = history.getSessions(noAppointmentSessionFilter).length;
+        const sessionCount = history.getSessions(wasSessionFailure).length;
 
         this.title = [
-            `Länge einer User-Session auf der Seite des Berliner LEA`,
-            `Gesamtanzahl der betrachteten User-Sessions: ${sessionCount}`,
-            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Länge einer User-Session auf der LEA-Seite`,
+            `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
+            `Anzahl der User-Sessions: ${sessionCount}`,
         ];
 
         await super.draw(history);
@@ -49,7 +39,7 @@ class SessionLengthGraph extends Graph<SessionHistory> {
 
     protected generateDatasets(history: SessionHistory) {
         return WEEKDAYS.map((weekday, i) => {
-            const sessions = history.getSessionsByWeekday(weekday, noAppointmentSessionFilter);
+            const sessions = history.getSessionsByWeekday(weekday, wasSessionFailure);
             const data = sessions.map(session => {
                 return {
                     x: getTimeSpentSinceMidnight(session.getStartTime()).to(this.axes.x.unit as TimeUnit).getAmount(),

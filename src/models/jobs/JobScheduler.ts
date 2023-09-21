@@ -40,7 +40,9 @@ class JobScheduler {
                     })
                     .catch((err) => {
                         logger.fatal(`There was an error while executing job '${job.getName()}'!`);
-                        logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownError);
+
+                        // TO TEST
+                        logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownEvent);
                     });
             },
             options,

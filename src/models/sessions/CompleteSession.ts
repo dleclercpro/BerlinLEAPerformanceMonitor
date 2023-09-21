@@ -1,8 +1,7 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
-import { NO_APPOINTMENT_ERRORS } from '../../config/errors';
 import { LogMessage } from '../../constants';
 import { Comparable, TimeUnit } from '../../types';
-import { isErrorKnown } from '../../utils/errors';
+import { isKnownBug, isSessionFailureEvent } from '../../utils/event';
 import TimeDuration from '../TimeDuration';
 import Session, { SessionArgs } from './Session';
 
@@ -45,10 +44,6 @@ class CompleteSession extends Session implements Comparable {
         return this.endTime!;
     }
 
-    public hasError() {
-        return !!this.error;
-    }
-
     public getError() {
         return this.error;
     }
@@ -56,24 +51,25 @@ class CompleteSession extends Session implements Comparable {
     // The session was completed, no error was detected, and
     // the success message was logged: there seems to be an
     // appointment available!
-    public foundAppointment() {
+    public wasAppointmentFound() {
         const logMessages = this.logs.map(log => log.msg);
 
-        return !this.hasError() && logMessages.includes(LogMessage.Success);
-    }
-
-    public foundNoAppointment(ignoreUnreasonablyLongSessions: boolean = false) {
         return (
-            this.hasError() &&
-            // Only consider a subset of errors
-            NO_APPOINTMENT_ERRORS.includes(this.error!) &&
-            // Ignore unreasonably long sessions if desired
-            (!ignoreUnreasonablyLongSessions || this.isDurationReasonable())
+            !this.error &&
+            logMessages.includes(LogMessage.Success)
         );
     }
 
-    public hasUnknownError() {
-        return this.hasError() && !isErrorKnown(this.error!);
+    // The session was not completed: there was a bug that
+    // hindered the user's journey
+    public wasBuggy() {
+        return !!this.error && isKnownBug(this.error);
+    }
+
+    // The sessions was completed, but it can be understood
+    // as a failure to find an appointment
+    public wasFailure() {
+        return !!this.error && isSessionFailureEvent(this.error);
     }
 
     public getDuration() {

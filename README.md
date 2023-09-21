@@ -52,7 +52,7 @@ Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio betw
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
 <p align="center" width="100%">
-  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/ErrorPrevalenceOnWorkdaysGraph.png" width="100%" />
+  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/EventPrevalenceOnWorkdaysGraph.png" width="100%" />
 </p>
 
 ### Likelihood of Errors on Workdays (Monday to Friday)
