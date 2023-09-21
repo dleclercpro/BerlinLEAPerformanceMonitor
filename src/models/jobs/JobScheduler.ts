@@ -38,7 +38,9 @@ class JobScheduler {
                         logger.debug(`Executed job '${job.getName()}'.`);
                     })
                     .catch((err) => {
-                        logger.fatal(err, `There was an error while executing job '${job.getName()}'!`);
+                        logger.fatal(`There was an error while executing job '${job.getName()}'!`);
+
+                        throw err;
                     });
             },
             options,

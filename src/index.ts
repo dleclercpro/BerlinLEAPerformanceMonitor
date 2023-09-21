@@ -12,6 +12,7 @@ import BotJob from './models/jobs/BotJob';
 import { POLL, ONCE, UPLOAD, BOT, ANALYZE } from './config/bot';
 import { analyzeLogs } from './analysis';
 import { LOGS_FILEPATH } from './config/file';
+import logger from './logger';
 
 
 
@@ -69,7 +70,9 @@ const execute = async () => {
 
 
 if ([Environment.Development, Environment.Production].includes(ENV)) {
-    execute();
+    execute().catch((err) => {
+        logger.fatal(`Stopping everything. Did not catch error: ${err}`);
+    });
 }
 
 

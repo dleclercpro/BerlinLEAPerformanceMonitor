@@ -7,7 +7,6 @@ import { ONE_DAY, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
-import { InvalidSessionError } from '../../errors';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -58,10 +57,11 @@ class SessionHistoryBuilder {
                 logger.trace(`Finishing session: ${session.getId()}`);
                 session.end(new Date(log.time));
 
-                // Has session more than one error?
+                // Has session more than one error: it is invalid!
                 const errorCount = session.getErrors().length;
                 if (errorCount > 1) {
-                    throw new InvalidSessionError(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
+                    logger.warn(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
+                    return;
                 }
                 const error = session.getErrors()[0];
 

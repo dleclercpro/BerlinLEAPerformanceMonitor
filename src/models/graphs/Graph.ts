@@ -39,7 +39,7 @@ abstract class Graph<Data> {
     }
 
     public async draw(data: Data) {
-        logger.info(`Drawing '${this.name}' graph.`);
+        logger.debug(`Drawing '${this.name}' graph.`);
 
         const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: Color.White });
         const datasets = this.generateDatasets(data);
@@ -48,7 +48,7 @@ abstract class Graph<Data> {
             options: this.generateOptions(),
             data: {
                 datasets: datasets.map(({ data, label, color }: GraphDataset) => {
-                    logger.debug(`Drawing ${data.length} datapoints of '${label}' dataset.`);
+                    logger.trace(`Drawing ${data.length} datapoints of '${label}' dataset.`);
                     return {
                         ...this.generateDatasetOptions(label, color),
                         data,
