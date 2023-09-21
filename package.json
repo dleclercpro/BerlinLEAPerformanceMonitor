@@ -9,7 +9,7 @@
     
     "poll": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll",
     "poll:once": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll --once",
-    "analyze": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --analyze --once",
+    "analyze": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --analyze",
 
     "compile": "npm run clean && npm run build",
     "bot:compile": "npm run bot:clean && npm run bot:build",
