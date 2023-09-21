@@ -32,25 +32,25 @@ const parseLogs = async (filepath: string) => {
 
 
 
-const generateUserSessionLengthUntilFailureGraph = async (history: SessionHistory) => {
+const generateSessionLengthGraph = async (history: SessionHistory) => {
     const graph = new SessionLengthGraph();
     await graph.draw(history);
     await graph.store();
 }
 
-const generateUserSessionLengthUntilFailureBucketGraph = async (history: SessionHistory) => {
+const generateSessionAverageLengthGraph = async (history: SessionHistory) => {
     const graph = new SessionAverageLengthGraph();
     await graph.draw(history);
     await graph.store();
 }
 
-const generateErrorPrevalenceOnWorkdaysBucketGraph = async (history: SessionHistory) => {
+const generateErrorPrevalenceOnWorkdaysGraph = async (history: SessionHistory) => {
     const graph = new ErrorPrevalenceOnWorkdaysGraph();
     await graph.draw(history);
     await graph.store();
 }
 
-const generateErrorLikelihoodOnWorkdaysBucketGraph = async (history: SessionHistory) => {
+const generateErrorLikelihoodOnWorkdaysGraph = async (history: SessionHistory) => {
     const graph = new ErrorLikelihoodOnWorkdaysGraph();
     await graph.draw(history);
     await graph.store();
@@ -82,10 +82,10 @@ export const analyzeLogs = async (filepath: string) => {
     const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
     const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));
 
-    await generateUserSessionLengthUntilFailureGraph(hourlyHistory);
-    await generateUserSessionLengthUntilFailureBucketGraph(hourlyHistory);
-    await generateErrorPrevalenceOnWorkdaysBucketGraph(biHourlyHistory);
-    await generateErrorLikelihoodOnWorkdaysBucketGraph(biHourlyHistory);
+    await generateSessionLengthGraph(hourlyHistory);
+    await generateSessionAverageLengthGraph(hourlyHistory);
+    await generateErrorPrevalenceOnWorkdaysGraph(biHourlyHistory);
+    await generateErrorLikelihoodOnWorkdaysGraph(biHourlyHistory);
 
     summarizeHistory(hourlyHistory);
 }
