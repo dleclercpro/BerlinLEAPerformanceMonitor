@@ -1,13 +1,13 @@
 import { NoAppointmentsError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError } from '../errors';
 
-export const NO_APPOINTMENT_AVAILABLE_ERRORS = [
+export const NO_APPOINTMENT_ERRORS = [
     NoAppointmentsError,
     NoInformationError,
     NoResultsError,
     InfiniteSpinnerError,
     MissingElementError,
     UIError,
-];
+].map(err => err.name);
 
 export const KNOWN_UNEXPECTED_ERRORS = [
     NoInformationError,
@@ -17,9 +17,9 @@ export const KNOWN_UNEXPECTED_ERRORS = [
     MissingElementError,
     InfiniteSpinnerError,
     UIError,
-];
+].map(err => err.name);
 
 export const KNOWN_ERRORS = [
     ...KNOWN_UNEXPECTED_ERRORS,
-    NoAppointmentsError,
+    ...[NoAppointmentsError].map(err => err.name),
 ];
