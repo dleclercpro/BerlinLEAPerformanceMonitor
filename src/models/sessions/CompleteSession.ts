@@ -55,11 +55,11 @@ class CompleteSession extends Session implements Comparable {
         );
     }
 
-    public hasUnexpectedErrors() {
-        return this.getUnexpectedErrors().length > 0;
+    public hasUnknownErrors() {
+        return this.getUnknownErrors().length > 0;
     }
 
-    public getUnexpectedErrors() {
+    public getUnknownErrors() {
         return this.getErrors()
             .filter(error => !isErrorKnown(error));
     }
