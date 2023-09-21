@@ -19,11 +19,11 @@ const parseLogs = async (filepath: string) => {
 
     const file = await readFile(filepath);
 
-    const logs = file
+    const logs: Log[] = file
         .split(NEW_LINE_REGEXP)
-        .filter(Boolean)
-        .map(line => JSON.parse(line) as Log)
-        .filter(log => (log.msg !== undefined)); // Something is wrong with this log: there should always be a message!
+        .filter((textLog: string) => textLog.startsWith('{') && textLog.endsWith('}'))
+        .map((textLog, i) => ({ line: i + 1, ...JSON.parse(textLog) }))
+        .filter((log) => (!!log && !!log.msg)); // Every log should have a message
 
     logger.info(`Parsed ${logs.length} logs.`);
 

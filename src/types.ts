@@ -71,6 +71,7 @@ export interface Comparable {
 export type ErrorCounts = Record<string, number>;
 
 export type Log = {
+    line: number,
     time: number,
     level: number,
     pid: number,

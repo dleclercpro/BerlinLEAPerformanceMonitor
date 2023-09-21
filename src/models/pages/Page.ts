@@ -74,9 +74,7 @@ abstract class Page {
     }
 
     protected async waitUntilSpinnerGone() {
-        if (!await this.isSpinnerVisible()) {
-            return;
-        }
+        if (!await this.isSpinnerVisible()) return;
 
         logger.trace(`Wait for spinner to disappear...`);
 

@@ -31,40 +31,38 @@ const hasFoundAppointment = async (bot: Bot) => {
 
 
 const execute = async () => {
-    if (POLL) {
-        let executedOnce = false;
+    let executedOnce = false;
 
-        if (TEST_ALARM) {
-            await Alarm.ring();
-        }
-        
-        // When polling endlessly, generate graphs once in a while,
-        // and upload them, if required
-        if (BOT) {
-            JobScheduler.schedule({
-                job: new BotJob({ upload: UPLOAD, analyze: ANALYZE }),
-                expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
-            });
-        }
-
-        while (!ONCE || !executedOnce) {
-            const bot = new ChromeBot();
+    if (TEST_ALARM) {
+        await Alarm.ring();
+    }
     
-            if (await hasFoundAppointment(bot)) {
-        
-                // Play alarm to wake up user!
-                for (let _ of getRange(N_ALARMS_ON_SUCCESS)) {
-                    await Alarm.ring();
-                    await sleep(VERY_SHORT_TIME);
-                }
+    // When polling endlessly, generate graphs once in a while,
+    // and upload them, if required
+    if (BOT) {
+        JobScheduler.schedule({
+            job: new BotJob({ upload: UPLOAD, analyze: ANALYZE }),
+            expression: EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY,
+        });
+    }
+
+    while (POLL && (!ONCE || !executedOnce)) {
+        const bot = new ChromeBot();
+
+        if (await hasFoundAppointment(bot)) {
+    
+            // Play alarm to wake up user!
+            for (let _ of getRange(N_ALARMS_ON_SUCCESS)) {
+                await Alarm.ring();
+                await sleep(VERY_SHORT_TIME);
             }
-
-            executedOnce = true;
         }
 
-        if (ONCE && ANALYZE) {
-            await analyzeLogs(LOGS_FILEPATH);
-        }
+        executedOnce = true;
+    }
+
+    if (ANALYZE) {
+        await analyzeLogs(LOGS_FILEPATH);
     }
 }
 
