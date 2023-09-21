@@ -63,6 +63,7 @@ class SessionHistoryBuilder {
                 if (errorCount > 1) {
                     throw new InvalidSessionError(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
                 }
+                const error = session.getErrors()[0];
 
                 // Store complete session in history
                 history.addSession(new CompleteSession({
@@ -70,7 +71,7 @@ class SessionHistoryBuilder {
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),
-                    error: session.getErrors()[0],
+                    error,
                 }));
             }
         });

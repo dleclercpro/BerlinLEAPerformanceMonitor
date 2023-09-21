@@ -39,22 +39,23 @@ abstract class Graph<Data> {
     }
 
     public async draw(data: Data) {
-        logger.info(`Drawing '${this.name}' graph...`);
+        logger.info(`Drawing '${this.name}' graph.`);
 
         const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: Color.White });
-        const config: ChartConfiguration = {
+        const datasets = this.generateDatasets(data);
+        const config = {
             type: this.type,
             options: this.generateOptions(),
             data: {
-                datasets: this.generateDatasets(data)
-                    .map(({ data, label, color }: GraphDataset) => {
-                        return {
-                            ...this.generateDatasetOptions(label, color),
-                            data,
-                        };
-                    }),
+                datasets: datasets.map(({ data, label, color }: GraphDataset) => {
+                    logger.debug(`Drawing ${data.length} datapoints of '${label}' dataset.`);
+                    return {
+                        ...this.generateDatasetOptions(label, color),
+                        data,
+                    };
+                }),
             },
-        };
+        } as ChartConfiguration;
     
         this.img = await canvas.renderToBuffer(config, this.mimeType);    
     }
