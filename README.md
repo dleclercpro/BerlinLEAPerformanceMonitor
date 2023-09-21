@@ -25,14 +25,14 @@ Time spent on LEA's website until a user can reasonably conclude that there is n
 - ```UIError```
 
 <p align="center" width="100%">
-  <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/UserSessionLengthUntilFailure.png" width="100%" />
+  <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/SessionLengthGraph.png" width="100%" />
 </p>
 
 ### Average Length of User Session Until Failure
 Average time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment. Said average is computed for each time bucket.
 
 <p align="center" width="100%">
-  <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/UserSessionLengthUntilFailureByBucket.png" width="100%" />
+  <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/SessionAverageLengthGraph.png" width="100%" />
 </p>
 
 ### Prevalence of Experienced Errors on Workdays (Monday to Friday)
@@ -51,7 +51,7 @@ Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio betw
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
 <p align="center" width="100%">
-  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/ErrorPrevalenceOnWorkdaysByBucket.png" width="100%" />
+  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/ErrorPrevalenceOnWorkdaysGraph.png" width="100%" />
 </p>
 
 ### Likelihood of Errors on Workdays (Monday to Friday)
@@ -61,7 +61,7 @@ assignment feature altogether.
 Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays.
 
 <p align="center" width="100%">
-  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorLikelihoodOnWorkdaysByBucket.png" width="100%" />
+  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorLikelihoodOnWorkdaysGraph.png" width="100%" />
 </p>
 
 ## Recommendations

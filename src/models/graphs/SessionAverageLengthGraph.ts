@@ -11,7 +11,7 @@ import SessionBucket from '../buckets/SessionBucket';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { NotEnoughDataError } from '../../errors';
 
-const IGNORE_LENGTHY_SESSIONS = false;
+const IGNORE_LENGTHY_SESSIONS = true;
 
 const noAppointmentSessionFilter = (session: CompleteSession) => {
     return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
@@ -24,12 +24,13 @@ const bucketFilter = (bucket: SessionBucket) => {
     return true;
 }
 
+
+
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
  * message using buckets.
  */
-class UserSessionLengthUntilFailureByBucketGraph extends Graph<SessionHistory> {
-    protected name: string = 'UserSessionLengthUntilFailureByBucket';
+class SessionAverageLengthGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
@@ -90,4 +91,4 @@ class UserSessionLengthUntilFailureByBucketGraph extends Graph<SessionHistory> {
     }
 }
 
-export default UserSessionLengthUntilFailureByBucketGraph;
+export default SessionAverageLengthGraph;

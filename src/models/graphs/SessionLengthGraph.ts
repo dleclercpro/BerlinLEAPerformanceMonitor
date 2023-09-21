@@ -16,12 +16,13 @@ const noAppointmentSessionFilter = (session: CompleteSession) => {
     return session.foundNoAppointment(IGNORE_LENGTHY_SESSIONS);
 }
 
+
+
 /**
  * This graph shows how long it takes a user to reach the 'keine Termine frei'
  * message on an hourly basis.
  */
-class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
-    protected name: string = 'UserSessionLengthUntilFailure';
+class SessionLengthGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'scatter';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
@@ -70,4 +71,4 @@ class UserSessionLengthUntilFailureGraph extends Graph<SessionHistory> {
     }
 }
 
-export default UserSessionLengthUntilFailureGraph;
+export default SessionLengthGraph;

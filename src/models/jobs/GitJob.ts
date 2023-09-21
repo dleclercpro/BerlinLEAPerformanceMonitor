@@ -7,8 +7,6 @@ import { getTimeZone } from '../../utils/time';
 import Job from './Job';
 
 class GitJob extends Job {
-    protected name: string = 'GitJob';
-    
     protected remote: GitRemote;
     protected author: GitAuthor;
 

@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
-import { MissingElementError, TimeoutError } from '../../errors';
+import { AggregateError, MissingElementError, TimeoutError } from '../../errors';
 import { touchFile, writeFile } from '../../utils/file';
 
 abstract class Bot {

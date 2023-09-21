@@ -21,10 +21,10 @@ export type GraphDataset = {
 
 
 abstract class Graph<Data> {
-    protected abstract name: string;
     protected abstract type: ChartType;
     protected abstract axes: GraphAxes;
 
+    protected name: string = this.constructor.name;
     protected title?: string[];
     protected size: Size;
     protected img?: Buffer;

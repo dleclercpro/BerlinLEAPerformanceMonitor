@@ -12,8 +12,6 @@ import Scenario from './Scenario';
 class GetBlueCardAppointmentScenario extends Scenario {
     private static instance: GetBlueCardAppointmentScenario;
 
-    protected name: string = 'GetBlueCardAppointment';
-
     private constructor() {
         super();
     }

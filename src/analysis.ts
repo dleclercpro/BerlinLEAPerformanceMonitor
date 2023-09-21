@@ -1,16 +1,16 @@
 import { NEW_LINE_REGEXP } from './constants';
 import logger from './logger';
-import UserSessionLengthUntilFailureGraph from './models/graphs/UserSessionLengthUntilFailureGraph';
+import SessionLengthGraph from './models/graphs/SessionLengthGraph';
 import { Log, TimeUnit } from './types';
 import { readFile } from './utils/file';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import { formatDateForFilename } from './utils/locale';
-import UserSessionLengthUntilFailureByBucketGraph from './models/graphs/UserSessionLengthUntilFailureByBucketGraph';
+import SessionAverageLengthGraph from './models/graphs/SessionAverageLengthGraph';
 import SessionHistory from './models/sessions/SessionHistory';
-import ErrorPrevalenceOnWorkdaysByBucketGraph from './models/graphs/ErrorPrevalenceOnWorkdaysByBucketGraph';
+import ErrorPrevalenceOnWorkdaysGraph from './models/graphs/ErrorPrevalenceOnWorkdaysGraph';
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
-import ErrorLikelihoodOnWorkdaysByBucketGraph from './models/graphs/ErrorLikelihoodOnWorkdaysByBucketGraph';
+import ErrorLikelihoodOnWorkdaysGraph from './models/graphs/ErrorLikelihoodOnWorkdaysGraph';
 
 
 
@@ -33,25 +33,25 @@ const parseLogs = async (filepath: string) => {
 
 
 const generateUserSessionLengthUntilFailureGraph = async (history: SessionHistory) => {
-    const graph = new UserSessionLengthUntilFailureGraph();
+    const graph = new SessionLengthGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateUserSessionLengthUntilFailureBucketGraph = async (history: SessionHistory) => {
-    const graph = new UserSessionLengthUntilFailureByBucketGraph();
+    const graph = new SessionAverageLengthGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorPrevalenceOnWorkdaysBucketGraph = async (history: SessionHistory) => {
-    const graph = new ErrorPrevalenceOnWorkdaysByBucketGraph();
+    const graph = new ErrorPrevalenceOnWorkdaysGraph();
     await graph.draw(history);
     await graph.store();
 }
 
 const generateErrorLikelihoodOnWorkdaysBucketGraph = async (history: SessionHistory) => {
-    const graph = new ErrorLikelihoodOnWorkdaysByBucketGraph();
+    const graph = new ErrorLikelihoodOnWorkdaysGraph();
     await graph.draw(history);
     await graph.store();
 }

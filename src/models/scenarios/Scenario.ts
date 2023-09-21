@@ -4,7 +4,7 @@ import { isErrorKnown } from '../../utils/errors';
 import Bot from '../bots/Bot';
 
 abstract class Scenario {
-    protected abstract name: string;
+    protected name: string = this.constructor.name;
 
     protected abstract doExecute(bot: Bot): Promise<void>;
 

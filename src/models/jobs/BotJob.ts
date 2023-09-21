@@ -10,7 +10,6 @@ interface Args {
 }
 
 class BotJob extends Job {
-    protected name: string = 'BotJob';
     protected upload: boolean;
     protected analyze: boolean;
 

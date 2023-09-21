@@ -1,7 +1,7 @@
 import { ExecOptions, exec } from 'child_process';
 
 abstract class Job {
-    protected abstract name: string;
+    protected name: string = this.constructor.name;
 
     public abstract execute(): Promise<void>;
 

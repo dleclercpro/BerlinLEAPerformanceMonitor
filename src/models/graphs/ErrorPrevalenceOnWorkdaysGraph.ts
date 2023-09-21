@@ -10,8 +10,7 @@ import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { NotEnoughDataError } from '../../errors';
 
-class ErrorPrevalenceOnWorkdaysByBucketGraph extends Graph<SessionHistory> {
-    protected name: string = 'ErrorPrevalenceOnWorkdaysByBucket';
+class ErrorPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
@@ -81,4 +80,4 @@ class ErrorPrevalenceOnWorkdaysByBucketGraph extends Graph<SessionHistory> {
     }
 }
 
-export default ErrorPrevalenceOnWorkdaysByBucketGraph;
+export default ErrorPrevalenceOnWorkdaysGraph;

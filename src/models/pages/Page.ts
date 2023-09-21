@@ -23,10 +23,9 @@ const ELEMENTS = {
 };
 
 abstract class Page {
+    protected name: string = this.constructor.name;
     protected url: string = '';
     protected bot: Bot;
-
-    protected abstract name: string;
 
     protected abstract doWaitUntilLoaded(): Promise<void>;
 
