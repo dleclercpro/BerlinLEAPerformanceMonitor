@@ -20,8 +20,6 @@ class GitJob extends Job {
     }
 
     public async execute() {
-        logger.warn(this.remote);
-
         if (!await this.hasRemote()) {
             await this.addRemote(this.remote);
         }

@@ -31,7 +31,7 @@ const getLoggerByUseCase = () => {
                 options: { destination: LOGS_FILEPATH },
             },
             {
-                level: 'trace',
+                level: 'debug',
                 target: 'pino-pretty',
                 options: { },
             }],
