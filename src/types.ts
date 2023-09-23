@@ -73,6 +73,7 @@ export type ErrorCounts = Record<string, number>;
 export type Log = {
     line: number,
     time: number,
+    version?: string,
     level: number,
     pid: number,
     msg: string,
