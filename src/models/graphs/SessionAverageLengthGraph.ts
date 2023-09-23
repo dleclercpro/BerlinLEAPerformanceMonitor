@@ -21,8 +21,9 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
         y: { label: `Dauer`, unit: TimeUnit.Seconds },
     };
+    protected ignoreDaysWithEmptyBuckets: boolean = false;
 
-    public async draw(history: SessionHistory) {
+    public async draw(history: SessionHistory, ignoreDaysWithEmptyBuckets: boolean = false) {
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
@@ -42,8 +43,10 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
         return WEEKDAYS.map((weekday, i) => {
             const buckets = history.getBucketsByWeekday(weekday);
 
-            const data = buckets
-                .map(bucket => {
+            const hasDataInEveryBucket = buckets.every(bucket => bucket.getSessions(wasSessionFailure).length > 0);
+
+            const data = (this.ignoreDaysWithEmptyBuckets && !hasDataInEveryBucket) ? [] :
+                buckets.map(bucket => {
                     const sessions = bucket.getSessions(wasSessionFailure);
                     const sessionDurations = sessions.map(session => session.getDuration().to(this.axes.y.unit as TimeUnit).getAmount());
 

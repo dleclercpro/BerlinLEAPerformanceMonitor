@@ -39,8 +39,10 @@ const generateSessionLengthGraph = async (history: SessionHistory) => {
 }
 
 const generateSessionAverageLengthGraph = async (history: SessionHistory) => {
+    const IGNORE_DAYS_WITH_EMPTY_BUCKETS = false;
+
     const graph = new SessionAverageLengthGraph();
-    await graph.draw(history);
+    await graph.draw(history, IGNORE_DAYS_WITH_EMPTY_BUCKETS);
     await graph.store();
 }
 
