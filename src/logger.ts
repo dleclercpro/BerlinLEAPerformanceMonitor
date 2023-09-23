@@ -3,6 +3,15 @@ import pretty from 'pino-pretty';
 import { LOGS_FILEPATH } from './config/file';
 import { Environment } from './types';
 import { POLL } from './config/bot';
+import { version } from '../package.json';
+
+const getBindings = (bindings: pino.Bindings) => {
+    return {
+        pid: bindings.pid,
+        hostname: bindings.hostname,
+        version,
+    };
+}
 
 const getLoggerByEnvironment = (env: Environment) => {
     switch (env) {
@@ -12,6 +21,9 @@ const getLoggerByEnvironment = (env: Environment) => {
         case Environment.Production:
             return pino({
                 level: 'debug',
+                formatters: {
+                    bindings: getBindings,
+                },
                 transport: {
                     target: 'pino-pretty',
                 },
@@ -24,6 +36,9 @@ const getLoggerByUseCase = () => {
     if (POLL) {
         return pino({
             level: 'trace',
+            formatters: {
+                bindings: getBindings,
+            },
         }, pino.transport({
             targets: [{
                 level: 'info',
@@ -41,6 +56,9 @@ const getLoggerByUseCase = () => {
     // Otherwise, only terminal is sufficient
     return pino({
         level: 'debug',
+        formatters: {
+            bindings: getBindings,
+        },
         transport: {
             target: 'pino-pretty',
         },
