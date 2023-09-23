@@ -57,7 +57,7 @@ const execute = async () => {
     
             // Play alarm one after the other to wake up
             // user!
-            for (let _ of getRange(N_ALARMS_ON_SUCCESS)) {
+            for (const _ of getRange(N_ALARMS_ON_SUCCESS)) {
                 await Alarm.ring();
                 await sleep(VERY_SHORT_TIME);
             }

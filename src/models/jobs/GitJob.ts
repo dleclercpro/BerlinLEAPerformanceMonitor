@@ -19,10 +19,10 @@ class GitJob extends Job {
 
     public async execute() {
         if (!await this.hasRemote()) {
-            await this.addRemote(this.remote);
+            await this.addRemote();
         }
         else if (!await this.isRemoteUrlValid()) {
-            await this.setRemoteUrl(this.remote.url);
+            await this.setRemoteUrl();
         }
 
         await this.add();
@@ -34,9 +34,9 @@ class GitJob extends Job {
         return await this.getRemoteUrl() !== '';
     }
 
-    protected async addRemote(remote: GitRemote) {
-        logger.trace(`Adding Git remote: ${remote.name}`);
-        await this.executeShell(GitCommands.AddRemote(remote.name, remote.url));
+    protected async addRemote() {
+        logger.trace(`Adding Git remote: ${this.remote.name}`);
+        await this.executeShell(GitCommands.AddRemote(this.remote.name, this.remote.url));
     }
 
     protected async isRemoteUrlValid() {
@@ -52,7 +52,7 @@ class GitJob extends Job {
             .catch(() => '');
     }
 
-    protected async setRemoteUrl(url: string) {
+    protected async setRemoteUrl() {
         logger.trace(`Setting URL for Git remote: ${this.remote.name}`);
         await this.executeShell(GitCommands.SetRemoteUrl(this.remote.name, this.remote.url));
     }

@@ -56,6 +56,6 @@ export const readJSON = async (filepath: string) => {
     return JSON.parse(await readFile(filepath));
 }
 
-export const writeJSON = async (filepath: string, data: any) => {
+export const writeJSON = async (filepath: string, data: string | Buffer) => {
     await writeFile(filepath, JSON.stringify(data, undefined, 2));
 }

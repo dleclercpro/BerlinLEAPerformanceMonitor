@@ -1,4 +1,4 @@
-import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY, EVERY_MINUTE } from '../constants/times';
+import { EVERY_MINUTE_ZERO_AND_MINUTE_THIRTY } from '../constants/times';
 import { getTerminalArgs } from '../utils/env';
 
 export const args = getTerminalArgs();

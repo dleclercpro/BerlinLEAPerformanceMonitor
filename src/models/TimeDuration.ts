@@ -100,7 +100,7 @@ class TimeDuration implements Comparable {
     public to(unit: TimeUnit) {
         let amount = 0;
 
-        let ms = this.toMs().getAmount();
+        const ms = this.toMs().getAmount();
         
         switch (unit) {
             case TimeUnit.Days:
