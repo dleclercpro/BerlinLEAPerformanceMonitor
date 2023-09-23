@@ -6,22 +6,21 @@
   "scripts": {
     "start": "cross-env ENV=development nodemon ./src/index.ts --analyze",
     "bot": "npm run bot:compile && cross-env ENV=production node ./dist/bot/src/index.js --bot",
-    
     "poll": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll",
     "poll:once": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --poll --once",
     "analyze": "npm run compile && cross-env ENV=production node ./dist/local/src/index.js --analyze",
-
     "compile": "npm run clean && npm run build",
     "bot:compile": "npm run bot:clean && npm run bot:build",
-
-    "copy-data": "copyfiles -a -u 2 ./data/production/**/* ./data/local",
+    "copy-logs": "copyfiles -a -u 3 ./data/production/logs/**/* ./data/local/logs",
     "delete-data": "rimraf ./data/local",
-
-    "build": "tsc -p ./tsconfig.json && npm run copy-data",
+    "build": "tsc -p ./tsconfig.json && npm run copy-logs",
     "bot:build": "tsc -p ./tsconfig.bot.json",
-
     "clean": "rimraf ./dist/local && npm run delete-data",
-    "bot:clean": "rimraf ./dist/bot"
+    "bot:clean": "rimraf ./dist/bot",
+    "lint": "eslint ./src",
+    "package:main": "echo \"Main: $npm_package_main\"",
+    "package:name": "echo \"Name: $npm_package_name\"",
+    "package:version": "echo \"Version: $npm_package_version\""
   },
   "dependencies": {
     "chart.js": "^3.9.1",
@@ -44,6 +43,9 @@
     "@types/node": "^18.11.18",
     "@types/node-cron": "^3.0.8",
     "@types/selenium-webdriver": "^4.1.16",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
