@@ -24,6 +24,8 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
     protected ignoreDaysWithEmptyBuckets: boolean = false;
 
     public async draw(history: SessionHistory, ignoreDaysWithEmptyBuckets: boolean = false) {
+        this.ignoreDaysWithEmptyBuckets = ignoreDaysWithEmptyBuckets;
+        
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 

@@ -6,6 +6,7 @@ import { POLL } from './bot';
 export const ENV = loadEnvironment();
 
 export const MINIMUM_VERSION = undefined;
+export const IGNORE_DAYS_WITH_EMPTY_BUCKETS = true;
 
 export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';
 

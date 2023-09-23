@@ -11,6 +11,7 @@ import EventPrevalenceOnWorkdaysGraph from './models/graphs/EventPrevalenceOnWor
 import TimeDuration from './models/TimeDuration';
 import { ONE_HOUR } from './constants/times';
 import ErrorLikelihoodOnWorkdaysGraph from './models/graphs/ErrorLikelihoodOnWorkdaysGraph';
+import { IGNORE_DAYS_WITH_EMPTY_BUCKETS } from './config';
 
 
 
@@ -39,8 +40,6 @@ const generateSessionLengthGraph = async (history: SessionHistory) => {
 }
 
 const generateSessionAverageLengthGraph = async (history: SessionHistory) => {
-    const IGNORE_DAYS_WITH_EMPTY_BUCKETS = false;
-
     const graph = new SessionAverageLengthGraph();
     await graph.draw(history, IGNORE_DAYS_WITH_EMPTY_BUCKETS);
     await graph.store();
