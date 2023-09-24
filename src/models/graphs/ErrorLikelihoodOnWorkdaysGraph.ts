@@ -1,7 +1,6 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
 import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
-import { ERROR_COLORS } from '../../config/styles';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownBug } from '../../utils/event';
 import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
@@ -9,6 +8,7 @@ import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
 import assert from 'assert';
 import { equals, sum } from '../../utils/math';
+import { getErrorColor } from '../../utils/styles';
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
@@ -44,12 +44,12 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
         const totalErrorCountsOnWorkdays = toCountsFromArray(errors);
 
         // Compute likelihood of error per bucket based on corresponding total count over workdays
-        return uniqueErrors.map((error, i) => {
+        return uniqueErrors.map((error) => {
             const data = mergedBuckets
-                .map((bucket, j) => {
+                .map((bucket, i) => {
                     const bucketErrorCounts: ErrorCounts = {
                         ...generateEmptyCounts(uniqueErrors),
-                        ...mergedBucketsErrorCounts[j],
+                        ...mergedBucketsErrorCounts[i],
                     };
 
                     return {
@@ -69,7 +69,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: error,
-                color: ERROR_COLORS[i],
+                color: getErrorColor(error),
             };
         });
     }

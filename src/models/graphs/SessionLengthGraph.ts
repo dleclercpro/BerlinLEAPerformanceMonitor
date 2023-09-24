@@ -7,7 +7,7 @@ import { GraphAxes, Locale, TimeUnit } from '../../types';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
-import { WEEKDAY_COLORS } from '../../config/styles';
+import { getWeekdayColor } from '../../utils/styles';
 
 const wasSessionFailure = (session: CompleteSession) => {
     return session.wasFailure() && session.isDurationReasonable();
@@ -38,7 +38,7 @@ class SessionLengthGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
-        return WEEKDAYS.map((weekday, i) => {
+        return WEEKDAYS.map((weekday) => {
             const sessions = history.getSessionsByWeekday(weekday, wasSessionFailure);
             const data = sessions.map(session => {
                 return {
@@ -55,7 +55,7 @@ class SessionLengthGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: translateWeekday(weekday, Locale.DE),
-                color: WEEKDAY_COLORS[i],
+                color: getWeekdayColor(weekday),
             };
         });
     }

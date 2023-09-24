@@ -13,28 +13,16 @@ export class UnexpectedAlertOpenError extends Error {
 
 
 // Custom errors
-export class NotEnoughDataError extends Error {
-    public name = 'NotEnoughDataError';
-}
-
-export class JobSchedulerError extends Error {
-    public name = 'JobSchedulerError';
-}
-
 export class NoAppointmentsError extends Error {
     public name = 'NoAppointmentsError';
 }
 
-export class NoInformationError extends Error {
-    public name = 'NoInformationError';
-}
-
-export class ConstructionWorkError extends Error {
-    public name = 'ConstructionWorkError';
-}
-
 export class NoResultsError extends Error {
     public name = 'NoResultsError';
+}
+
+export class NoInformationError extends Error {
+    public name = 'NoInformationError';
 }
 
 export class InternalServerError extends Error {
@@ -45,12 +33,16 @@ export class ServiceUnavailableError extends Error {
     public name = 'ServiceUnavailableError';
 }
 
-export class MissingElementError extends Error {
-    public name = 'MissingElementError';
+export class ConstructionWorkError extends Error {
+    public name = 'ConstructionWorkError';
 }
 
 export class InfiniteSpinnerError extends Error {
     public name = 'InfiniteSpinnerError';
+}
+
+export class MissingElementError extends Error {
+    public name = 'MissingElementError';
 }
 
 export class UIError extends Error {

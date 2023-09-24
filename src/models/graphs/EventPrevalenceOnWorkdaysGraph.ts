@@ -1,7 +1,6 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
 import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
-import { ERROR_COLORS } from '../../config/styles';
 import { equals, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownEvent } from '../../utils/event';
@@ -9,6 +8,7 @@ import { fromCountsToArray, unique } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
+import { getErrorColor } from '../../utils/styles';
 
 class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
@@ -43,7 +43,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         const uniqueErrors = unique(errors);
 
         // Compute prevalence of each error (in percentage) for each bucket
-        const errorPrevalences = uniqueErrors.map((error, i) => {
+        const errorPrevalences = uniqueErrors.map((error) => {
             const data = mergedBuckets
                 .map((bucket, j) => {
                     const bucketErrorCount = mergedBucketsErrorCounts[j][error];
@@ -63,7 +63,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: error,
-                color: ERROR_COLORS[i],
+                color: getErrorColor(error),
             };
         });
 

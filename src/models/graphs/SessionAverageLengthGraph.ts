@@ -1,13 +1,13 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { WEEKDAY_COLORS } from '../../config/styles';
 import { formatDate, translateWeekday } from '../../utils/locale';
 import { getAverage } from '../../utils/math';
 import Graph from './Graph';
 import { ChartType, Color as ChartColor } from 'chart.js';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
+import { getWeekdayColor } from '../../utils/styles';
 
 const wasSessionFailure = (session: CompleteSession) => {
     return session.wasFailure() && session.isDurationReasonable();
@@ -42,7 +42,7 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
-        return WEEKDAYS.map((weekday, i) => {
+        return WEEKDAYS.map((weekday) => {
             const buckets = history.getBucketsByWeekday(weekday);
 
             const hasDataInEveryBucket = buckets.every(bucket => bucket.getSessions(wasSessionFailure).length > 0);
@@ -66,7 +66,7 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: translateWeekday(weekday, Locale.DE),
-                color: WEEKDAY_COLORS[i],
+                color: getWeekdayColor(weekday),
             };
         });
     }

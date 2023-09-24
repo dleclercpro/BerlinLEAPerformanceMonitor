@@ -4,7 +4,8 @@ export enum Color {
     Gray = '#808080',
 }
 
-export const PALETTE_HLS_8_CUSTOM = ['#db5f57', '#dbc257', '#91db57', '#57d3db', '#a157db', '#db57b2', Color.Gray, Color.Black];
+export const PALETTE_HLS_12 = ['#db5f57', '#dba157', '#d3db57', '#91db57', '#57db5f', '#57dba1', '#57d3db', '#5791db', '#5f57db', '#a157db', '#db57d3', '#db5791'];
+export const PALETTE_HLS_8_CUSTOM = ['#db5f57', '#febb81', '#91db57', '#57d3db', '#a157db', '#db57b2', Color.Gray, Color.Black];
 export const PALETTE_HLS_8 = ['#db5f57', '#dbc257', '#91db57', '#57db80', '#57d3db', '#5770db', '#a157db', '#db57b2'];
 export const PALETTE_ROCKET = [Color.Gray, '#35193e', '#701f57', '#ad1759', '#e13342', '#f37651', '#f6b48f'];
 export const PALETTE_INFERNO = [Color.Gray, '#280b53', '#65156e', '#9f2a63', '#d44842', '#f57d15', '#fac228'];
