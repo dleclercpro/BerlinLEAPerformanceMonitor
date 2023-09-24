@@ -1,14 +1,15 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
 import { CountsDict, GraphAxes, TimeUnit } from '../../types';
-import { equals, sum } from '../../utils/math';
+import { equals, getRange, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownEvent } from '../../utils/event';
-import { fromCountsToArray, unique } from '../../utils/array';
+import { fromCountsToArray, generateEmptyCounts, unique } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
 import { getErrorColor } from '../../utils/styles';
+import logger from '../../logger';
 
 class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
@@ -33,25 +34,26 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
+        const uniqueErrors = history.getUniqueErrors();
+
         const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
-        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownEvent));
-        
-        // Gather all unique errors on workdays
-        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: CountsDict) => {
-            return [...prevErrors, ...fromCountsToArray(errorCounts)];
-        }, []);
-        const uniqueErrors = unique(errors);
+        const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
+            return {
+                ...generateEmptyCounts(uniqueErrors),
+                ...bucket.getErrorCounts(isKnownEvent),
+            };
+        });
 
         // Compute prevalence of each error (in percentage) for each bucket
-        const errorPrevalences = uniqueErrors.map((error) => {
+        const prevalences = uniqueErrors.map((error) => {
             const data = mergedBuckets
-                .map((bucket, j) => {
-                    const bucketErrorCount = mergedBucketsErrorCounts[j][error];
-                    const totalBucketErrorCount = sum(Object.values(mergedBucketsErrorCounts[j]));
+                .map((bucket, bucketIndex) => {
+                    const errorOccurencesInBucket = mergedBucketsErrorCounts[bucketIndex][error];
+                    const totalOccurencesInBucket = sum(Object.values(mergedBucketsErrorCounts[bucketIndex]));
 
                     return {
                         x: bucket.getStartTime().to(this.axes.x.unit as TimeUnit).getAmount(),
-                        y: bucketErrorCount / totalBucketErrorCount * 100,
+                        y: errorOccurencesInBucket / totalOccurencesInBucket * 100,
                     };
                 });
     
@@ -67,9 +69,16 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
             };
         });
 
-        // TODO: sum of error prevalences inside any given bucket should be 100%
+        // Sum of error prevalences inside any given bucket should be 100%
+        getRange(mergedBuckets.length).forEach((bucketIndex: number) => {
+            const sumOfPrevalencesInBucket = uniqueErrors.reduce((prevTotal, error, errorIndex) => {
+                return prevTotal + prevalences[errorIndex].data[bucketIndex].y;
+            }, 0);
 
-        return errorPrevalences;
+            assert(equals(sumOfPrevalencesInBucket, 100) === true);
+        });
+
+        return prevalences;
     }
 
     protected generateDatasetOptions(label: string, color: ChartColor) {

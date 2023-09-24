@@ -1,5 +1,5 @@
 import { CountsDict } from '../../types';
-import { generateEmptyCounts, toCountsFromArray } from '../../utils/array';
+import { toCountsFromArray } from '../../utils/array';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
 import CompleteSession from '../sessions/CompleteSession';
@@ -26,24 +26,11 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
             .filter(Boolean) as string[];
     }
 
-    public getEventCounts(eventFilter: (event: string) => boolean = () => true): CountsDict {
-        const errors = this.getSessionErrors()
-            .filter(eventFilter);
-
-        return {
-            ...generateEmptyCounts(errors),
-            ...toCountsFromArray(errors),
-        };
-    }
-
     public getErrorCounts(eventFilter: (error: string) => boolean = () => true): CountsDict {
         const errors = this.getSessionErrors()
             .filter(eventFilter);
 
-        return {
-            ...generateEmptyCounts(errors),
-            ...toCountsFromArray(errors),
-        };
+        return toCountsFromArray(errors);
     }
 
     public format() {

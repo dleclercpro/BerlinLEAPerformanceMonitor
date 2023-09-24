@@ -31,30 +31,33 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
-        const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
-        const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownBug));
-                
-        // Gather all unique errors on workdays
-        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: CountsDict) => {
-            return [...prevErrors, ...fromCountsToArray(errorCounts)];
-        }, []);
-        const uniqueErrors = unique(errors);
+        const uniqueErrors = history.getUniqueErrors();
 
-        // Total error counts on workdays
-        const totalErrorCountsOnWorkdays = toCountsFromArray(errors);
+        const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
+        const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
+            return {
+                ...generateEmptyCounts(uniqueErrors),
+                ...bucket.getErrorCounts(isKnownBug),
+            };
+        });
 
         // Compute likelihood of error per bucket based on corresponding total count over workdays
         return uniqueErrors.map((error) => {
+            const totalErrorOccurencesOnWorkdays = mergedBucketsErrorCounts.reduce((prevErrorOccurences, mergedBucket) => {
+                return prevErrorOccurences + mergedBucket[error];
+            }, 0);
+
             const data = mergedBuckets
-                .map((bucket, i) => {
+                .map((bucket, bucketIndex) => {
                     const bucketErrorCounts: CountsDict = {
                         ...generateEmptyCounts(uniqueErrors),
-                        ...mergedBucketsErrorCounts[i],
+                        ...mergedBucketsErrorCounts[bucketIndex],
                     };
+                    const errorOccurencesInBucket = bucketErrorCounts[error];
 
                     return {
                         x: bucket.getStartTime().to(this.axes.x.unit as TimeUnit).getAmount(),
-                        y: bucketErrorCounts[error] / totalErrorCountsOnWorkdays[error] * 100,
+                        y: errorOccurencesInBucket / totalErrorOccurencesOnWorkdays * 100,
                     };
                 });
 
