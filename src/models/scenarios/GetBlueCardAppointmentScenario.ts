@@ -1,6 +1,6 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants/times';
-import { UIError } from '../../errors';
+import { DefectiveUIError } from '../../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
 import FindAppointmentPage from '../pages/FindAppointmentPage';
@@ -49,7 +49,7 @@ class GetBlueCardAppointmentScenario extends Scenario {
         await appointmentPage.selectWithRelatives(WITH_RELATIVES!);
 
         if (!await appointmentPage.isUIValid()) {
-            throw new UIError();
+            throw new DefectiveUIError();
         }
 
         await appointmentPage.clickOnApplyForVisaButton();

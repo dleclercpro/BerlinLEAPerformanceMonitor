@@ -49,6 +49,6 @@ export class MissingElementError extends Error {
     public name = 'MissingElementError';
 }
 
-export class UIError extends Error {
-    public name = 'UIError';
+export class DefectiveUIError extends Error {
+    public name = 'DefectiveUIError';
 }
