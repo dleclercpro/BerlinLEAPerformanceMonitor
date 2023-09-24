@@ -33,6 +33,10 @@ export class ServiceUnavailableError extends Error {
     public name = 'ServiceUnavailableError';
 }
 
+export class UndisclosedError extends Error {
+    public name = 'UndisclosedError';
+}
+
 export class ConstructionWorkError extends Error {
     public name = 'ConstructionWorkError';
 }

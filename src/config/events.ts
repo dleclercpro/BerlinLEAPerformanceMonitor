@@ -1,4 +1,4 @@
-import { NoAppointmentsError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError } from '../errors';
+import { NoAppointmentsError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
 
 export const SESSION_FAILURE_EVENTS = [
     NoAppointmentsError,
@@ -14,6 +14,7 @@ export const KNOWN_BUGS = [
     NoResultsError,
     InternalServerError,
     ServiceUnavailableError,
+    UndisclosedError,
     InfiniteSpinnerError,
     MissingElementError,
     UIError,
