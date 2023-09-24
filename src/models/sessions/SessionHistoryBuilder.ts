@@ -1,5 +1,5 @@
 import logger from '../../logger';
-import { Log, TimeUnit, Weekday } from '../../types';
+import { Event, EventType, Log, TimeUnit, Weekday } from '../../types';
 import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
@@ -8,8 +8,10 @@ import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
 import Release from '../Release';
-import { RELEASE_ZERO } from '../../constants';
+import { LogMessage, RELEASE_ZERO } from '../../constants';
 import { MINIMUM_RELEASE } from '../../config';
+import { FOUND_APPOINTMENT_EVENT } from '../../constants/events';
+import { KNOWN_BUGS } from '../../config/events';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -61,7 +63,22 @@ class SessionHistoryBuilder {
             // Session open: store log
             if (session.isOpen()) {
                 logger.trace(`Adding log to session: ${log.msg}`);
-                session.push(log);
+                session.addLog(log);
+
+                if (log.err) {
+                    const knownBugIndex = KNOWN_BUGS.findIndex((knownBug: Event) => knownBug.id === log.err);
+                    
+                    if (knownBugIndex !== -1) {
+                        const bug = KNOWN_BUGS[knownBugIndex];
+                        session.addEvent(bug);
+                    } else {
+                        session.addEvent({ id: log.err, type: EventType.Unknown });
+                    }
+                }
+
+                if (log.msg === LogMessage.Success) {
+                    session.addEvent(FOUND_APPOINTMENT_EVENT);
+                }
             }
 
             // Session ended
@@ -80,7 +97,6 @@ class SessionHistoryBuilder {
                     logger.warn(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
                     return;
                 }
-                const error = errorCount === 1 ? session.getErrors()[0] : undefined;
 
                 // Store complete session in history
                 history.addSession(new CompleteSession({
@@ -89,7 +105,7 @@ class SessionHistoryBuilder {
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),
-                    error,
+                    events: session.getEvents(),
                 }));
             }
         });

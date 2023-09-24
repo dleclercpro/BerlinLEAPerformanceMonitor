@@ -9,6 +9,9 @@ import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
 import { getEventColor } from '../../utils/styles';
+import logger from '../../logger';
+
+const EVENT_FILTER = isKnownEvent;
 
 class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
@@ -21,7 +24,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         const start = history.getEarliestSession()!.getStartTime();
         const end = history.getLatestSession()!.getEndTime();
 
-        const totalErrorCount = history.getErrors(isKnownEvent).length;
+        const totalErrorCount = history.getErrors(EVENT_FILTER).length;
 
         this.title = [
             `Prävalenz aller Ereignisse während einer User-Session an Werktagen auf der LEA-Seite`,
@@ -35,13 +38,14 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected generateDatasets(history: SessionHistory) {
 
         // Generate set of errors that will be considered
-        const uniqueErrors = history.getUniqueErrors(isKnownEvent);
+        const uniqueErrors = history.getUniqueErrors(EVENT_FILTER);
+        logger.debug(uniqueErrors, `Unique errors:`);
 
         const mergedBuckets = history.getMergedWorkdayBuckets();
         const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
             return {
                 ...generateEmptyCounts(uniqueErrors),
-                ...bucket.getErrorCounts(isKnownEvent),
+                ...bucket.getErrorCounts(EVENT_FILTER),
             };
         });
 

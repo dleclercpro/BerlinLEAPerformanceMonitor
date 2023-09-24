@@ -70,6 +70,18 @@ export interface Comparable {
 
 export type CountsDict = Record<string, number>;
 
+export enum EventType {
+    Normal = 'normal',
+    Unknown = 'unknown',
+    Bug = 'bug',
+    Success = 'success',
+}
+
+export type Event = {
+    id: string,
+    type: EventType,
+}
+
 export type Log = {
     line: number,
     time: number,

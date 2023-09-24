@@ -1,11 +1,10 @@
-import { Log } from '../../types';
+import { Event, Log } from '../../types';
 import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import Session from './Session';
 
 class IncompleteSession extends Session {
-    protected errors: string[] = [];
 
     public static create(startTime?: Date, endTime?: Date) {
         const host = os.hostname();
@@ -39,22 +38,12 @@ class IncompleteSession extends Session {
         return this.startTime && this.endTime;
     }
 
-    public hasErrors() {
-        return this.errors.length > 0;
-    }
-
-    public getErrors() {
-        return this.errors;
-    }
-
-    public push(log: Log) {
-        const { err } = log;
-
+    public addLog(log: Log) {
         this.logs.push(log);
+    }
 
-        if (err) {
-            this.errors.push(err);
-        }
+    public addEvent(event: Event) {
+        this.events.push(event);
     }
 }
 

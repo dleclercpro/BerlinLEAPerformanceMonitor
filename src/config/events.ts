@@ -1,29 +1,29 @@
-import { NoAppointmentError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, DefectiveUIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
+import { CONSTRUCTION_WORK_EVENT, DEFECTIVE_UI_BUG, INFINITE_SPINNER_BUG, INTERNAL_SERVER_ERROR_BUG, MISSING_ELEMENT_BUG, NO_APPOINTMENT_FOUND_EVENT, NO_INFORMATION_BUG, NO_RESULTS_BUG, SERVICE_UNAVAILABLE_BUG, UNDISCLOSED_ERROR_BUG } from '../constants/events';
 
 export const KNOWN_BUGS = [
-    NoInformationError,
-    NoResultsError,
-    InternalServerError,
-    ServiceUnavailableError,
-    UndisclosedError,
-    InfiniteSpinnerError,
-    MissingElementError,
-    DefectiveUIError,
-].map(err => err.name);
+    NO_INFORMATION_BUG,
+    NO_RESULTS_BUG,
+    INTERNAL_SERVER_ERROR_BUG,
+    SERVICE_UNAVAILABLE_BUG,
+    UNDISCLOSED_ERROR_BUG,
+    INFINITE_SPINNER_BUG,
+    DEFECTIVE_UI_BUG,
+    MISSING_ELEMENT_BUG,
+];
 
-export const KNOWN_EVENTS = KNOWN_BUGS
-    .concat([
-        NoAppointmentError,
-        ConstructionWorkError,
-    ].map(err => err.name));
+export const KNOWN_EVENTS = [
+    ...KNOWN_BUGS,
+    NO_APPOINTMENT_FOUND_EVENT,
+    CONSTRUCTION_WORK_EVENT,
+];
 
 
 
 export const SESSION_FAILURE_EVENTS = [
-    NoAppointmentError,
-    NoInformationError,
-    NoResultsError,
-    InfiniteSpinnerError,
-    MissingElementError,
-    DefectiveUIError,
-].map(err => err.name);
+    NO_APPOINTMENT_FOUND_EVENT,
+    NO_INFORMATION_BUG,
+    NO_RESULTS_BUG,
+    INFINITE_SPINNER_BUG,
+    DEFECTIVE_UI_BUG,
+    MISSING_ELEMENT_BUG,
+];

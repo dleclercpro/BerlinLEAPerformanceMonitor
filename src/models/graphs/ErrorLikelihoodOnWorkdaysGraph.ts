@@ -9,6 +9,9 @@ import { formatDate } from '../../utils/locale';
 import assert from 'assert';
 import { equals, sum } from '../../utils/math';
 import { getEventColor } from '../../utils/styles';
+import logger from '../../logger';
+
+const EVENT_FILTER = isKnownBug;
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
@@ -33,13 +36,14 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected generateDatasets(history: SessionHistory) {
 
         // Generate set of errors that will be considered
-        const uniqueErrors = history.getUniqueErrors(isKnownBug);
+        const uniqueErrors = history.getUniqueErrors(EVENT_FILTER);
+        logger.debug(uniqueErrors, `Unique errors:`);
 
         const mergedBuckets = history.getMergedWorkdayBuckets();
         const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
             return {
                 ...generateEmptyCounts(uniqueErrors),
-                ...bucket.getErrorCounts(isKnownBug),
+                ...bucket.getErrorCounts(EVENT_FILTER),
             };
         });
 

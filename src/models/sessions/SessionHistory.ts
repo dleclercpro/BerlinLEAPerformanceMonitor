@@ -1,6 +1,6 @@
 import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
-import { VersionedData, Weekday } from '../../types';
+import { Event, VersionedData, Weekday } from '../../types';
 import { toCountsFromArray, unique } from '../../utils/array';
 import { getWeekday } from '../../utils/locale';
 import TimeDuration from '../TimeDuration';
@@ -9,7 +9,7 @@ import CompleteSession from './CompleteSession';
 
 export type SessionBucketsDict = Record<Weekday, SessionBucket[]>;
 export type SessionFilter = (session: CompleteSession) => boolean;
-export type EventFilter = (event: string) => boolean;
+export type EventFilter = (event: Event) => boolean;
 
 class SessionHistory {
     protected version: number;
@@ -136,7 +136,8 @@ class SessionHistory {
     }
 
     public getEvents(eventFilter: EventFilter = () => true) {
-        return [...this.getErrors(), ...this.getSuccesses().map(() => 'AppointmentFound')] // FIXME
+        return this.getSessions()
+            .reduce((prevEvents, session) => [...prevEvents, ...session.getEvents()], [] as Event[])
             .filter(eventFilter);
     }
 
@@ -146,24 +147,30 @@ class SessionHistory {
 
     public getErrors(errorFilter: EventFilter = () => true) {
         return WEEKDAYS
-            .reduce((errors, weekday) => [...errors, ...this.getErrorsByWeekday(weekday)], [] as string[])
+            .reduce((errors, weekday) => [...errors, ...this.getErrorsByWeekday(weekday)], [] as Event[])
             .filter(errorFilter);
     }
 
     public getErrorsByWeekday(weekday: Weekday, errorFilter: EventFilter = () => true) {
         const errors = this.getSessionsByWeekday(weekday)
             .map(session => session.getError())
-            .filter(Boolean) as string[];
+            .filter(Boolean) as Event[];
 
         return errors.filter(errorFilter);
     }
 
     public getUniqueErrors(errorFilter: EventFilter = () => true) {
-        return unique(this.getErrors(errorFilter));
+        const errors = this.getErrors(errorFilter)
+            .map(error => error.id);
+
+        return unique(errors);
     }
 
     public getErrorCounts() {
-        return toCountsFromArray(this.getErrors());
+        const errors = this.getErrors()
+            .map(event => event.id);
+
+        return toCountsFromArray(errors);
     }
 }
 

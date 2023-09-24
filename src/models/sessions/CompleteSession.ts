@@ -1,6 +1,5 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
-import { LogMessage } from '../../constants';
-import { Comparable, TimeUnit } from '../../types';
+import { Comparable, EventType, TimeUnit } from '../../types';
 import { isKnownBug, isSessionFailureEvent } from '../../utils/event';
 import Release from '../Release';
 import TimeDuration from '../TimeDuration';
@@ -20,20 +19,17 @@ class CompleteSessionComparator {
 
 interface CompleteSessionArgs extends SessionArgs {
     release?: Release,
-    error?: string,
 }
 
 
 
 class CompleteSession extends Session implements Comparable {
     protected release?: Release;
-    protected error?: string;
 
-    public constructor({ release, error, ...args }: CompleteSessionArgs) {
+    public constructor({ release, ...args }: CompleteSessionArgs) {
         super(args);
 
         this.release = release;
-        this.error = error;
     }
 
     public getId() {
@@ -52,31 +48,37 @@ class CompleteSession extends Session implements Comparable {
         return this.endTime!;
     }
 
+    public hasError() {
+        return this.getError() !== undefined;
+    }
+
     public getError() {
-        return this.error;
+        const errors = this.getErrors();
+
+        // There should only be one error!
+        return errors.length > 0 ? errors[0] : undefined;
     }
 
     // The session was completed, no error was detected, and the success
     // message was logged: there seems to be an appointment available!
     public wasSuccess() {
-        const logMessages = this.logs.map(log => log.msg);
-
-        return (
-            !this.error &&
-            logMessages.includes(LogMessage.Success)
-        );
+        return this.events.findIndex(e => e.type === EventType.Success) !== -1;
     }
 
     // The session was not completed: there was a bug that
     // hindered the user's journey
     public wasBuggy() {
-        return !!this.error && isKnownBug(this.error);
+        const error = this.getError();
+        
+        return !!error && isKnownBug(error);
     }
 
     // The sessions was completed, but it can be understood
     // as a failure to find an appointment
     public wasFailure() {
-        return !!this.error && isSessionFailureEvent(this.error);
+        const error = this.getError();
+
+        return !!error && isSessionFailureEvent(error);
     }
 
     public getDuration() {

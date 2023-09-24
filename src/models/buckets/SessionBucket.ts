@@ -1,4 +1,4 @@
-import { CountsDict } from '../../types';
+import { CountsDict, Event } from '../../types';
 import { toCountsFromArray } from '../../utils/array';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
 import TimeDuration from '../TimeDuration';
@@ -23,12 +23,13 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
     public getSessionErrors() {
         return this.getSessions()
             .map(session => session.getError())
-            .filter(Boolean) as string[];
+            .filter(Boolean) as Event[];
     }
 
-    public getErrorCounts(errorFilter: (event: string) => boolean = () => true): CountsDict {
+    public getErrorCounts(errorFilter: (event: Event) => boolean = () => true): CountsDict {
         const errors = this.getSessionErrors()
-            .filter(errorFilter);
+            .filter(errorFilter)
+            .map(event => event.id);
 
         return toCountsFromArray(errors);
     }
