@@ -16,7 +16,7 @@ Booking an appointment with the Landesamt für Einwanderung of Berlin is a very 
 Not only are there almost never any free appointment slots on LEA's portal, the latter is also quite buggy. In an effort to highlight the poor performance of said portal, the following graphs have been generated:
 
 ### Length of User Session Until Failure
-Time spent on LEA's website until a user can reasonably conclude that there is no available appointment fitting their needs at the moment. If any of the following errors is encountered (see section <b>Prevalence of Experienced Errors on Workdays (Monday to Friday)</b> for a detailed explanation of each error), the session is deemed a failure:
+Time spent on LEA's website until a user can reasonably conclude that there is no available appointment fitting their needs at the moment. If any of the following errors is encountered (see section <b>Prevalence of Events on Workdays (Monday to Friday)</b> for a detailed explanation of each error), the session is deemed a failure:
 - ```NoAppointmentError```
 - ```NoInformationError```
 - ```NoResultsError```
@@ -50,14 +50,12 @@ Prevalence of all events experienced by the users of the LEA website, from Monda
 - ``UIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
 <p align="center" width="100%">
-  <img alt="Prevalence of Errors On Workdays on LEA's Portal" src="./data/production/img/EventPrevalenceOnWorkdaysGraph.png" width="100%" />
+  <img alt="Prevalence of Events On Workdays on LEA's Portal" src="./data/production/img/EventPrevalenceOnWorkdaysGraph.png" width="100%" />
 </p>
 
 ### Likelihood of Errors on Workdays (Monday to Friday)
 Likelihood of errors experienced by the users of the LEA website, from Monday to Friday, which prevent them accessing the appointment
-assignment feature altogether.
-
-Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays. Here is the list of errors considered when plotting the graph below:
+assignment feature altogether. Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays. In other words: if one of the considered errors is to happen, when is it likely to do so? Here is the list of errors considered when plotting the graph below:
 
 - ```NoInformationError```
 - ```NoResultsError```
