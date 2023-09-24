@@ -6,19 +6,19 @@ export const getWeekdayColor = (weekday: Weekday) => {
     if (WEEKDAY_PALETTE.length < 7) throw new Error('Not enough colors in weekday palette.');
     
     switch (weekday) {
-        case Weekday.Monday:
-            return WEEKDAY_PALETTE[0];
-        case Weekday.Tuesday:
-            return WEEKDAY_PALETTE[1];
-        case Weekday.Wednesday:
-            return WEEKDAY_PALETTE[2];
-        case Weekday.Thursday:
-            return WEEKDAY_PALETTE[3];
-        case Weekday.Friday:
-            return WEEKDAY_PALETTE[4];
-        case Weekday.Saturday:
-            return WEEKDAY_PALETTE[5];
         case Weekday.Sunday:
+            return WEEKDAY_PALETTE[0];
+        case Weekday.Monday:
+            return WEEKDAY_PALETTE[1];
+        case Weekday.Tuesday:
+            return WEEKDAY_PALETTE[2];
+        case Weekday.Wednesday:
+            return WEEKDAY_PALETTE[3];
+        case Weekday.Thursday:
+            return WEEKDAY_PALETTE[4];
+        case Weekday.Friday:
+            return WEEKDAY_PALETTE[5];
+        case Weekday.Saturday:
             return WEEKDAY_PALETTE[6];
     }
 }
