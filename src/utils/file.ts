@@ -9,17 +9,25 @@ export const deleteFile = async (filepath: string) => {
 
     return new Promise<void>((resolve, reject) => {
         fs.rm(filepath, opts, (err) => {
-            if (err) reject(err);
-    
+            if (err) {
+                return reject(err);
+            }
+
             resolve();
         });
     });
 }
 
-export const readFile = (filepath: string, encoding: BufferEncoding = 'utf-8') => {
+export const readFile = async (filepath: string, encoding: BufferEncoding = 'utf-8') => {
+    logger.trace(`Reading file: ${filepath}`);
+
     return new Promise<string>((resolve, reject) => {
         fs.readFile(filepath, { encoding }, (err, data) => {
-            if (err) reject(err);
+            logger.trace(`Executing 'fs.readFile' callback.`);
+            
+            if (err) {
+                return reject(err);
+            }
 
             logger.trace(`Read ${data.length} bytes from file: ${filepath}`);
 
@@ -31,8 +39,10 @@ export const readFile = (filepath: string, encoding: BufferEncoding = 'utf-8') =
 export const writeFile = async (filepath: string, data: string | Buffer, encoding: BufferEncoding = 'utf-8') => {
     return new Promise<void>((resolve, reject) => {
         fs.writeFile(filepath, data, { encoding }, (err) => {
-            if (err) reject(err);
-    
+            if (err) {
+                return reject(err);
+            }
+
             resolve();
         });
     });

@@ -21,9 +21,6 @@ const getLoggerByEnvironment = (env: Environment) => {
         case Environment.Production:
             return pino({
                 level: 'debug',
-                formatters: {
-                    bindings: getBindings,
-                },
                 transport: {
                     target: 'pino-pretty',
                 },
@@ -55,10 +52,7 @@ const getLoggerByUseCase = () => {
 
     // Otherwise, only terminal is sufficient
     return pino({
-        level: 'debug',
-        formatters: {
-            bindings: getBindings,
-        },
+        level: 'trace',
         transport: {
             target: 'pino-pretty',
         },

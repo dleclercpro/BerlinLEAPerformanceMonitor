@@ -19,7 +19,7 @@ export const KNOWN_EVENTS = [
 
 
 
-export const SESSION_FAILURE_EVENTS = [
+export const FAILURE_EVENTS = [
     NO_APPOINTMENT_FOUND_EVENT,
     NO_INFORMATION_BUG,
     NO_RESULTS_BUG,

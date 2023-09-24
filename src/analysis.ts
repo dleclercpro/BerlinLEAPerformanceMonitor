@@ -16,7 +16,7 @@ import { IGNORE_DAYS_WITH_EMPTY_BUCKETS } from './config';
 
 
 const parseLogs = async (filepath: string) => {
-    logger.info(`Reading logs from: ${filepath}`);
+    logger.info(`Reading logs...`);
 
     const file = await readFile(filepath);
 
@@ -83,10 +83,10 @@ export const analyzeLogs = async (filepath: string) => {
     const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
     const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));
 
-    await generateSessionLengthGraph(hourlyHistory);
-    await generateSessionAverageLengthGraph(hourlyHistory);
+    //await generateSessionLengthGraph(hourlyHistory);
+    //await generateSessionAverageLengthGraph(hourlyHistory);
     await generateEventPrevalenceOnWorkdaysGraph(biHourlyHistory);
-    await generateErrorLikelihoodOnWorkdaysGraph(biHourlyHistory);
+    //await generateErrorLikelihoodOnWorkdaysGraph(biHourlyHistory);
 
     summarizeHistory(hourlyHistory);
 }

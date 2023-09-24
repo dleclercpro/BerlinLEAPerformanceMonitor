@@ -69,8 +69,7 @@ class SessionHistoryBuilder {
                     const knownBugIndex = KNOWN_BUGS.findIndex((knownBug: Event) => knownBug.id === log.err);
                     
                     if (knownBugIndex !== -1) {
-                        const bug = KNOWN_BUGS[knownBugIndex];
-                        session.addEvent(bug);
+                        session.addEvent(KNOWN_BUGS[knownBugIndex]);
                     } else {
                         session.addEvent({ id: log.err, type: EventType.Unknown });
                     }

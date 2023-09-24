@@ -1,6 +1,6 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
 import { Comparable, EventType, TimeUnit } from '../../types';
-import { isKnownBug, isSessionFailureEvent } from '../../utils/event';
+import { isKnownBug, isFailureEvent } from '../../utils/event';
 import Release from '../Release';
 import TimeDuration from '../TimeDuration';
 import Session, { SessionArgs } from './Session';
@@ -78,7 +78,7 @@ class CompleteSession extends Session implements Comparable {
     public wasFailure() {
         const error = this.getError();
 
-        return !!error && isSessionFailureEvent(error);
+        return !!error && isFailureEvent(error);
     }
 
     public getDuration() {

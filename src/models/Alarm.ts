@@ -34,7 +34,9 @@ class Alarm {
         
         return new Promise<void>((resolve, reject) => {
             exec(`${this.cmd} ${filepath}`, (err) => {
-                if (err) reject(err);
+                if (err) {
+                    return reject(err);
+                }
     
                 logger.trace(`Played sound.`);
 

@@ -61,7 +61,9 @@ class SessionHistory {
     }
 
     public getBucketsByWeekday(weekday: Weekday) {
-        return this.bucketsDict[weekday];
+        const weekdayBuckets = this.bucketsDict[weekday];
+        logger.debug(weekdayBuckets, 'weekdayBuckets');
+        return weekdayBuckets;
     }
 
     public getMergedWorkdayBuckets(): SessionBucket[] {
@@ -155,6 +157,8 @@ class SessionHistory {
         const errors = this.getSessionsByWeekday(weekday)
             .map(session => session.getError())
             .filter(Boolean) as Event[];
+
+        logger.debug(`# errors: ${errors.length}`);
 
         return errors.filter(errorFilter);
     }

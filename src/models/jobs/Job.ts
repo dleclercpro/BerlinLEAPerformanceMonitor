@@ -13,7 +13,7 @@ abstract class Job {
         return new Promise<string | Buffer>((resolve, reject) => {
             exec(command, options, (err, stdout) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
 
                 // Return child process' command line output so it can be further
