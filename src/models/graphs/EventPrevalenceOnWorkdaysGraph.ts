@@ -4,12 +4,11 @@ import { CountsDict, GraphAxes, TimeUnit } from '../../types';
 import { equals, getRange, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownEvent } from '../../utils/event';
-import { fromCountsToArray, generateEmptyCounts, unique } from '../../utils/array';
+import { generateEmptyCounts } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
 import { getErrorColor } from '../../utils/styles';
-import logger from '../../logger';
 
 class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
