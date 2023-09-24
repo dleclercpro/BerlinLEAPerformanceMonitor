@@ -7,7 +7,7 @@ import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
 
 const TEXTS = {
-    NoAppointments: 'keine Termine frei',
+    NoAppointment: 'keine Termine frei',
     NoInformation: 'existieren keine Informationen',
 };
 
@@ -26,7 +26,7 @@ const ELEMENTS = {
         Messages: By.id('messagesBox'),
     },
     Errors: {
-        NoAppointments: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoAppointments}')]`),
+        NoAppointment: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoAppointment}')]`),
         NoInformation: By.xpath(`//li[@class='errorMessage' and contains(text(), '${TEXTS.NoInformation}')]`),
     },
 };
@@ -49,7 +49,7 @@ class ResultsPage extends Page {
             throw new NoInformationError();
         }
 
-        if (await this.hasElement(ELEMENTS.Errors.NoAppointments)) {
+        if (await this.hasElement(ELEMENTS.Errors.NoAppointment)) {
             logger.info(LogMessage.Failure);
             throw new NoAppointmentError();
         }

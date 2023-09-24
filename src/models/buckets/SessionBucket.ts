@@ -26,9 +26,9 @@ class SessionBucket extends Bucket<TimeDuration, CompleteSession> {
             .filter(Boolean) as string[];
     }
 
-    public getErrorCounts(eventFilter: (error: string) => boolean = () => true): CountsDict {
+    public getErrorCounts(errorFilter: (event: string) => boolean = () => true): CountsDict {
         const errors = this.getSessionErrors()
-            .filter(eventFilter);
+            .filter(errorFilter);
 
         return toCountsFromArray(errors);
     }

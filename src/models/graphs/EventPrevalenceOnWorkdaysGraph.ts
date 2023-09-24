@@ -34,9 +34,11 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
-        const uniqueErrors = history.getUniqueErrors();
 
-        const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
+        // Generate set of errors that will be considered
+        const uniqueErrors = history.getUniqueErrors(isKnownEvent);
+
+        const mergedBuckets = history.getMergedWorkdayBuckets();
         const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
             return {
                 ...generateEmptyCounts(uniqueErrors),

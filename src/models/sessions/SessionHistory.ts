@@ -7,21 +7,21 @@ import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
 
-export type SessionBuckets = Record<Weekday, SessionBucket[]>;
+export type SessionBucketsDict = Record<Weekday, SessionBucket[]>;
 export type SessionFilter = (session: CompleteSession) => boolean;
 export type EventFilter = (event: string) => boolean;
 
 class SessionHistory {
     protected version: number;
-    protected buckets: SessionBuckets;
+    protected bucketsDict: SessionBucketsDict;
     protected bucketSize: TimeDuration;
-    protected mergedBucketsOnWorkdayBasis: VersionedData<SessionBucket[]>;
+    protected mergedWorkdayBuckets: VersionedData<SessionBucket[]>;
 
-    public constructor (buckets: SessionBuckets, bucketSize: TimeDuration) {
+    public constructor (bucketsDict: SessionBucketsDict, bucketSize: TimeDuration) {
         this.version = 0;
-        this.buckets = buckets;
+        this.bucketsDict = bucketsDict;
         this.bucketSize = bucketSize;
-        this.mergedBucketsOnWorkdayBasis = { version: 0, data: [] };
+        this.mergedWorkdayBuckets = { version: 0, data: [] };
     }
 
     public getVersion() {
@@ -61,27 +61,29 @@ class SessionHistory {
     }
 
     public getBucketsByWeekday(weekday: Weekday) {
-        return this.buckets[weekday];
+        return this.bucketsDict[weekday];
     }
 
-    public getMergedBucketsOnWorkdayBasis(): SessionBucket[] {
+    public getMergedWorkdayBuckets(): SessionBucket[] {
+        const mustRecompute = this.version > this.mergedWorkdayBuckets.version;
 
         // Optimize computation of merged session buckets: only recompute when necessary
-        const mustRecompute = this.version > this.mergedBucketsOnWorkdayBasis.version;
-
         if (mustRecompute) {
             logger.debug(`Re-computing merged buckets on workday basis...`);
 
-            this.mergedBucketsOnWorkdayBasis.data = WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
-                const workdayBuckets = this.buckets[workday];
+            this.mergedWorkdayBuckets.data = WORKDAYS.reduce((mergedBuckets: SessionBucket[], workday: Weekday) => {
+                const buckets = this.bucketsDict[workday];
 
-                return workdayBuckets.map((workdayBucket: SessionBucket, bucketIndex) => {
-                    const mergedBucket = new SessionBucket(workdayBucket.getStartTime(), workdayBucket.getEndTime());
+                return buckets.map((bucket: SessionBucket, bucketIndex: number) => {
+                    const mergedBucket = new SessionBucket(bucket.getStartTime(), bucket.getEndTime());
 
-                    if (buckets.length > 0) {
-                        buckets[bucketIndex].getSessions().forEach(session => mergedBucket.add(session));
+                    // Buckets from at least one previous day have already been merged: restore their content
+                    if (mergedBuckets.length > 0) {
+                        mergedBuckets[bucketIndex].getSessions().forEach(session => mergedBucket.add(session));
                     }
-                    workdayBucket.getSessions().forEach(session => mergedBucket.add(session));
+
+                    // Add current workday's sessions to merged bucket
+                    bucket.getSessions().forEach(session => mergedBucket.add(session));
 
                     return mergedBucket;
                 });
@@ -89,10 +91,10 @@ class SessionHistory {
             }, []);
 
             // Update version of object to current version of whole session history
-            this.mergedBucketsOnWorkdayBasis.version = this.version;
+            this.mergedWorkdayBuckets.version = this.version;
         }
         
-        return this.mergedBucketsOnWorkdayBasis.data;
+        return this.mergedWorkdayBuckets.data;
     }
 
     public getSessionsByWeekday(weekday: Weekday, sessionFilter: SessionFilter = () => true): CompleteSession[] {
@@ -142,22 +144,22 @@ class SessionHistory {
         return this.getSessions(session => session.wasSuccess());
     }
 
-    public getErrors(eventFilter: EventFilter = () => true) {
+    public getErrors(errorFilter: EventFilter = () => true) {
         return WEEKDAYS
             .reduce((errors, weekday) => [...errors, ...this.getErrorsByWeekday(weekday)], [] as string[])
-            .filter(eventFilter);
+            .filter(errorFilter);
     }
 
-    public getErrorsByWeekday(weekday: Weekday, eventFilter: EventFilter = () => true) {
+    public getErrorsByWeekday(weekday: Weekday, errorFilter: EventFilter = () => true) {
         const errors = this.getSessionsByWeekday(weekday)
             .map(session => session.getError())
             .filter(Boolean) as string[];
 
-        return errors.filter(eventFilter);
+        return errors.filter(errorFilter);
     }
 
-    public getUniqueErrors(eventFilter: EventFilter = () => true) {
-        return unique(this.getErrors(eventFilter));
+    public getUniqueErrors(errorFilter: EventFilter = () => true) {
+        return unique(this.getErrors(errorFilter));
     }
 
     public getErrorCounts() {

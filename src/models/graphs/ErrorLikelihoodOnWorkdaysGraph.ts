@@ -3,7 +3,7 @@ import Graph from './Graph';
 import { CountsDict, GraphAxes, TimeUnit } from '../../types';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownBug } from '../../utils/event';
-import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
+import { generateEmptyCounts } from '../../utils/array';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
 import assert from 'assert';
@@ -31,9 +31,11 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 
     protected generateDatasets(history: SessionHistory) {
-        const uniqueErrors = history.getUniqueErrors();
 
-        const mergedBuckets = history.getMergedBucketsOnWorkdayBasis();
+        // Generate set of errors that will be considered
+        const uniqueErrors = history.getUniqueErrors(isKnownBug);
+
+        const mergedBuckets = history.getMergedWorkdayBuckets();
         const mergedBucketsErrorCounts: CountsDict[] = mergedBuckets.map(bucket => {
             return {
                 ...generateEmptyCounts(uniqueErrors),
