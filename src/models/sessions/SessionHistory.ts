@@ -75,11 +75,11 @@ class SessionHistory {
             this.mergedBucketsOnWorkdayBasis.data = WORKDAYS.reduce((buckets: SessionBucket[], workday) => {
                 const workdayBuckets = this.buckets[workday];
 
-                return workdayBuckets.map((workdayBucket: SessionBucket, i) => {
+                return workdayBuckets.map((workdayBucket: SessionBucket, bucketIndex) => {
                     const mergedBucket = new SessionBucket(workdayBucket.getStartTime(), workdayBucket.getEndTime());
 
                     if (buckets.length > 0) {
-                        buckets[i].getSessions().forEach(session => mergedBucket.add(session));
+                        buckets[bucketIndex].getSessions().forEach(session => mergedBucket.add(session));
                     }
                     workdayBucket.getSessions().forEach(session => mergedBucket.add(session));
 
@@ -128,7 +128,7 @@ class SessionHistory {
     public getLatestSession() {
         const sessions = this.getSessions();
     
-        if (sessions.length > 0) {
+        if (sessions.length > 0) {
             return sessions[sessions.length - 1];
         }
     }

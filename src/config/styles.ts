@@ -1,4 +1,4 @@
-import { PALETTE_HLS_12, PALETTE_MAGMA, PALETTE_ROCKET_7 } from '../constants/styles';
+import { PALETTE_HLS_12, PALETTE_ROCKET_7 } from '../constants/styles';
 import { Size } from '../types';
 
 export const ERROR_PALETTE = PALETTE_HLS_12;
