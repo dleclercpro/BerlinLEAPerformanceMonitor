@@ -8,7 +8,7 @@ import { generateEmptyCounts } from '../../utils/array';
 import { formatDate } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
-import { getErrorColor } from '../../utils/styles';
+import { getEventColor } from '../../utils/styles';
 
 class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'bar';
@@ -66,7 +66,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: error,
-                color: getErrorColor(error),
+                color: getEventColor(error),
             };
         });
 

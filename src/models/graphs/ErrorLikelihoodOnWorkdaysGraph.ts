@@ -8,7 +8,7 @@ import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { formatDate } from '../../utils/locale';
 import assert from 'assert';
 import { equals, sum } from '../../utils/math';
-import { getErrorColor } from '../../utils/styles';
+import { getEventColor } from '../../utils/styles';
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
@@ -74,7 +74,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
             return {
                 data,
                 label: error,
-                color: getErrorColor(error),
+                color: getEventColor(error),
             };
         });
     }

@@ -1,34 +1,20 @@
 import { KNOWN_EVENTS } from '../config/events';
-import { ERROR_PALETTE, WEEKDAY_PALETTE } from '../config/styles';
+import { EVENT_PALETTE, WEEKDAY_PALETTE } from '../config/styles';
+import { WEEKDAYS } from '../constants/times';
 import { Weekday } from '../types';
 
 export const getWeekdayColor = (weekday: Weekday) => {
     if (WEEKDAY_PALETTE.length < 7) throw new Error('Not enough colors in weekday palette.');
     
-    switch (weekday) {
-        case Weekday.Sunday:
-            return WEEKDAY_PALETTE[0];
-        case Weekday.Monday:
-            return WEEKDAY_PALETTE[1];
-        case Weekday.Tuesday:
-            return WEEKDAY_PALETTE[2];
-        case Weekday.Wednesday:
-            return WEEKDAY_PALETTE[3];
-        case Weekday.Thursday:
-            return WEEKDAY_PALETTE[4];
-        case Weekday.Friday:
-            return WEEKDAY_PALETTE[5];
-        case Weekday.Saturday:
-            return WEEKDAY_PALETTE[6];
-    }
+    return WEEKDAY_PALETTE[WEEKDAYS.findIndex(day => day === weekday)];
 }
 
-export const getErrorColor = (err: string) => {
-    if (ERROR_PALETTE.length < KNOWN_EVENTS.length) throw new Error('Not enough colors in error palette.');
+export const getEventColor = (event: string) => {
+    if (EVENT_PALETTE.length < KNOWN_EVENTS.length) throw new Error('Not enough colors in event palette.');
     
-    const index = KNOWN_EVENTS.findIndex(event => event === err);
+    const index = KNOWN_EVENTS.findIndex(knownEvent => knownEvent === event);
 
-    if (!index) throw new Error(`No color for error: ${err}`);
+    if (!index) throw new Error(`No color for event: ${event}`);
 
-    return ERROR_PALETTE[index];
+    return EVENT_PALETTE[index];
 }
