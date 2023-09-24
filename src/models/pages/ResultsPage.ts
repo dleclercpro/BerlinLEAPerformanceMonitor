@@ -5,7 +5,6 @@ import { NoResultsError, NoAppointmentsError, NoInformationError } from '../../e
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
-import { version } from '../../../package.json';
 
 const TEXTS = {
     NoAppointments: 'keine Termine frei',
@@ -62,7 +61,7 @@ class ResultsPage extends Page {
         }
 
         // There seems to be an appointment: take a screenshot!
-        await this.screenshot(`${version}-${formatDateForFilename(new Date())}.png`);
+        await this.screenshot(`${formatDateForFilename(new Date())}.png`);
 
         logger.info(LogMessage.Success);
         return true;

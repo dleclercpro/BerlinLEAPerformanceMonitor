@@ -3,13 +3,13 @@ import pretty from 'pino-pretty';
 import { LOGS_FILEPATH } from './config/file';
 import { Environment } from './types';
 import { POLL } from './config/bot';
-import { version } from '../package.json';
+import { PACKAGE_VERSION } from './constants';
 
 const getBindings = (bindings: pino.Bindings) => {
     return {
         pid: bindings.pid,
         hostname: bindings.hostname,
-        version,
+        version: PACKAGE_VERSION,
     };
 }
 

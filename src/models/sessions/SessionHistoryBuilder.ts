@@ -7,6 +7,9 @@ import { ONE_DAY, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
+import Release from '../Release';
+import { RELEASE_ZERO } from '../../constants';
+import { MINIMUM_RELEASE } from '../../config';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -15,6 +18,8 @@ const TEXTS = {
 
 class SessionHistoryBuilder {
     private static instance: SessionHistoryBuilder;
+    
+    private minimumRelease: Release = MINIMUM_RELEASE;
 
     private constructor () {
 
@@ -34,15 +39,27 @@ class SessionHistoryBuilder {
         const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
 
         let session: IncompleteSession;
+        let release: Release = RELEASE_ZERO;
 
         // Read logs in chronological order
         logs.forEach(log => {
+
+            // Parse app version
+            if (log.version) {
+                const [major, minor, patch] = log.version.split('.').map(Number);
+                release = new Release(major, minor, patch);
+            }
+
+            // Should builder ignore log?
+            if (release.smallerThan(this.minimumRelease)) {
+                return;
+            }
 
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {
                 session = IncompleteSession.create();
 
-                logger.trace(`Starting session: ${session.getId()}`);
+                logger.trace(`Starting session: ${session.getId()} [${release.toString()}]`);
                 session.start(new Date(log.time));
             }
 
@@ -63,11 +80,12 @@ class SessionHistoryBuilder {
                     logger.warn(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
                     return;
                 }
-                const error = session.getErrors()[0];
+                const error = errorCount === 1 ? session.getErrors()[0] : undefined;
 
                 // Store complete session in history
                 history.addSession(new CompleteSession({
                     id: session.getId(),
+                    release,
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),

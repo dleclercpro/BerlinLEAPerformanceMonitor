@@ -2,6 +2,7 @@ import { LENGTHY_SESSION_DURATION } from '../../config';
 import { LogMessage } from '../../constants';
 import { Comparable, TimeUnit } from '../../types';
 import { isKnownBug, isSessionFailureEvent } from '../../utils/event';
+import Release from '../Release';
 import TimeDuration from '../TimeDuration';
 import Session, { SessionArgs } from './Session';
 
@@ -18,22 +19,29 @@ class CompleteSessionComparator {
 
 
 interface CompleteSessionArgs extends SessionArgs {
+    release?: Release,
     error?: string,
 }
 
 
 
 class CompleteSession extends Session implements Comparable {
+    protected release?: Release;
     protected error?: string;
 
-    public constructor({ error, ...args }: CompleteSessionArgs) {
+    public constructor({ release, error, ...args }: CompleteSessionArgs) {
         super(args);
 
+        this.release = release;
         this.error = error;
     }
 
     public getId() {
         return this.id;
+    }
+
+    public getRelease() {
+        return this.release;
     }
 
     public getStartTime() {

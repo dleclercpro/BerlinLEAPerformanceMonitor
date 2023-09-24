@@ -4,6 +4,7 @@ import Bot from '../bots/Bot';
 import { INFINITE_TIME, SHORT_TIME } from '../../constants/times';
 import { InfiniteSpinnerError, InternalServerError, ServiceUnavailableError, TimeoutError } from '../../errors';
 import { SCREENSHOTS_DIR } from '../../config/file';
+import { PACKAGE_VERSION } from '../../constants';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',
@@ -47,7 +48,7 @@ abstract class Page {
 
     public async screenshot(filename: string) {
         await this.bot.scrollToTop();
-        await this.bot.screenshot(`${SCREENSHOTS_DIR}/${filename}`);
+        await this.bot.screenshot(`${SCREENSHOTS_DIR}/v${PACKAGE_VERSION}/${filename}`);
     }
 
     public async hasElement(locator: By) {
