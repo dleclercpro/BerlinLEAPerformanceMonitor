@@ -13,8 +13,8 @@ export class UnexpectedAlertOpenError extends Error {
 
 
 // Custom errors
-export class NoAppointmentsError extends Error {
-    public name = 'NoAppointmentsError';
+export class NoAppointmentError extends Error {
+    public name = 'NoAppointmentError';
 }
 
 export class NoResultsError extends Error {

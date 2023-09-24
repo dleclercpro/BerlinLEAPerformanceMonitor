@@ -17,7 +17,7 @@ Not only are there almost never any free appointment slots on LEA's portal, the 
 
 ### Length of User Session Until Failure
 Time spent on LEA's website until a user can reasonably conclude that there is no available appointment fitting their needs at the moment. If any of the following errors is encountered (see section <b>Prevalence of Experienced Errors on Workdays (Monday to Friday)</b> for a detailed explanation of each error), the session is deemed a failure:
-- ```NoAppointmentsError```
+- ```NoAppointmentError```
 - ```NoInformationError```
 - ```NoResultsError```
 - ```InfiniteSpinnerError```
@@ -41,7 +41,7 @@ assignment feature altogether.
 
 Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences for all considered errors within bucket ``b`` on workdays.
 
-- ``NoAppointmentsError`` After submitting their search query for an appointment, the user is met with an error message that says: there are no vacant slots for the appointment you are trying to book.
+- ``NoAppointmentError`` After submitting their search query for an appointment, the user is met with an error message that says: there are no vacant slots for the appointment you are trying to book.
 - ``NoInformationError`` After submitting their search query for an appointment, the user is met with an error message that says: there is no information available about the appointment you are trying to book.
 - ``NoResultsError`` After submitting their search query for an appointment, a loading spinner appears, and then... nothing happens. The user is redirected to the previous form page, as though they had not launched their query.
 - ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes: after this time, it is reasonable to assume the user has closed the window.

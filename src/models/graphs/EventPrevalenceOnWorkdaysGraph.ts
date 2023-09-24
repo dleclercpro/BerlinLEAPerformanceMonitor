@@ -1,6 +1,6 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
-import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
+import { CountsDict, GraphAxes, TimeUnit } from '../../types';
 import { equals, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownEvent } from '../../utils/event';
@@ -37,7 +37,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownEvent));
         
         // Gather all unique errors on workdays
-        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: ErrorCounts) => {
+        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: CountsDict) => {
             return [...prevErrors, ...fromCountsToArray(errorCounts)];
         }, []);
         const uniqueErrors = unique(errors);

@@ -9,7 +9,7 @@ import CompleteSession from './CompleteSession';
 
 export type SessionBuckets = Record<Weekday, SessionBucket[]>;
 export type SessionFilter = (session: CompleteSession) => boolean;
-export type ErrorFilter = (error: string) => boolean;
+export type EventFilter = (event: string) => boolean;
 
 class SessionHistory {
     protected version: number;
@@ -133,26 +133,31 @@ class SessionHistory {
         }
     }
 
-    public getSuccesses() {
-        return this.getSessions(session => session.wasAppointmentFound());
+    public getEvents(eventFilter: EventFilter = () => true) {
+        return [...this.getErrors(), ...this.getSuccesses().map(() => 'AppointmentFound')] // FIXME
+            .filter(eventFilter);
     }
 
-    public getErrors(errorFilter: ErrorFilter = () => true) {
+    public getSuccesses() {
+        return this.getSessions(session => session.wasSuccess());
+    }
+
+    public getErrors(eventFilter: EventFilter = () => true) {
         return WEEKDAYS
             .reduce((errors, weekday) => [...errors, ...this.getErrorsByWeekday(weekday)], [] as string[])
-            .filter(errorFilter);
+            .filter(eventFilter);
     }
 
-    public getErrorsByWeekday(weekday: Weekday, errorFilter: ErrorFilter = () => true) {
+    public getErrorsByWeekday(weekday: Weekday, eventFilter: EventFilter = () => true) {
         const errors = this.getSessionsByWeekday(weekday)
             .map(session => session.getError())
             .filter(Boolean) as string[];
 
-        return errors.filter(errorFilter);
+        return errors.filter(eventFilter);
     }
 
-    public getUniqueErrors(errorFilter: ErrorFilter = () => true) {
-        return unique(this.getErrors(errorFilter));
+    public getUniqueErrors(eventFilter: EventFilter = () => true) {
+        return unique(this.getErrors(eventFilter));
     }
 
     public getErrorCounts() {

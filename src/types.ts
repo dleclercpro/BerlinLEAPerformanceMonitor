@@ -68,7 +68,7 @@ export interface Comparable {
     greaterThan(other: Comparable): boolean;
 }
 
-export type ErrorCounts = Record<string, number>;
+export type CountsDict = Record<string, number>;
 
 export type Log = {
     line: number,

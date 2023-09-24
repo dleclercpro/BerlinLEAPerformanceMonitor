@@ -1,13 +1,4 @@
-import { NoAppointmentsError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
-
-export const SESSION_FAILURE_EVENTS = [
-    NoAppointmentsError,
-    NoInformationError,
-    NoResultsError,
-    InfiniteSpinnerError,
-    MissingElementError,
-    UIError,
-].map(err => err.name);
+import { NoAppointmentError, NoInformationError, InternalServerError, MissingElementError, InfiniteSpinnerError, UIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
 
 export const KNOWN_BUGS = [
     NoInformationError,
@@ -20,7 +11,20 @@ export const KNOWN_BUGS = [
     UIError,
 ].map(err => err.name);
 
-export const KNOWN_EVENTS = KNOWN_BUGS.concat([
-    NoAppointmentsError,
-    ConstructionWorkError,
-].map(err => err.name));
+export const KNOWN_EVENTS = KNOWN_BUGS
+    .concat([
+        NoAppointmentError,
+        ConstructionWorkError,
+    ].map(err => err.name))
+    .concat(['AppointmentFound']); // FIXME
+
+
+
+export const SESSION_FAILURE_EVENTS = [
+    NoAppointmentError,
+    NoInformationError,
+    NoResultsError,
+    InfiniteSpinnerError,
+    MissingElementError,
+    UIError,
+].map(err => err.name);

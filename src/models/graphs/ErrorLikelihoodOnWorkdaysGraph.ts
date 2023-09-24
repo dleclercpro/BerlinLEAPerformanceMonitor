@@ -1,6 +1,6 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
 import Graph from './Graph';
-import { ErrorCounts, GraphAxes, TimeUnit } from '../../types';
+import { CountsDict, GraphAxes, TimeUnit } from '../../types';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownBug } from '../../utils/event';
 import { fromCountsToArray, generateEmptyCounts, toCountsFromArray, unique } from '../../utils/array';
@@ -35,7 +35,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
         const mergedBucketsErrorCounts = mergedBuckets.map(bucket => bucket.getErrorCounts(isKnownBug));
                 
         // Gather all unique errors on workdays
-        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: ErrorCounts) => {
+        const errors = mergedBucketsErrorCounts.reduce((prevErrors: string[], errorCounts: CountsDict) => {
             return [...prevErrors, ...fromCountsToArray(errorCounts)];
         }, []);
         const uniqueErrors = unique(errors);
@@ -47,7 +47,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
         return uniqueErrors.map((error) => {
             const data = mergedBuckets
                 .map((bucket, i) => {
-                    const bucketErrorCounts: ErrorCounts = {
+                    const bucketErrorCounts: CountsDict = {
                         ...generateEmptyCounts(uniqueErrors),
                         ...mergedBucketsErrorCounts[i],
                     };

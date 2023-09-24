@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { NoResultsError, NoAppointmentsError, NoInformationError } from '../../errors';
+import { NoResultsError, NoAppointmentError, NoInformationError } from '../../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
@@ -51,7 +51,7 @@ class ResultsPage extends Page {
 
         if (await this.hasElement(ELEMENTS.Errors.NoAppointments)) {
             logger.info(LogMessage.Failure);
-            throw new NoAppointmentsError();
+            throw new NoAppointmentError();
         }
 
         // Ensure there are no errors before concluding page hasn't changed!
