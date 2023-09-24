@@ -50,11 +50,6 @@ class SessionHistoryBuilder {
                 release = new Release(major, minor, patch);
             }
 
-            // Should builder ignore log?
-            if (release.smallerThan(this.minimumRelease)) {
-                return;
-            }
-
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {
                 session = IncompleteSession.create();
@@ -73,6 +68,11 @@ class SessionHistoryBuilder {
             if (log.msg.includes(TEXTS.SessionEnd)) {
                 logger.trace(`Finishing session: ${session.getId()}`);
                 session.end(new Date(log.time));
+
+                // Should builder ignore log?
+                if (release.smallerThan(this.minimumRelease)) {
+                    return;
+                }
 
                 // Has session more than one error: it is invalid!
                 const errorCount = session.getErrors().length;
