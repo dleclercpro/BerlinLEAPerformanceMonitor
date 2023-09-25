@@ -80,5 +80,5 @@ In light of the current performance of LEA's portal (see previous section), and 
 The source code in this repository is not meant to be used as a means to obtain an actual appointment at the Landesamt für Einwanderung in Berlin. Its sole purpose is educational: my goal is to highlight the poor access to immigration-related online services in Berlin, in 2023. I reject all responsibility for any harm that could be caused by its misuse.
 
 ## References
-[1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500  
 [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
