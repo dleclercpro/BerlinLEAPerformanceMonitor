@@ -45,10 +45,14 @@ export class InfiniteSpinnerError extends Error {
     public name = 'InfiniteSpinnerError';
 }
 
-export class MissingElementError extends Error {
-    public name = 'MissingElementError';
+export class BrokenUIError extends Error {
+    public name = 'BrokenUIError';
 }
 
-export class DefectiveUIError extends Error {
-    public name = 'DefectiveUIError';
+export class GhostUIElement extends Error {
+    public name = 'GhostUIElement';
+}
+
+export class ResultsPageDoesNotLoad extends Error {
+    public name = 'ResultsPageDoesNotLoad';
 }

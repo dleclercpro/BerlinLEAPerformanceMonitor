@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
-import { AggregateError, MissingElementError, TimeoutError } from '../../errors';
+import { AggregateError, GhostUIElement, TimeoutError } from '../../errors';
 import { touchFile, writeFile } from '../../utils/file';
 
 abstract class Bot {
@@ -64,23 +64,14 @@ abstract class Bot {
                 logger.trace(`Found element.`);
             })
             .catch((err: unknown) => {
-                // Re-write default errors for easier interpretation
-                if (err instanceof Error) {
-                    let error: Error;
+                let error = err;
 
-                    switch (err.name) {
-                        case TimeoutError.name:
-                            error = new MissingElementError();
-                            break;
-                        default:
-                            error = err;
-                    }
-
-                    throw error;
-
-                } else {
-                    logger.warn(`Type of thrown error not supported.`);
+                // Driver tried to find the element until it timed out
+                if (err instanceof Error && err.name === TimeoutError.name) {
+                    error = new GhostUIElement();
                 }
+
+                throw error;
             });
     }
 
@@ -100,22 +91,13 @@ abstract class Bot {
                 logger.trace(`Element is gone.`);
             })
             .catch((err: unknown) => {
-                // Re-write default errors for easier interpretation
-                if (err instanceof Error) {
-                    let error: Error;
+                let error = err;
 
-                    switch (err.name) {
-                        case AggregateError.name:
-                            error = new TimeoutError();
-                            break;
-                        default:
-                            error = err;
-                    }
-
-                    throw error;
-                } else {
-                    logger.warn(`Type of thrown error not supported.`);
+                if (err instanceof Error && err.name === AggregateError.name) {
+                    error = new TimeoutError();
                 }
+
+                throw error;
             })
     }
 

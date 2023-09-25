@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { NoResultsError, NoAppointmentError, NoInformationError } from '../../errors';
+import { NoResultsError, NoAppointmentError, NoInformationError, ResultsPageDoesNotLoad } from '../../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
@@ -35,10 +35,19 @@ class ResultsPage extends Page {
     protected name = 'Results';
 
     protected async doWaitUntilLoaded() {
-        await Promise.any([
+        return Promise.any([
             this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, MEDIUM_TIME),
             this.bot.waitForElement(ELEMENTS.Boxes.Messages, MEDIUM_TIME),
-        ]);
+        ])
+        .catch((err: unknown) => {
+            let error = err;
+
+            if (err instanceof Error && err.name === AggregateError.name) {
+                error = new ResultsPageDoesNotLoad();
+            }
+
+            throw error;
+        });
     }
 
     public async checkForAppointments() {

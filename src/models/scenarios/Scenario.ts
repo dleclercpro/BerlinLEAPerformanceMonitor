@@ -22,7 +22,7 @@ abstract class Scenario {
                     logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownEvent);
                 }
             } else {
-                logger.warn(`Type of thrown error not supported.`);
+                logger.warn(err, `Unexpected error thrown!`);
             }
             
             throw err;

@@ -21,8 +21,8 @@ Time spent on LEA's website until a user can reasonably conclude that there is n
 - ```NoInformationError```
 - ```NoResultsError```
 - ```InfiniteSpinnerError```
-- ```MissingElementError```
-- ```DefectiveUIError```
+- ```GhostUIElement```
+- ```BrokenUIError```
 
 <p align="center" width="100%">
   <img alt="Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/SessionLengthGraph.png" width="100%" />
@@ -46,8 +46,8 @@ Prevalence of all events experienced by the users of the LEA website, from Monda
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, which "indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 - ``ServiceUnavailableError`` The LEA servers are responding with the standard HTTP status code 503, which "indicates that the server is not ready to handle the request." [2]
 - ``UndisclosedError`` A generic error page is displayed to the user, with no information whatsoever about what the problem is.
-- ``MissingElementError`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
-- ``DefectiveUIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
+- ``GhostUIElement`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
+- ``BrokenUIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
 <p align="center" width="100%">
   <img alt="Prevalence of Events On Workdays on LEA's Portal" src="./data/production/img/EventPrevalenceOnWorkdaysGraph.png" width="100%" />
@@ -63,8 +63,8 @@ assignment feature altogether. Said likelihood for an error ``e`` and a bucket `
 - ```ServiceUnavailableError```
 - ```UndisclosedError```
 - ```InfiniteSpinnerError```
-- ```MissingElementError```
-- ```DefectiveUIError```
+- ```GhostUIElement```
+- ```BrokenUIError```
 
 <p align="center" width="100%">
   <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorLikelihoodOnWorkdaysGraph.png" width="100%" />
