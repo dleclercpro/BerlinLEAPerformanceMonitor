@@ -75,7 +75,8 @@ class SessionHistoryBuilder {
                 // Has session more than one error: it is invalid!
                 const errorCount = session.getErrors().length;
                 if (errorCount > 1) {
-                    logger.warn(`Invalid session: ${errorCount} errors found. There should be maximum one.`);
+                    const sessionStartLine = session.getLogs()[0].line;
+                    logger.warn(`Invalid session [@${sessionStartLine}] with ${errorCount} errors found (there should only be one)`);
                     return;
                 }
                 const error = errorCount === 1 ? session.getErrors()[0] : undefined;
