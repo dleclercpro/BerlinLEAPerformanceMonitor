@@ -63,7 +63,8 @@ class ResultsPage extends Page {
             throw new NoAppointmentError();
         }
 
-        // Ensure there are no errors before concluding page hasn't changed!
+        // Ensure there are no errors before concluding page hasn't changed (i.e. this
+        // verification needs to happen last!)
         if (await this.hasElement(ELEMENTS.Dropdown.Citizenship)) {
             logger.info(`Returned to find appointment page.`);
             throw new NoResultsError();
@@ -72,7 +73,9 @@ class ResultsPage extends Page {
         // There seems to be an appointment: take a screenshot!
         await this.screenshot(`${formatDateForFilename(new Date())}.png`);
 
+        // Record the successful event in the logs!
         logger.info(LogMessage.Success);
+
         return true;
     }
 }

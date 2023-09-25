@@ -15,6 +15,8 @@ abstract class Scenario {
             await this.doExecute(bot);
 
         } catch (err: unknown) {
+            let error = err;
+
             if (err instanceof Error) {
                 if (isKnownEvent(err.name)) {
                     logger.error({ err: err.name }, LogMessage.KnownEvent);
@@ -25,7 +27,7 @@ abstract class Scenario {
                 logger.warn(err, `Unexpected error thrown!`);
             }
             
-            throw err;
+            throw error;
 
         } finally {
             logger.info(`--------------- Scenario: ${this.name} [END] ---------------`);
