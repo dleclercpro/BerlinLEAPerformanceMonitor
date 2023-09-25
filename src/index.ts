@@ -57,10 +57,10 @@ const execute = async () => {
     
             // Play alarm one after the other to wake up
             // user!
-            for (const _ of getRange(N_ALARMS_ON_SUCCESS)) {
+            getRange(N_ALARMS_ON_SUCCESS).reduce(async () => {
                 await Alarm.ring();
                 await sleep(VERY_SHORT_TIME);
-            }
+            }, Promise.resolve());
         }
 
         executedOnce = true;

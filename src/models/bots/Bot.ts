@@ -63,14 +63,23 @@ abstract class Bot {
             .then(() => {
                 logger.trace(`Found element.`);
             })
-            .catch((err: any) => {
-                const { name } = err;
-    
-                switch (name) {
-                    case TimeoutError.name:
-                        throw new MissingElementError();
-                    default:
-                        throw err;
+            .catch((err: unknown) => {
+                // Re-write default errors for easier interpretation
+                if (err instanceof Error) {
+                    let error: Error;
+
+                    switch (err.name) {
+                        case TimeoutError.name:
+                            error = new MissingElementError();
+                            break;
+                        default:
+                            error = err;
+                    }
+
+                    throw error;
+
+                } else {
+                    logger.warn(`Type of thrown error not supported.`);
                 }
             });
     }
@@ -90,14 +99,22 @@ abstract class Bot {
             .then(() => {
                 logger.trace(`Element is gone.`);
             })
-            .catch((err: any) => {
-                const { name } = err;
+            .catch((err: unknown) => {
+                // Re-write default errors for easier interpretation
+                if (err instanceof Error) {
+                    let error: Error;
 
-                switch (name) {
-                    case AggregateError.name:
-                        throw new TimeoutError();
-                    default:
-                        throw err;
+                    switch (err.name) {
+                        case AggregateError.name:
+                            error = new TimeoutError();
+                            break;
+                        default:
+                            error = err;
+                    }
+
+                    throw error;
+                } else {
+                    logger.warn(`Type of thrown error not supported.`);
                 }
             })
     }

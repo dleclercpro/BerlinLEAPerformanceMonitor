@@ -14,11 +14,15 @@ abstract class Scenario {
 
             await this.doExecute(bot);
 
-        } catch (err: any) {
-            if (isKnownEvent(err.name)) {
-                logger.error({ err: err.name }, LogMessage.KnownEvent);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                if (isKnownEvent(err.name)) {
+                    logger.error({ err: err.name }, LogMessage.KnownEvent);
+                } else {
+                    logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownEvent);
+                }
             } else {
-                logger.fatal({ err: err.name, msg: err.message }, LogMessage.UnknownEvent);
+                logger.warn(`Type of thrown error not supported.`);
             }
             
             throw err;
