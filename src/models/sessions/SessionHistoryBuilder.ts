@@ -45,10 +45,8 @@ class SessionHistoryBuilder {
         logs.forEach(log => {
 
             // Parse app version
-            if (log.version) {
-                const [major, minor, patch] = log.version.split('.').map(Number);
-                release = new Release(major, minor, patch);
-            }
+            const [major, minor, patch] = log.version.split('.').map(Number);
+            release = new Release(major, minor, patch);
 
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {

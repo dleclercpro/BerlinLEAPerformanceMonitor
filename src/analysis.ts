@@ -15,6 +15,12 @@ import { IGNORE_DAYS_WITH_EMPTY_BUCKETS } from './config';
 
 
 
+const isTextLog = (line: string) => line.startsWith('{') && line.endsWith('}');
+const parseTextLog = (line: string, i: number): Log => ({ line: i + 1, ...JSON.parse(line) });
+const hasLogMessage = (log: Log) => !!log && !!log.msg;
+
+
+
 const parseLogs = async (filepath: string) => {
     logger.info(`Reading logs from: ${filepath}`);
 
@@ -22,11 +28,11 @@ const parseLogs = async (filepath: string) => {
 
     const logs: Log[] = file
         .split(NEW_LINE_REGEXP)
-        .filter((textLog: string) => textLog.startsWith('{') && textLog.endsWith('}'))
-        .map((textLog, i) => ({ line: i + 1, ...JSON.parse(textLog) }))
-        .filter((log) => (!!log && !!log.msg)); // Every log should have a message
+        .filter(isTextLog)
+        .map(parseTextLog)
+        .filter(hasLogMessage); // Every log should have a message
 
-    logger.info(`Parsed ${logs.length} logs.`);
+    logger.info(`Parsed ${logs.length} valid log entries.`);
 
     return logs;
 }
