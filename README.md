@@ -17,8 +17,8 @@ Not only are there almost never any free appointment slots on LEA's portal, the 
 
 ### Length of User Session Until Failure
 Time spent on LEA's website until a user can reasonably conclude that there is no available appointment fitting their needs at the moment. If any of the following errors is encountered (see section <b>Prevalence of Events on Workdays (Monday to Friday)</b> for a detailed explanation of each error), the session is deemed a failure:
-- ```NoAppointmentError```
-- ```NoInformationError```
+- ```FoundNoAppointmentError```
+- ```NoAppointmentInformationError```
 - ```NoResultsError```
 - ```InfiniteSpinnerError```
 - ```GhostUIElement```
@@ -38,8 +38,8 @@ Average time spent on LEA's website by its users before the latter are met with 
 ### Prevalence of Events on Workdays (Monday to Friday)
 Prevalence of all events experienced by the users of the LEA website, from Monday to Friday, Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences for all considered errors within bucket ``b`` on workdays.
 
-- ``NoAppointmentError`` After submitting their search query for an appointment, the user is met with an error message that says: there are no vacant slots for the appointment you are trying to book.
-- ``NoInformationError`` After submitting their search query for an appointment, the user is met with an error message that says: there is no information available about the appointment you are trying to book.
+- ``FoundNoAppointmentError`` After submitting their search query for an appointment, the user is met with an error message that says: there are no vacant slots for the appointment you are trying to book.
+- ``NoAppointmentInformationError`` After submitting their search query for an appointment, the user is met with an error message that says: there is no information available about the appointment you are trying to book.
 - ``NoResultsError`` After submitting their search query for an appointment, a loading spinner appears, and then... nothing happens. The user is redirected to the previous form page, as though they had not launched their query.
 - ``InfiniteSpinnerError`` A loading spinner was shown for more than 2 minutes: after this time, it is reasonable to assume the user has closed the window.
 - ``ConstructionWorkError`` There are currently construction works on LEA's portal. Note: I have personally observed the indicated times (i.e. when the construction works started and when they should end) to be most often erroneous, if specified at all.
@@ -57,7 +57,7 @@ Prevalence of all events experienced by the users of the LEA website, from Monda
 Likelihood of errors experienced by the users of the LEA website, from Monday to Friday, which prevent them accessing the appointment
 assignment feature altogether. Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays. In other words: if one of the considered errors is to happen, when is it likely to do so? Here is the list of errors considered when plotting the graph below:
 
-- ```NoInformationError```
+- ```NoAppointmentInformationError```
 - ```NoResultsError```
 - ```InternalServerError```
 - ```ServiceUnavailableError```

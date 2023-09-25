@@ -1,7 +1,7 @@
-import { NoAppointmentError, NoInformationError, InternalServerError, GhostUIElement, InfiniteSpinnerError, BrokenUIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
+import { FoundNoAppointmentError, NoAppointmentInformationError, InternalServerError, GhostUIElement, InfiniteSpinnerError, BrokenUIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
 
 export const KNOWN_BUGS = [
-    NoInformationError,
+    NoAppointmentInformationError,
     NoResultsError,
     InternalServerError,
     ServiceUnavailableError,
@@ -13,15 +13,15 @@ export const KNOWN_BUGS = [
 
 export const KNOWN_EVENTS = KNOWN_BUGS
     .concat([
-        NoAppointmentError,
+        FoundNoAppointmentError,
         ConstructionWorkError,
     ].map(err => err.name));
 
 
 
 export const SESSION_FAILURE_EVENTS = [
-    NoAppointmentError,
-    NoInformationError,
+    FoundNoAppointmentError,
+    NoAppointmentInformationError,
     NoResultsError,
     InfiniteSpinnerError,
     GhostUIElement,

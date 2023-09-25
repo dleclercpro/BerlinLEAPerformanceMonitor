@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { NoResultsError, NoAppointmentError, NoInformationError, ResultsPageDoesNotLoad } from '../../errors';
+import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, ResultsPageDoesNotLoad } from '../../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
@@ -55,12 +55,12 @@ class ResultsPage extends Page {
 
         if (await this.hasElement(ELEMENTS.Errors.NoInformation)) {
             logger.info(`There is no information available for the selected appointment.`);
-            throw new NoInformationError();
+            throw new NoAppointmentInformationError();
         }
 
         if (await this.hasElement(ELEMENTS.Errors.NoAppointment)) {
             logger.info(LogMessage.Failure);
-            throw new NoAppointmentError();
+            throw new FoundNoAppointmentError();
         }
 
         // Ensure there are no errors before concluding page hasn't changed (i.e. this
