@@ -15,7 +15,6 @@ const getBindings = (bindings: pino.Bindings) => {
 
 const FORMATTERS = {
     bindings: getBindings,
-    timestamp: pino.stdTimeFunctions.isoTime,
 };
 
 const FILE_TRANSPORT: TransportTargetOptions = {
@@ -52,6 +51,7 @@ const getLoggerByUseCase = () => {
         return pino({
             level: 'trace',
             formatters: FORMATTERS,
+            timestamp: pino.stdTimeFunctions.isoTime,
         }, pino.transport({
             targets: [FILE_TRANSPORT, CONSOLE_TRANSPORT],
         }));
@@ -61,6 +61,7 @@ const getLoggerByUseCase = () => {
     return pino({
         level: 'debug',
         formatters: FORMATTERS,
+        timestamp: pino.stdTimeFunctions.isoTime,
         transport: CONSOLE_TRANSPORT,
     });
 }
