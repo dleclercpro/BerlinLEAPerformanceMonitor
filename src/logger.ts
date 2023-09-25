@@ -1,33 +1,48 @@
-import pino from 'pino';
+import pino, { TransportTargetOptions } from 'pino';
 import pretty from 'pino-pretty';
 import { LOGS_FILEPATH } from './config/file';
 import { Environment } from './types';
 import { POLL } from './config/bot';
 import { PACKAGE_VERSION } from './constants';
+import { ENV } from './config';
 
 const getBindings = (bindings: pino.Bindings) => {
     return {
-        pid: bindings.pid,
-        hostname: bindings.hostname,
+        ...bindings,
         version: PACKAGE_VERSION,
     };
 }
+
+const FORMATTERS = {
+    bindings: getBindings,
+    timestamp: pino.stdTimeFunctions.isoTime,
+};
+
+const FILE_TRANSPORT: TransportTargetOptions = {
+    level: 'info',
+    target: 'pino/file',
+    options: {
+        destination: LOGS_FILEPATH,
+    },
+};
+
+const CONSOLE_TRANSPORT: TransportTargetOptions = {
+    level: 'debug',
+    target: 'pino-pretty',
+    options: {
+        colorize: true,
+        ignore: 'pid,hostname,version',
+    },
+};
+
+
 
 const getLoggerByEnvironment = (env: Environment) => {
     switch (env) {
         case Environment.Test:
             return pino(pretty({ sync: true }));
-        case Environment.Development:
-        case Environment.Production:
-            return pino({
-                level: 'debug',
-                formatters: {
-                    bindings: getBindings,
-                },
-                transport: {
-                    target: 'pino-pretty',
-                },
-            });
+        default:
+            return getLoggerByUseCase();
     }
 }
 
@@ -36,33 +51,18 @@ const getLoggerByUseCase = () => {
     if (POLL) {
         return pino({
             level: 'trace',
-            formatters: {
-                bindings: getBindings,
-            },
+            formatters: FORMATTERS,
         }, pino.transport({
-            targets: [{
-                level: 'info',
-                target: 'pino/file',
-                options: { destination: LOGS_FILEPATH },
-            },
-            {
-                level: 'debug',
-                target: 'pino-pretty',
-                options: { },
-            }],
+            targets: [FILE_TRANSPORT, CONSOLE_TRANSPORT],
         }));
     }
 
     // Otherwise, only terminal is sufficient
     return pino({
         level: 'debug',
-        formatters: {
-            bindings: getBindings,
-        },
-        transport: {
-            target: 'pino-pretty',
-        },
+        formatters: FORMATTERS,
+        transport: CONSOLE_TRANSPORT,
     });
 }
 
-export default getLoggerByUseCase();
+export default getLoggerByEnvironment(ENV);
