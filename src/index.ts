@@ -10,9 +10,8 @@ import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
 import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
-import { analyzeLogs } from './analysis';
-import { LOGS_FILEPATH } from './config/file';
 import logger from './logger';
+import AnalysisJob from './models/jobs/AnalysisJob';
 
 
 
@@ -46,7 +45,7 @@ const execute = async () => {
     }
 
     if (ANALYZE) {
-        await analyzeLogs(LOGS_FILEPATH);
+        await new AnalysisJob().execute();
     }
 
     // Poll 
@@ -70,9 +69,10 @@ const execute = async () => {
 
 
 if ([Environment.Development, Environment.Production].includes(ENV)) {
-    execute().catch((err) => {
-        logger.fatal(`Stopping everything. Did not catch error: ${err}`);
-    });
+    execute()
+        .catch((err) => {
+            logger.fatal(`Stopping everything. Did not catch error: ${err}`);
+        });
 }
 
 

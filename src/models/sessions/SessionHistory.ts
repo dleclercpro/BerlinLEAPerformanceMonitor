@@ -2,7 +2,8 @@ import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
 import { VersionedData, Weekday } from '../../types';
 import { toCountsFromArray, unique } from '../../utils/array';
-import { getWeekday } from '../../utils/locale';
+import { formatDateForFilename, getWeekday } from '../../utils/locale';
+import { sum } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
@@ -34,6 +35,29 @@ class SessionHistory {
 
     public getBucketSize() {
         return this.bucketSize;
+    }
+
+    public summarize() {
+        const errorCounts = this.getErrorCounts();
+        const successTimes = this
+            .getSuccesses()
+            .map(session => formatDateForFilename(session.getEndTime()));
+
+        if (successTimes.length > 0) {
+            logger.info(`Time(s) at which an appointment was momentarily available:`);
+            
+            successTimes.sort().reverse().forEach(time => {
+                logger.info(time);
+            });
+        } else {
+            logger.info(`There was never an appointment available.`);
+        }
+
+        if (sum(Object.values(errorCounts)) > 0) {
+            logger.info(errorCounts, `Errors encountered:`);
+        } else {
+            logger.info(`There was no error encountered.`);
+        }
     }
 
     public addSession(session: CompleteSession) {
