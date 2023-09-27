@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, ResultsPageDoesNotLoad } from '../../errors';
+import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, GhostUIElementError } from '../../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { MEDIUM_TIME } from '../../constants/times';
@@ -43,7 +43,7 @@ class ResultsPage extends Page {
             let error = err;
 
             if (err instanceof Error && err.name === AggregateError.name) {
-                error = new ResultsPageDoesNotLoad();
+                error = new GhostUIElementError();
             }
 
             throw error;

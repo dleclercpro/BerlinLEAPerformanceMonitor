@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
-import { AggregateError, GhostUIElement, TimeoutError } from '../../errors';
+import { AggregateError, GhostUIElementError, TimeoutError } from '../../errors';
 import { touchFile, writeFile } from '../../utils/file';
 
 abstract class Bot {
@@ -68,7 +68,7 @@ abstract class Bot {
 
                 // Driver tried to find the element until it timed out
                 if (err instanceof Error && err.name === TimeoutError.name) {
-                    error = new GhostUIElement();
+                    error = new GhostUIElementError();
                 }
 
                 throw error;

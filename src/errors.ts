@@ -6,10 +6,6 @@ export class AggregateError extends Error {
     public name = 'AggregateError';
 }
 
-export class UnexpectedAlertOpenError extends Error {
-    public name = 'UnexpectedAlertOpenError';
-}
-
 
 
 // Custom errors
@@ -49,10 +45,6 @@ export class BrokenUIError extends Error {
     public name = 'BrokenUIError';
 }
 
-export class GhostUIElement extends Error {
-    public name = 'GhostUIElement';
-}
-
-export class ResultsPageDoesNotLoad extends Error {
-    public name = 'ResultsPageDoesNotLoad';
+export class GhostUIElementError extends Error {
+    public name = 'GhostUIElementError';
 }
