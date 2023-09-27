@@ -1,10 +1,10 @@
-import { Environment } from './types';
+import { Environment, TimeUnit } from './types';
 import { ENV, N_ALARMS_ON_SUCCESS, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
-import { sleep } from './utils/time';
+import { computeDate, sleep } from './utils/time';
 import { getRange } from './utils/math';
 import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
@@ -12,6 +12,8 @@ import BotJob from './models/jobs/BotJob';
 import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
+import TimeDuration from './models/TimeDuration';
+import { LOGS_FILEPATH } from './config/file';
 
 
 
@@ -45,10 +47,15 @@ const execute = async () => {
     }
 
     if (ANALYZE) {
+        const now = new Date();
+        const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
+
+        // await new AnalysisJob({ filepath: LOGS_FILEPATH, since: lastWeek }).execute();
+
         await new AnalysisJob().execute();
     }
 
-    // Poll 
+    // Poll
     while (POLL && (!ONCE || !executedOnce)) {
         const bot = new ChromeBot();
 
@@ -71,7 +78,7 @@ const execute = async () => {
 if ([Environment.Development, Environment.Production].includes(ENV)) {
     execute()
         .catch((err) => {
-            logger.fatal(`Stopping everything. Did not catch error: ${err}`);
+            logger.fatal(err, `Stopping everything. Uncaught error:`);
         });
 }
 

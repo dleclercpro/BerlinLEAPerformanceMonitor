@@ -2,6 +2,10 @@ import { Locale, Weekday } from '../types';
 import { WEEKDAYS } from '../constants/times';
 import { LOCALE } from '../config/locale';
 
+export const getTimeZone = () => {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
 export const getWeekday = (date: Date) => {
     return WEEKDAYS[date.getDay()] as Weekday;
 }

@@ -19,6 +19,6 @@ export const getTimeSpentSinceMidnight = (date: Date) => {
     return new TimeDuration(date.getTime() - midnight.getTime(), TimeUnit.Milliseconds);
 }
 
-export const getTimeZone = () => {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+export const computeDate = (date: Date, diff: TimeDuration) => {
+    return new Date(date.getTime() + diff.toMs().getAmount());
 }

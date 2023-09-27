@@ -14,21 +14,24 @@ import Job from './Job';
 
 interface Args {
     filepath: string,
+    since?: Date,
 }
 
 class AnalysisJob extends Job {
     protected filepath: string;
+    protected since?: Date;
 
     public constructor(args: Args = { filepath: LOGS_FILEPATH }) {
         super();
 
-        const { filepath } = args;
+        const { filepath, since } = args;
 
         this.filepath = filepath;
+        this.since = since;
     }
 
     public async execute() {
-        const logs = await parseLogs(this.filepath);
+        const logs = await parseLogs(this.filepath, this.since);
     
         const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
         const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));

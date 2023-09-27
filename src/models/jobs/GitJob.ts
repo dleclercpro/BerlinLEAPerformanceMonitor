@@ -3,7 +3,7 @@ import { LOCALE } from '../../config/locale';
 import logger from '../../logger';
 import { GitAuthor, GitRemote } from '../../types';
 import { GitCommands } from '../../utils/git';
-import { getTimeZone } from '../../utils/time';
+import { getTimeZone } from '../../utils/locale';
 import Job from './Job';
 
 class GitJob extends Job {

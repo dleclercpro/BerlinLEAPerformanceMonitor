@@ -11,8 +11,12 @@ const hasLogMessage = (log: Log) => !!log && !!log.msg;
 
 
 
-export const parseLogs = async (filepath: string) => {
+export const parseLogs = async (filepath: string, since?: Date) => {
     logger.info(`Reading logs from: ${filepath}`);
+
+    if (since) {
+        logger.info(`Keeping logs newer than: ${since}`);
+    }
 
     const file = await readFile(filepath);
 
@@ -20,6 +24,11 @@ export const parseLogs = async (filepath: string) => {
         .split(NEW_LINE_REGEXP)
         .filter(isTextLog)
         .map(parseTextLog)
+        .filter((log: Log) => {
+            if (!since) return true;
+            
+            return new Date(log.time) >= since;
+        })
         .filter(hasLogMessage); // Every log should have a message
 
     logger.info(`Parsed ${logs.length} valid log entries.`);

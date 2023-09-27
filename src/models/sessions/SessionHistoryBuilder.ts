@@ -56,8 +56,8 @@ class SessionHistoryBuilder {
                 session.start(new Date(log.time));
             }
 
-            // Session open: store log
-            if (session.isOpen()) {
+            // Session exists and is open: store log
+            if (session && session.isOpen()) {
                 logger.trace(`Adding log to session: ${log.msg}`);
                 session.push(log);
             }
