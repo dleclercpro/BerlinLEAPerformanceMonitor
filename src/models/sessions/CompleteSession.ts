@@ -1,7 +1,7 @@
 import { LENGTHY_SESSION_DURATION } from '../../config';
 import { LogMessage } from '../../constants';
 import { Comparable, TimeUnit } from '../../types';
-import { isKnownBug, isSessionFailureEvent } from '../../utils/event';
+import { isKnownBug, isFailureEvent } from '../../utils/event';
 import Release from '../Release';
 import TimeDuration from '../TimeDuration';
 import Session, { SessionArgs } from './Session';
@@ -76,7 +76,7 @@ class CompleteSession extends Session implements Comparable {
     // The sessions was completed, but it can be understood
     // as a failure to find an appointment
     public wasFailure() {
-        return !!this.error && isSessionFailureEvent(this.error);
+        return !!this.error && isFailureEvent(this.error);
     }
 
     public getDuration() {

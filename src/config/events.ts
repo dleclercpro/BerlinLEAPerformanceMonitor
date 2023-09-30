@@ -19,7 +19,8 @@ export const KNOWN_EVENTS = KNOWN_BUGS
 
 
 
-export const SESSION_FAILURE_EVENTS = [
+// Events that can be understood as a failure to find an appointment
+export const FAILURE_EVENTS = [
     FoundNoAppointmentError,
     NoAppointmentInformationError,
     NoResultsError,
