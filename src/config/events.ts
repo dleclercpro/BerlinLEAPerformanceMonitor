@@ -1,4 +1,4 @@
-import { FoundNoAppointmentError, NoAppointmentInformationError, InternalServerError, GhostUIElementError, InfiniteSpinnerError, BrokenUIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../errors';
+import { FoundNoAppointmentError, NoAppointmentInformationError, InternalServerError, GhostUIElementError, InfiniteSpinnerError, BrokenUIError, NoResultsError, ConstructionWorkError, ServiceUnavailableError, UndisclosedError } from '../models/errors';
 
 export const KNOWN_BUGS = [
     NoAppointmentInformationError,
