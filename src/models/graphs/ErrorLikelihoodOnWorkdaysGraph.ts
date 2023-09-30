@@ -11,7 +11,7 @@ import { equals, sum } from '../../utils/math';
 import { getEventColor } from '../../utils/styles';
 
 class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
-    protected type: ChartType = 'line';
+    protected type: ChartType = 'bar';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
         y: { label: `Wahrscheinlichkeit`, unit: `%` },
