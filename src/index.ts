@@ -13,7 +13,6 @@ import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
 import TimeDuration from './models/TimeDuration';
-import { LOGS_FILEPATH } from './config/file';
 
 
 
@@ -79,6 +78,9 @@ if ([Environment.Development, Environment.Production].includes(ENV)) {
     execute()
         .catch((err) => {
             logger.fatal(err, `Stopping everything. Uncaught error:`);
+
+            // Stop all previously scheduled jobs
+            JobScheduler.stopAll();
         });
 }
 

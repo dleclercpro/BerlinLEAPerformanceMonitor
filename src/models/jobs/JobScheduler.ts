@@ -1,4 +1,4 @@
-import cron, { ScheduleOptions, validate } from 'node-cron';
+import { schedule, ScheduledTask, ScheduleOptions, validate } from 'node-cron';
 import Job from './Job';
 import logger from '../../logger';
 import { LogMessage } from '../../constants';
@@ -12,8 +12,10 @@ interface ScheduleArgs {
 class JobScheduler {
     private static instance?: JobScheduler;
 
-    private constructor() {
+    protected tasks: ScheduledTask[];
 
+    private constructor() {
+        this.tasks = [];
     }
 
     public static getInstance() {
@@ -23,13 +25,13 @@ class JobScheduler {
         return this.instance;
     }
 
-    public schedule ({ job, expression, options }: ScheduleArgs) {
+    public schedule({ job, expression, options }: ScheduleArgs) {
         if (!expression) throw new Error('Missing cron expression.');
         if (!validate(expression)) throw new Error('Invalid cron expression.');
         
         logger.debug(`Scheduling job '${job.getName()}'...`);
 
-        cron.schedule(
+        const task = schedule(
             expression,
             () => {
                 logger.debug(`Executing job '${job.getName()}'...`);
@@ -49,6 +51,14 @@ class JobScheduler {
         );
 
         logger.debug(`Scheduled job '${job.getName()}'.`);
+
+        this.tasks.push(task);
+    }
+
+    public stopAll() {
+        this.tasks.forEach((task: ScheduledTask) => {
+            task.stop();
+        });
     }
 }
 
