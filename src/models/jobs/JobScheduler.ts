@@ -56,9 +56,13 @@ class JobScheduler {
     }
 
     public stopAll() {
+        logger.debug(`Stopping all jobs...`);
+
         this.tasks.forEach((task: ScheduledTask) => {
             task.stop();
         });
+
+        logger.debug(`Stopped all jobs.`);
     }
 }
 
