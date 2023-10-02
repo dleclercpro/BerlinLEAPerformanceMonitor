@@ -13,6 +13,7 @@ import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
 import TimeDuration from './models/TimeDuration';
+import { LOGS_FILEPATH } from './config/file';
 
 
 
@@ -49,9 +50,7 @@ const execute = async () => {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
 
-        // await new AnalysisJob({ filepath: LOGS_FILEPATH, since: lastWeek }).execute();
-
-        await new AnalysisJob().execute();
+        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: lastWeek }).execute();
     }
 
     // Poll

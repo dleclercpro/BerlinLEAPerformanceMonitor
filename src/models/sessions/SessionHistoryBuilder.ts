@@ -38,7 +38,7 @@ class SessionHistoryBuilder {
 
         const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
 
-        let session: IncompleteSession;
+        let session: IncompleteSession = IncompleteSession.create();
         let release: Release = RELEASE_ZERO;
 
         // Read logs in chronological order
@@ -47,6 +47,11 @@ class SessionHistoryBuilder {
             // Parse app version
             const [major, minor, patch] = log.version.split('.').map(Number);
             release = new Release(major, minor, patch);
+
+            // Should builder ignore log?
+            if (release.smallerThan(this.minimumRelease)) {
+                return;
+            }
 
             // Session started
             if (log.msg.includes(TEXTS.SessionStart)) {
@@ -57,7 +62,7 @@ class SessionHistoryBuilder {
             }
 
             // Session exists and is open: store log
-            if (session && session.isOpen()) {
+            if (session.isOpen()) {
                 logger.trace(`Adding log to session: ${log.msg}`);
                 session.push(log);
             }
@@ -67,8 +72,8 @@ class SessionHistoryBuilder {
                 logger.trace(`Finishing session: ${session.getId()}`);
                 session.end(new Date(log.time));
 
-                // Should builder ignore log?
-                if (release.smallerThan(this.minimumRelease)) {
+                // Sessions should have a start and an end
+                if (!session.isComplete()) {
                     return;
                 }
 
@@ -79,7 +84,6 @@ class SessionHistoryBuilder {
                     logger.warn(`Invalid session [@${sessionStartLine}] with ${errorCount} errors found (there should only be one)`);
                     return;
                 }
-                const error = errorCount === 1 ? session.getErrors()[0] : undefined;
 
                 // Store complete session in history
                 history.addSession(new CompleteSession({
@@ -88,7 +92,7 @@ class SessionHistoryBuilder {
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),
-                    error,
+                    error: errorCount === 1 ? session.getErrors()[0] : undefined,
                 }));
             }
         });

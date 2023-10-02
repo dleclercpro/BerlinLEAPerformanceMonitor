@@ -24,18 +24,13 @@ class IncompleteSession extends Session {
         this.endTime = end;
     }
 
-    // Session is ready to be started
-    public isReady() {
-        return !this.startTime && !this.endTime;
-    }
-
     // Session started, but didn't finish yet
     public isOpen() {
         return this.startTime && !this.endTime;
     }
 
     // Session was started and finished
-    public isClosed() {
+    public isComplete() {
         return this.startTime && this.endTime;
     }
 
