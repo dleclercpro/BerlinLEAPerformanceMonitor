@@ -46,7 +46,7 @@ const execute = async () => {
         });
     }
 
-    if (ANALYZE) {
+    if (!BOT && ANALYZE) {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
 
