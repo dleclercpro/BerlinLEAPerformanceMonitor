@@ -36,7 +36,7 @@ Average time spent on LEA's website by its users before the latter are met with 
 </p>
 
 ### Prevalence of Events on Workdays (Monday to Friday)
-Prevalence of all events experienced by the users of the LEA website, from Monday to Friday, Said prevalence for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences for all considered errors within bucket ``b`` on workdays.
+Prevalence of all events experienced by the users of the LEA website, from Monday to Friday, Said prevalence for an event ``e`` and a bucket ``b`` is given by the ratio between the number of occurrences of ``e`` in ``b`` on workdays vs. the total number of occurrences for all considered events within bucket ``b`` on workdays.
 
 - ``FoundNoAppointmentError`` After submitting their search query for an appointment, the user is met with an error message that says: there are no vacant slots for the appointment you are trying to book.
 - ``NoAppointmentInformationError`` After submitting their search query for an appointment, the user is met with an error message that says: there is no information available about the appointment you are trying to book.
@@ -55,7 +55,7 @@ Prevalence of all events experienced by the users of the LEA website, from Monda
 
 ### Likelihood of Errors on Workdays (Monday to Friday)
 Likelihood of errors experienced by the users of the LEA website, from Monday to Friday, which prevent them accessing the appointment
-assignment feature altogether. Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurences of ``e`` in ``b`` vs. the total number of occurences of ``e`` on workdays. In other words: if one of the considered errors is to happen, when is it likely to do so? Here is the list of errors considered when plotting the graph below:
+assignment feature altogether. Said likelihood for an error ``e`` and a bucket ``b`` is given by the ratio between the number of occurrences of ``e`` in ``b`` on workdays vs. the total number of occurrences of ``e`` on workdays. In other words: if one of the considered errors is to happen, when is it likely to do so? Here is the list of errors considered when plotting the graph below:
 
 - ```NoAppointmentInformationError```
 - ```NoResultsError```
