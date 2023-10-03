@@ -67,7 +67,7 @@ assignment feature altogether. The distribution's value for an error ``e`` and a
 - ```BrokenUIError```
 
 <p align="center" width="100%">
-  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorLikelihoodOnWorkdaysGraph.png" width="100%" />
+  <img alt="Likelihood of Errors on Workdays on LEA's Portal" src="./data/production/img/ErrorDistributionOnWorkdaysGraph.png" width="100%" />
 </p>
 
 ## Recommendations

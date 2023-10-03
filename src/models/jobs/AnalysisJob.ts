@@ -39,7 +39,7 @@ class AnalysisJob extends Job {
         await this.generateSessionLengthGraph(hourlyHistory);
         await this.generateSessionAverageLengthGraph(hourlyHistory);
         await this.generateEventPrevalenceOnWorkdaysGraph(biHourlyHistory);
-        await this.generateErrorLikelihoodOnWorkdaysGraph(biHourlyHistory);
+        await this.generateErrorDistributionOnWorkdaysGraph(biHourlyHistory);
     }
 
     protected async generateSessionLengthGraph(history: SessionHistory) {
@@ -60,7 +60,7 @@ class AnalysisJob extends Job {
         await graph.store();
     }
 
-    protected async generateErrorLikelihoodOnWorkdaysGraph(history: SessionHistory) {
+    protected async generateErrorDistributionOnWorkdaysGraph(history: SessionHistory) {
         const graph = new ErrorDistributionOnWorkdaysGraph();
         await graph.draw(history);
         await graph.store();
