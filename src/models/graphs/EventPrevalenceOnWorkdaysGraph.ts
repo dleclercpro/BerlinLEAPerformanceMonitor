@@ -24,7 +24,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         const totalErrorCount = history.getErrors(isKnownEvent).length;
 
         this.title = [
-            `Prävalenz aller Ereignisse während einer User-Session an Werktagen auf der LEA-Seite`,
+            `Zweistündliche Prävalenz aller während User-Sessions erlebten Ereignisse an Werktagen auf der LEA-Seite`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Bucket-Größe: ${history.getBucketSize().format()} | Anzahl der Ereignissen: ${totalErrorCount}`,
         ];

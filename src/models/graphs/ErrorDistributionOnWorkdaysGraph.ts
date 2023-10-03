@@ -10,11 +10,11 @@ import assert from 'assert';
 import { equals, sum } from '../../utils/math';
 import { getEventColor } from '../../utils/styles';
 
-class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
+class ErrorDistributionOnWorkdaysGraph extends Graph<SessionHistory> {
     protected type: ChartType = 'line';
     protected axes: GraphAxes = {
         x: { label: `Tageszeit`, unit: TimeUnit.Hours, min: 0, max: 24 },
-        y: { label: `Wahrscheinlichkeit`, unit: `%` },
+        y: { label: `Anteil`, unit: `%` },
     };
 
     public async draw(history: SessionHistory) {
@@ -22,7 +22,7 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
         const end = history.getLatestSession()!.getEndTime();
 
         this.title = [
-            `Auftrittswahrscheinlichkeit aller während einer User-Session erlebten Bugs an Werktagen auf der LEA-Seite`,
+            `Verteilung nach Tageszeit aller während User-Sessions erlebten Bugs an Werktagen auf der LEA-Seite`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
         ];
@@ -88,4 +88,4 @@ class ErrorLikelihoodOnWorkdaysGraph extends Graph<SessionHistory> {
     }
 }
 
-export default ErrorLikelihoodOnWorkdaysGraph;
+export default ErrorDistributionOnWorkdaysGraph;

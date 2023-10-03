@@ -4,7 +4,7 @@ import { LOGS_FILEPATH } from '../../config/file';
 import { ONE_HOUR } from '../../constants/times';
 import { TimeUnit } from '../../types';
 import TimeDuration from '../TimeDuration';
-import ErrorLikelihoodOnWorkdaysGraph from '../graphs/ErrorLikelihoodOnWorkdaysGraph';
+import ErrorDistributionOnWorkdaysGraph from '../graphs/ErrorDistributionOnWorkdaysGraph';
 import EventPrevalenceOnWorkdaysGraph from '../graphs/EventPrevalenceOnWorkdaysGraph';
 import SessionAverageLengthGraph from '../graphs/SessionAverageLengthGraph';
 import SessionLengthGraph from '../graphs/SessionLengthGraph';
@@ -61,7 +61,7 @@ class AnalysisJob extends Job {
     }
 
     protected async generateErrorLikelihoodOnWorkdaysGraph(history: SessionHistory) {
-        const graph = new ErrorLikelihoodOnWorkdaysGraph();
+        const graph = new ErrorDistributionOnWorkdaysGraph();
         await graph.draw(history);
         await graph.store();
     }
