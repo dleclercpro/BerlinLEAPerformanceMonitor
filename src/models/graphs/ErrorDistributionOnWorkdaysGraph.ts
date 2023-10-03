@@ -1,5 +1,5 @@
 import { ChartType, Color as ChartColor } from 'chart.js';
-import Graph from './Graph';
+import Graph, { GraphDataset } from './Graph';
 import { CountsDict, GraphAxes, TimeUnit } from '../../types';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownBug } from '../../utils/event';
@@ -49,6 +49,11 @@ class ErrorDistributionOnWorkdaysGraph extends Graph<SessionHistory> {
                 return prevErrorOccurences + mergedBucket[error];
             }, 0);
 
+            // No occurences: remove error from graph
+            if (totalErrorOccurencesOnWorkdays === 0) {
+                return;
+            }
+
             const data = mergedBuckets
                 .map((bucket, bucketIndex) => {
                     const bucketErrorCounts: CountsDict = {
@@ -76,7 +81,8 @@ class ErrorDistributionOnWorkdaysGraph extends Graph<SessionHistory> {
                 label: error,
                 color: getEventColor(error),
             };
-        });
+        })
+        .filter(Boolean) as GraphDataset[];
     }
 
     protected generateDatasetOptions(label: string, color: ChartColor) {
