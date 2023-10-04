@@ -1,6 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import logger from '../logger';
+import checkDiskSpace from 'check-disk-space';
+import { DISK_SPACE_MIN } from '../config/file';
+
+export const verifyDiskSpace = async (requiredDiskSpace: number = DISK_SPACE_MIN) => {
+    const { free } = await checkDiskSpace(path.resolve('/'));
+    const hasEnoughDiskSpace = free / Math.pow(10, 9) >= requiredDiskSpace;
+
+    if (!hasEnoughDiskSpace) {
+        throw new Error('Not enough disk space to continue.');
+    }
+}
 
 export const deleteFile = async (filepath: string) => {
 

@@ -9,3 +9,5 @@ export const SCREENSHOTS_DIR = `${DATA_DIR}/screenshots`;
 
 export const LOGS_FILEPATH = `${LOGS_DIR}/app.log`;
 export const ALARM_FILEPATH = `${RESOURCES_DIR}/alarm.wav`;
+
+export const DISK_SPACE_MIN = 1; // GB

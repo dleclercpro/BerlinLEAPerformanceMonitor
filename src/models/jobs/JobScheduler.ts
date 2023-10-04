@@ -55,12 +55,18 @@ class JobScheduler {
         this.tasks.push(task);
     }
 
+    public hasScheduledJobs() {
+        return this.tasks.length > 0;
+    }
+
     public stopAll() {
         logger.debug(`Stopping all jobs...`);
 
         this.tasks.forEach((task: ScheduledTask) => {
             task.stop();
         });
+
+        this.tasks = [];
 
         logger.debug(`Stopped all jobs.`);
     }

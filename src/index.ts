@@ -6,7 +6,7 @@ import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
 import { computeDate, sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { ONE_HOUR, VERY_SHORT_TIME } from './constants/times';
+import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
 import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN } from './config/bot';
@@ -18,6 +18,9 @@ import { parseLogs } from './utils/parsing';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import SessionHistoryExporter from './models/sessions/SessionHistoryExporter';
 import Release from './models/Release';
+import checkDiskSpace from 'check-disk-space';
+import path from 'path';
+import { verifyDiskSpace } from './utils/file';
 
 
 
@@ -37,12 +40,11 @@ const hasFoundAppointment = async (bot: Bot) => {
 
 
 const execute = async () => {
-    let executedOnce = false;
 
-    if (TEST_ALARM) {
-        await Alarm.ring();
-    }
+    // Ensure there's enough disk space
+    await verifyDiskSpace();
 
+    // Schedule bot-related job
     if (BOT) {
         JobScheduler.schedule({
             job: new BotJob(),
@@ -50,11 +52,16 @@ const execute = async () => {
         });
     }
 
+    // Analyze sessions locally
     if (!BOT && ANALYZE) {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
+        const specificRelease = new Release(1, 8, 1);
 
-        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: new Release(1, 8, 1) }).execute();
+        await new AnalysisJob({
+            filepath: LOGS_FILEPATH,
+            since: specificRelease,
+        }).execute();
     }
 
     // Clean logs (remove incomplete sessions)
@@ -66,20 +73,32 @@ const execute = async () => {
         await SessionHistoryExporter.exportToLogFile(`${LOGS_DIR}/app-clean.log`, history);
     }
 
-    // Poll
-    while (POLL && (!ONCE || !executedOnce)) {
-        const bot = new ChromeBot();
+    // Gather performance data from LEA by running user sessions sequentially
+    if (POLL) {
+        let executedOnce = false;
 
-        if (await hasFoundAppointment(bot)) {
-    
-            // Play alarm one after the other to wake up user!
-            getRange(N_ALARMS_ON_SUCCESS).reduce(async () => {
-                await Alarm.ring();
-                await sleep(VERY_SHORT_TIME);
-            }, Promise.resolve());
+        if (TEST_ALARM) {
+            await Alarm.ring();
         }
 
-        executedOnce = true;
+        while (!ONCE || !executedOnce) {
+            const bot = new ChromeBot();
+    
+            // Ensure there's enough disk space
+            await verifyDiskSpace();
+
+            if (await hasFoundAppointment(bot)) {
+        
+                // Play alarm a given number of times sequentially in order to
+                // wake up user!
+                getRange(N_ALARMS_ON_SUCCESS).reduce(async () => {
+                    await Alarm.ring();
+                    await sleep(VERY_SHORT_TIME);
+                }, Promise.resolve());
+            }
+    
+            executedOnce = true;
+        }   
     }
 }
 
@@ -88,10 +107,12 @@ const execute = async () => {
 if ([Environment.Development, Environment.Production].includes(ENV)) {
     execute()
         .catch((err) => {
-            logger.fatal(err, `Stopping everything. Uncaught error:`);
+            logger.fatal(err, `Stopped everything. Uncaught error:`);
 
             // Stop all previously scheduled jobs
-            JobScheduler.stopAll();
+            if (JobScheduler.hasScheduledJobs()) {
+                JobScheduler.stopAll();
+            }
         });
 }
 
