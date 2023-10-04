@@ -2,7 +2,7 @@ import { By } from 'selenium-webdriver';
 import Page from './Page';
 import logger from '../../logger';
 import { ConstructionWorkError } from '../errors';
-import { MEDIUM_TIME } from '../../constants/times';
+import { MEDIUM_TIME, VERY_VERY_LONG_TIME } from '../../constants/times';
 import { HOMEPAGE_URL } from '../../config';
 
 const TEXTS = {
@@ -26,9 +26,9 @@ class HomePage extends Page {
     // Home page is loaded once the 'book appointment' button is visible
     protected async doWaitUntilLoaded() {
         try {
-            await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment, MEDIUM_TIME);
+            await this.bot.waitForElement(ELEMENTS.Buttons.BookAppointment, VERY_VERY_LONG_TIME);
         } catch {
-            await this.bot.waitForElement(ELEMENTS.Errors.ConstructionWork, MEDIUM_TIME);
+            await this.bot.waitForElement(ELEMENTS.Errors.ConstructionWork, VERY_VERY_LONG_TIME);
             throw new ConstructionWorkError();
         }
     }

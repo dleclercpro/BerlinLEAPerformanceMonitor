@@ -4,7 +4,7 @@ import { formatDateForFilename } from '../../utils/locale';
 import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, GhostUIElementError } from '../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
-import { MEDIUM_TIME } from '../../constants/times';
+import { MEDIUM_TIME, VERY_VERY_LONG_TIME } from '../../constants/times';
 
 const TEXTS = {
     NoAppointment: 'keine Termine frei',
@@ -36,8 +36,8 @@ class ResultsPage extends Page {
 
     protected async doWaitUntilLoaded() {
         return Promise.any([
-            this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, MEDIUM_TIME),
-            this.bot.waitForElement(ELEMENTS.Boxes.Messages, MEDIUM_TIME),
+            this.bot.waitForElement(ELEMENTS.Dropdown.Citizenship, VERY_VERY_LONG_TIME),
+            this.bot.waitForElement(ELEMENTS.Boxes.Messages, VERY_VERY_LONG_TIME),
         ])
         .catch((err: unknown) => {
             let error = err;
