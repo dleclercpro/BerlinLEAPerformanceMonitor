@@ -76,6 +76,7 @@ export type Log = {
     version: string,
     level: number,
     pid: number,
+    hostname: string,
     msg: string,
     err?: string,
 };

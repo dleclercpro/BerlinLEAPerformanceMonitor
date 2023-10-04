@@ -45,6 +45,7 @@ export const getTerminalArgs = () => {
         once: parseBooleanText(args.once),
         analyze: parseBooleanText(args.analyze),
         upload: parseBooleanText(args.upload),
+        clean: parseBooleanText(args.clean),
         bot: parseBooleanText(args.bot),
     };
 }

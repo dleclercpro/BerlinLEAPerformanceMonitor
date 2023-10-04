@@ -6,14 +6,17 @@ import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
 import { computeDate, sleep } from './utils/time';
 import { getRange } from './utils/math';
-import { VERY_SHORT_TIME } from './constants/times';
+import { ONE_HOUR, VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
-import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY } from './config/bot';
+import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
 import TimeDuration from './models/TimeDuration';
-import { LOGS_FILEPATH } from './config/file';
+import { LOGS_DIR, LOGS_FILEPATH } from './config/file';
+import { parseLogs } from './utils/parsing';
+import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
+import SessionHistoryExporter from './models/sessions/SessionHistoryExporter';
 
 
 
@@ -53,14 +56,22 @@ const execute = async () => {
         await new AnalysisJob({ filepath: LOGS_FILEPATH, since: lastWeek }).execute();
     }
 
+    // Clean logs (remove incomplete sessions)
+    if (CLEAN) {
+        const logs = await parseLogs(LOGS_FILEPATH);
+    
+        const history = SessionHistoryBuilder.build(logs);
+
+        await SessionHistoryExporter.exportToLogFile(`${LOGS_DIR}/app-clean.log`, history);
+    }
+
     // Poll
     while (POLL && (!ONCE || !executedOnce)) {
         const bot = new ChromeBot();
 
         if (await hasFoundAppointment(bot)) {
     
-            // Play alarm one after the other to wake up
-            // user!
+            // Play alarm one after the other to wake up user!
             getRange(N_ALARMS_ON_SUCCESS).reduce(async () => {
                 await Alarm.ring();
                 await sleep(VERY_SHORT_TIME);

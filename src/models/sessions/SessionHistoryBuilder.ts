@@ -3,7 +3,7 @@ import { Log, TimeUnit, Weekday } from '../../types';
 import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
-import { ONE_DAY, WEEKDAYS } from '../../constants/times';
+import { ONE_DAY, ONE_HOUR, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
@@ -33,7 +33,7 @@ class SessionHistoryBuilder {
         return this.instance;
     }
 
-    public build(logs: Log[], bucketSize: TimeDuration) {
+    public build(logs: Log[], bucketSize: TimeDuration = ONE_HOUR) {
         logger.info(`Building daily session history from ${logs.length} log entries...`);
 
         const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
@@ -63,7 +63,6 @@ class SessionHistoryBuilder {
 
             // Session exists and is open: store log
             if (session.isOpen()) {
-                logger.trace(`Adding log to session: ${log.msg}`);
                 session.push(log);
             }
 
