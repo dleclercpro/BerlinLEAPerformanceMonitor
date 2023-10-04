@@ -11,15 +11,16 @@ import SessionLengthGraph from '../graphs/SessionLengthGraph';
 import SessionHistory from '../sessions/SessionHistory';
 import SessionHistoryBuilder from '../sessions/SessionHistoryBuilder';
 import Job from './Job';
+import Release from '../Release';
 
 interface Args {
     filepath: string,
-    since?: Date,
+    since?: Date | Release,
 }
 
 class AnalysisJob extends Job {
     protected filepath: string;
-    protected since?: Date;
+    protected since?: Date | Release;
 
     public constructor(args: Args = { filepath: LOGS_FILEPATH }) {
         super();

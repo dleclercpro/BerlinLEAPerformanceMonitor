@@ -73,8 +73,20 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         // Sum of error prevalences inside any given bucket should be 100%
         getRange(mergedBuckets.length).forEach((bucketIndex: number) => {
             const sumOfPrevalencesInBucket = uniqueErrors.reduce((prevTotal, error, errorIndex) => {
-                return prevTotal + prevalences[errorIndex].data[bucketIndex].y;
+                const errorPrevalenceInBucket = prevalences[errorIndex].data[bucketIndex].y;
+
+                // Prevalence will be 'NaN' if there was no occurrences in bucket
+                if (Number.isNaN(errorPrevalenceInBucket)) {
+                    return prevTotal;
+                }
+                
+                return prevTotal + errorPrevalenceInBucket;
             }, 0);
+
+            // Ignore buckets with no occurrences
+            if (sumOfPrevalencesInBucket === 0) {
+                return;
+            }
 
             assert(equals(sumOfPrevalencesInBucket, 100) === true);
         });

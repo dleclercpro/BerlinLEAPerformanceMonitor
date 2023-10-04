@@ -12,7 +12,7 @@ const logToText = (log: Log) => {
         `"time":"${log.time}",` +
         `"pid":${log.pid},` +
         `"hostname":"${log.hostname}",` +
-        `"version":"${log.version}",` +
+        `"version":"${log.version.toString()}",` +
         (log.err ? `"err":"${log.err}",` : '') +
         `"msg":"${log.msg}"` +
         `}`

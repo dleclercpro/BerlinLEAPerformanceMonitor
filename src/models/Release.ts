@@ -39,8 +39,19 @@ class Release implements Comparable {
         this.patch = patch;
     }
 
+    public static fromString(version: string) {
+        const parts = version.split('.');
+        const [major, minor, patch] = parts.map(v => Number(v));
+
+        if (parts.length !== 3 || [major, minor, patch].some(v => Number.isNaN(v))) {
+            throw new Error(`Invalid release format: ${version}`);
+        }
+
+        return new Release(major, minor, patch);
+    }
+
     public toString() {
-        return `v${this.major}.${this.minor}.${this.patch}`;
+        return `${this.major}.${this.minor}.${this.patch}`;
     }
 
     public toJSON() {

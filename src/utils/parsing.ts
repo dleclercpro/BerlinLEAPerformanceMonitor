@@ -1,21 +1,39 @@
 import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
+import Release from '../models/Release';
 import { Log } from '../types';
 import { readFile } from './file';
 
 
 
-const isTextLog = (line: string) => line.startsWith('{') && line.endsWith('}');
-const parseTextLog = (line: string, i: number): Log => ({ line: i + 1, ...JSON.parse(line) });
-const hasLogMessage = (log: Log) => !!log && !!log.msg;
+const isTextLog = (line: string) => {
+    return line.startsWith('{') && line.endsWith('}');
+}
+
+const hasLogMessage = (log: Log) => {
+    return !!log && !!log.msg;
+}
+
+const parseTextLog = (line: string, i: number): Log => {
+    const { version, ...log } = JSON.parse(line);
+    return {
+        ...log,
+        line: i + 1,
+        version: Release.fromString(version),
+    };
+}
 
 
 
-export const parseLogs = async (filepath: string, since?: Date) => {
+export const parseLogs = async (filepath: string, since?: Date | Release) => {
     logger.info(`Reading logs from: ${filepath}`);
 
     if (since) {
-        logger.info(`Keeping logs newer than: ${since}`);
+        if (since instanceof Date) {
+            logger.info(`Keeping logs newer than: ${since}`);
+        } else {
+            logger.info(`Keeping logs with release version higher or equal to: ${since.toString()}`);
+        }
     }
 
     const file = await readFile(filepath);
@@ -25,9 +43,13 @@ export const parseLogs = async (filepath: string, since?: Date) => {
         .filter(isTextLog)
         .map(parseTextLog)
         .filter((log: Log) => {
-            if (!since) return true;
-            
-            return new Date(log.time) >= since;
+            if (since instanceof Date) {
+                return new Date(log.time) >= since;
+            }
+            if (since instanceof Release) {
+                return log.version.greaterThanOrEquals(since);
+            }
+            return true;
         })
         .filter(hasLogMessage); // Every log should have a message
 

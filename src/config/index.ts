@@ -6,7 +6,7 @@ import Release from '../models/Release';
 
 export const ENV = loadEnvironment();
 
-export const MINIMUM_RELEASE = new Release(0, 0, 0);
+export const RELEASE_MIN = new Release(0, 0, 0);
 export const IGNORE_DAYS_WITH_EMPTY_BUCKETS = false;
 
 export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';

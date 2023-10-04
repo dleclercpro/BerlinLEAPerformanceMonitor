@@ -1,3 +1,5 @@
+import Release from "./models/Release";
+
 export enum Environment {
     Development = 'development',
     Test = 'test',
@@ -73,7 +75,7 @@ export type CountsDict = Record<string, number>;
 export type Log = {
     line: number,
     time: string,
-    version: string,
+    version: Release,
     level: number,
     pid: number,
     hostname: string,

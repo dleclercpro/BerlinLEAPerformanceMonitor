@@ -17,6 +17,7 @@ import { LOGS_DIR, LOGS_FILEPATH } from './config/file';
 import { parseLogs } from './utils/parsing';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import SessionHistoryExporter from './models/sessions/SessionHistoryExporter';
+import Release from './models/Release';
 
 
 
@@ -53,7 +54,7 @@ const execute = async () => {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
 
-        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: lastWeek }).execute();
+        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: new Release(1, 8, 1) }).execute();
     }
 
     // Clean logs (remove incomplete sessions)
