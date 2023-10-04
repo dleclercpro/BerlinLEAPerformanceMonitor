@@ -46,7 +46,7 @@ Prevalence of all events experienced by the users of the LEA website, from Monda
 - ``InternalServerError`` The LEA servers are responding with the standard HTTP status code 500, which "indicates that the server encountered an unexpected condition that prevented it from fulfilling the request." [1]
 - ``ServiceUnavailableError`` The LEA servers are responding with the standard HTTP status code 503, which "indicates that the server is not ready to handle the request." [2]
 - ``UndisclosedError`` A generic error page is displayed to the user, with no information whatsoever about what the problem is.
-- ``GhostUIElement`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded).
+- ``GhostUIElement`` An interactive web element (e.g. button, checkbox) was expected on the bot's path, but wasn't detected (i.e. either a UI bug, or it never loaded) after a given waiting time that was deemed long enough (e.g. 5 seconds).
 - ``BrokenUIError`` The expected page structure was broken (e.g. hundreds, if not thousands, of duplicated buttons).
 
 <p align="center" width="100%">
