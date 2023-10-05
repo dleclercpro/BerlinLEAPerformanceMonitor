@@ -1,8 +1,8 @@
-import { Log } from '../../types';
 import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import Session from './Session';
+import Log from '../../Log';
 
 class IncompleteSession extends Session {
     protected errors: string[] = [];
@@ -43,12 +43,10 @@ class IncompleteSession extends Session {
     }
 
     public push(log: Log) {
-        const { err } = log;
-
         this.logs.push(log);
 
-        if (err) {
-            this.errors.push(err);
+        if (log.hasError()) {
+            this.errors.push(log.getError()!);
         }
     }
 }

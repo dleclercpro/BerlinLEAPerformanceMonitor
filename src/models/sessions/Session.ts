@@ -1,4 +1,4 @@
-import { Log } from '../../types';
+import Log from '../../Log';
 
 export interface SessionArgs {
     id: string,

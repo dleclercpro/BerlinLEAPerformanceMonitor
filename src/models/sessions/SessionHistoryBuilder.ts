@@ -1,5 +1,5 @@
 import logger from '../../logger';
-import { Log, TimeUnit, Weekday } from '../../types';
+import { TimeUnit, Weekday } from '../../types';
 import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
@@ -8,6 +8,7 @@ import TimeDuration from '../units/TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
 import { formatDateForFilename } from '../../utils/locale';
+import Log from '../../Log';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -40,11 +41,11 @@ class SessionHistoryBuilder {
         logs.forEach(log => {
 
             // Session started
-            if (log.msg.includes(TEXTS.SessionStart)) {
+            if (log.getMessage().includes(TEXTS.SessionStart)) {
                 session = IncompleteSession.create();
 
-                logger.trace(`Starting session: ${session.getId()} [${log.version.toJSON()}]`);
-                session.start(new Date(log.time));
+                logger.trace(`Starting session: ${session.getId()} [${log.getVersion().toJSON()}]`);
+                session.start(log.getTime());
             }
 
             // Session exists and is open: store log
@@ -53,9 +54,9 @@ class SessionHistoryBuilder {
             }
 
             // Session ended
-            if (log.msg.includes(TEXTS.SessionEnd)) {
-                logger.trace(`Finishing session: ${session.getId()} [${log.version.toJSON()}]`);
-                session.end(new Date(log.time));
+            if (log.getMessage().includes(TEXTS.SessionEnd)) {
+                logger.trace(`Finishing session: ${session.getId()} [${log.getVersion().toJSON()}]`);
+                session.end(log.getTime());
 
                 // Sessions should have a start and an end
                 if (!session.isComplete()) {
@@ -65,15 +66,15 @@ class SessionHistoryBuilder {
                 // Has session more than one error: it is invalid!
                 const errorCount = session.getErrors().length;
                 if (errorCount > 1) {
-                    const sessionStartLine = session.getLogs()[0].line;
-                    logger.warn(`Invalid session [${formatDateForFilename(session.getStartTime()!)} @${sessionStartLine}] with ${errorCount} > 1 errors found`);
+                    const sessionStartLine = session.getLogs()[0].getLine();
+                    logger.warn(`Invalid session [${formatDateForFilename(session.getStartTime()!)} @${sessionStartLine}] with (${errorCount} > 1) errors found`);
                     return;
                 }
 
                 // Store complete session in history
                 history.addSession(new CompleteSession({
                     id: session.getId(),
-                    release: log.version,
+                    release: log.getVersion(),
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),

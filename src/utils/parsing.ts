@@ -1,40 +1,8 @@
+import Log from '../Log';
 import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
 import Release from '../models/Release';
-import { Log } from '../types';
 import { readFile } from './file';
-
-
-
-const isTextLog = (line: string) => {
-    return line.startsWith('{') && line.endsWith('}');
-}
-
-const hasLogMessage = (log: Log) => {
-    return !!log && !!log.msg;
-}
-
-export const textToLog = (line: string, i: number): Log => {
-    const { version, ...log } = JSON.parse(line);
-    return {
-        ...log,
-        line: i + 1,
-        version: Release.fromString(version),
-    };
-}
-
-export const logToText = (log: Log) => {
-    return (`{` +
-        `"level":${log.level},` +
-        `"time":"${log.time}",` +
-        `"pid":${log.pid},` +
-        `"hostname":"${log.hostname}",` +
-        `"version":"${log.version.toString()}",` +
-        (log.err ? `"err":"${log.err}",` : '') +
-        `"msg":"${log.msg}"` +
-        `}`
-    );
-};
 
 
 
@@ -53,18 +21,18 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
 
     const logs: Log[] = file
         .split(NEW_LINE_REGEXP)
-        .filter(isTextLog)
-        .map(textToLog)
+        .filter((line: string) => Log.isLineValid(line))
+        .map((line: string, index: number) => Log.fromText(line, index))
         .filter((log: Log) => {
             if (since instanceof Date) {
-                return new Date(log.time) >= since;
+                return log.getTime() >= since;
             }
             if (since instanceof Release) {
-                return log.version.greaterThanOrEquals(since);
+                return log.getVersion().greaterThanOrEquals(since);
             }
             return true;
         })
-        .filter(hasLogMessage); // Every log should have a message
+        .filter((log: Log) => log.hasMessage());
 
     if (logs.length > 0) {
         logger.debug(`Parsed ${logs.length} valid log entries.`);
