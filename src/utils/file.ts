@@ -14,10 +14,12 @@ const fsWriteFile = promisify(fs.writeFile);
 
 export const verifyDiskSpace = async (requiredDiskSpace: number = DISK_SPACE_MIN) => {
     const { free } = await checkDiskSpace(path.resolve('/'));
-    const hasEnoughDiskSpace = free / Math.pow(10, 9) >= requiredDiskSpace;
+    
+    const remainingDiskSpace = free / Math.pow(10, 9); // GB
+    const hasEnoughDiskSpace = remainingDiskSpace >= requiredDiskSpace; // GB
 
     if (!hasEnoughDiskSpace) {
-        throw new Error('Not enough disk space to continue.');
+        throw new Error(`Not enough disk space to continue: ${remainingDiskSpace}GB < ${requiredDiskSpace}GB`);
     }
 }
 
