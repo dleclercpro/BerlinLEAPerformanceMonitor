@@ -1,3 +1,4 @@
+import { NEW_LINE } from '../../constants';
 import logger from '../../logger';
 import { getLastValue } from '../../utils/array';
 import { writeFile } from '../../utils/file';
@@ -42,7 +43,7 @@ class SessionHistoryExporter {
 
             }, [] as string[]);
         
-        await writeFile(filepath, lines.join('\n') + '\n');
+        await writeFile(filepath, lines.join(NEW_LINE) + NEW_LINE);
     }
 }
 
