@@ -1,6 +1,6 @@
 import { ChartOptions, ChartType, Color as ChartColor, ChartConfiguration } from 'chart.js';
 import { ChartJSNodeCanvas, MimeType } from 'chartjs-node-canvas';
-import { touchFile, writeFile } from '../../utils/file';
+import { writeFile } from '../../utils/file';
 import logger from '../../logger';
 import { GraphAxes, GraphAxis, Size } from '../../types';
 import { DEFAULT_GRAPH_SIZE, DEVICE_PIXEL_RATIO } from '../../config/styles';
@@ -76,8 +76,7 @@ abstract class Graph<Data extends GraphData> {
 
         logger.trace(`Storing image to: ${this.storagePath}`);
 
-        await touchFile(this.storagePath);
-        await writeFile(this.storagePath, this.img);
+        await writeFile(this.storagePath, this.img, true);
         
         logger.trace(`Image stored.`);
     }

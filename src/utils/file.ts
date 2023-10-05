@@ -3,6 +3,14 @@ import path from 'path';
 import logger from '../logger';
 import checkDiskSpace from 'check-disk-space';
 import { DISK_SPACE_MIN } from '../config/file';
+import { promisify } from 'util';
+
+const fsRm = promisify(fs.rm);
+const fsReadDir = promisify(fs.readdir);
+const fsReadFile = promisify(fs.readFile);
+const fsWriteFile = promisify(fs.writeFile);
+
+
 
 export const verifyDiskSpace = async (requiredDiskSpace: number = DISK_SPACE_MIN) => {
     const { free } = await checkDiskSpace(path.resolve('/'));
@@ -18,45 +26,27 @@ export const deleteFile = async (filepath: string) => {
     // Ignore missing file
     const opts = { force: true };
 
-    return new Promise<void>((resolve, reject) => {
-        fs.rm(filepath, opts, (err) => {
-            if (err) reject(err);
-    
-            resolve();
-        });
-    });
+    return fsRm(filepath, opts);
 }
 
-export const readFile = (filepath: string, encoding: BufferEncoding = 'utf-8') => {
-    return new Promise<string>((resolve, reject) => {
-        fs.readFile(filepath, { encoding }, (err, data) => {
-            if (err) reject(err);
+export const readFile = async (filepath: string, encoding: BufferEncoding = 'utf-8') => {
+    const data = await fsReadFile(filepath, { encoding });
+    
+    logger.trace(`Read ${data.length} bytes from file: ${filepath}`);
 
-            logger.trace(`Read ${data.length} bytes from file: ${filepath}`);
-
-            resolve(data);
-        });
-    });
+    return data;
 }
 
-export const writeFile = async (filepath: string, data: string | Buffer, encoding: BufferEncoding = 'utf-8') => {
-    return new Promise<void>((resolve, reject) => {
-        fs.writeFile(filepath, data, { encoding }, (err) => {
-            if (err) reject(err);
-    
-            resolve();
-        });
-    });
+export const writeFile = async (filepath: string, data: string | Buffer, touch: boolean = false, encoding: BufferEncoding = 'utf-8') => {
+    if (touch) {
+        touchFile(filepath);
+    }
+
+    return fsWriteFile(filepath, data, { encoding });
 }
 
 export const listFiles = (dir: string) => {
-    return new Promise<string[]>((resolve, reject) => {
-        fs.readdir(dir, (err, files) => {
-            if (err) reject(err);
-
-            resolve(files);
-        });
-    });
+    return fsReadDir(dir);
 }
 
 export const doesFileExist = (filepath: string) => {

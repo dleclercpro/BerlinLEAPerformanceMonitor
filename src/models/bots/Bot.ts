@@ -4,7 +4,7 @@ import logger from '../../logger';
 import TimeDuration from '../TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
 import { AggregateError, GhostUIElementError, TimeoutError } from '../errors';
-import { touchFile, writeFile } from '../../utils/file';
+import { writeFile } from '../../utils/file';
 
 abstract class Bot {
     protected driver?: WebDriver;
@@ -114,8 +114,8 @@ abstract class Bot {
         logger.trace(`Taking a screenshot...`);
         const img = await driver.takeScreenshot();
         
-        await touchFile(filepath);
-        await writeFile(filepath, img, 'base64');
+        await writeFile(filepath, img, true, 'base64');
+        
         logger.trace(`Screenshot stored at '${filepath}'.`);
     }
 }

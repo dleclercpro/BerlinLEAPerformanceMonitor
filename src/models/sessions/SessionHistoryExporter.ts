@@ -42,8 +42,10 @@ class SessionHistoryExporter {
                 return newLogs;
 
             }, [] as string[]);
+
+        const data = lines.join(NEW_LINE) + NEW_LINE;
         
-        await writeFile(filepath, lines.join(NEW_LINE) + NEW_LINE);
+        await writeFile(filepath, data);
     }
 }
 
