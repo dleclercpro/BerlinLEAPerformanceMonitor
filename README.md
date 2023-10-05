@@ -29,7 +29,13 @@ Time spent on LEA's website until a user can reasonably conclude that there is n
 </p>
 
 ### Average Length of User Session Until Failure
-Average time spent on LEA's website by its users before the latter are met with the error message 'there are no available appointments' at the moment. Said average is computed for each time bucket.
+Average time spent on LEA's website by its users before the latter are most likely to conclude that there are no available appointments at the moment. Said average is computed for each time bucket. The events associated with a appointment search failure are the same as the ones described in the previous section, namely:
+- ```FoundNoAppointmentError```
+- ```NoAppointmentInformationError```
+- ```NoResultsError```
+- ```InfiniteSpinnerError```
+- ```GhostUIElement```
+- ```BrokenUIError```
 
 <p align="center" width="100%">
   <img alt="Average Length of User Sessions on LEA's Portal Until Failure" src="./data/production/img/SessionAverageLengthGraph.png" width="100%" />
