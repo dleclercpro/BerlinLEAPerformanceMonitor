@@ -21,6 +21,14 @@ export const translateWeekday = (weekday: Weekday, locale: Locale) => {
     }
 }
 
+export const formatNumberByLocale = (x: number, locale: Locale, options?: Intl.DateTimeFormatOptions) => {
+    return x.toLocaleString(locale, options);
+}
+
+export const formatNumber = (x: number, options?: Intl.DateTimeFormatOptions) => {
+    return formatNumberByLocale(x, LOCALE, options);
+}
+
 export const formatDateByLocale = (date: Date, locale: Locale, options?: Intl.DateTimeFormatOptions) => {
     return date.toLocaleString(locale, options);
 }

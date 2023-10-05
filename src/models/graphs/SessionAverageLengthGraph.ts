@@ -1,7 +1,7 @@
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { formatDate, translateWeekday } from '../../utils/locale';
+import { formatDate, formatNumber, translateWeekday } from '../../utils/locale';
 import { getAverage } from '../../utils/math';
 import Graph from './Graph';
 import { ChartType, Color as ChartColor } from 'chart.js';
@@ -34,7 +34,7 @@ class SessionAverageLengthGraph extends Graph<SessionHistory> {
         this.title = [
             `Durchschnittliche Länge einer User-Session auf der LEA-Seite`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Anzahl der User-Sessions: ${sessionCount}`,
+            `Anzahl der User-Sessions: ${formatNumber(sessionCount)}`,
             `Bucket-Größe: ${history.getBucketSize().format()}`,
         ];
 

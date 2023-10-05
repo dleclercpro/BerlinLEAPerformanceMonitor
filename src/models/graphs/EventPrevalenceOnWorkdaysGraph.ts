@@ -5,7 +5,7 @@ import { equals, getRange, sum } from '../../utils/math';
 import SessionHistory from '../sessions/SessionHistory';
 import { isKnownEvent } from '../../utils/event';
 import { generateEmptyCounts } from '../../utils/array';
-import { formatDate } from '../../utils/locale';
+import { formatDate, formatNumber } from '../../utils/locale';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import assert from 'assert';
 import { getEventColor } from '../../utils/styles';
@@ -26,7 +26,7 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
         this.title = [
             `Zweistündliche Prävalenz aller während User-Sessions erlebten Ereignisse an Werktagen auf der LEA-Seite`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Bucket-Größe: ${history.getBucketSize().format()} | Anzahl der Ereignissen: ${totalErrorCount}`,
+            `Bucket-Größe: ${history.getBucketSize().format()} | Anzahl der Ereignissen: ${formatNumber(totalErrorCount)}`,
         ];
 
         await super.draw(history);

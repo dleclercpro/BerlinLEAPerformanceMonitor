@@ -4,7 +4,7 @@ import { getTimeSpentSinceMidnight } from '../../utils/time';
 import SessionHistory from '../sessions/SessionHistory';
 import { WEEKDAYS } from '../../constants/times';
 import { GraphAxes, Locale, TimeUnit } from '../../types';
-import { formatDate, translateWeekday } from '../../utils/locale';
+import { formatDate, formatNumber, translateWeekday } from '../../utils/locale';
 import CompleteSession from '../sessions/CompleteSession';
 import { LONG_DATE_TIME_FORMAT_OPTIONS } from '../../config/locale';
 import { getWeekdayColor } from '../../utils/styles';
@@ -31,7 +31,7 @@ class SessionLengthGraph extends Graph<SessionHistory> {
         this.title = [
             `Länge einer User-Session auf der LEA-Seite`,
             `Start: ${formatDate(start, LONG_DATE_TIME_FORMAT_OPTIONS)} | Ende: ${formatDate(end, LONG_DATE_TIME_FORMAT_OPTIONS)}`,
-            `Anzahl der User-Sessions: ${sessionCount}`,
+            `Anzahl der User-Sessions: ${formatNumber(sessionCount)}`,
         ];
 
         await super.draw(history);
