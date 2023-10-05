@@ -39,7 +39,7 @@ export const logToText = (log: Log) => {
 
 
 export const parseLogs = async (filepath: string, since?: Date | Release) => {
-    logger.info(`Reading logs from: ${filepath}`);
+    logger.info(`Reading logs...`);
 
     if (since) {
         if (since instanceof Date) {
