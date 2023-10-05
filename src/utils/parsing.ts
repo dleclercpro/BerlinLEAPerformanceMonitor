@@ -2,7 +2,7 @@ import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
 import Release from '../models/Release';
 import { Log } from '../types';
-import { listFiles, readFile } from './file';
+import { readFile } from './file';
 
 
 

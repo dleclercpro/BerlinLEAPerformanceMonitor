@@ -7,8 +7,6 @@ import { ONE_DAY, ONE_HOUR, WEEKDAYS } from '../../constants/times';
 import TimeDuration from '../TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
-import Release from '../Release';
-import { RELEASE_ZERO } from '../../constants';
 import { formatDateForFilename } from '../../utils/locale';
 
 const TEXTS = {
