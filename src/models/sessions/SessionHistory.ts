@@ -2,6 +2,7 @@ import { WEEKDAYS, WORKDAYS } from '../../constants/times';
 import logger from '../../logger';
 import { VersionedData, Weekday } from '../../types';
 import { toCountsFromArray, unique } from '../../utils/array';
+import { isKnownEvent } from '../../utils/event';
 import { formatDateForFilename, getWeekday } from '../../utils/locale';
 import { sum } from '../../utils/math';
 import TimeDuration from '../TimeDuration';
@@ -38,9 +39,10 @@ class SessionHistory {
     }
 
     public summarize() {
-        const errorCounts = this.getErrorCounts();
-        const successTimes = this
-            .getSuccesses()
+        const knownErrorCounts = this.getErrorCounts(isKnownEvent);
+        const unknownErrorCounts = this.getErrorCounts(err => !isKnownEvent(err));
+        
+        const successTimes = this.getSuccesses()
             .map(session => formatDateForFilename(session.getEndTime()));
 
         if (successTimes.length > 0) {
@@ -49,10 +51,11 @@ class SessionHistory {
             logger.info(`There was never an appointment available.`);
         }
 
-        if (sum(Object.values(errorCounts)) > 0) {
-            logger.info(errorCounts, `Errors encountered:`);
-        } else {
-            logger.info(`There was no error encountered.`);
+        if (sum(Object.values(knownErrorCounts)) > 0) {
+            logger.info(knownErrorCounts, `Known errors encountered:`);
+        }
+        if (sum(Object.values(unknownErrorCounts)) > 0) {
+            logger.info(unknownErrorCounts, `Unknown errors encountered:`);
         }
     }
 
@@ -182,8 +185,8 @@ class SessionHistory {
         return unique(this.getErrors(errorFilter));
     }
 
-    public getErrorCounts() {
-        return toCountsFromArray(this.getErrors());
+    public getErrorCounts(errorFilter: EventFilter = () => true) {
+        return toCountsFromArray(this.getErrors(errorFilter));
     }
 }
 

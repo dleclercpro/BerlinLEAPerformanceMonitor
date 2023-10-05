@@ -67,7 +67,7 @@ class SessionHistoryBuilder {
                 const errorCount = session.getErrors().length;
                 if (errorCount > 1) {
                     const sessionStartLine = session.getLogs()[0].line;
-                    logger.warn(`Invalid session [@${sessionStartLine}] with ${errorCount} errors found (there should only be one)`);
+                    logger.warn(`Invalid session [${session.getStartTime()} @${sessionStartLine}] with ${errorCount} > 1 errors found`);
                     return;
                 }
 
