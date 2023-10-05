@@ -9,6 +9,7 @@ import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
 import Release from '../Release';
 import { RELEASE_ZERO } from '../../constants';
+import { formatDateForFilename } from '../../utils/locale';
 
 const TEXTS = {
     SessionStart: '[START]',
@@ -67,7 +68,7 @@ class SessionHistoryBuilder {
                 const errorCount = session.getErrors().length;
                 if (errorCount > 1) {
                     const sessionStartLine = session.getLogs()[0].line;
-                    logger.warn(`Invalid session [${session.getStartTime()} @${sessionStartLine}] with ${errorCount} > 1 errors found`);
+                    logger.warn(`Invalid session [${formatDateForFilename(session.getStartTime()!)} @${sessionStartLine}] with ${errorCount} > 1 errors found`);
                     return;
                 }
 
