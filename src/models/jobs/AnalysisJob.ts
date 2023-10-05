@@ -37,6 +37,11 @@ class AnalysisJob extends Job {
     public async execute() {
         const logs = await this.getLogsToAnalyze();
 
+        if (logs.length === 0) {
+            logger.info(`No logs to analyze.`);
+            return;
+        }
+
         const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
         const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));
     

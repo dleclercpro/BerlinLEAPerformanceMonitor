@@ -59,7 +59,7 @@ class CompleteSession extends Session implements Comparable {
     // The session was completed, no error was detected, and the success
     // message was logged: there seems to be an appointment available!
     public wasSuccess() {
-        const logMessages = this.logs.map(log => log.msg);
+        const logMessages = this.logs.map(log => log.getMessage());
 
         return (
             !this.error &&

@@ -1,11 +1,11 @@
 import { writeFileSync } from 'fs';
 import { LOGS_DIR, LOGS_FILEPATH } from '../../config/file';
-import { Log } from '../../types';
 import { formatDateForFilename } from '../../utils/locale';
-import { logToText, parseLogs } from '../../utils/parsing';
+import { parseLogs } from '../../utils/parsing';
 import { getMidnightInUTC } from '../../utils/time';
 import logger from '../../logger';
 import { NEW_LINE } from '../../constants';
+import Log from '../../Log';
 
 type LogFiles = Record<string, Log[]>;
 
@@ -36,7 +36,7 @@ class LogRotater {
 
         // Differentiate between logs in the past, and logs today
         logs.forEach((log: Log) => {
-            const date = new Date(log.time);
+            const date = log.getTime();
             const filepath = this.getFilepathForDate(date);
 
             // Ignore today's logs: they stay in the default 'app.log'
@@ -54,7 +54,9 @@ class LogRotater {
 
         // Store previous days in individual log files
         for (const [filepath, logs] of Object.entries(prevFiles)) {
-            const data = logs.map(logToText).join(NEW_LINE) + NEW_LINE;
+            const data = logs
+                .map(log => log.toString())
+                .join(NEW_LINE) + NEW_LINE;
 
             // Write synchronously to avoid other parts of the code
             // logging to the default output file during rotation
@@ -63,7 +65,9 @@ class LogRotater {
 
         // Overwrite default output log file 'app.log' with only
         // logs from current day
-        const dataFromToday = nextFiles[this.getFilepathForDate(now)].map(logToText).join(NEW_LINE) + NEW_LINE;
+        const dataFromToday = nextFiles[this.getFilepathForDate(now)]
+            .map(log => log.toString())
+            .join(NEW_LINE) + NEW_LINE;
 
         writeFileSync(LOGS_FILEPATH, dataFromToday);
 
