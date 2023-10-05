@@ -2,8 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import logger from '../logger';
 import checkDiskSpace from 'check-disk-space';
-import { DISK_SPACE_MIN } from '../config/file';
+import { REQUIRED_DISK_SPACE } from '../config/file';
 import { promisify } from 'util';
+import MemorySize from '../models/MemorySize';
+import { MemoryUnit } from '../types';
 
 const fsRm = promisify(fs.rm);
 const fsReadDir = promisify(fs.readdir);
@@ -12,14 +14,16 @@ const fsWriteFile = promisify(fs.writeFile);
 
 
 
-export const verifyDiskSpace = async (requiredDiskSpace: number = DISK_SPACE_MIN) => {
+export const verifyDiskSpace = async (requiredDiskSpace: MemorySize = REQUIRED_DISK_SPACE) => {
     const { free } = await checkDiskSpace(path.resolve('/'));
     
-    const remainingDiskSpace = free / Math.pow(10, 9); // GB
-    const hasEnoughDiskSpace = remainingDiskSpace >= requiredDiskSpace; // GB
+    const remainingDiskSpace = new MemorySize(free, MemoryUnit.Bytes);
+    const hasEnoughDiskSpace = remainingDiskSpace.greaterThanOrEquals(requiredDiskSpace);
+
+    logger.debug(`Enough remaining disk space: ${remainingDiskSpace.format()} (>= ${requiredDiskSpace.format()})`);
 
     if (!hasEnoughDiskSpace) {
-        throw new Error(`Not enough disk space to continue: ${remainingDiskSpace}GB < ${requiredDiskSpace}GB`);
+        throw new Error(`Not enough disk space to continue: ${remainingDiskSpace.format()} < ${requiredDiskSpace.format()}`);
     }
 }
 

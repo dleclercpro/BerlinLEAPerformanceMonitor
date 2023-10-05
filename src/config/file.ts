@@ -1,3 +1,5 @@
+import MemorySize from '../models/MemorySize';
+import { MemoryUnit } from '../types';
 import { BOT } from './bot';
 
 export const RESOURCES_DIR = `${process.cwd()}/resources`;
@@ -10,4 +12,4 @@ export const SCREENSHOTS_DIR = `${DATA_DIR}/screenshots`;
 export const LOGS_FILEPATH = `${LOGS_DIR}/app.log`;
 export const ALARM_FILEPATH = `${RESOURCES_DIR}/alarm.wav`;
 
-export const DISK_SPACE_MIN = 1; // GB
+export const REQUIRED_DISK_SPACE = new MemorySize(1, MemoryUnit.Gigabytes);

@@ -29,6 +29,14 @@ export enum TimeUnit {
     Milliseconds = 'ms',
 }
 
+export enum MemoryUnit {
+    Terabytes = 'TB',
+    Gigabytes = 'GB',
+    Megabytes = 'MB',
+    Kilobytes = 'KB',
+    Bytes = 'B',
+}
+
 export type Size = {
     width: number,
     height: number,
