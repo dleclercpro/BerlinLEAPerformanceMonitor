@@ -1,25 +1,10 @@
 import logger from '../../logger';
-import { Log } from '../../types';
 import { getLastValue } from '../../utils/array';
 import { writeFile, writeJSON } from '../../utils/file';
 import { sum } from '../../utils/math';
+import { logToText } from '../../utils/parsing';
 import CompleteSession from './CompleteSession';
 import SessionHistory from './SessionHistory';
-
-const logToText = (log: Log) => {
-    return (`{` +
-        `"level":${log.level},` +
-        `"time":"${log.time}",` +
-        `"pid":${log.pid},` +
-        `"hostname":"${log.hostname}",` +
-        `"version":"${log.version.toString()}",` +
-        (log.err ? `"err":"${log.err}",` : '') +
-        `"msg":"${log.msg}"` +
-        `}`
-    );
-};
-
-
 
 class SessionHistoryExporter {
     private static instance?: SessionHistoryExporter;

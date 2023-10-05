@@ -9,7 +9,7 @@ import { getRange } from './utils/math';
 import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
-import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN } from './config/bot';
+import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN, LOG_ROTATION_JOB_FREQUENCY } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
 import TimeDuration from './models/TimeDuration';
@@ -21,6 +21,8 @@ import Release from './models/Release';
 import checkDiskSpace from 'check-disk-space';
 import path from 'path';
 import { verifyDiskSpace } from './utils/file';
+import LogRotater from './models/LogRotater';
+import LogRotationJob from './models/jobs/LogRotationJob';
 
 
 
@@ -47,6 +49,11 @@ const execute = async () => {
     // Schedule bot-related job
     if (BOT) {
         JobScheduler.schedule({
+            job: new LogRotationJob(),
+            expression: LOG_ROTATION_JOB_FREQUENCY,
+        });
+
+        JobScheduler.schedule({
             job: new BotJob(),
             expression: BOT_JOB_FREQUENCY,
         });
@@ -58,10 +65,7 @@ const execute = async () => {
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
         const specificRelease = new Release(1, 8, 1);
 
-        await new AnalysisJob({
-            filepath: LOGS_FILEPATH,
-            since: specificRelease,
-        }).execute();
+        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: specificRelease }).execute();
     }
 
     // Clean logs (remove incomplete sessions)

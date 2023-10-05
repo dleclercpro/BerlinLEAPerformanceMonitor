@@ -14,7 +14,7 @@ const hasLogMessage = (log: Log) => {
     return !!log && !!log.msg;
 }
 
-const parseTextLog = (line: string, i: number): Log => {
+export const textToLog = (line: string, i: number): Log => {
     const { version, ...log } = JSON.parse(line);
     return {
         ...log,
@@ -22,6 +22,19 @@ const parseTextLog = (line: string, i: number): Log => {
         version: Release.fromString(version),
     };
 }
+
+export const logToText = (log: Log) => {
+    return (`{` +
+        `"level":${log.level},` +
+        `"time":"${log.time}",` +
+        `"pid":${log.pid},` +
+        `"hostname":"${log.hostname}",` +
+        `"version":"${log.version.toString()}",` +
+        (log.err ? `"err":"${log.err}",` : '') +
+        `"msg":"${log.msg}"` +
+        `}`
+    );
+};
 
 
 
@@ -41,7 +54,7 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
     const logs: Log[] = file
         .split(NEW_LINE_REGEXP)
         .filter(isTextLog)
-        .map(parseTextLog)
+        .map(textToLog)
         .filter((log: Log) => {
             if (since instanceof Date) {
                 return new Date(log.time) >= since;

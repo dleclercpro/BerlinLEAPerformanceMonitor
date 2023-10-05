@@ -49,10 +49,12 @@ export const writeFile = async (filepath: string, data: string | Buffer, encodin
     });
 }
 
-export const touchFile = async (filepath: string) => {
-    const exists = fs.existsSync(filepath);
+export const doesFileExist = (filepath: string) => {
+    return fs.existsSync(filepath);
+}
 
-    if (!exists) {
+export const touchFile = async (filepath: string) => {
+    if (!doesFileExist(filepath)) {
         fs.mkdirSync(path.dirname(filepath), { recursive: true });
 
         // New file generated
