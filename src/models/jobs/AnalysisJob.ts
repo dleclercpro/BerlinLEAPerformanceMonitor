@@ -44,6 +44,8 @@ class AnalysisJob extends Job {
         await this.generateSessionAverageLengthGraph(hourlyHistory);
         await this.generateEventPrevalenceOnWorkdaysGraph(biHourlyHistory);
         await this.generateErrorDistributionOnWorkdaysGraph(biHourlyHistory);
+
+        hourlyHistory.summarize();
     }
 
     protected async getLogsToAnalyze() {

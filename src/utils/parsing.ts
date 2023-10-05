@@ -39,13 +39,13 @@ export const logToText = (log: Log) => {
 
 
 export const parseLogs = async (filepath: string, since?: Date | Release) => {
-    logger.debug(`Reading logs...`);
+    logger.trace(`Reading logs...`);
 
     if (since) {
         if (since instanceof Date) {
-            logger.debug(`Keeping logs newer than: ${since}`);
+            logger.trace(`Keeping logs newer than: ${since}`);
         } else {
-            logger.debug(`Keeping logs with release version higher or equal to: ${since.toString()}`);
+            logger.trace(`Keeping logs with release version higher or equal to: ${since.toString()}`);
         }
     }
 
