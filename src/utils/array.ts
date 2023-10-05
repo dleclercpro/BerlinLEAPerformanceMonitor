@@ -12,6 +12,12 @@ export const getLastValue = <V> (arr: V[]) => {
     if (arr.length > 0) return arr[arr.length - 1];
 }
 
+export const flatten = <V> (arr: V[][]) => {
+    return arr.reduce((prevValues, values) => {
+        return [...prevValues, ...values];
+    }, []);
+}
+
 export const unique =<V> (arr: V[]) => {
     return [...new Set(arr)];
 }

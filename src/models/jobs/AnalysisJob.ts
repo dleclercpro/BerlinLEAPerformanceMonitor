@@ -14,6 +14,7 @@ import Job from './Job';
 import Release from '../Release';
 import { listFiles } from '../../utils/file';
 import logger from '../../logger';
+import { flatten } from '../../utils/array';
 
 interface Args {
     dir: string,
@@ -57,11 +58,7 @@ class AnalysisJob extends Job {
         filepaths.push(LOGS_FILEPATH);
 
         const logsByFile = await Promise.all(filepaths.map((filepath: string) => parseLogs(filepath, this.since)));
-
-        // Flatten logs
-        const logs = logsByFile.reduce((prevLogs, logs) => {
-            return [...prevLogs, ...logs];
-        }, []);
+        const logs = flatten(logsByFile);
 
         logger.info(`Found ${logs.length} logs to analyze.`);
 
