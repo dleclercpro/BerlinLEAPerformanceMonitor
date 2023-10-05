@@ -49,6 +49,16 @@ export const writeFile = async (filepath: string, data: string | Buffer, encodin
     });
 }
 
+export const listFiles = (dir: string) => {
+    return new Promise<string[]>((resolve, reject) => {
+        fs.readdir(dir, (err, files) => {
+            if (err) reject(err);
+
+            resolve(files);
+        });
+    });
+}
+
 export const doesFileExist = (filepath: string) => {
     return fs.existsSync(filepath);
 }

@@ -18,10 +18,7 @@ import { parseLogs } from './utils/parsing';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import SessionHistoryExporter from './models/sessions/SessionHistoryExporter';
 import Release from './models/Release';
-import checkDiskSpace from 'check-disk-space';
-import path from 'path';
 import { verifyDiskSpace } from './utils/file';
-import LogRotater from './models/LogRotater';
 import LogRotationJob from './models/jobs/LogRotationJob';
 
 
@@ -65,7 +62,7 @@ const execute = async () => {
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
         const specificRelease = new Release(1, 8, 1);
 
-        await new AnalysisJob({ filepath: LOGS_FILEPATH, since: specificRelease }).execute();
+        await new AnalysisJob({ dir: LOGS_DIR, since: specificRelease }).execute();
     }
 
     // Clean logs (remove incomplete sessions)

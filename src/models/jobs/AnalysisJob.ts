@@ -1,6 +1,6 @@
 import { parseLogs } from '../../utils/parsing';
 import { IGNORE_DAYS_WITH_EMPTY_BUCKETS } from '../../config';
-import { LOGS_FILEPATH } from '../../config/file';
+import { LOGS_DIR, LOGS_FILEPATH } from '../../config/file';
 import { ONE_HOUR } from '../../constants/times';
 import { TimeUnit } from '../../types';
 import TimeDuration from '../TimeDuration';
@@ -12,28 +12,30 @@ import SessionHistory from '../sessions/SessionHistory';
 import SessionHistoryBuilder from '../sessions/SessionHistoryBuilder';
 import Job from './Job';
 import Release from '../Release';
+import { listFiles } from '../../utils/file';
+import logger from '../../logger';
 
 interface Args {
-    filepath: string,
+    dir: string,
     since?: Date | Release,
 }
 
 class AnalysisJob extends Job {
-    protected filepath: string;
+    protected dir: string;
     protected since?: Date | Release;
 
-    public constructor(args: Args = { filepath: LOGS_FILEPATH }) {
+    public constructor(args: Args = { dir: LOGS_DIR }) {
         super();
 
-        const { filepath, since } = args;
+        const { dir, since } = args;
 
-        this.filepath = filepath;
+        this.dir = dir;
         this.since = since;
     }
 
     public async execute() {
-        const logs = await parseLogs(this.filepath, this.since);
-    
+        const logs = await this.getLogsToAnalyze();
+
         const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
         const biHourlyHistory = SessionHistoryBuilder.rebuildWithDifferentBucketSize(hourlyHistory, new TimeDuration(2, TimeUnit.Hours));
     
@@ -41,6 +43,29 @@ class AnalysisJob extends Job {
         await this.generateSessionAverageLengthGraph(hourlyHistory);
         await this.generateEventPrevalenceOnWorkdaysGraph(biHourlyHistory);
         await this.generateErrorDistributionOnWorkdaysGraph(biHourlyHistory);
+    }
+
+    protected async getLogsToAnalyze() {
+        const filenames = await listFiles(this.dir);
+        
+        const filepaths = filenames
+            .map((filename: string) => `${LOGS_DIR}/${filename}`)
+            .filter((filepath: string) => filepath !== LOGS_FILEPATH)
+            .sort();
+
+        // Add default output log file at the end (it's the most recent one)
+        filepaths.push(LOGS_FILEPATH);
+
+        const logsByFile = await Promise.all(filepaths.map((filepath: string) => parseLogs(filepath, this.since)));
+
+        // Flatten logs
+        const logs = logsByFile.reduce((prevLogs, logs) => {
+            return [...prevLogs, ...logs];
+        }, []);
+
+        logger.info(`Found ${logs.length} logs to analyze.`);
+
+        return logs;
     }
 
     protected async generateSessionLengthGraph(history: SessionHistory) {

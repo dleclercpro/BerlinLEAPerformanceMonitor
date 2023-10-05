@@ -2,7 +2,8 @@ import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
 import Release from '../models/Release';
 import { Log } from '../types';
-import { readFile } from './file';
+import { listFiles, readFile } from './file';
+import fs from 'fs';
 
 
 
@@ -39,7 +40,7 @@ export const logToText = (log: Log) => {
 
 
 export const parseLogs = async (filepath: string, since?: Date | Release) => {
-    logger.info(`Reading logs...`);
+    logger.debug(`Reading logs...`);
 
     if (since) {
         if (since instanceof Date) {
@@ -66,7 +67,25 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
         })
         .filter(hasLogMessage); // Every log should have a message
 
-    logger.info(`Parsed ${logs.length} valid log entries.`);
+    logger.debug(`Parsed ${logs.length} valid log entries.`);
 
     return logs;
+}
+
+
+
+export const findAndParseLogs = async (dir: string, since?: Date | Release) => {
+    logger.info(`Finding and reading logs...`);
+
+    if (since) {
+        if (since instanceof Date) {
+            logger.info(`Keeping logs newer than: ${since}`);
+        } else {
+            logger.info(`Keeping logs with release version higher or equal to: ${since.toString()}`);
+        }
+    }
+
+    const files = await listFiles(dir);
+
+    console.log(files);
 }
