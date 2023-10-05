@@ -5,7 +5,7 @@ import { toCountsFromArray, unique } from '../../utils/array';
 import { isKnownEvent } from '../../utils/event';
 import { formatDateForFilename, getWeekday } from '../../utils/locale';
 import { sum } from '../../utils/math';
-import TimeDuration from '../TimeDuration';
+import TimeDuration from '../units/TimeDuration';
 import SessionBucket from '../buckets/SessionBucket';
 import CompleteSession from './CompleteSession';
 

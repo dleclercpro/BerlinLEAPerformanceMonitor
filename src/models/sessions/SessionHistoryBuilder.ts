@@ -4,7 +4,7 @@ import IncompleteSession from './IncompleteSession';
 import SessionHistory from './SessionHistory';
 import CompleteSession from './CompleteSession';
 import { ONE_DAY, ONE_HOUR, WEEKDAYS } from '../../constants/times';
-import TimeDuration from '../TimeDuration';
+import TimeDuration from '../units/TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
 import { formatDateForFilename } from '../../utils/locale';

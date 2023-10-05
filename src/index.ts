@@ -12,7 +12,7 @@ import BotJob from './models/jobs/BotJob';
 import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN, LOG_ROTATION_JOB_FREQUENCY } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
-import TimeDuration from './models/TimeDuration';
+import TimeDuration from './models/units/TimeDuration';
 import { LOGS_DIR, LOGS_FILEPATH } from './config/file';
 import { parseLogs } from './utils/parsing';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';

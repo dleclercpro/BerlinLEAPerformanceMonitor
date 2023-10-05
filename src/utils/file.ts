@@ -4,7 +4,7 @@ import logger from '../logger';
 import checkDiskSpace from 'check-disk-space';
 import { REQUIRED_DISK_SPACE } from '../config/file';
 import { promisify } from 'util';
-import MemorySize from '../models/MemorySize';
+import MemorySize from '../models/units/MemorySize';
 import { MemoryUnit } from '../types';
 
 const fsRm = promisify(fs.rm);

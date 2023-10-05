@@ -1,5 +1,5 @@
 import Job from './Job';
-import LogRotater from '../LogRotater';
+import LogRotater from '../logs/LogRotater';
 
 class LogRotationJob extends Job {
 

@@ -3,7 +3,7 @@ import { IGNORE_DAYS_WITH_EMPTY_BUCKETS } from '../../config';
 import { LOGS_DIR, LOGS_FILEPATH } from '../../config/file';
 import { ONE_HOUR } from '../../constants/times';
 import { TimeUnit } from '../../types';
-import TimeDuration from '../TimeDuration';
+import TimeDuration from '../units/TimeDuration';
 import ErrorDistributionOnWorkdaysGraph from '../graphs/ErrorDistributionOnWorkdaysGraph';
 import EventPrevalenceOnWorkdaysGraph from '../graphs/EventPrevalenceOnWorkdaysGraph';
 import SessionAverageLengthGraph from '../graphs/SessionAverageLengthGraph';

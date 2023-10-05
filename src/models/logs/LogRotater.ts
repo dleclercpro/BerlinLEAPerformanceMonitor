@@ -1,11 +1,11 @@
 import { writeFileSync } from 'fs';
-import { LOGS_DIR, LOGS_FILEPATH } from '../config/file';
-import { Log } from '../types';
-import { formatDateForFilename } from '../utils/locale';
-import { logToText, parseLogs } from '../utils/parsing';
-import { getMidnightInUTC } from '../utils/time';
-import logger from '../logger';
-import { NEW_LINE } from '../constants';
+import { LOGS_DIR, LOGS_FILEPATH } from '../../config/file';
+import { Log } from '../../types';
+import { formatDateForFilename } from '../../utils/locale';
+import { logToText, parseLogs } from '../../utils/parsing';
+import { getMidnightInUTC } from '../../utils/time';
+import logger from '../../logger';
+import { NEW_LINE } from '../../constants';
 
 type LogFiles = Record<string, Log[]>;
 

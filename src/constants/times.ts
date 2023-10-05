@@ -1,4 +1,4 @@
-import TimeDuration from '../models/TimeDuration';
+import TimeDuration from '../models/units/TimeDuration';
 import { TimeUnit, Weekday } from '../types';
 
 export const WEEKDAYS = Object.values(Weekday);

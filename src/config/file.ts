@@ -1,4 +1,4 @@
-import MemorySize from '../models/MemorySize';
+import MemorySize from '../models/units/MemorySize';
 import { MemoryUnit } from '../types';
 import { BOT } from './bot';
 

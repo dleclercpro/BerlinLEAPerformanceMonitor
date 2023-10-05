@@ -1,5 +1,5 @@
-import { Comparable, MemoryUnit } from '../types';
-import { round } from '../utils/math';
+import { Comparable, MemoryUnit } from '../../types';
+import { round } from '../../utils/math';
 
 class MemorySizeComparator {
     public static compare(a: MemorySize, b: MemorySize) {

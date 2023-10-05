@@ -1,5 +1,5 @@
 import logger from '../logger';
-import TimeDuration from '../models/TimeDuration';
+import TimeDuration from '../models/units/TimeDuration';
 import { TimeUnit } from '../types';
 
 export const sleep = async (duration: TimeDuration) => {

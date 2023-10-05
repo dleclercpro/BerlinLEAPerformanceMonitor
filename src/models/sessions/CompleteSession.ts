@@ -3,7 +3,7 @@ import { LogMessage } from '../../constants';
 import { Comparable, TimeUnit } from '../../types';
 import { isKnownBug, isFailureEvent } from '../../utils/event';
 import Release from '../Release';
-import TimeDuration from '../TimeDuration';
+import TimeDuration from '../units/TimeDuration';
 import Session, { SessionArgs } from './Session';
 
 class CompleteSessionComparator {

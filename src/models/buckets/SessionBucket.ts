@@ -1,7 +1,7 @@
 import { CountsDict } from '../../types';
 import { toCountsFromArray } from '../../utils/array';
 import { getTimeSpentSinceMidnight } from '../../utils/time';
-import TimeDuration from '../TimeDuration';
+import TimeDuration from '../units/TimeDuration';
 import CompleteSession from '../sessions/CompleteSession';
 import { SessionFilter } from '../sessions/SessionHistory';
 import Bucket from './Bucket';

@@ -1,5 +1,5 @@
-import { Comparable, TimeUnit } from '../types';
-import { round } from '../utils/math';
+import { Comparable, TimeUnit } from '../../types';
+import { round } from '../../utils/math';
 
 class TimeDurationComparator {
     public static compare(a: TimeDuration, b: TimeDuration) {
