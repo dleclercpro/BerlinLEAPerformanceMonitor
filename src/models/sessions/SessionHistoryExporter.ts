@@ -1,6 +1,6 @@
 import logger from '../../logger';
 import { getLastValue } from '../../utils/array';
-import { writeFile, writeJSON } from '../../utils/file';
+import { writeFile } from '../../utils/file';
 import { sum } from '../../utils/math';
 import { logToText } from '../../utils/parsing';
 import CompleteSession from './CompleteSession';
@@ -43,17 +43,6 @@ class SessionHistoryExporter {
             }, [] as string[]);
         
         await writeFile(filepath, lines.join('\n') + '\n');
-    }
-
-    public async exportToJSONFile(filepath: string, history: SessionHistory) {
-        if (!filepath.endsWith('.json')) {
-            const ext = getLastValue(filepath.split('.'));
-            throw new Error(`Invalid file extension for export: ${ext}`);
-        }
-
-        const data: any = [];
-        
-        await writeJSON(filepath, data);
     }
 }
 

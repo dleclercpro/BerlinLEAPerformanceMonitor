@@ -3,7 +3,6 @@ import logger from '../logger';
 import Release from '../models/Release';
 import { Log } from '../types';
 import { listFiles, readFile } from './file';
-import fs from 'fs';
 
 
 
@@ -44,9 +43,9 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
 
     if (since) {
         if (since instanceof Date) {
-            logger.info(`Keeping logs newer than: ${since}`);
+            logger.debug(`Keeping logs newer than: ${since}`);
         } else {
-            logger.info(`Keeping logs with release version higher or equal to: ${since.toString()}`);
+            logger.debug(`Keeping logs with release version higher or equal to: ${since.toString()}`);
         }
     }
 
@@ -67,25 +66,9 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
         })
         .filter(hasLogMessage); // Every log should have a message
 
-    logger.debug(`Parsed ${logs.length} valid log entries.`);
-
-    return logs;
-}
-
-
-
-export const findAndParseLogs = async (dir: string, since?: Date | Release) => {
-    logger.info(`Finding and reading logs...`);
-
-    if (since) {
-        if (since instanceof Date) {
-            logger.info(`Keeping logs newer than: ${since}`);
-        } else {
-            logger.info(`Keeping logs with release version higher or equal to: ${since.toString()}`);
-        }
+    if (logs.length > 0) {
+        logger.debug(`Parsed ${logs.length} valid log entries.`);
     }
 
-    const files = await listFiles(dir);
-
-    console.log(files);
+    return logs;
 }

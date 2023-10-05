@@ -4,7 +4,7 @@ import { formatDateForFilename } from '../../utils/locale';
 import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, GhostUIElementError } from '../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
-import { MEDIUM_TIME, VERY_VERY_LONG_TIME } from '../../constants/times';
+import { VERY_VERY_LONG_TIME } from '../../constants/times';
 
 const TEXTS = {
     NoAppointment: 'keine Termine frei',

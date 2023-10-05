@@ -36,7 +36,6 @@ class SessionHistoryBuilder {
         const history = new SessionHistory(this.buildBuckets(bucketSize), bucketSize);
 
         let session: IncompleteSession = IncompleteSession.create();
-        let release: Release = RELEASE_ZERO;
 
         // Read logs in chronological order
         logs.forEach(log => {
@@ -45,7 +44,7 @@ class SessionHistoryBuilder {
             if (log.msg.includes(TEXTS.SessionStart)) {
                 session = IncompleteSession.create();
 
-                logger.trace(`Starting session: ${session.getId()} [${release.toString()}]`);
+                logger.trace(`Starting session: ${session.getId()} [${log.version.toJSON()}]`);
                 session.start(new Date(log.time));
             }
 
@@ -56,7 +55,7 @@ class SessionHistoryBuilder {
 
             // Session ended
             if (log.msg.includes(TEXTS.SessionEnd)) {
-                logger.trace(`Finishing session: ${session.getId()}`);
+                logger.trace(`Finishing session: ${session.getId()} [${log.version.toJSON()}]`);
                 session.end(new Date(log.time));
 
                 // Sessions should have a start and an end
@@ -75,7 +74,7 @@ class SessionHistoryBuilder {
                 // Store complete session in history
                 history.addSession(new CompleteSession({
                     id: session.getId(),
-                    release,
+                    release: log.version,
                     startTime: session.getStartTime()!,
                     endTime: session.getEndTime()!,
                     logs: session.getLogs(),

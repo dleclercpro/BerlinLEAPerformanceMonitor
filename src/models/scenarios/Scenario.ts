@@ -15,7 +15,7 @@ abstract class Scenario {
             await this.doExecute(bot);
 
         } catch (err: unknown) {
-            let error = err;
+            const error = err;
 
             if (err instanceof Error) {
                 if (isKnownEvent(err.name)) {
