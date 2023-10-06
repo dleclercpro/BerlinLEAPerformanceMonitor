@@ -14,10 +14,10 @@ class SessionHistoryExporter {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new SessionHistoryExporter();
+        if (!SessionHistoryExporter.instance) {
+            SessionHistoryExporter.instance = new SessionHistoryExporter();
         }
-        return this.instance;
+        return SessionHistoryExporter.instance;
     }
 
     public async exportToLogFile(filepath: string, history: SessionHistory) {

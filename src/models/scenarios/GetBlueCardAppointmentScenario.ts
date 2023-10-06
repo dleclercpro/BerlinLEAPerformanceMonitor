@@ -17,11 +17,11 @@ class GetBlueCardAppointmentScenario extends Scenario {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new GetBlueCardAppointmentScenario();
+        if (!GetBlueCardAppointmentScenario.instance) {
+            GetBlueCardAppointmentScenario.instance = new GetBlueCardAppointmentScenario();
         }
 
-        return this.instance;
+        return GetBlueCardAppointmentScenario.instance;
     }
 
     protected async doExecute(bot: Bot) {

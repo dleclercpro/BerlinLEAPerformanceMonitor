@@ -19,10 +19,10 @@ class LogRotater {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new LogRotater();
+        if (!LogRotater.instance) {
+            LogRotater.instance = new LogRotater();
         }
-        return this.instance;
+        return LogRotater.instance;
     }
 
     public async rotate() {

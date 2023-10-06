@@ -14,10 +14,10 @@ class Alarm {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new Alarm();
+        if (!Alarm.instance) {
+            Alarm.instance = new Alarm();
         }
-        return this.instance;
+        return Alarm.instance;
     }
 
     public async ring() {

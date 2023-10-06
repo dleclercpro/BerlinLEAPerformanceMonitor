@@ -19,10 +19,10 @@ class JobScheduler {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new JobScheduler();
+        if (!JobScheduler.instance) {
+            JobScheduler.instance = new JobScheduler();
         }
-        return this.instance;
+        return JobScheduler.instance;
     }
 
     public schedule({ job, expression, options }: ScheduleArgs) {

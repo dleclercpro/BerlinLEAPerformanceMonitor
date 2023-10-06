@@ -23,11 +23,11 @@ class SessionHistoryBuilder {
     }
 
     public static getInstance() {
-        if (!this.instance) {
-            this.instance = new SessionHistoryBuilder();
+        if (!SessionHistoryBuilder.instance) {
+            SessionHistoryBuilder.instance = new SessionHistoryBuilder();
         }
 
-        return this.instance;
+        return SessionHistoryBuilder.instance;
     }
 
     public build(logs: Log[], bucketSize: TimeDuration = ONE_HOUR) {
