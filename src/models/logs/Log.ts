@@ -1,4 +1,4 @@
-import Release from './models/Release';
+import Release from '../Release';
 
 type Args = {
     line: number,
@@ -52,7 +52,7 @@ class Log {
     public toString() {
         return (`{` +
             `"level":${this.level},` +
-            `"time":"${this.time}",` +
+            `"time":"${this.time.toISOString()}",` +
             `"pid":${this.processId},` +
             `"hostname":"${this.hostname}",` +
             `"version":"${this.version.toString()}",` +

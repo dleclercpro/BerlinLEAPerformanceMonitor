@@ -2,7 +2,7 @@ import os from 'os';
 import process from 'process';
 import crypto from 'crypto';
 import Session from './Session';
-import Log from '../../Log';
+import Log from '../logs/Log';
 
 class IncompleteSession extends Session {
     protected errors: string[] = [];

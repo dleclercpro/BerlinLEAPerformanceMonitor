@@ -1,4 +1,4 @@
-import Log from '../Log';
+import Log from '../models/logs/Log';
 import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
 import Release from '../models/Release';

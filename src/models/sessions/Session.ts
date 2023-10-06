@@ -1,4 +1,4 @@
-import Log from '../../Log';
+import Log from '../logs/Log';
 
 export interface SessionArgs {
     id: string,

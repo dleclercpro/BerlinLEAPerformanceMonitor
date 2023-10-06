@@ -5,7 +5,7 @@ import { parseLogs } from '../../utils/parsing';
 import { getMidnightInUTC } from '../../utils/time';
 import logger from '../../logger';
 import { NEW_LINE } from '../../constants';
-import Log from '../../Log';
+import Log from './Log';
 
 type LogFiles = Record<string, Log[]>;
 

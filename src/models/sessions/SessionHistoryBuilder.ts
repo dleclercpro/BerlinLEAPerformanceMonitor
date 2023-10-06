@@ -8,7 +8,7 @@ import TimeDuration from '../units/TimeDuration';
 import { getRange } from '../../utils/math';
 import SessionBucket from '../buckets/SessionBucket';
 import { formatDateForFilename } from '../../utils/locale';
-import Log from '../../Log';
+import Log from '../logs/Log';
 
 const TEXTS = {
     SessionStart: '[START]',
