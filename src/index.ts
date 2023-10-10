@@ -1,5 +1,5 @@
 import { Environment, TimeUnit } from './types';
-import { ENV, N_ALARMS_ON_SUCCESS, TEST_ALARM } from './config';
+import { ENV, N_ALARMS_ON_SUCCESS, RELEASE_MIN, TEST_ALARM } from './config';
 import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
@@ -60,9 +60,8 @@ const execute = async () => {
     if (!BOT && ANALYZE) {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
-        const specificRelease = new Release(1, 8, 1);
 
-        await new AnalysisJob({ dir: LOGS_DIR, since: specificRelease }).execute();
+        await new AnalysisJob({ dir: LOGS_DIR, since: RELEASE_MIN }).execute();
     }
 
     // Clean logs (remove incomplete sessions)

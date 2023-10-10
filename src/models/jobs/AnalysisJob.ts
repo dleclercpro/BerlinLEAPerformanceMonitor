@@ -40,6 +40,12 @@ class AnalysisJob extends Job {
         if (logs.length === 0) {
             logger.info(`No logs to analyze.`);
             return;
+        } else if (this.since instanceof Release) {
+            logger.info(`Analyzing logs since release ${this.since.toString()}...`);
+        } else if (this.since instanceof Date) {
+            logger.info(`Analyzing logs since ${this.since.toISOString()}...`);        
+        } else {
+            logger.info(`Analyzing logs since the beginning of time...`);        
         }
 
         const hourlyHistory = SessionHistoryBuilder.build(logs, ONE_HOUR);
