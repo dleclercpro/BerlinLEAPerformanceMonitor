@@ -1,8 +1,8 @@
 import { CITIZENSHIP, NUMBER_OF_APPLICANTS, WITH_RELATIVES } from '../../config';
 import { SHORT_TIME } from '../../constants/times';
-import { BrokenUIError } from '../errors';
 import { sleep } from '../../utils/time';
 import Bot from '../bots/Bot';
+import BrokenUIError from '../errors/BrokenUIError';
 import FindAppointmentPage from '../pages/FindAppointmentPage';
 import HomePage from '../pages/HomePage';
 import ResultsPage from '../pages/ResultsPage';

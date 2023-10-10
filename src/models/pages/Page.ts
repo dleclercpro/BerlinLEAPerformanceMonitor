@@ -2,9 +2,13 @@ import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import Bot from '../bots/Bot';
 import { INFINITE_TIME, SHORT_TIME } from '../../constants/times';
-import { InfiniteSpinnerError, InternalServerError, ServiceUnavailableError, TimeoutError, UndisclosedError } from '../errors';
+import { TimeoutError } from '../errors';
 import { SCREENSHOTS_DIR } from '../../config/file';
 import { PACKAGE_VERSION } from '../../constants';
+import InfiniteSpinnerError from '../errors/InfiniteSpinnerError';
+import InternalServerError from '../errors/InternalServerError';
+import ServiceUnavailableError from '../errors/ServiceUnavailableError';
+import UndisclosedError from '../errors/UndisclosedError';
 
 const TEXTS = {
     InternalServerError: '500 - Internal Server Error',

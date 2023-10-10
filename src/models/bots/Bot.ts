@@ -3,8 +3,9 @@ import { Options } from 'selenium-webdriver/chrome';
 import logger from '../../logger';
 import TimeDuration from '../units/TimeDuration';
 import { MEDIUM_TIME } from '../../constants/times';
-import { AggregateError, GhostUIElementError, TimeoutError } from '../errors';
+import { AggregateError, TimeoutError } from '../errors';
 import { writeFile } from '../../utils/file';
+import GhostUIElementError from '../errors/GhostUIElementError';
 
 abstract class Bot {
     protected driver?: WebDriver;

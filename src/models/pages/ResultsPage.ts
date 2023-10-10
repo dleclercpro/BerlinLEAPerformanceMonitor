@@ -1,10 +1,13 @@
 import { By } from 'selenium-webdriver';
 import logger from '../../logger';
 import { formatDateForFilename } from '../../utils/locale';
-import { NoResultsError, FoundNoAppointmentError, NoAppointmentInformationError, GhostUIElementError } from '../errors';
 import { LogMessage } from '../../constants';
 import Page from './Page';
 import { VERY_VERY_LONG_TIME } from '../../constants/times';
+import FoundNoAppointmentError from '../errors/FoundNoAppointmentError';
+import GhostUIElementError from '../errors/GhostUIElementError';
+import NoAppointmentInformationError from '../errors/NoAppointmentInformationError';
+import NoResultsError from '../errors/NoResultsError';
 
 const TEXTS = {
     NoAppointment: 'keine Termine frei',
