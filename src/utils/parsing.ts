@@ -39,7 +39,7 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
         .filter((log: Log) => log.hasMessage());
 
     if (logs.length > 0) {
-        logger.debug(`Parsed ${logs.length} valid log entries.`);
+        logger.trace(`Parsed ${logs.length} valid log entries.`);
     }
 
     return logs;
