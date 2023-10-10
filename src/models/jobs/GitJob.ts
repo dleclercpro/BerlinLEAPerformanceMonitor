@@ -31,7 +31,8 @@ class GitJob extends Job {
     }
 
     protected async hasRemote() {
-        return await this.getRemoteUrl() !== '';
+        const url = await this.getRemoteUrl();
+        return url !== '';
     }
 
     protected async addRemote() {
@@ -69,7 +70,7 @@ class GitJob extends Job {
 
     protected async commit(message: string) {
         logger.trace(`Committing in the name of: ${this.author.name}`);        
-        this.executeShell(GitCommands.Commit(message, this.author), {
+        await this.executeShell(GitCommands.Commit(message, this.author), {
             env: {
                 GIT_COMMITTER_NAME: this.author.name,
                 GIT_COMMITTER_EMAIL: this.author.email,
