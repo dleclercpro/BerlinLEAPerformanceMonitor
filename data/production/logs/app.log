@@ -1633,3 +1633,847 @@
 {"level":30,"time":"2023-10-12T00:59:54.265Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
 {"level":30,"time":"2023-10-12T01:00:01.049Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Rotating logs..."}
 {"level":30,"time":"2023-10-12T01:00:01.136Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Rotated logs."}
+{"level":30,"time":"2023-10-12T01:00:01.429Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:00:02.153Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:00:02.153Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:00:02.153Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:00:03.682Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Found 894504 logs to analyze."}
+{"level":30,"time":"2023-10-12T01:00:03.682Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Analyzing logs since the beginning of time..."}
+{"level":30,"time":"2023-10-12T01:00:03.682Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Building daily session history from 894504 log entries..."}
+{"level":40,"time":"2023-10-12T01:00:07.074Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.09.27T23.30.24Z @ 35513] with (2 > 1) errors found"}
+{"level":40,"time":"2023-10-12T01:00:07.399Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.09.29T10.29.48Z @ 730] with (2 > 1) errors found"}
+{"level":40,"time":"2023-10-12T01:00:07.722Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.09.29T23.30.10Z @ 23915] with (2 > 1) errors found"}
+{"level":40,"time":"2023-10-12T01:00:08.638Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.10.02T11.30.33Z @ 17171] with (2 > 1) errors found"}
+{"level":40,"time":"2023-10-12T01:00:10.208Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.10.05T20.59.50Z @ 31461] with (2 > 1) errors found"}
+{"level":40,"time":"2023-10-12T01:00:12.225Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Invalid session [2023.10.10T19.31.21Z @ 31910] with (2 > 1) errors found"}
+{"level":30,"time":"2023-10-12T01:00:12.859Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Found 64874 complete sessions."}
+{"level":30,"time":"2023-10-12T01:00:12.859Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Re-building daily session history with a different bucket size: 1h -> 2h"}
+{"level":30,"time":"2023-10-12T01:00:22.736Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:01:29.754Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:01:31.327Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","0":"2023.10.11T22.01.29Z","1":"2023.10.11T18.20.31Z","2":"2023.10.11T17.15.12Z","3":"2023.10.11T13.56.58Z","4":"2023.10.11T12.45.43Z","5":"2023.10.11T09.36.14Z","6":"2023.10.11T09.10.42Z","7":"2023.10.10T08.47.12Z","8":"2023.10.10T08.46.46Z","9":"2023.10.10T05.53.15Z","10":"2023.10.10T05.52.52Z","11":"2023.10.09T22.18.49Z","12":"2023.10.09T19.50.15Z","13":"2023.10.09T10.53.15Z","14":"2023.10.09T09.25.28Z","15":"2023.10.09T08.07.17Z","16":"2023.10.09T06.40.41Z","17":"2023.10.09T06.32.13Z","18":"2023.10.08T21.10.09Z","19":"2023.10.08T20.40.08Z","20":"2023.10.07T12.20.08Z","21":"2023.10.07T08.17.05Z","22":"2023.10.06T10.40.32Z","23":"2023.10.06T09.18.47Z","24":"2023.10.06T01.30.57Z","25":"2023.10.05T14.19.15Z","26":"2023.10.05T11.22.06Z","27":"2023.10.05T10.05.18Z","28":"2023.10.05T07.40.41Z","29":"2023.10.05T04.40.07Z","30":"2023.10.05T00.25.05Z","31":"2023.10.04T23.20.12Z","32":"2023.10.04T23.15.09Z","33":"2023.10.04T19.25.09Z","34":"2023.10.04T19.20.07Z","35":"2023.10.04T16.35.05Z","36":"2023.10.04T13.41.55Z","37":"2023.10.04T13.23.54Z","38":"2023.10.04T12.58.18Z","39":"2023.10.04T12.54.53Z","40":"2023.10.04T12.23.55Z","41":"2023.10.04T10.40.11Z","42":"2023.10.04T10.05.04Z","43":"2023.10.02T12.07.40Z","44":"2023.10.02T08.09.09Z","45":"2023.10.02T07.37.06Z","46":"2023.10.02T07.35.05Z","47":"2023.10.02T04.27.22Z","48":"2023.10.02T04.03.32Z","49":"2023.10.02T04.03.10Z","50":"2023.10.01T10.40.22Z","51":"2023.10.01T06.10.37Z","52":"2023.10.01T05.45.07Z","53":"2023.09.30T09.15.05Z","54":"2023.09.30T06.35.11Z","55":"2023.09.29T14.05.10Z","56":"2023.09.28T12.32.46Z","57":"2023.09.27T21.25.09Z","58":"2023.09.27T14.50.54Z","59":"2023.09.27T14.16.12Z","60":"2023.09.27T12.16.59Z","61":"2023.09.27T10.20.25Z","62":"2023.09.26T08.05.30Z","63":"2023.09.26T07.09.09Z","64":"2023.09.26T07.01.25Z","65":"2023.09.26T04.50.29Z","66":"2023.09.25T12.35.19Z","67":"2023.09.25T12.17.04Z","68":"2023.09.25T11.47.31Z","69":"2023.09.25T03.57.04Z","70":"2023.09.22T09.17.36Z","71":"2023.09.22T08.25.37Z","72":"2023.09.21T22.09.54Z","73":"2023.09.21T21.40.14Z","74":"2023.09.21T21.10.11Z","75":"2023.09.21T15.46.54Z","76":"2023.09.21T15.18.35Z","77":"2023.09.21T14.29.20Z","78":"2023.09.21T14.18.14Z","79":"2023.09.21T11.46.56Z","80":"2023.09.21T09.43.03Z","81":"2023.09.21T08.17.41Z","82":"2023.09.20T18.44.28Z","83":"2023.09.20T14.56.01Z","84":"2023.09.20T13.51.14Z","msg":"Time(s) at which an appointment was momentarily available:"}
+{"level":30,"time":"2023-10-12T01:01:31.328Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","FoundNoAppointmentError":51650,"InfiniteSpinnerError":535,"GhostUIElementError":1005,"ConstructionWorkError":2273,"InternalServerError":2881,"NoResultsError":310,"BrokenUIError":52,"msg":"Known errors encountered:"}
+{"level":30,"time":"2023-10-12T01:01:31.328Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","Error":14,"WebDriverError":1528,"TimeoutError":37,"ERROR_REMOVED_MANUALLY":4406,"NoSuchWindowError":7,"AggregateError":82,"SessionNotCreatedError":5,"msg":"Unknown errors encountered:"}
+{"level":30,"time":"2023-10-12T01:01:31.987Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:01:32.034Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:01:36.405Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:01:38.489Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:01:40.541Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:01:42.613Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:01:42.873Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:01:43.137Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:01:46.705Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:01:51.378Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:01:51.396Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:01:51.396Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:01:51.396Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:01:51.757Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:01:58.361Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:02:02.735Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:02:02.769Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:02:10.292Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:02:12.365Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:02:14.427Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:02:16.502Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:02:16.761Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:02:17.028Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:02:20.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:02:27.773Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:02:27.791Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:02:27.791Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:02:27.791Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:02:28.125Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:02:32.956Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:02:37.065Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:02:37.098Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:02:44.346Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:02:46.421Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:02:48.483Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:02:50.554Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:02:50.822Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:02:51.098Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:02:54.691Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:03:01.478Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:03:01.495Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:03:01.495Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:03:01.495Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:03:01.832Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:03:07.838Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:03:12.005Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:03:12.041Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:03:19.462Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:03:21.530Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:03:23.589Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:03:25.662Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:03:25.929Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:03:26.203Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:03:29.786Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:03:37.027Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:03:37.045Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:03:37.045Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:03:37.045Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:03:37.380Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:03:44.236Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:03:48.870Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:03:48.904Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:03:56.316Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:03:58.389Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:04:00.446Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:04:02.517Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:04:02.788Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:04:03.060Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:04:06.657Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:04:12.889Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:04:12.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:04:12.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:04:12.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:04:13.247Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:04:15.287Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:04:17.019Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:04:17.054Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:04:21.617Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:04:23.698Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:04:25.757Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:04:27.826Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:04:28.097Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:04:28.364Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:04:31.945Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:04:36.729Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:04:36.746Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:04:36.746Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:04:36.746Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:04:37.083Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:04:38.964Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:04:41.107Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:04:41.139Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:04:45.483Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:04:47.561Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:04:49.609Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:04:51.681Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:04:51.959Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:04:52.233Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:04:55.827Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:05:00.508Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:05:00.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:05:00.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:05:00.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:05:00.862Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:05:02.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:05:04.406Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:05:04.446Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:05:10.831Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:05:12.906Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:05:14.966Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:05:17.026Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:05:17.294Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:05:17.568Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:05:21.182Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:05:26.866Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:05:26.886Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:05:26.886Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:05:26.886Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:05:27.230Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:05:32.835Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:05:36.989Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:05:37.020Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:05:44.308Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:05:46.380Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:05:48.429Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:05:50.492Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:05:50.752Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:05:51.028Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:05:54.614Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:06:01.824Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:06:01.844Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:06:01.844Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:06:01.844Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:06:02.183Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:06:08.023Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:06:12.339Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:06:12.371Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:06:20.015Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:06:22.094Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:06:24.144Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:06:26.213Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:06:26.502Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:06:26.783Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:06:30.368Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:06:36.931Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:06:36.949Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:06:36.949Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:06:36.949Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:06:37.282Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:06:42.964Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:06:46.699Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:06:46.732Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:06:53.840Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:06:55.915Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:06:57.965Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:07:00.032Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:07:00.309Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:07:00.576Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:07:04.159Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:07:10.612Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:07:10.630Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:07:10.630Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:07:10.630Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:07:10.962Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:07:16.661Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:07:18.797Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:07:18.833Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:07:22.916Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:07:24.990Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:07:27.044Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:07:29.117Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:07:29.391Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:07:29.655Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:07:33.249Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:07:37.880Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:07:37.898Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:07:37.898Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:07:37.898Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:07:38.230Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:07:40.107Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:07:41.819Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:07:41.865Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:07:45.938Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:07:48.009Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:07:50.065Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:07:52.128Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:07:52.388Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:07:52.658Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:07:56.463Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:08:01.036Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:08:01.053Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:08:01.053Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:08:01.053Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:01.382Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:03.262Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:08:04.879Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:08:04.922Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:08:09.043Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:08:11.129Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:08:13.191Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:08:15.264Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:08:15.538Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:08:15.817Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:08:19.849Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:08:24.475Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:08:24.493Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:08:24.493Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:08:24.493Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:24.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:26.783Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:08:28.404Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:08:28.451Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:08:32.572Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:08:34.658Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:08:36.720Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:08:38.785Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:08:39.065Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:08:39.327Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:08:42.914Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:08:47.618Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:08:47.635Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:08:47.635Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:08:47.635Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:47.973Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:08:54.110Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:08:58.228Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:08:58.260Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:09:05.498Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:09:07.576Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:09:09.633Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:09:11.705Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:09:11.976Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:09:12.245Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:09:15.826Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:09:22.801Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:09:22.823Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:09:22.823Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:09:22.823Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:09:23.160Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:09:28.273Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:09:32.363Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:09:32.401Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:09:39.441Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:09:41.514Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:09:43.572Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:09:45.644Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:09:45.905Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:09:46.171Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:09:49.977Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:09:56.539Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:09:56.557Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:09:56.557Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:09:56.557Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:09:56.895Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:10:03.691Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:10:07.475Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:10:07.504Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:10:15.476Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:10:17.547Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:10:19.606Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:10:21.677Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:10:21.945Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:10:22.214Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:10:25.803Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:10:32.624Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:10:32.643Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:10:32.643Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:10:32.643Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:10:32.974Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:10:39.517Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:10:43.653Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:10:43.697Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:10:48.745Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:10:50.826Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:10:52.886Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:10:54.952Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:10:55.212Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:10:55.478Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:10:59.073Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:11:03.873Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:11:03.891Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:11:03.891Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:11:03.891Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:04.223Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:06.129Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:11:07.730Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:11:07.764Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:11:11.814Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:11:13.895Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:11:15.956Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:11:18.018Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:11:18.284Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:11:18.560Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:11:22.143Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:11:26.947Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:11:26.965Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:11:26.965Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:11:26.965Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:27.294Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:29.147Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:11:30.868Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:11:30.913Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:11:35.221Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:11:37.294Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:11:39.343Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:11:41.412Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:11:41.670Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:11:41.933Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:11:45.528Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:11:50.127Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:11:50.144Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:11:50.144Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:11:50.144Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:50.487Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:11:56.456Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:12:00.978Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:12:01.009Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:12:08.224Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:12:10.304Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:12:12.364Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:12:14.437Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:12:14.696Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:12:14.960Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:12:18.787Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:12:25.877Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:12:25.896Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:12:25.896Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:12:25.896Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:12:26.232Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:12:32.114Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:12:36.363Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:12:36.394Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:12:43.729Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:12:45.805Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:12:47.859Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:12:49.931Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:12:50.207Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:12:50.484Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:12:54.061Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:13:04.494Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:13:04.512Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:13:04.512Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:13:04.512Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:13:04.844Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:13:11.417Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:13:15.318Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:13:15.352Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:13:22.774Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:13:24.851Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:13:26.916Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:13:28.982Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:13:29.243Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:13:29.518Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:13:33.311Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:13:40.454Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:13:40.472Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:13:40.472Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:13:40.472Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:13:40.814Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:13:46.505Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:13:50.475Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:13:50.510Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:13:56.879Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:13:58.958Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:14:01.009Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:14:03.075Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:14:03.339Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:14:03.614Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:14:07.204Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:14:11.945Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:14:11.963Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:14:11.963Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:14:11.963Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:14:12.295Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:14:14.152Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:14:15.964Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:14:15.995Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:14:20.312Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:14:22.393Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:14:24.455Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:14:26.518Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:14:26.786Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:14:27.053Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:14:30.837Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:14:35.511Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:14:35.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:14:35.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:14:35.529Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:14:35.862Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:14:37.699Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:14:39.408Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:14:39.442Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:14:43.653Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:14:45.736Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:14:47.797Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:14:49.872Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:14:50.132Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:14:50.396Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:14:53.981Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:14:58.594Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:14:58.612Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:14:58.612Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:14:58.612Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:14:58.941Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:15:04.138Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:15:08.343Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:15:08.375Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:15:17.158Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:15:19.234Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:15:21.298Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:15:23.364Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:15:23.626Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:15:23.887Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:15:27.692Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:15:34.816Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:15:34.834Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:15:34.834Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:15:34.834Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:15:35.169Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:15:40.690Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:15:44.810Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:15:44.841Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:15:52.441Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:15:54.517Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:15:56.580Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:15:58.643Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:15:58.901Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:15:59.175Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:16:02.767Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:16:09.892Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:16:09.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:16:09.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:16:09.910Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:16:10.251Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:16:19.044Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:16:23.323Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:16:23.355Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:16:30.791Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:16:32.874Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:16:34.929Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:16:36.992Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:16:37.251Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:16:37.530Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:16:41.097Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:16:48.255Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:16:48.274Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:16:48.274Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:16:48.274Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:16:48.610Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:16:55.693Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:17:00.254Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:17:00.288Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:17:07.796Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:17:09.870Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:17:11.926Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:17:13.999Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:17:14.275Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:17:14.560Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:17:18.585Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:17:23.315Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:17:23.334Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:17:23.334Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:17:23.334Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:17:23.665Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:17:25.531Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:17:27.298Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:17:27.330Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:17:32.393Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:17:34.476Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:17:36.527Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:17:38.597Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:17:38.859Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:17:39.130Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:17:42.709Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:17:47.408Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:17:47.428Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:17:47.428Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:17:47.428Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:17:47.778Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:17:49.708Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:17:51.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:17:51.864Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:17:56.175Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:17:58.251Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:18:00.312Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:18:02.377Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:18:02.637Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:18:02.902Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:18:06.469Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:18:11.246Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:18:11.263Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:18:11.263Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:18:11.263Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:18:11.598Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:18:16.419Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:18:21.475Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:18:21.508Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:18:28.857Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:18:30.943Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:18:33.002Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:18:35.077Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:18:35.346Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:18:35.621Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:18:39.204Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:18:45.902Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:18:45.920Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:18:45.920Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:18:45.920Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:18:46.258Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:18:51.865Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:18:55.949Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:18:55.992Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:19:03.474Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:19:05.548Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:19:07.608Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:19:09.679Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:19:09.938Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:19:10.203Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:19:13.778Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:19:21.714Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:19:21.734Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:19:21.734Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:19:21.734Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:19:22.070Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:19:28.349Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:19:32.848Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:19:32.882Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:19:41.090Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:19:43.167Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:19:45.223Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:19:47.292Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:19:47.579Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:19:47.844Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:19:51.424Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:19:58.938Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:19:58.956Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:19:58.956Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:19:58.956Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:19:59.297Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:20:04.946Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:20:09.399Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:20:09.431Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:20:16.995Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:20:19.080Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:20:21.132Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:20:23.201Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:20:23.476Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:20:23.736Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:20:27.523Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:20:32.794Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:20:32.839Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:20:32.839Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:20:32.839Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:20:33.174Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:20:35.006Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:20:36.765Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:20:36.798Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:20:41.471Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:20:43.556Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:20:45.618Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:20:47.687Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:20:47.959Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:20:48.231Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:20:51.820Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:20:56.354Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:20:56.372Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:20:56.372Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:20:56.372Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:20:56.704Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:20:58.639Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:21:00.304Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:21:00.339Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:21:04.215Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:21:06.294Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:21:08.343Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:21:10.414Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:21:10.675Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:21:10.949Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:21:14.532Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:21:19.285Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:21:19.302Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:21:19.302Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:21:19.302Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:21:19.633Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:21:21.519Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:21:23.384Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:21:23.418Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:21:28.399Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:21:30.482Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:21:32.542Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:21:34.613Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:21:34.880Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:21:35.144Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:21:38.734Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:21:44.031Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:21:44.051Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:21:44.051Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:21:44.051Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:21:44.402Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:21:51.039Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:21:55.151Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:21:55.182Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:22:02.402Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:22:04.485Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:22:06.550Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:22:08.618Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:22:08.874Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:22:09.160Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:22:12.958Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:22:19.551Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:22:19.570Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:22:19.570Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:22:19.570Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:22:19.913Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:22:25.438Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:22:29.400Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:22:29.433Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:22:37.469Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:22:39.547Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:22:41.603Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:22:43.677Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:22:43.940Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:22:44.210Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:22:47.993Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:22:54.817Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:22:54.837Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:22:54.837Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:22:54.837Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:22:55.170Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:23:01.154Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:23:05.030Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:23:05.064Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:23:12.307Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:23:14.388Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:23:16.440Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:23:18.506Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:23:18.777Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:23:19.044Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:23:22.617Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:23:29.913Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:23:29.959Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:23:29.959Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:23:29.959Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:23:30.299Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:23:37.884Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:23:41.811Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:23:41.841Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:23:47.552Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:23:49.627Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:23:51.678Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:23:53.746Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:23:54.014Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:23:54.304Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:23:58.528Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:24:03.426Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:24:03.444Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:24:03.444Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:24:03.444Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:03.786Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:05.703Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:24:07.532Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:24:07.563Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:24:11.846Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:24:13.920Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:24:15.975Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:24:18.039Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:24:18.294Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:24:18.557Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:24:22.362Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:24:27.578Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:24:27.596Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:24:27.596Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:24:27.596Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:27.927Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:29.888Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:24:31.728Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:24:31.763Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:24:36.008Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:24:38.083Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:24:40.137Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:24:42.204Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:24:42.473Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:24:42.726Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:24:46.520Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:24:52.292Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:24:52.314Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:24:52.314Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:24:52.314Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:52.660Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:24:57.590Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:25:01.817Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:25:01.848Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:25:09.314Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:25:11.399Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:25:13.455Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:25:15.526Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:25:15.786Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:25:16.053Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:25:19.847Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:25:26.874Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:25:26.892Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:25:26.892Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:25:26.892Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:25:27.230Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:25:34.146Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:25:38.650Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:25:38.681Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:25:46.104Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:25:48.181Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:25:50.242Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:25:52.307Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:25:52.565Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:25:52.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:25:56.411Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:26:03.187Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:26:03.205Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:26:03.205Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:26:03.205Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:26:03.565Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:26:08.698Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:26:12.648Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:26:12.681Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:26:19.696Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:26:21.777Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:26:23.828Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:26:25.892Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:26:26.176Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:26:26.445Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:26:30.024Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:26:36.474Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:26:36.494Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:26:36.494Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:26:36.494Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:26:36.832Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:26:42.672Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:26:46.600Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:26:46.633Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:26:53.699Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:26:55.769Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:26:57.832Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:26:59.906Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:27:00.175Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:27:00.456Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:27:04.036Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:27:08.970Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:27:08.987Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:27:08.987Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:27:08.987Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:27:09.359Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:27:11.324Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:27:13.099Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:27:13.134Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:27:17.298Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:27:19.375Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:27:21.437Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:27:23.499Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:27:23.765Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:27:24.024Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:27:27.830Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:27:32.735Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:27:32.753Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:27:32.753Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:27:32.753Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:27:33.090Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:27:35.019Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:27:36.819Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:27:36.854Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:27:41.537Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:27:43.620Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:27:45.680Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:27:47.748Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:27:48.012Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:27:48.278Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:27:51.868Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:27:57.122Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:27:57.142Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:27:57.142Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:27:57.142Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:27:57.482Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:28:03.635Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:28:07.527Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:28:07.560Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:28:14.997Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:28:17.070Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:28:19.135Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:28:21.208Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:28:21.468Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:28:21.730Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:28:25.332Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:28:32.272Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:28:32.291Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:28:32.291Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:28:32.291Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:28:32.625Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:28:38.290Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:28:42.211Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:28:42.259Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:29:04.778Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:29:06.861Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:29:08.924Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:29:10.995Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:29:11.254Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:29:11.519Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:29:15.099Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:29:22.551Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:29:22.569Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:29:22.569Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:29:22.569Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:29:22.937Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-10-12T01:29:28.896Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-10-12T01:29:33.355Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-10-12T01:29:33.387Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:29:41.023Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-10-12T01:29:43.101Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-10-12T01:29:45.162Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-10-12T01:29:47.236Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-10-12T01:29:47.505Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-10-12T01:29:47.776Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Blaue Karte EU' button."}
+{"level":30,"time":"2023-10-12T01:29:51.367Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-10-12T01:29:59.227Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-10-12T01:29:59.245Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-10-12T01:29:59.245Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-10-12T01:29:59.245Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-10-12T01:29:59.587Z","pid":30080,"hostname":"Davids-PC","version":"1.17.0","msg":"--------------- Scenario: GetBlueCardAppointmentScenario [START] ---------------"}
