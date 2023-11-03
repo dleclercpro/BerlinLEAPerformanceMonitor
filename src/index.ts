@@ -1,6 +1,5 @@
 import { Environment, TimeUnit } from './types';
 import { ENV, N_ALARMS_ON_SUCCESS, RELEASE_MIN, TEST_ALARM } from './config';
-import GetBlueCardAppointmentScenario from './models/scenarios/GetBlueCardAppointmentScenario';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
@@ -17,14 +16,14 @@ import { LOGS_DIR, LOGS_FILEPATH } from './config/file';
 import { parseLogs } from './utils/parsing';
 import SessionHistoryBuilder from './models/sessions/SessionHistoryBuilder';
 import SessionHistoryExporter from './models/sessions/SessionHistoryExporter';
-import Release from './models/Release';
 import { verifyDiskSpace } from './utils/file';
 import LogRotationJob from './models/jobs/LogRotationJob';
+import GetSkilledWorkerWithDegreeAppointmentScenario from './models/scenarios/GetSkilledWorkerWithDegreeAppointmentScenario';
 
 
 
 const hasFoundAppointment = async (bot: Bot) => {
-    return GetBlueCardAppointmentScenario
+    return GetSkilledWorkerWithDegreeAppointmentScenario
         .execute(bot)
         .then(() => {
             return true;

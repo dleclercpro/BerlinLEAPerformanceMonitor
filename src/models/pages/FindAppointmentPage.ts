@@ -8,6 +8,7 @@ const TEXTS = {
     ApplyForVisa: 'Aufenthaltstitel - beantragen',
     Employment: 'Erwerbstätigkeit',
     BlueCard: 'Blaue Karte EU',
+    SkilledWorkerWithDegree: 'Fachkräfte mit akademischer Ausbildung',
 };
 
 const DROPDOWN_NAMES = {
@@ -26,6 +27,7 @@ const ELEMENTS = {
         ApplyForVisa: By.xpath(`//p[contains(text(), '${TEXTS.ApplyForVisa}')]`),
         Employment: By.xpath(`//p[contains(text(), '${TEXTS.Employment}')]`),
         BlueCard: By.xpath(`//label[contains(text(), '${TEXTS.BlueCard}')]`),
+        SkilledWorkerWithDegree: By.xpath(`//label[contains(text(), '${TEXTS.SkilledWorkerWithDegree}')]`),
         Submit: By.id('applicationForm:managedForm:proceed'),
     },
 };
@@ -47,53 +49,65 @@ class FindAppointmentPage extends Page {
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.Citizenship);
         await dropdown.sendKeys(option);
         await sleep(SHORT_TIME);
-
-        await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
     }
 
     public async selectNumberOfApplicants(option: string) {    
+        await this.bot.waitForElement(ELEMENTS.Dropdown.NumberOfApplicants);
+
         logger.info(`Select number of applicants: ${option}`);
 
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.NumberOfApplicants);
         await dropdown.sendKeys(option);
         await sleep(SHORT_TIME);
-
-        await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
     }
 
     public async selectWithRelatives(option: string) {
+        await this.bot.waitForElement(ELEMENTS.Dropdown.WithRelatives);
+
         logger.info(`Select with relatives: ${option}`);
 
         const dropdown = await this.bot.findElement(ELEMENTS.Dropdown.WithRelatives);
         await dropdown.sendKeys(option);
         await sleep(SHORT_TIME);
-
-        // It might take a while for the next UI element to show up: wait a bit longer...
-        await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa, LONG_TIME);
     }
 
     public async clickOnApplyForVisaButton() {
+
+        // It might take a while for the next UI element to show up: wait a bit longer...
+        await this.bot.waitForElement(ELEMENTS.Buttons.ApplyForVisa, LONG_TIME);
+
         const button = await this.bot.findElement(ELEMENTS.Buttons.ApplyForVisa);
 
         logger.info(`Click on '${TEXTS.ApplyForVisa}' button.`);
         await button.click();
-
-        await this.bot.waitForElement(ELEMENTS.Buttons.Employment);
     }
 
     public async clickOnEmploymentButton() {
+        await this.bot.waitForElement(ELEMENTS.Buttons.Employment);
+
         const button = await this.bot.findElement(ELEMENTS.Buttons.Employment);
 
         logger.info(`Click on '${TEXTS.Employment}' button.`);
         await button.click();
-
-        await this.bot.waitForElement(ELEMENTS.Buttons.BlueCard);
     }
 
     public async clickOnBlueCardButton() {
+        await this.bot.waitForElement(ELEMENTS.Buttons.BlueCard);
+
         const button = await this.bot.findElement(ELEMENTS.Buttons.BlueCard);
 
         logger.info(`Click on '${TEXTS.BlueCard}' button.`);
+        await button.click();
+
+        await this.waitUntilSpinnerGone();
+    }
+
+    public async clickOnSkilledWorkerWithDegreeButton() {
+        await this.bot.waitForElement(ELEMENTS.Buttons.SkilledWorkerWithDegree);
+
+        const button = await this.bot.findElement(ELEMENTS.Buttons.SkilledWorkerWithDegree);
+
+        logger.info(`Click on '${TEXTS.SkilledWorkerWithDegree}' button.`);
         await button.click();
 
         await this.waitUntilSpinnerGone();

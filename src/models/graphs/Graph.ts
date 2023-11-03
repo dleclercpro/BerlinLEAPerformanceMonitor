@@ -44,8 +44,6 @@ abstract class Graph<Data extends GraphData> {
     public async draw(data: Data) {
         if (data.getSize() < 2) throw new Error('Not enough data to plot graph.');
 
-        logger.debug(`Drawing '${this.name}' graph.`);
-
         const canvas = new ChartJSNodeCanvas({ ...this.size, backgroundColour: Color.White });
         const datasets = this.generateDatasets(data);
         const config = {
@@ -62,6 +60,8 @@ abstract class Graph<Data extends GraphData> {
             },
         } as ChartConfiguration;
     
+        logger.debug(`Drawing '${this.name}' graph.`);
+
         this.img = await canvas.renderToBuffer(config, this.mimeType);    
     }
 
