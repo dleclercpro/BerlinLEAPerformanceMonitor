@@ -59,7 +59,8 @@ class EventPrevalenceOnWorkdaysGraph extends Graph<SessionHistory> {
                 });
     
             // Daily graph: first and last point (midnight) should be equal
-            if (data.length > 0) {
+            const shouldAddMidnightPoint = [0, 23].every(h => data.findIndex(({ x, y }) => x === h && !Number.isNaN(y)) !== -1);
+            if (shouldAddMidnightPoint) {
                 data.push({ x: 24, y: data[0].y });
             }
 

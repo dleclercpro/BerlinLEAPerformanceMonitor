@@ -17,7 +17,7 @@ import logger from '../../logger';
 import { flatten } from '../../utils/array';
 
 interface Args {
-    dir: string,
+    dir?: string,
     since?: Date | Release,
 }
 
@@ -25,12 +25,12 @@ class AnalysisJob extends Job {
     protected dir: string;
     protected since?: Date | Release;
 
-    public constructor(args: Args = { dir: LOGS_DIR }) {
+    public constructor(args: Args) {
         super();
 
         const { dir, since } = args;
 
-        this.dir = dir;
+        this.dir = dir ?? LOGS_DIR;
         this.since = since;
     }
 
