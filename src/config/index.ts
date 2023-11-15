@@ -7,6 +7,8 @@ import Release from '../models/Release';
 export const ENV = loadEnvironment();
 
 export const RELEASE_MIN = Release.fromString(getEnvironmentVariable('RELEASE_MIN') ?? '0.0.0');
+export const DATE_MIN = new Date('2023.11.10 00:00:00');
+
 export const IGNORE_DAYS_WITH_EMPTY_BUCKETS = false;
 
 export const HOMEPAGE_URL = 'http://otv.verwalt-berlin.de/';

@@ -1,5 +1,5 @@
 import { Environment, TimeUnit } from './types';
-import { ENV, N_ALARMS_ON_SUCCESS, RELEASE_MIN, TEST_ALARM } from './config';
+import { DATE_MIN, ENV, N_ALARMS_ON_SUCCESS, RELEASE_MIN, TEST_ALARM } from './config';
 import ChromeBot from './models/bots/ChromeBot';
 import Bot from './models/bots/Bot';
 import Alarm from './models/Alarm';
@@ -8,7 +8,7 @@ import { getRange } from './utils/math';
 import { VERY_SHORT_TIME } from './constants/times';
 import JobScheduler from './models/jobs/JobScheduler';
 import BotJob from './models/jobs/BotJob';
-import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN, LOG_ROTATION_JOB_FREQUENCY } from './config/bot';
+import { POLL, ONCE, BOT, ANALYZE, BOT_JOB_FREQUENCY, CLEAN, LOG_ROTATION_JOB_FREQUENCY, UPLOAD } from './config/bot';
 import logger from './logger';
 import AnalysisJob from './models/jobs/AnalysisJob';
 import TimeDuration from './models/units/TimeDuration';
@@ -50,7 +50,7 @@ const execute = async () => {
         });
 
         JobScheduler.schedule({
-            job: new BotJob(),
+            job: new BotJob({ upload: UPLOAD, analyze: ANALYZE, since: DATE_MIN }),
             expression: BOT_JOB_FREQUENCY,
         });
     }
@@ -60,7 +60,7 @@ const execute = async () => {
         const now = new Date();
         const lastWeek = computeDate(now, new TimeDuration(-7, TimeUnit.Days));
 
-        await new AnalysisJob({ dir: LOGS_DIR, since: RELEASE_MIN }).execute();
+        await new AnalysisJob({ dir: LOGS_DIR, since: DATE_MIN }).execute();
     }
 
     // Clean logs (remove incomplete sessions)
