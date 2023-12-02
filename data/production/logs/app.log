@@ -20354,3 +20354,861 @@
 {"level":50,"time":"2023-12-02T10:29:58.857Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
 {"level":30,"time":"2023-12-02T10:29:58.857Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
 {"level":30,"time":"2023-12-02T10:29:59.252Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:30:07.154Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Found 812365 logs to analyze."}
+{"level":30,"time":"2023-12-02T10:30:07.154Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Analyzing logs since 2023-11-09T23:00:00.000Z..."}
+{"level":30,"time":"2023-12-02T10:30:07.154Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Building daily session history from 812365 log entries..."}
+{"level":40,"time":"2023-12-02T10:30:11.556Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Invalid session [2023.11.25T04.00.41Z @ 6195] with (2 > 1) errors found"}
+{"level":40,"time":"2023-12-02T10:30:11.577Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Invalid session [2023.11.25T06.59.49Z @ 8787] with (2 > 1) errors found"}
+{"level":40,"time":"2023-12-02T10:30:11.581Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Invalid session [2023.11.25T07.30.59Z @ 9253] with (2 > 1) errors found"}
+{"level":30,"time":"2023-12-02T10:30:14.057Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Found 53634 complete sessions."}
+{"level":30,"time":"2023-12-02T10:30:14.057Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Re-building daily session history with a different bucket size: 1h -> 2h"}
+{"level":30,"time":"2023-12-02T10:30:20.625Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:30:51.300Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:30:51.338Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:30:52.882Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","0":"2023.12.01T23.15.12Z","1":"2023.12.01T22.35.10Z","2":"2023.12.01T22.25.10Z","3":"2023.12.01T21.35.09Z","4":"2023.11.30T13.50.52Z","5":"2023.11.30T10.40.09Z","6":"2023.11.30T08.56.40Z","7":"2023.11.29T20.41.20Z","8":"2023.11.29T15.51.31Z","9":"2023.11.29T15.01.50Z","10":"2023.11.29T13.45.18Z","11":"2023.11.29T13.33.29Z","12":"2023.11.29T13.21.02Z","13":"2023.11.29T13.20.15Z","14":"2023.11.28T20.31.54Z","15":"2023.11.28T17.25.11Z","16":"2023.11.28T16.10.09Z","17":"2023.11.28T14.03.06Z","18":"2023.11.28T13.20.41Z","19":"2023.11.28T12.07.02Z","20":"2023.11.27T12.33.56Z","21":"2023.11.27T12.14.09Z","22":"2023.11.27T12.05.18Z","23":"2023.11.27T11.56.50Z","24":"2023.11.27T11.56.21Z","25":"2023.11.27T11.53.01Z","26":"2023.11.27T09.35.50Z","27":"2023.11.27T05.25.33Z","28":"2023.11.27T04.57.49Z","29":"2023.11.27T04.57.22Z","30":"2023.11.26T11.55.11Z","31":"2023.11.24T11.21.32Z","32":"2023.11.24T09.53.09Z","33":"2023.11.24T07.20.10Z","34":"2023.11.23T16.30.12Z","35":"2023.11.23T16.29.35Z","36":"2023.11.23T15.12.51Z","37":"2023.11.23T11.29.17Z","38":"2023.11.23T06.10.03Z","39":"2023.11.23T06.09.31Z","40":"2023.11.23T04.56.30Z","41":"2023.11.22T11.12.51Z","42":"2023.11.22T11.12.08Z","43":"2023.11.22T11.11.27Z","44":"2023.11.22T11.10.45Z","45":"2023.11.22T11.10.08Z","46":"2023.11.22T11.09.29Z","47":"2023.11.22T11.07.20Z","48":"2023.11.22T08.20.18Z","49":"2023.11.22T08.10.20Z","50":"2023.11.21T21.49.56Z","51":"2023.11.21T20.19.36Z","52":"2023.11.21T19.20.09Z","53":"2023.11.21T14.08.25Z","54":"2023.11.21T13.29.07Z","55":"2023.11.21T13.20.17Z","56":"2023.11.21T13.05.53Z","57":"2023.11.21T13.05.22Z","58":"2023.11.21T13.02.17Z","59":"2023.11.21T11.25.21Z","60":"2023.11.21T07.34.01Z","61":"2023.11.20T23.30.10Z","62":"2023.11.20T22.40.06Z","63":"2023.11.20T11.40.14Z","64":"2023.11.20T09.07.05Z","65":"2023.11.20T07.47.13Z","66":"2023.11.20T07.20.34Z","67":"2023.11.20T07.19.58Z","68":"2023.11.20T07.19.24Z","69":"2023.11.19T21.45.08Z","70":"2023.11.19T18.40.26Z","71":"2023.11.19T15.16.03Z","72":"2023.11.19T13.50.10Z","73":"2023.11.17T23.24.01Z","74":"2023.11.17T23.23.06Z","75":"2023.11.17T02.06.13Z","76":"2023.11.17T01.36.15Z","77":"2023.11.16T22.41.03Z","78":"2023.11.16T00.30.11Z","79":"2023.11.15T17.35.10Z","80":"2023.11.15T16.20.10Z","81":"2023.11.15T15.16.06Z","82":"2023.11.15T11.13.05Z","83":"2023.11.15T11.00.27Z","84":"2023.11.15T10.44.59Z","85":"2023.11.15T10.44.08Z","86":"2023.11.15T10.43.11Z","87":"2023.11.15T10.42.14Z","88":"2023.11.14T06.55.12Z","89":"2023.11.14T05.45.14Z","90":"2023.11.13T20.55.37Z","91":"2023.11.13T20.35.10Z","92":"2023.11.13T18.25.06Z","93":"2023.11.13T13.57.36Z","94":"2023.11.13T13.32.11Z","95":"2023.11.13T13.31.40Z","96":"2023.11.13T11.27.34Z","97":"2023.11.13T10.10.25Z","98":"2023.11.13T08.57.27Z","99":"2023.11.13T07.20.16Z","100":"2023.11.10T10.52.43Z","msg":"Time(s) at which an appointment was momentarily available:"}
+{"level":30,"time":"2023-12-02T10:30:52.882Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","FoundNoAppointmentError":41712,"NoResultsError":11504,"InfiniteSpinnerError":211,"BrokenUIError":45,"GhostUIElementError":44,"InternalServerError":9,"UndisclosedError":4,"msg":"Known errors encountered:"}
+{"level":30,"time":"2023-12-02T10:30:52.882Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","SessionNotCreatedError":2,"WebDriverError":2,"msg":"Unknown errors encountered:"}
+{"level":30,"time":"2023-12-02T10:30:55.774Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:30:57.848Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:30:59.912Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:31:01.992Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:31:02.259Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:31:02.522Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:31:06.334Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:31:09.856Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:31:09.879Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:31:09.879Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:31:09.879Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:31:10.243Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:31:13.899Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:31:16.643Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:31:16.683Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:31:22.157Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:31:24.241Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:31:26.310Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:31:28.395Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:31:28.664Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:31:28.930Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:31:32.529Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:31:36.301Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:31:36.346Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:31:36.346Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:31:36.346Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:31:36.699Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:31:41.333Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:31:44.262Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:31:44.299Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:31:49.224Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:31:51.301Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:31:53.368Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:31:55.450Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:31:55.725Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:31:56.000Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:32:00.003Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:32:06.764Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:32:06.794Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:32:06.794Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:32:06.794Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:32:07.169Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:32:10.111Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:32:13.300Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:32:13.335Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:32:19.507Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:32:21.589Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:32:23.658Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:32:25.722Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:32:25.980Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:32:26.246Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:32:30.048Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:32:35.072Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:32:35.095Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:32:35.095Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:32:35.095Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:32:35.486Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:32:40.690Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:32:44.784Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:32:44.819Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:32:50.153Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:32:52.265Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:32:54.320Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:32:56.391Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:32:56.653Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:32:56.918Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:33:00.513Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:33:07.480Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:33:07.499Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:33:07.499Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:33:07.499Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:33:07.854Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:33:11.798Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:33:14.466Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:33:14.501Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:33:18.663Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:33:20.738Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:33:22.796Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:33:24.866Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:33:25.127Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:33:25.391Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:33:28.993Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:33:32.506Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:33:32.531Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:33:32.531Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:33:32.531Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:33:32.899Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:33:36.295Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:33:39.463Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:33:39.496Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:33:44.191Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:33:46.282Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:33:48.337Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:33:50.413Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:33:50.674Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:33:50.942Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:33:54.756Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:34:01.908Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:34:01.937Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:34:01.937Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:34:01.937Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:34:02.306Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:34:07.388Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:34:10.176Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:34:10.216Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:34:15.331Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:34:17.410Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:34:19.467Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:34:21.542Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:34:21.806Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:34:22.073Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:34:25.880Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:34:31.520Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:34:31.539Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:34:31.539Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:34:31.539Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:34:31.894Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:34:36.116Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:34:39.241Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:34:39.279Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:34:44.364Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:34:46.439Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:34:48.509Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:34:50.580Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:34:50.839Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:34:51.105Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:34:54.687Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:34:58.834Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:34:58.864Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:34:58.864Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:34:58.864Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:34:59.217Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:35:04.065Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:35:07.366Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:35:07.406Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:35:11.604Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:35:13.690Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:35:15.748Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:35:17.814Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:35:18.076Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:35:18.340Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:35:22.579Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:35:28.184Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:35:28.207Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:35:28.207Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:35:28.208Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:35:28.585Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:35:32.839Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:35:35.513Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:35:35.548Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:35:39.982Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:35:42.072Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:35:44.131Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:35:46.220Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:35:46.712Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:35:47.639Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:35:51.458Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:35:56.890Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:35:56.910Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:35:56.910Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:35:56.910Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:35:57.324Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:36:00.751Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:36:03.401Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:36:03.436Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:36:07.798Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:36:09.886Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:36:11.952Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:36:14.024Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:36:14.298Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:36:14.567Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:36:18.165Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:36:22.117Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:36:22.144Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:36:22.144Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:36:22.144Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:36:22.516Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:36:25.890Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:36:28.900Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:36:28.935Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:36:34.822Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:36:36.913Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:36:38.981Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:36:41.072Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:36:41.346Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:36:41.611Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:36:45.206Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:36:51.554Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:36:51.575Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:36:51.575Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:36:51.575Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:36:51.949Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:36:55.697Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:36:58.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:36:58.172Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:37:02.915Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:37:05.006Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:37:07.065Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:37:09.138Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:37:09.403Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:37:09.667Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:37:13.480Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:37:18.726Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:37:18.749Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:37:18.749Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:37:18.749Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:37:19.146Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:37:23.455Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:37:26.445Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:37:26.483Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:37:31.696Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:37:33.796Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:37:35.865Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:37:37.946Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:37:38.223Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:37:38.498Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:37:42.537Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:37:47.593Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:37:47.612Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:37:47.612Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:37:47.612Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:37:48.002Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:37:51.471Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:37:54.313Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:37:54.350Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:37:59.539Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:38:01.652Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:38:03.722Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:38:05.810Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:38:06.083Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:38:06.351Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:38:10.161Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:38:15.698Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:38:15.724Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:38:15.725Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:38:15.725Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:38:16.126Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:38:21.291Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:38:26.041Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:38:26.081Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:38:32.803Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:38:34.914Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:38:36.976Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:38:39.053Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:38:39.313Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:38:39.605Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:38:43.428Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:38:49.143Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:38:49.171Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:38:49.171Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:38:49.171Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:38:49.611Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:38:53.932Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:38:56.502Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:38:56.542Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:39:02.197Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:39:04.290Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:39:06.349Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:39:08.416Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:39:08.674Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:39:08.939Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:39:12.733Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:39:18.737Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:39:18.759Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:39:18.759Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:39:18.759Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:39:19.155Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:39:25.530Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:39:28.949Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:39:28.988Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:39:33.677Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:39:35.766Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:39:37.833Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:39:39.906Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:39:40.167Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:39:40.434Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:39:44.042Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:39:49.900Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:39:49.920Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:39:49.920Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:39:49.920Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:39:50.282Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:39:55.305Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:39:59.729Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:39:59.762Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:40:04.547Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:40:06.631Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:40:08.690Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:40:10.763Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:40:11.027Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:40:11.290Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:40:15.081Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:40:20.601Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:40:20.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:40:20.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:40:20.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:40:20.993Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:40:24.356Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:40:27.036Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:40:27.080Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:40:31.907Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:40:33.997Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:40:36.064Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:40:38.132Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:40:38.407Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:40:38.675Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:40:42.499Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:40:46.532Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:40:46.557Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:40:46.557Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:40:46.557Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:40:46.935Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:40:50.605Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:40:53.096Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:40:53.133Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:40:58.795Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:41:00.885Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:41:02.944Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:41:05.020Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:41:05.282Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:41:05.550Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:41:09.153Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:41:13.256Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:41:13.286Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:41:13.286Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:41:13.286Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:41:13.644Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:41:17.326Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:41:20.534Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:41:20.569Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:41:25.954Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:41:28.043Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:41:30.111Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:41:32.183Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:41:32.444Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:41:32.706Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:41:36.302Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:41:39.702Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:41:39.735Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:41:39.735Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:41:39.735Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:41:40.134Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:41:43.999Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:41:46.841Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:41:46.874Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:41:51.996Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:41:54.075Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:41:56.138Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:41:58.209Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:41:58.473Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:41:58.736Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:42:02.115Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:42:07.097Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:42:07.118Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:42:07.118Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:42:07.118Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:42:07.498Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:42:10.665Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:42:13.749Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:42:13.782Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:42:18.053Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:42:20.143Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:42:22.206Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:42:24.275Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:42:24.537Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:42:24.801Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:42:28.616Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:42:34.458Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:42:34.482Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:42:34.482Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:42:34.482Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:42:34.870Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:42:40.036Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:42:42.722Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:42:42.755Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:42:48.003Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:42:50.104Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:42:52.166Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:42:54.235Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:42:54.511Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:42:54.772Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:42:58.388Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:43:05.356Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:43:05.374Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:43:05.374Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:43:05.374Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:43:05.769Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:43:10.308Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:43:13.328Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:43:13.363Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:43:17.589Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:43:19.677Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:43:21.730Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:43:23.797Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:43:24.060Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:43:24.323Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":50,"time":"2023-12-02T10:45:24.417Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"InfiniteSpinnerError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:45:24.417Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:45:24.825Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:45:28.188Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:45:31.161Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:45:31.199Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:45:37.066Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:45:39.163Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:45:41.221Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:45:43.296Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:45:43.556Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:45:43.827Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:45:47.417Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:45:51.651Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:45:51.681Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:45:51.681Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:45:51.681Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:45:52.089Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:45:55.183Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:45:58.821Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:45:58.865Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:46:04.942Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:46:07.034Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:46:09.095Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:46:11.190Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:46:11.464Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:46:11.738Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:46:15.341Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:46:19.851Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:46:19.876Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:46:19.876Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:46:19.876Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:46:20.256Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:46:24.257Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:46:27.784Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:46:27.828Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:46:32.360Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:46:34.465Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:46:36.542Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:46:38.618Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:46:38.897Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:46:39.172Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:46:42.988Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:46:46.280Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:46:46.304Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:46:46.304Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:46:46.304Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:46:46.679Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:46:51.469Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:46:54.915Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:46:54.953Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:47:00.782Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:47:02.870Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:47:04.931Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:47:07.006Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:47:07.279Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:47:07.542Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:47:11.128Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:47:14.610Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:47:14.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:47:14.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:47:14.641Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:47:15.021Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:47:19.219Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:47:22.853Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:47:22.889Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:47:28.714Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:47:30.789Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:47:32.857Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:47:34.933Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:47:35.209Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:47:35.487Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:47:39.096Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:47:43.573Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:47:43.621Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:47:43.621Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:47:43.621Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:47:44.043Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:47:48.688Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:47:51.905Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:47:51.943Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:47:58.148Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:48:00.244Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:48:02.311Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:48:04.395Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:48:04.653Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:48:04.928Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:48:08.517Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:48:14.949Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:48:14.967Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:48:14.968Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:48:14.968Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:48:15.408Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:48:19.647Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:48:23.349Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:48:23.390Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:48:27.580Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:48:29.664Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:48:31.735Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:48:33.814Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:48:34.079Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:48:34.352Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:48:38.155Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:48:42.886Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:48:42.909Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:48:42.909Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:48:42.909Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:48:43.337Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:48:47.920Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:48:51.483Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:48:51.526Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:48:57.494Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:48:59.577Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:49:01.643Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:49:03.720Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:49:03.993Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:49:04.256Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:49:07.861Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:49:13.509Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:49:13.537Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:49:13.537Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:49:13.537Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:49:13.972Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:49:19.438Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:49:22.985Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:49:23.031Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:49:31.054Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:49:33.147Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:49:35.214Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:49:37.292Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:49:37.553Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:49:37.823Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:49:41.854Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:49:47.810Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:49:47.831Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:49:47.831Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:49:47.831Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:49:48.244Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:49:52.814Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:49:55.409Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:49:55.451Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:50:01.213Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:50:03.294Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:50:05.357Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:50:07.425Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:50:07.686Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:50:07.952Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:50:11.543Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:50:16.252Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:50:16.283Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:50:16.283Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:50:16.283Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:50:16.658Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:50:21.289Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:50:23.650Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:50:23.688Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:50:29.223Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:50:31.310Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:50:33.366Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:50:35.443Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:50:35.706Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:50:35.971Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:50:39.565Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:50:43.754Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:50:43.781Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:50:43.781Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:50:43.781Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:50:44.143Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:50:47.176Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:50:49.555Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:50:49.591Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:50:54.863Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:50:56.947Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:50:59.019Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:51:01.100Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:51:01.360Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:51:01.625Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:51:05.450Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:51:11.041Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:51:11.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:51:11.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:51:11.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:51:11.431Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:51:16.142Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:51:19.593Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:51:19.636Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:51:24.146Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:51:26.232Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:51:28.293Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:51:30.364Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:51:30.625Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:51:30.890Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:51:34.691Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:51:39.037Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:51:39.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:51:39.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:51:39.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:51:39.428Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:51:43.947Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:51:46.734Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:51:46.773Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:51:51.335Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:51:53.423Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:51:55.487Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:51:57.580Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:51:57.859Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:51:58.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:52:02.154Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:52:07.235Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:52:07.259Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:52:07.259Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:52:07.259Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:52:07.639Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:52:13.736Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:52:17.155Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:52:17.195Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:52:22.879Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:52:24.964Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:52:27.028Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:52:29.105Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:52:29.366Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:52:29.633Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:52:33.224Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:52:38.575Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:52:38.601Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:52:38.602Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:52:38.602Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:52:38.977Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:52:44.366Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:52:48.160Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:52:48.194Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:52:53.824Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:52:55.905Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:52:57.970Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:53:00.046Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:53:00.312Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:53:00.579Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:53:04.159Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:53:10.501Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:53:10.521Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:53:10.521Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:53:10.521Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:53:10.884Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:53:15.608Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:53:18.728Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:53:18.764Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:53:24.262Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:53:26.362Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:53:28.430Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:53:30.504Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:53:30.775Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:53:31.043Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:53:34.842Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:53:39.308Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:53:39.326Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:53:39.326Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:53:39.326Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:53:39.687Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:53:42.650Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:53:45.830Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:53:45.866Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:53:50.182Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:53:52.272Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:53:54.342Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:53:56.419Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:53:56.680Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:53:56.945Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:54:00.526Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:54:04.104Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:54:04.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:54:04.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:54:04.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:54:04.479Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:54:10.475Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:54:13.140Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:54:13.177Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:54:19.614Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:54:21.695Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:54:23.749Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:54:25.824Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:54:26.100Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:54:26.377Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:54:30.392Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:54:36.071Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:54:36.094Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:54:36.094Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:54:36.094Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:54:36.497Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:54:41.030Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:54:44.016Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:54:44.058Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:54:50.156Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:54:52.256Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:54:54.343Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:54:56.426Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:54:56.696Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:54:56.993Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:55:00.797Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:55:08.734Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:55:08.751Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:55:08.751Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:55:08.751Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:55:09.202Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:55:15.149Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:55:18.512Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:55:18.552Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:55:26.542Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:55:28.642Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:55:30.702Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:55:32.781Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:55:33.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:55:33.321Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:55:37.128Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:55:42.053Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:55:42.088Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:55:42.088Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:55:42.088Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:55:42.523Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:55:46.037Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:55:48.936Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:55:48.990Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:55:55.058Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:55:57.137Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:55:59.205Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:56:01.290Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:56:01.558Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:56:01.824Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:56:05.413Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:56:09.250Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:56:09.275Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:56:09.275Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:56:09.275Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:56:09.648Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:56:13.945Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:56:17.127Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:56:17.163Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:56:23.003Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:56:25.088Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:56:27.155Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:56:29.221Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:56:29.481Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:56:29.746Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:56:33.551Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:56:37.999Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:56:38.029Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:56:38.029Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:56:38.029Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:56:38.397Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:56:43.194Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:56:45.646Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:56:45.684Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:56:50.732Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:56:52.818Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:56:54.883Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:56:56.952Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:56:57.215Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:56:57.476Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:57:01.063Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:57:07.026Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:57:07.049Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:57:07.049Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:57:07.049Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:57:07.410Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:57:11.799Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:57:15.168Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:57:15.209Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:57:19.698Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:57:21.772Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:57:23.828Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:57:25.893Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:57:26.154Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:57:26.417Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:57:30.002Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:57:37.033Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:57:37.055Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:57:37.055Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:57:37.055Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:57:37.418Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:57:41.072Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:57:43.755Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:57:43.792Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:57:49.596Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:57:51.678Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:57:53.738Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:57:55.820Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:57:56.080Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:57:56.352Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:57:59.953Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:58:06.661Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:58:06.687Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:58:06.687Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:58:06.687Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:58:07.067Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:58:11.793Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:58:14.695Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:58:14.740Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:58:18.969Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:58:21.061Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:58:23.130Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:58:25.212Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:58:25.486Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:58:25.764Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:58:29.563Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:58:33.891Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:58:33.919Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Returned to find appointment page."}
+{"level":50,"time":"2023-12-02T10:58:33.919Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"NoResultsError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:58:33.919Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:58:34.300Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:58:39.299Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:58:42.557Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:58:42.595Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:58:48.222Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:58:50.314Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:58:52.399Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:58:54.474Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:58:54.733Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:58:54.998Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:58:58.604Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:59:04.624Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:59:04.642Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:59:04.642Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:59:04.642Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:59:05.010Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:59:09.343Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:59:12.165Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:59:12.200Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:59:17.987Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:59:20.071Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:59:22.129Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:59:24.205Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:59:24.470Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:59:24.733Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:59:28.121Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:59:33.688Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Checking for appointments availability..."}
+{"level":30,"time":"2023-12-02T10:59:33.714Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"There are no appointments available at the moment. :'("}
+{"level":50,"time":"2023-12-02T10:59:33.714Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","err":"FoundNoAppointmentError","msg":"A known event occurred."}
+{"level":30,"time":"2023-12-02T10:59:33.714Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [END] ---------------"}
+{"level":30,"time":"2023-12-02T10:59:34.091Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"--------------- Scenario: GetSkilledWorkerWithDegreeAppointmentScenario [START] ---------------"}
+{"level":30,"time":"2023-12-02T10:59:38.289Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on book appointment button."}
+{"level":30,"time":"2023-12-02T10:59:40.986Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Tick accept terms checkbox."}
+{"level":30,"time":"2023-12-02T10:59:41.023Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
+{"level":30,"time":"2023-12-02T10:59:46.432Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select citizenship: Kanada"}
+{"level":30,"time":"2023-12-02T10:59:48.518Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select number of applicants: eine Person"}
+{"level":30,"time":"2023-12-02T10:59:50.577Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Select with relatives: nein"}
+{"level":30,"time":"2023-12-02T10:59:52.642Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Aufenthaltstitel - beantragen' button."}
+{"level":30,"time":"2023-12-02T10:59:52.922Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Erwerbstätigkeit' button."}
+{"level":30,"time":"2023-12-02T10:59:53.197Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Fachkräfte mit akademischer Ausbildung' button."}
+{"level":30,"time":"2023-12-02T10:59:57.003Z","pid":24840,"hostname":"Davids-PC","version":"1.20.0","msg":"Click on 'Next' button."}
