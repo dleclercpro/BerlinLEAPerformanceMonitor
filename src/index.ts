@@ -64,6 +64,8 @@ const execute = async () => {
     }
 
     // Clean logs (remove incomplete sessions)
+    // FIXME: consider logs of previous day (which might have been rotated)
+    // to prevent first session to "incomplete" first session)
     if (CLEAN) {
         const logs = await parseLogs(LOGS_FILEPATH);
     
