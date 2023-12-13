@@ -25,13 +25,10 @@ import GetSkilledWorkerWithDegreeAppointmentScenario from './models/scenarios/Ge
 const hasFoundAppointment = async (bot: Bot) => {
     return GetSkilledWorkerWithDegreeAppointmentScenario
         .execute(bot)
-        .then(() => {
-            return true;
-        })
-        .catch(async () => {
+        .then(() => true)
+        .catch(() => false)
+        .finally(async () => {
             await bot.quit();
-
-            return false;
         });
 }
 
