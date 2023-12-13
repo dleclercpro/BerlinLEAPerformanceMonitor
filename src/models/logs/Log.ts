@@ -35,18 +35,24 @@ class Log {
     }
 
     public static fromText(line: string, index: number) {
-        const { level, time, version, pid, hostname, msg, err } = JSON.parse(line);
+        try {
+            const { level, time, version, pid, hostname, msg, err } = JSON.parse(line);
 
-        return new Log({
-            line: index + 1,
-            level,
-            time: new Date(time),
-            version: Release.fromString(version),
-            processId: pid,
-            hostname,
-            message: msg,
-            error: err,
-        });
+            return new Log({
+                line: index + 1,
+                level,
+                time: new Date(time),
+                version: Release.fromString(version),
+                processId: pid,
+                hostname,
+                message: msg,
+                error: err,
+            });
+        
+        // Ignore problematic lines
+        } catch (err: unknown) {
+
+        }
     }
 
     public toString() {
@@ -57,7 +63,7 @@ class Log {
             `"hostname":"${this.hostname}",` +
             `"version":"${this.version.toString()}",` +
             (this.error ? `"err":"${this.error}",` : '') +
-            `"msg":"${this.message}"` +
+            `"msg":${JSON.stringify(this.message)}` +
         `}`);
     }
 

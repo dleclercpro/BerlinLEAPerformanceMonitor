@@ -59,7 +59,7 @@ export const doesFileExist = (filepath: string) => {
     return fs.existsSync(filepath);
 }
 
-export const touchFile = async (filepath: string) => {
+export const touchFile = (filepath: string) => {
     if (!doesFileExist(filepath)) {
         fs.mkdirSync(path.dirname(filepath), { recursive: true });
 

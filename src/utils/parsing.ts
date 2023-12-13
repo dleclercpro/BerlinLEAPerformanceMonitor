@@ -3,10 +3,13 @@ import { NEW_LINE_REGEXP } from '../constants';
 import logger from '../logger';
 import Release from '../models/Release';
 import { readFile } from './file';
+import pino from 'pino';
+
+const LEVEL_MAP = pino.levels.values;
 
 
 
-export const parseLogs = async (filepath: string, since?: Date | Release) => {
+export const parseLogs = async (filepath: string, since?: Date | Release, level?: pino.Level) => {
     logger.trace(`Reading logs...`);
 
     if (since) {
@@ -17,9 +20,13 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
         }
     }
 
+    if (level) {
+        logger.debug(`Keeping logs with level greater than or equal to: ${LEVEL_MAP[level]} (${level.toUpperCase()})`);
+    }
+
     const file = await readFile(filepath);
 
-    const logs: Log[] = file
+    const rawLogs = file
         .split(NEW_LINE_REGEXP)
         .filter((line: string) => {
             return line.startsWith('{') && line.endsWith('}');
@@ -27,6 +34,10 @@ export const parseLogs = async (filepath: string, since?: Date | Release) => {
         .map((line: string, index: number) => {
             return Log.fromText(line, index);
         })
+        .filter(Boolean) as Log[];
+
+    const logs = rawLogs
+        .filter((log: Log) => level === undefined || log.getLevel() >= LEVEL_MAP[level])
         .filter((log: Log) => {
             if (since instanceof Date) {
                 return log.getTime() >= since;

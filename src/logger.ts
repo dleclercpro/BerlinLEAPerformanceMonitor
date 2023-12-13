@@ -49,7 +49,7 @@ const getLoggerByUseCase = () => {
     // When polling, output all logs to file and terminal
     if (POLL) {
         return pino({
-            level: 'trace',
+            level: 'debug',
             formatters: FORMATTERS,
             timestamp: pino.stdTimeFunctions.isoTime,
         }, pino.transport({
